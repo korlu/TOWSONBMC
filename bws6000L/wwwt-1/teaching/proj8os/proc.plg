@@ -1,0 +1,68 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: proc - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\reef09\LOCALS~1\Temp\RSPCFB.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/proc.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\student\aoa\sly\519\project\proc\procView.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\reef09\LOCALS~1\Temp\RSPCFB.tmp" 
+Creating temporary file "C:\DOCUME~1\reef09\LOCALS~1\Temp\RSPCFC.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/proc.pdb" /debug /machine:I386 /out:"Debug/proc.exe" /pdbtype:sept 
+.\Debug\ChildFrm.obj
+.\Debug\DeleteDlg.obj
+.\Debug\MainFrm.obj
+.\Debug\PCB.obj
+.\Debug\PriorityDlg.obj
+.\Debug\proc.obj
+.\Debug\procDoc.obj
+.\Debug\procView.obj
+.\Debug\StdAfx.obj
+.\Debug\StringFile.obj
+.\Debug\TreeListComboBox.obj
+.\Debug\TreeListCtrl.obj
+.\Debug\TreeListEditBox.obj
+.\Debug\TreeListHeaderCtrl.obj
+.\Debug\TreeToolTipCtrl.obj
+.\Debug\proc.res
+]
+Creating command line "link.exe @C:\DOCUME~1\reef09\LOCALS~1\Temp\RSPCFC.tmp"
+<h3>Output Window</h3>
+Compiling...
+procView.cpp
+Linking...
+Creating temporary file "C:\DOCUME~1\reef09\LOCALS~1\Temp\RSPCFD.tmp" with contents
+[
+/nologo /o"Debug/proc.bsc" 
+.\Debug\StdAfx.sbr
+.\Debug\ChildFrm.sbr
+.\Debug\DeleteDlg.sbr
+.\Debug\MainFrm.sbr
+.\Debug\PCB.sbr
+.\Debug\PriorityDlg.sbr
+.\Debug\proc.sbr
+.\Debug\procDoc.sbr
+.\Debug\procView.sbr
+.\Debug\StringFile.sbr
+.\Debug\TreeListComboBox.sbr
+.\Debug\TreeListCtrl.sbr
+.\Debug\TreeListEditBox.sbr
+.\Debug\TreeListHeaderCtrl.sbr
+.\Debug\TreeToolTipCtrl.sbr]
+Creating command line "bscmake.exe @C:\DOCUME~1\reef09\LOCALS~1\Temp\RSPCFD.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+proc.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

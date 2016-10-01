@@ -1,0 +1,195 @@
+;*******************************************************************************
+;prload1.asm
+;RKK modified on May 8, 2006 
+; This runs in real mode, when a sector is detected, it sets a flag in the 
+;  shared memory, in protected mode this flag will be read to read the 
+; the sector again when loading an application 
+; this call loads only one sector from floppy disk 
+;   into location 8400h, it also updates all the 
+;   parameters needed to load next sector 
+; This is used to load application sectors and also to load one sector at a time
+;  from the application as an API
+;*******************************************************************************
+PUBLIC 		aoaminil1	
+public		BxPointer1,LoaderSize1m, StartLogicalSecNum1m,SS_cl1,T_ch1,H_dh1
+;EXTRN		LoaderSize:word, StartLogicalSecNum:word
+EXTRN		LSectorError:dword
+INCLUDE 	386SCD.INC
+INCLUDE 	DCYCLE.INC
+INCLUDE 	sharmem.inc
+;INCLUDE		AOAINC.INC
+;*******************************************************************************
+
+RDataSeg        SEGMENT PARA public USE16 'REALDATA'
+
+
+DiskDrive1		db	0h	;initialize the number of disk drive.
+					;later we can get this number from 
+					;keyboard!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+LoopCount1      	dd      3	;try three times
+
+BxPointer1      	dd      0000h  	;to keep offset for next
+
+LoaderSize1m   		dw      40 	;initialize the LoaderSize, how many
+					;sectors we want to load. later 
+					;we can get this number from 
+					;keyboard!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					
+StartLogicalSecNum1m	dw	33	;initialize the StartLogicalSecNum.
+					;later we can get this number from 
+					;keyboard!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+					;now start from 33-2879 
+					;(could be 0-2879)
+					
+					;StartPhysicalSecNum start from 1-18
+					;StartTrack start from 0-79
+					;StartHead 0 or 1
+					
+					;once we have this value, we can get 
+					;the value of cl, ch and dh.
+
+
+SS_cl1			db	0	;Start sector number in cl
+T_ch1			db	0	;track in ch
+H_dh1			db	0	;head in dh
+LAddress   		dw      3900h, 0000h 
+					
+RDataSeg	Ends
+
+;*******************************************************************************
+
+RCodeSeg        SEGMENT PARA public USE16 'CODE'
+		ASSUME  DS:RDataSeg, CS:RCodeSeg
+;===============================================================================
+aoaminil1        proc 
+
+	cli
+	mov     ax,0840h		;set up es for the es:bx reader buffer.
+	mov     es,ax
+	mov	ebx, 0
+
+RWStart1:
+
+	call 	StartSec_cl1		;use current StartLogicalSecNum to get 
+					;current StartPhysicalSecNum.
+
+	call 	Head_dh1 		;use current StartLogicalSecNum to get 
+					;current head number.
+					
+	call 	Track_ch1		;use current StartLogicalSecNum to get 
+					;current track number.
+	clc
+
+ 	mov     bx, 0h        	;set up bx for the es:bx reader buffer.
+
+	MOV     dl, DiskDrive1		;load from floppy disk.
+	mov	dh, H_dh1
+	mov	cl, SS_cl1	
+	mov	ch, T_ch1		
+
+	mov	ah, 14
+	mov	al, '.'
+	int 	10h
+	
+	mov     ah, 02h       		;Read one sector at a time
+	mov     al, 01h
+	int     13H		
+
+        jnc     NextSector		;if not carry, go to load next sector.
+	dec     LoopCount1  		;otherwise, try until three times.
+	mov     eax, LoopCount1
+	cmp     eax, 0 
+	jnz     RWStart1
+	jmp     @@Boot_Failure
+
+NextSector:
+
+	inc	StartLogicalSecNum1m
+	dec	LoaderSize1m
+	JMP     LoadFinish
+	
+@@Boot_Failure:
+
+	mov	ah, 14  
+	mov 	al, 'F'
+	int    	10h
+	;jmp	DWORD PTR [LAddress]	; power on reset
+
+	;------------------------------
+	push	es                      ; this is in real mode  
+	push	ebx
+	mov     ax,0860h		;shared memory area 
+	mov     es,ax
+	mov 	ebx, S_LSError          ; offset of the error flag 
+	mov	eax, 1			; set the LSError flag 
+	mov	es:[ebx], eax
+	pop	ebx
+	pop	es
+	;------------------------------
+
+LoadFinish:
+	mov	[LoopCount1], 3
+	;jmp	DWORD PTR [LAddress]    ; power on reset	
+	;mov 	ah, 00h  ;reset floppy drive 
+	;mov 	dl, 00h
+	;int	13h
+	;add al, 30h
+	;mov	ah, 14 
+	;int 10h
+	sti
+       	ret
+aoaminil1 endp
+
+;=================================================================================
+
+StartSec_cl1	proc			;this proc make StartPhysicalSecNum into
+					;cl.
+				
+	mov	ax, StartLogicalSecNum1m	;start to calculate StartPhysicalSecNum 
+	mov	bl, 18			;SPSN=(SLSN mod 18)+1
+	div	bl			;'and cl, n-1' to implement 'mod cl, n'
+	xor	cx, cx 			;18-1=17
+	mov	cl, ah			;now we get the starting physical sector
+	add	cl, 1			;number in the local track into cl.						
+	mov	SS_cl1, cl
+	ret
+	
+StartSec_cl1	endp
+
+;===============================================================================
+
+Head_dh1	proc
+	
+					;calcute StartHead=(SLSN/18) mod 2
+	mov	ax, StartLogicalSecNum1m
+	mov	bl, 18
+	div	bl
+	and	ah, 0
+	mov	bl, 2
+	div	bl
+	mov	dh, ah
+	
+	mov	H_dh1, dh
+	ret
+	
+Head_dh1	endp
+
+;===============================================================================
+
+Track_ch1	proc
+
+	xor	ax, ax				;calcute StartTrack=SLSN/(18*2)
+	mov	ax, StartLogicalSecNum1m
+	mov	bl, 36
+	div	bl
+	mov	ch, al
+
+	mov	T_ch1, ch
+	ret
+Track_ch1	endp
+
+RCodeSeg        ENDS
+;===============================================================================
+		END 

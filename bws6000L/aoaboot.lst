@@ -1,0 +1,952 @@
+Microsoft (R) Macro Assembler Version 6.11		    04/14/10 17:22:06
+aoaboot.asm						     Page 1 - 1
+
+
+				;****************************************************************
+				; aoaboot.asm file name 
+				; modified at Towson University Dated 8-1-01 
+				; by Dr. Karne, Gattu, Ankam, Dandu, Xubo, Xi
+				; compile with MASM 6.11
+				; ml /AT Flaoaboot.lst Feaoaboot.com Foaoaboot.com /Fm /Zi
+				; aoaboot.asm /link /CODEVIEW
+
+				; usage:
+				; place a formatted disk in a: drive and aoaboot 0
+				; this will install boot record (512) bytes on disk
+				; copy any DOS files on disk before installing boot record
+				; after installing boot record DOS copy will not work
+				; In order to boot insert a diskette in a: drive and start 
+				;****************************************************************
+				; BOOT - This code contains:
+				;             - AOA boot record which installs boot on a diskette
+				;             - Code that runs after boot whoch loads a lader
+				;             (this code must be less than 512 bytes) 
+				;              
+				; Original code was from Web which needed fixes and modifications
+				; to suit to AOA application: www.cs.vsb.cz                                
+				;****************************************************************
+				; The code has been modified at Towson University to make it run
+				; with MASM 6.1. Other changes also made to make it run 
+				;    - 3 byte offset was needed to print messages correctly 
+				;    - calc_sec routine works fine but stores the results in  
+				;      registers that messes up the loading of the loader program 
+				;***************************************************************
+				.model TINY, BASIC 
+
+				.386
+
+ 0000				.DATA
+				; 0:7C00h = address where BIOS loads boot record
+ = 7C00					STACK_TOP       = 7C00H
+ = 7AFD					SHIFT           = 7C00H - 103H
+					; PSP = 100H bytes, JMP BOOT_BEGIN = 3 bytes
+				       ; LOADER_MODULE     = 0700H
+ = 0000					LOADER_MODULE     = 0000H
+
+					; Segment address of Loader where it will be loaded 
+					; Address where to load the loader module
+					; Booter loader the loader into memory
+					; Loader in turn will load other modules 
+				;***************************************************************
+				;  Keep the data and code in code segment for 512 byte
+				;  boot record as the booter has only code segment to run
+				;***************************************************************
+ 0000				.CODE 
+
+				ASSUME DS:DGROUP,ES:DGROUP,SS:DGROUP
+
+				.startup
+
+				;start the code at 100h for .com file
+				org 100h
+				;***************************************************************
+				;BOOTER PROCESS 
+				;***************************************************************
+ 0100				BOOTER  PROC
+ 0100  55				push bp
+ 0101  8B EC				mov bp,sp
+					; jump to prepare and install a boot record
+					; this code does not get invoked during boot
+
+ 0103  E9 01EF				JMP     BOOT_BEGIN  ; to install boot record
+
+				; Boot record begins here
+				; Some code is the same as MS-DOS (version 4.0 or higher)
+				; boot record
+				; Every value named in sectors is relative to boot sector
+				; Boot sector relative number is 0.
+				; Boot_Start label is the point where it starts loading into 
+				; the boot sector. The boot sector which has 512 bytes gets 
+				; loaded starting at this point 
+				; When a boot sector gets loaded, it loads program and as well as 
+				; data it is very important that all the program and data must fit 
+				; in this one sector (512 bytes) 
+				; Make sure that the code you want to carry with the boot disk 
+				; in the boot sector fits in that sector
+				;***************************************************************
+				; Starting point of the boot code 
+				;***************************************************************
+
+ 0106				Boot_Start:
+ 0106  EB 3F				JMP     SHORT @@Start   ; Jump over data
+ 0108  90				NOP                     ; Near jump 
+								; so we need one extra byte here
+
+ 0109 41 4F 41 54 55 31		VersionID       db      'AOATU1.0',0     ; Company and version
+       2E 30 00
+ 0112 0200			BytesPerSec     dw      512     ; 512B per sector
+ 0114  00					db      ?       ; Unused
+ 0115 0000			StartImageSecs  dw      ?       ; First available sect for image
+ 0117 32			LoaderSize      db      50      ; Size of LOADER in sectors 58 is the max number of sectors it can load 
+								; Mini Loader Has a problem
+ 0118 0000			SizeImageSec    dw      ?       ; Image size in sectors
+ 011A 0B40			TotalSectors    dw      2880    ; Total sector number on disk
+ 011C F0			FormatID        db      0F0H    ; F0 = floppy, F8 = harddisk
+ 011D 0021			LoaderDataSec   dw      33      ; First sector of LOADER
+				; use filesys a: /S:n to check for the code in exe file 
+				; find where the PSP starts in the exe file the sector say is n 
+				; find also where the code ends in the exe file, total no of sectors p 
+				; put n in LoaderDataSec data word 
+				; put p+1 in the LoaderSize data word 
+				; filesys a: /s:33 will show PSP track to read 
+ 011F 0012			SectorsPerCyl   dw      18      ; Sectors per track (cylinder)
+ 0121 0002			Sides           dw      2       ; Number of sides (heads) 
+ 0123  0000					dw      ?       ; Unused
+ 0125  0000					dw      ?       ; Unused
+ 0127  00000000					dd      ?       ; Unused
+ 012B 00			DriveNo         db      0       ; 0=1st floppy,80h=1st harddisk
+ 012C  00					db      ?       ; Unused
+ 012D  00					db      ?       ; Unused
+ 012E 01 02 03 04		VolumeSerialNo  db      1,2,3,4 ; Volume serial number 0102-0304
+ 0132 41 4F 41 58 73 79		VolumeLabel     db      'AOAXsysdisk' ;Volume label(max.11 chars)
+       73 64 69 73 6B
+ 013D  0008 [					db      8 dup (?)       ; 8 bytes
+        00
+       ]
+				; Boot record end (total 62 bytes including JMP and NOP)
+				;***************************************************************
+				; Here come the variables that AOA needs
+ 0145 FFFF			RAMDiskSize     dw      0FFFFh  ; Size of memory block reserved 
+								; in paragraphs (1MB-16B)
+				;***************************************************************
+				;Boot main code
+				;***************************************************************
+ 0147				@@Start:
+				; init segments except ES
+ 0147  FA				CLI
+ 0148  8C D8				mov     ax, ds  ; DS:SI = actual partition structure
+ 014A  8E C0				mov     es, ax
+ 014C  33 C0				XOR     AX, AX
+ 014E  8E D0				MOV     SS, AX
+ 0150  BC 7C00				MOV     SP, STACK_TOP   ; Stack initiation
+ 0153  8E D8				MOV     DS, AX
+ 0155  FB				STI                     ; ES has old DS value 
+								; DS and SS have 0
+								; SP at 7C00
+				;
+				; When booting from harddisk, DS:SI pointers to actual
+				; partition structure. We need some parameters from there.
+				; Else we'll fill this structure with diskette parameters.
+ 0156  80 3E 7C25 R 80			cmp     [BYTE PTR DriveNo + SHIFT -3], 80h
+ 015B  73 17				jnb     savpar
+				; Fill partition structure buffer with diskette def. parameters
+				; This is needed for A disk drive bootup 
+
+					; If you run out of space within 512 bytes you can comment
+					; the trace instructions 
+
+					; 7th byte in tracerecord
+					; Trace record can be used to debug the code 
+ 015D  BF 7DE3 R			mov     di,offset  TraceRec + SHIFT - 3 + 7
+ 0160  C6 05 64				mov     BYTE PTR DS:[DI],'d'    ; 'd' flag
+					; PartBuf can be used to send data to load module 
+ 0163  BF 7D7B R			mov     di, offset PartBuf + SHIFT - 3
+ 0166  47				inc     di
+ 0167  C6 05 00				mov     BYTE PTR ds:[di], 0     ; BeginHead = 0
+ 016A  47				inc     di
+ 016B  C7 05 0001			mov     WORD PTR ds:[di], 1     ; BeginSecCyl = 1
+ 016F  83 C7 0E				add     di, 14
+ 0172  EB 00				jmp     saveend
+					; other 14 bytes of the partition buffer is not 
+					; initialized and they are not used in the code now 
+
+				; Else save real partition structure to our buffer
+ 0174				savpar:
+					; The following code is not tested
+					; hence it is commented
+					; this should be only used for hard disk boot 
+					; mov     cx, 10h
+					; 16 bytes of structure
+					; This is needed for Hard Disk drive bootup 
+					; We do not intend to boot using Hard Disk 
+					; 7th byte in tracerecord
+					; mov    di,offset  TraceRec + SHIFT - 3 + 7 
+					; mov    BYTE PTR DS:[DI],'h'
+					; mov     di, offset PartBuf+SHIFT - 3
+ 0174				savparloop:
+					; mov     al, BYTE PTR es:[si]    ; let it save
+					; ES has old DS value when program started 
+					; mov     BYTE PTR ds:[di], al
+					; inc     di
+					; inc     si
+					; loop    savparloop
+				; Common parameters
+ 0174				saveend:                                ; save added information
+					; 16 bits of partition buffer are stored as above
+					; the rest of the 3 bytes are stored as below 
+
+ 0174  A0 7C25 R			mov     al, [BYTE PTR DriveNo + SHIFT - 3] ;Drive number 
+								       ; 0 for diskette drive 
+ 0177  88 05				mov     BYTE PTR ds:[di], al
+ 0179  83 C7 01				add     di, 1
+ 017C  A1 7C3F R			mov     ax, [WORD PTR RAMDiskSize + SHIFT - 3]
+					; RAMDisk size      2 bytes in the partition buffer 
+ 017F  89 05				mov     WORD PTR ds:[di], ax
+
+ 0181  33 C0				xor     ax, ax                  ; init ES
+ 0183  8E C0				mov     es, ax                  ; now ES is 0
+
+				; Look if LOADER is in disk, checks if there are some sectors
+ 0185				detectloader:
+ 0185  A0 7C11 R			MOV     AL,[LoaderSize + SHIFT - 3]
+ 0188  0A C0				OR      AL, AL
+ 018A  74 7F				JZ      @@Boot_Failure
+
+				; Loader is there, so init drive & load it
+				;****************************************************************
+				;     reset the disk drive
+				;***************************************************************
+					; 6th byte in tracerecord
+					; Loader found set L flag 
+ 018C  BF 7DE2 R			mov    di, offset  TraceRec + SHIFT - 3 + 6 
+ 018F  C6 05 4C				mov    BYTE PTR DS:[DI],'L' 
+
+ 0192  33 C0				XOR     AX, AX
+ 0194  8A 16 7C25 R			MOV     DL, [BYTE PTR DriveNo + SHIFT - 3]
+ 0198  CD 13				INT     13H                     ; Device reset (AH = 0)
+				;***************************************************************
+					; 5th byte in tracerecord
+					; disk reset is successful set R flag
+ 019A  BF 7DE1 R			mov    di, offset  TraceRec + SHIFT - 3 + 5 
+ 019D  C6 05 52				mov    BYTE PTR DS:[DI],'R'
+
+					; carry flag is set if there is a reset or read error
+					; after return from interrupt 13 
+ 01A0  72 69				JC     @@Boot_Failure          ; Reset error
+				;***************************************************************
+				;  Now, Print Start message, Version ID and OS msg 
+				;***************************************************************
+
+					;MOV     SI, OFFSET StartMsg1 + SHIFT - 3
+					;CALL    WriteString             ; Print message
+					;MOV     SI, OFFSET  VersionID + SHIFT - 3
+					;CALL    WriteString             ; Print message
+					;MOV     SI, OFFSET StartMsg2 + SHIFT - 3
+					;CALL    WriteString             ; Print message
+				;*********************************************************
+				; this program will load the aoaload.com file at 0700h
+				;*********************************************************              
+ 01A2  C7 06 7DE7 R 0003		MOV     [LoopCount+SHIFT-3],3 ;  Try to read 3 times
+ 01A8  BB 0000				MOV     BX, LOADER_MODULE     ; Loader Address  
+ 01AB  8E C3				MOV     ES, BX                ; setup ES:BX pair
+ 01AD  33 DB				XOR     BX, BX                ;  to read from disk
+					; Loader module begins at 00700h:0000h PSP area
+
+				; Now we'll read the loader from reserved sector
+				;-------------begin reading loader sectors ---------------------
+ 01AF				@@Read_Continue:
+					
+ 01AF  A1 7C17 R			MOV     AX, [LoaderDataSec + SHIFT - 3]
+
+ 01B2  E8 0070				CALL    calc_sec
+
+					; relative sector -> physical CHS
+					; calc_sec returns DL drive, DH head, CH track, CL sector 
+					; make sure that CX and DX registers are not changed below
+
+					; 4th byte in tracerecord
+ 01B5  BF 7DE0 R			mov    di,offset  TraceRec + SHIFT - 3 + 4 
+ 01B8  C6 05 53				mov    BYTE PTR        DS:[DI],'S'
+					; set S flag every time it goes through the loop
+					
+ 01BB				@@three:
+ 01BB  8B 1E 7DED R			MOV     BX, [BxPointer + SHIFT - 3];
+					; initially it is 0 and increments by 512 bytes
+					; for next sector 
+ 01BF  B8 0201				MOV     AX, 0201h       ; Read one sector at a time
+ 01C2  CD 13				INT     13H
+ 01C4  73 0E				JNC     @@Continue
+					; AX register has number of sectors it read
+					; carry flag will be reset if read successfully
+
+ 01C6  FF 0E 7DE7 R			DEC     [LoopCount+SHIFT - 3] ; count down for three attempts  
+ 01CA  A1 7DE7 R			MOV     AX, [LoopCount+SHIFT - 3] 
+ 01CD  83 F8 00				CMP     AX, 0 
+ 01D0  75 E9				JNZ     @@three
+					; three attempts and go to error 
+ 01D2  EB 37				JMP     SHORT @@Boot_Failure
+
+ 01D4				@@Continue:
+ 01D4  81 06 7DED R 0200		ADD     [BxPointer + SHIFT - 3], 0200H
+					; add one sector equivalent of 512 bytes
+					; for next segment to read if any
+
+					; 3rd byte in tracerecord
+ 01DA  57				PUSH    DI
+ 01DB  BF 7DDF R			mov     di,offset  TraceRec + SHIFT - 3 + 3 
+ 01DE  A1 7C17 R			mov     AX, [LoaderDataSec + SHIFT - 3]
+ 01E1  88 05				mov     BYTE PTR DS:[DI], AL
+ 01E3  5F				POP     DI
+					; print the trace record   
+ 01E4  BE 7DDC R			mov     si, OFFSET TraceRec + SHIFT - 3
+ 01E7  E8 002B				CALL    WriteString
+					; This will print the sector number that just read
+
+ 01EA  FF 06 7C17 R			INC     [LoaderDataSec + SHIFT - 3] ;Next sector to read
+ 01EE  FE 0E 7C11 R			DEC     [LoaderSize + SHIFT - 3]    ;count down sectors
+ 01F2  75 BB				JNZ     @@Read_Continue
+				;***************************************************************
+				;End of reading all sectors of the loader program 
+				;***************************************************************
+ 01F4  BE 7DD7 R			MOV     SI, OFFSET OKMsg + SHIFT - 3
+ 01F7  E8 001B				CALL    WriteString
+							; Print message
+				;***************************************************************
+				; Set ES:DI to pointer to Partiton buffer. Loader can use it
+				; This can be used to pass data to another program such as loader
+				; As long as ES:DI is not disturbed, PartBuf can be read in
+				; the called module 
+				;***************************************************************
+ 01FA  BF 7D7B R			mov     di, offset PartBuf + SHIFT - 3
+ 01FD  8C C8				mov     ax, cs
+ 01FF  8E C0				mov     es, ax
+				; Now go to Loader from one world to another 
+				;***************************************************************
+				; We need a indirect jump that jumps to an address 
+				; that is in a memory location 4 bytes 
+				; It must point to a double word so that it replaces
+				; IR and CS with two words of address
+ 0201  B4 0E			       mov ah, 14  
+ 0203  B0 58			       mov al, 'X'
+ 0205  CD 10			       int 10h 
+
+ 0207  FF 2E 7DE9 R			JMP     DWORD PTR [LoaderAddress + SHIFT -3]
+				; This is a point of no return, no one should be here!
+
+				; Boot failed (read error, loader not found),message & try again
+ 020B				@@Boot_Failure:
+ 020B  BE 7D8E R			MOV     SI, OFFSET BootFailMsg + SHIFT - 3
+ 020E  E8 0004				CALL    WriteString     ; Print error message
+ 0211  32 E4				XOR     AH, AH          ; BIOS keyboard service
+				;       INT     16H             
+				; Wait for key stroke
+ 0213  CD 19				INT     19H             ; Try to load boot sector again
+				;***************************************************************
+				; End of boot program
+				; Now, the loader should be up and running 
+				;***************************************************************
+				; Procedures to follow
+				; The following procedures should also fit in 512 byte block
+				;***************************************************************
+				; WriteString procedure prints a string pointed by SI
+				; uses BX register
+				;***************************************************************
+ 0215				WriteString proc near           ;Print an ASCIIZ string at DS:SI
+ 0215  53				PUSH    BX
+ 0216				@@Write_Begin:
+ 0216  AC				LODSB                   ; Next character
+ 0217  0A C0				OR      AL, AL
+ 0219  74 08				JZ      @@Write_End     ; AL=0 => end of ASCIIZ string
+ 021B  B4 0E				MOV     AH, 0EH         ; BIOS service - write character
+ 021D  B3 FF				MOV     BL, 0FFH        ; Char's attribute
+ 021F  CD 10				INT     10H
+ 0221  EB F3				JMP     SHORT @@Write_Begin
+ 0223				@@Write_End:
+ 0223  5B				POP     BX
+ 0224  C3				RET
+ 0225				WriteString endp 
+				;***************************************************************
+				; calc_sec Calculate absolute sector parameters given a
+				; sector number
+				; AX register has the logical sector number
+				; output is in DH, DL, CH, CL registers
+				;***************************************************************
+ 0225				calc_sec proc near
+				; Calculates side, track, sector
+				; Input: AX = relative sector
+				; Relative sector = Cyl# * SPC * Heads + Head# * SPC + Sec# - 1
+				;                                                   (zero base)
+				; Results: prepare register to int 13/[02 or 03] (without AX)
+				; Modified registers: AX, DX, CX
+				; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				; We suppose the maximum relative sector equals to 0FFFFh.
+				; For bootstrap it should be enough.
+				; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 0225  33 D2				XOR     DX, DX
+ 0227  F7 36 7C19 R			DIV     [WORD PTR SectorsPerCyl + SHIFT - 3]
+ 022B  52				PUSH    DX
+ 022C  33 D2				XOR     DX, DX
+ 022E  F7 36 7C1B R			DIV     [WORD PTR Sides + SHIFT - 3]
+ 0232  8A F2				MOV     DH, DL                  ; HEAD
+				; PartBuf + 1 = BeginHead
+ 0234  02 36 7D7C R			add     dh, [BYTE PTR PartBuf + 1 + SHIFT -3]
+								       ; DH = absolute head
+				; PartBuf + 2 = BeginSecCyl
+ 0238  8B 0E 7D7D R			mov     cx, [WORD PTR PartBuf + 2 + SHIFT - 3]
+ 023C  83 E1 C0				and     cx, 0FFC0h
+ 023F  C0 C1 02				rol     cl, 2
+ 0242  86 CD				xchg    cl, ch
+ 0244  03 C1				add     ax, cx          ; AX = absolute cylinder
+ 0246  59				pop     cx              ; CX = calculated sector
+ 0247  50				push    ax
+ 0248  A1 7D7D R			mov     ax, [WORD PTR PartBuf + 2 + SHIFT - 3]
+ 024B  83 E0 3F				and     ax, 3Fh
+ 024E  03 C8				add     cx, ax          ; CX = absolute sector
+ 0250  58				pop     ax
+
+				;Head overflow
+ 0251  3A 36 7C1B R			cmp     dh, [BYTE PTR Sides + SHIFT - 3]
+ 0255  72 05				jb      @@testsec
+ 0257  B6 00				mov     dh, 0
+ 0259  83 C0 01				add     ax, 1
+				; Sector overflow
+ 025C				@@testsec:
+ 025C  3B 0E 7C19 R			cmp     cx, [SectorsPerCyl + SHIFT - 3]
+ 0260  76 06				jna     @@dontaddhead
+ 0262  B9 0001				mov     cx, 1
+ 0265  80 C6 01				add     dh, 1
+				; Head overflow again
+ 0268				@@dontaddhead:
+ 0268  3A 36 7C1B R			cmp     dh, [BYTE PTR  Sides + SHIFT - 3]
+ 026C  76 05				jna     @@dontaddcyl
+ 026E  B6 00				mov     dh, 0
+ 0270  83 C0 01				add     ax, 1
+
+ 0273				@@dontaddcyl:
+ 0273  86 E0				xchg    ah, al
+ 0275  C0 C8 02				ror     al, 2
+ 0278  0A C1				or      al, cl
+ 027A  8B C8				mov     cx, ax
+ 027C  8A 16 7C25 R			MOV     DL, [DriveNo + SHIFT - 3]       ; DRIVE NUMBER
+ 0280  C3				RET
+ 0281				calc_sec endp
+				;***************************************************************
+				; Partition buffer declaration follow
+				; This buffer can be sent to loader program through ES:DI
+				;***************************************************************
+
+ 0281  0013 [			PartBuf         db      19 dup(?)
+        00
+       ]
+							      ; 16 bytes of partition structure
+							      ; + 1 byte for DRIVE identification
+							      ; + 2 bytes for RAMdisk size
+ 0294 4E 6F 6E 2D 53 79		BootFailMsg     db     'Non-System disk or disk error', 13, 10,0
+       73 74 65 6D 20 64
+       69 73 6B 20 6F 72
+       20 64 69 73 6B 20
+       65 72 72 6F 72 0D
+       0A 00
+ 02B4 50 72 65 73 73 20		KeyPressMsg     db     'Press akey toReboot', 13, 10, 0
+       61 6B 65 79 20 74
+       6F 52 65 62 6F 6F
+       74 0D 0A 00
+ 02CA 0D 0A 53 74 61 72		StartMsg1       db     13,10,'Starting',0
+       74 69 6E 67 00
+ 02D5 20 4F 53 2E 2E 0D		StartMsg2       db     ' OS..', 13,10,0
+       0A 00
+ 02DD 4F 4B 0D 0A 00		OKMsg           db     'OK', 13, 10, 0
+ 02E2 46 46 46 46 46 46		TraceRec        db     'FFFFFFFF',13,10,0
+       46 46 0D 0A 00
+ 02ED 0003			LoopCount       dw      3
+
+				; when you load the segment value for jump,use the value with no 
+				; shift left (code at 0a200h should be coded as 2200h:800h or 200h:0a00h).
+				; LoaderAddress   dw      0a200h, 0000h ; offset and segment addr
+				; BxPointer       dw      0a000h   
+
+				; PRCYLE.ASM this code's PSP is loaded at 600h 
+				; its code starts at 800h, check RCODESEG starting address or  
+				; add it up.. 3990 + 800h = 4190h
+				; every time prcycle.asm is compiled, make sure the address is correct 
+
+				;PRCYCLE
+ 02EF 3900 0000			LoaderAddress   dw      3900h, 0000h ; offset and segment add ;CHANGE if MAP file 
+				; changes the RCODESEG start value
+ 02F3 0600			BxPointer       dw      0600h        ; to keep offset for next sector
+
+				 
+
+ 02F5				@@BootCode_End:
+				;***************************************************************
+				; End of booter code 
+				; It must be within 512 bytes from here to Boot_Start  
+				;***************************************************************
+				;
+				;
+				;
+				;***************************************************************
+				; The following code gets executed to install a boot record 
+				; on a bootable disk 
+				;***************************************************************
+ 02F5				BOOT_BEGIN:
+				; get command line to buffer 'cmd'
+ 02F5  BE 0080				mov     si, 80h
+ 02F8  0F B6 0C				movzx   cx, BYTE PTR ds:[si]    ; CX = velikost
+ 02FB  41				inc     cx
+
+ 02FC  BF 06B0 R			mov     di, offset cmd
+ 02FF  FC				cld
+ 0300  F3/ A4				rep     movsb
+
+				; transmission 'cmd' to big letters
+ 0302  FC				cld
+ 0303  B8 06B0 R			mov     ax, offset cmd
+ 0306  8B F0				mov     si, ax
+ 0308  8B F8				mov     di, ax
+ 030A  B9 0080				mov     cx, 80h
+ 030D  AC			cik:    lodsb
+ 030E  3C 61				cmp     al, 'a'
+ 0310  72 06				jb      neeee
+ 0312  3C 7A				cmp     al, 'z'
+ 0314  77 02				ja      neeee
+ 0316  2C 20				sub     al, 'a'-'A'
+ 0318  AA			neeee:  stosb
+ 0319  E2 F2				loop    cik
+
+				; go to main writing code
+ 031B  EB 38				jmp     main
+
+
+ 031D				str2num PROC near 
+				; Transmission of hexadecimal string to real number
+				; input  : AX = string offset (one or two characters)
+				; output : BX = wanted number
+				; CF = 1, if transmission gone wrong
+ 031D  BB 0000				mov     bx, 0
+ 0320  FC				cld
+ 0321  F8				clc
+ 0322  8B F0				mov     si, ax
+ 0324  8B F8				mov     di, ax
+ 0326  B8 0000				mov     ax, 0
+ 0329  B9 0002				mov     cx, 2           ; max 2 characters
+ 032C  AC			cak:    lodsb
+
+ 032D  3C 30				cmp     al,'0'          ; AL must be '0'-'9' or 'A'-'F'
+ 032F  72 22				jb      tr_err
+ 0331  3C 39				cmp     al,'9'
+ 0333  72 13				jb      number
+ 0335  3C 41				cmp     al,'A'
+ 0337  72 1A				jb      tr_err
+ 0339  3C 46				cmp     al,'F'
+ 033B  77 16				ja      tr_err
+
+				; transmission of characters 'A'-'F' to number
+ 033D  2C 37				sub     al,55   ; 'A'=65 => 65-55=10, (10 decimal is A hexadec.)
+ 033F  C1 E3 04				shl     bx,4
+ 0342  03 D8				add     bx,ax
+ 0344  E2 E6				loop    cak
+
+ 0346  EB 0C				jmp     finish
+
+				; transmission of characters '0'-'9' to number
+ 0348  2C 30			number: sub     al,48   ; '0'=48 => 48-48=0
+ 034A  C1 E3 04				shl     bx,4
+ 034D  03 D8				add     bx,ax
+ 034F  E2 DB				loop    cak
+
+ 0351  EB 01				jmp     finish
+
+				; wrong input
+ 0353  F9			tr_err: stc
+ 0354				finish: 
+ 0354  C3				ret
+ 0355				str2num ENDP
+
+
+ 0355				main:
+				; cmd+2 = 1st character of command line
+ 0355  A0 06B2 R			mov     al, [BYTE PTR cmd + 2]
+ 0358  BE 044A R			mov     si, offset HelpMsg
+ 035B  3C 00				cmp     al, 0           ; when no parameters
+ 035D  74 04				je      ParDrvErr
+ 035F  3C 3F				cmp     al, '?'         ; or given '?', then
+ 0361  75 06				jne     ParDrvOk        ; print help
+
+ 0363				ParDrvErr:
+ 0363  E8 FEAF				call    WriteString
+ 0366  E9 00DC				jmp     main_end
+ 0369				ParDrvOk:
+ 0369  B8 06B2 R			mov     ax, offset cmd + 2      ; first parameter = drive
+ 036C  E8 FFAE				call    str2num
+ 036F  88 1E 069A R			mov     [BYTE PTR DRIVE], bl
+
+ 0373  80 FB 7F				cmp     bl, 7Fh
+ 0376  77 0D				ja      @@ReadMBR               ; Don't read MBR when writing
+ 0378  C6 06 069D R 00			mov     [BYTE PTR HEAD], 0              ; to floppy
+ 037D  C7 06 069E R 0001		mov     [WORD PTR CYLSEC], 1
+
+ 0383  EB 62				jmp     @@ReadBoot
+
+ 0385				@@ReadMBR:
+				; cmd+5 = 4th character of command line
+ 0385  A0 06B5 R			mov     al, [BYTE PTR cmd + 5]
+ 0388  BE 044A R			mov     si, offset HelpMsg
+ 038B  3C 00				cmp     al, 0                   ; if partition parameter not
+ 038D  0F 84 00B1			je      @@Do_Write              ; specified
+ 0391  3C 31				cmp     al, '1'                 ; or not in range 1 to 4
+ 0393  0F 82 00AB			jb      @@Do_Write              ; print help
+ 0397  3C 34				cmp     al, '4'
+ 0399  0F 87 00A5			ja      @@Do_Write
+
+ 039D  BB 0930 R			mov     bx, offset MBRbuffer
+ 03A0  8A 16 069A R			mov     dl, [BYTE PTR  DRIVE]
+ 03A4  B6 00				mov     dh, 0           ; MBR Head
+ 03A6  B9 0003				mov     cx, 3
+ 03A9				@@TryReadMBR:
+ 03A9  51				push    cx
+ 03AA  B9 0001				mov     cx, 1           ; MBR Cylinder & Sector
+ 03AD  B8 0201				mov     ax, 0201H       ; read MBR to buffer
+ 03B0  CD 13				int     13h
+ 03B2  59				pop     cx
+ 03B3  73 08				jnc     @@ReadMBROK
+ 03B5  E2 F2				loop    @@TryReadMBR
+ 03B7  BE 0685 R			mov     si, offset DiskReadErrMBR
+ 03BA  E9 0085				jmp     @@Do_Write
+
+ 03BD				@@ReadMBROK:
+ 03BD  B8 06B5 R			mov     ax, offset cmd + 5
+ 03C0  E8 FF5A				call    str2num
+
+				; get parameters of given partition
+ 03C3  8B C3				mov     ax, bx
+ 03C5  BB 0010				mov     bx, 16
+ 03C8  F7 E3				mul     bx
+ 03CA  2B C3				sub     ax, bx
+ 03CC  05 01BE				add     ax, 1beh
+ 03CF  8B F8				mov     di, ax
+ 03D1  83 C7 01				add     di, 1
+ 03D4  8A 8D 0930 R			mov     cl, [BYTE PTR MBRbuffer + di]
+ 03D8  88 0E 069D R			mov     [BYTE PTR  HEAD], cl            ; BeginHead
+ 03DC  83 C7 01				add     di, 1
+ 03DF  8B 8D 0930 R			mov     cx, [WORD PTR MBRbuffer + di]
+ 03E3  89 0E 069E R			mov     [WORD PTR CYLSEC], cx           ; BeginCylSec
+
+
+				; Read original boot record before update
+ 03E7				@@ReadBoot:
+ 03E7  BB 0730 R			MOV     BX, OFFSET BootBuffer
+ 03EA  8A 16 069A R			MOV     DL, [BYTE PTR DRIVE]
+ 03EE  8A 36 069D R			MOV     DH, [BYTE PTR HEAD] ;BeginHead = boot sector Head
+ 03F2  B9 0003				MOV     CX, 3
+ 03F5				@@TryRead:
+ 03F5  51				PUSH    CX
+ 03F6  8B 0E 069E R			MOV     CX, [WORD PTR CYLSEC]
+							; boot sector Cylinder & Sector
+ 03FA  B8 0201				MOV     AX, 0201H         ; read boot to buffer
+ 03FD  CD 13				INT     13H
+ 03FF  59				POP     CX
+ 0400  73 07				JNC     @@ReadOK
+ 0402  E2 F1				LOOP    @@TryRead
+ 0404  BE 062F R			MOV     SI, OFFSET DiskReadErr
+ 0407  EB 39				JMP     @@Do_Write
+ 0409				@@ReadOK:
+ 0409  BE 0106 R			MOV     SI, OFFSET Boot_Start
+ 040C  BF 0730 R			MOV     DI, OFFSET BootBuffer
+				;       MOV     CX, 11
+ 040F  B9 0026				MOV     CX,38
+ 0412  F3/ A4				REP     MOVSB           ; write my boot to buffer
+				;       ADD     SI, 27       
+				;       ADD     DI, 27
+ 0414  B9 00EC				MOV     CX, 472/2
+ 0417  F3/ A5				REP     MOVSW
+ 0419  B8 AA55				MOV     AX, 0AA55H      ;End of boot sector signature
+ 041C  AB				STOSW
+ 041D  B9 0003				MOV     CX, 3
+ 0420				@@TryWrite:
+ 0420  51				PUSH    CX
+ 0421  8A 16 069A R			MOV     DL, [BYTE PTR DRIVE]
+ 0425  8A 36 069D R			MOV     DH, [BYTE PTR HEAD]
+ 0429  8B 0E 069E R			MOV     CX, [WORD PTR CYLSEC]
+ 042D  B8 0301				MOV     AX, 0301H
+ 0430  BB 0730 R			MOV     BX, OFFSET BootBuffer
+ 0433  CD 13				INT     13H             ; Write buffer to boot sector
+ 0435  59				POP     CX
+ 0436  73 07				JNC     @@Write_OK
+ 0438  E2 E6				LOOP    @@TryWrite
+ 043A  BE 0619 R			MOV     SI, OFFSET WriteErrorMsg
+ 043D  EB 03				JMP     SHORT @@Do_Write
+ 043F				@@Write_OK:
+ 043F  BE 0645 R			MOV     SI, OFFSET WriteOKMsg
+ 0442				@@Do_Write:
+ 0442  E8 FDD0				CALL    WriteString
+
+ 0445				main_end:
+					;mov    sp,stack_top
+					;mov    dl,0
+					;int    19h
+
+					;JMP @@Boot_Failure
+
+					;MOV BX, STACK_TOP
+					;MOV DL, [BYTE PTR DRIVE]
+					;MOV DH, [BYTE PTR HEAD]
+					;MOV CX, [WORD PTR CYLSEC]
+					;MOV AX, 0201H 
+					;INT 13H 
+					;JMP Boot_Start 
+
+
+ 0445  5D				pop     bp
+ 0446  B4 4C				MOV     AH,4Ch
+ 0448  CD 21				INT     21H
+				;EXITCODE
+
+ 044A 42 6F 6F 74 20 52		HelpMsg db      'Boot Record Writer by Petr Smidak & friends '
+       65 63 6F 72 64 20
+       57 72 69 74 65 72
+       20 62 79 20 50 65
+       74 72 20 53 6D 69
+       64 61 6B 20 26 20
+       66 72 69 65 6E 64
+       73 20
+ 0476  66 72 6F 6D 20 54		db      'from TUOX Bootstrap group, 1999', 13,10,13,10
+       55 4F 58 20 42 6F
+       6F 74 73 74 72 61
+       70 20 67 72 6F 75
+       70 2C 20 31 39 39
+       39 0D 0A 0D 0A
+ 0499  42 6F 6F 74 20 2D		db      'Boot - Real Boot record Code. IT LOADS TUOX.', 13,10,13,10
+       20 52 65 61 6C 20
+       42 6F 6F 74 20 72
+       65 63 6F 72 64 20
+       43 6F 64 65 2E 20
+       49 54 20 4C 4F 41
+       44 53 20 54 55 4F
+       58 2E 0D 0A 0D 0A
+ 04C9  42 4F 4F 54 2E 43		db      'BOOT.COM [? | <DRIVE [PARTITION]>]', 13,10,13,10
+       4F 4D 20 5B 3F 20
+       7C 20 3C 44 52 49
+       56 45 20 5B 50 41
+       52 54 49 54 49 4F
+       4E 5D 3E 5D 0D 0A
+       0D 0A
+ 04EF  50 61 72 61 6D 65		db      'Parameters :',13,10
+       74 65 72 73 20 3A
+       0D 0A
+ 04FD  20 20 3F 20 2D 20		db      '  ? - this help message', 13,10
+       74 68 69 73 20 68
+       65 6C 70 20 6D 65
+       73 73 61 67 65 0D
+       0A
+ 0516  20 20 44 52 49 56		db      '  DRIVE = hexadecimal number', 13,10
+       45 20 3D 20 68 65
+       78 61 64 65 63 69
+       6D 61 6C 20 6E 75
+       6D 62 65 72 0D 0A
+ 0534  20 20 20 20 20 20		db      '          (0 = first floppy drive, '
+       20 20 20 20 28 30
+       20 3D 20 66 69 72
+       73 74 20 66 6C 6F
+       70 70 79 20 64 72
+       69 76 65 2C 20
+ 0557  31 20 3D 20 73 65		db      '1 = second floppy drive, ...', 13,10
+       63 6F 6E 64 20 66
+       6C 6F 70 70 79 20
+       64 72 69 76 65 2C
+       20 2E 2E 2E 0D 0A
+ 0575  20 20 20 20 20 20		db      '           80 = first harddisk, '
+       20 20 20 20 20 38
+       30 20 3D 20 66 69
+       72 73 74 20 68 61
+       72 64 64 69 73 6B
+       2C 20
+ 0595  38 31 20 3D 20 73		db      '81 = second harddisk, ...)', 13,10
+       65 63 6F 6E 64 20
+       68 61 72 64 64 69
+       73 6B 2C 20 2E 2E
+       2E 29 0D 0A
+ 05B1  20 20 50 41 52 54		db      '  PARTITION = partition number on choosed drive (1-4)', 13,10
+       49 54 49 4F 4E 20
+       3D 20 70 61 72 74
+       69 74 69 6F 6E 20
+       6E 75 6D 62 65 72
+       20 6F 6E 20 63 68
+       6F 6F 73 65 64 20
+       64 72 69 76 65 20
+       28 31 2D 34 29 0D
+       0A
+ 05E8  20 20 20 20 20 20		db      '      This has no effect, if drive < 80 (hexa)', 13,10,0
+       54 68 69 73 20 68
+       61 73 20 6E 6F 20
+       65 66 66 65 63 74
+       2C 20 69 66 20 64
+       72 69 76 65 20 3C
+       20 38 30 20 28 68
+       65 78 61 29 0D 0A
+       00
+ 0619 42 6F 6F 74 20 57		WriteErrorMsg   db      'Boot Writing Error.', 13,10,0
+       72 69 74 69 6E 67
+       20 45 72 72 6F 72
+       2E 0D 0A 00
+ 062F 42 6F 6F 74 20 52		DiskReadErr     db      'Boot Reading Error.', 13,10,0
+       65 61 64 69 6E 67
+       20 45 72 72 6F 72
+       2E 0D 0A 00
+ 0645 42 6F 6F 74 20 52		WriteOKMsg      db      'Boot Record Was Successfully Written.', 13,10
+       65 63 6F 72 64 20
+       57 61 73 20 53 75
+       63 63 65 73 73 66
+       75 6C 6C 79 20 57
+       72 69 74 74 65 6E
+       2E 0D 0A
+ 066C  4C 6F 61 64 20 53			db      'Load System Files Now.', 13,10,0
+       79 73 74 65 6D 20
+       46 69 6C 65 73 20
+       4E 6F 77 2E 0D 0A
+       00
+ 0685 4D 42 52 20 52 65		DiskReadErrMBR  db      'MBR Reading Error.', 13,10,0
+       61 64 69 6E 67 20
+       45 72 72 6F 72 2E
+       0D 0A 00
+ 069A 00			DRIVE           db      ?
+ 069B 0000			PARTBEG         dw      ?
+ 069D 00			HEAD            db      ?
+ 069E 0000			CYLSEC          dw      ?
+ 06A0 30 31 32 33 34 35		hex             db      '0123456789ABCDEF'      ; hexa znaky
+       36 37 38 39 41 42
+       43 44 45 46
+ 06B0  0008 [			cmd             db      8 dup(0), 78h dup(?)    ; argumenty z PSP
+        00
+       ]
+       0078 [
+        00
+       ]
+ 0730  0200 [			BootBuffer      db      512 dup(?)
+        00
+       ]
+ 0930  0200 [			MBRbuffer       db      512 dup(?)
+        00
+       ]
+
+
+ 0B30				BOOTER ENDP 
+				end
+Microsoft (R) Macro Assembler Version 6.11		    04/14/10 17:22:06
+aoaboot.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+DGROUP . . . . . . . . . . . . .	GROUP
+_TEXT  . . . . . . . . . . . . .	16 Bit	 0B30	  Word	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	16 Bit	 0000	  Word	  Public  'DATA'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+BOOTER . . . . . . . . . . . . .	P Near	 0100	  _TEXT	Length= 0A30 Public BASIC
+  Boot_Start . . . . . . . . . .	L Near	 0106	  _TEXT	
+  @@Start  . . . . . . . . . . .	L Near	 0147	  _TEXT	
+  savpar . . . . . . . . . . . .	L Near	 0174	  _TEXT	
+  savparloop . . . . . . . . . .	L Near	 0174	  _TEXT	
+  saveend  . . . . . . . . . . .	L Near	 0174	  _TEXT	
+  detectloader . . . . . . . . .	L Near	 0185	  _TEXT	
+  @@Read_Continue  . . . . . . .	L Near	 01AF	  _TEXT	
+  @@three  . . . . . . . . . . .	L Near	 01BB	  _TEXT	
+  @@Continue . . . . . . . . . .	L Near	 01D4	  _TEXT	
+  @@Boot_Failure . . . . . . . .	L Near	 020B	  _TEXT	
+  @@BootCode_End . . . . . . . .	L Near	 02F5	  _TEXT	
+  BOOT_BEGIN . . . . . . . . . .	L Near	 02F5	  _TEXT	
+  cik  . . . . . . . . . . . . .	L Near	 030D	  _TEXT	
+  neeee  . . . . . . . . . . . .	L Near	 0318	  _TEXT	
+  main . . . . . . . . . . . . .	L Near	 0355	  _TEXT	
+  ParDrvErr  . . . . . . . . . .	L Near	 0363	  _TEXT	
+  ParDrvOk . . . . . . . . . . .	L Near	 0369	  _TEXT	
+  @@ReadMBR  . . . . . . . . . .	L Near	 0385	  _TEXT	
+  @@TryReadMBR . . . . . . . . .	L Near	 03A9	  _TEXT	
+  @@ReadMBROK  . . . . . . . . .	L Near	 03BD	  _TEXT	
+  @@ReadBoot . . . . . . . . . .	L Near	 03E7	  _TEXT	
+  @@TryRead  . . . . . . . . . .	L Near	 03F5	  _TEXT	
+  @@ReadOK . . . . . . . . . . .	L Near	 0409	  _TEXT	
+  @@TryWrite . . . . . . . . . .	L Near	 0420	  _TEXT	
+  @@Write_OK . . . . . . . . . .	L Near	 043F	  _TEXT	
+  @@Do_Write . . . . . . . . . .	L Near	 0442	  _TEXT	
+  main_end . . . . . . . . . . .	L Near	 0445	  _TEXT	
+WriteString  . . . . . . . . . .	P Near	 0215	  _TEXT	Length= 0010 Public BASIC
+  @@Write_Begin  . . . . . . . .	L Near	 0216	  _TEXT	
+  @@Write_End  . . . . . . . . .	L Near	 0223	  _TEXT	
+calc_sec . . . . . . . . . . . .	P Near	 0225	  _TEXT	Length= 005C Public BASIC
+  @@testsec  . . . . . . . . . .	L Near	 025C	  _TEXT	
+  @@dontaddhead  . . . . . . . .	L Near	 0268	  _TEXT	
+  @@dontaddcyl . . . . . . . . .	L Near	 0273	  _TEXT	
+str2num  . . . . . . . . . . . .	P Near	 031D	  _TEXT	Length= 0038 Public BASIC
+  cak  . . . . . . . . . . . . .	L Near	 032C	  _TEXT	
+  number . . . . . . . . . . . .	L Near	 0348	  _TEXT	
+  tr_err . . . . . . . . . . . .	L Near	 0353	  _TEXT	
+  finish . . . . . . . . . . . .	L Near	 0354	  _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 0000h	 
+@DataSize  . . . . . . . . . . .	Number	 0000h	 
+@Interface . . . . . . . . . . .	Number	 0006h	 
+@Model . . . . . . . . . . . . .	Number	 0001h	 
+@Startup . . . . . . . . . . . .	L Near	 0100	  _TEXT	
+@code  . . . . . . . . . . . . .	Text   	 DGROUP
+@data  . . . . . . . . . . . . .	Text   	 DGROUP
+@fardata?  . . . . . . . . . . .	Text   	 FAR_BSS
+@fardata . . . . . . . . . . . .	Text   	 FAR_DATA
+@stack . . . . . . . . . . . . .	Text   	 DGROUP
+BootBuffer . . . . . . . . . . .	Byte	 0730	  _TEXT	
+BootFailMsg  . . . . . . . . . .	Byte	 0294	  _TEXT	
+BxPointer  . . . . . . . . . . .	Word	 02F3	  _TEXT	
+BytesPerSec  . . . . . . . . . .	Word	 0112	  _TEXT	
+CYLSEC . . . . . . . . . . . . .	Word	 069E	  _TEXT	
+DRIVE  . . . . . . . . . . . . .	Byte	 069A	  _TEXT	
+DiskReadErrMBR . . . . . . . . .	Byte	 0685	  _TEXT	
+DiskReadErr  . . . . . . . . . .	Byte	 062F	  _TEXT	
+DriveNo  . . . . . . . . . . . .	Byte	 012B	  _TEXT	
+FormatID . . . . . . . . . . . .	Byte	 011C	  _TEXT	
+HEAD . . . . . . . . . . . . . .	Byte	 069D	  _TEXT	
+HelpMsg  . . . . . . . . . . . .	Byte	 044A	  _TEXT	
+KeyPressMsg  . . . . . . . . . .	Byte	 02B4	  _TEXT	
+LOADER_MODULE  . . . . . . . . .	Number	 0000h	 
+LoaderAddress  . . . . . . . . .	Word	 02EF	  _TEXT	
+LoaderDataSec  . . . . . . . . .	Word	 011D	  _TEXT	
+LoaderSize . . . . . . . . . . .	Byte	 0117	  _TEXT	
+LoopCount  . . . . . . . . . . .	Word	 02ED	  _TEXT	
+MBRbuffer  . . . . . . . . . . .	Byte	 0930	  _TEXT	
+OKMsg  . . . . . . . . . . . . .	Byte	 02DD	  _TEXT	
+PARTBEG  . . . . . . . . . . . .	Word	 069B	  _TEXT	
+PartBuf  . . . . . . . . . . . .	Byte	 0281	  _TEXT	
+RAMDiskSize  . . . . . . . . . .	Word	 0145	  _TEXT	
+SHIFT  . . . . . . . . . . . . .	Number	 7AFDh	 
+STACK_TOP  . . . . . . . . . . .	Number	 7C00h	 
+SectorsPerCyl  . . . . . . . . .	Word	 011F	  _TEXT	
+Sides  . . . . . . . . . . . . .	Word	 0121	  _TEXT	
+SizeImageSec . . . . . . . . . .	Word	 0118	  _TEXT	
+StartImageSecs . . . . . . . . .	Word	 0115	  _TEXT	
+StartMsg1  . . . . . . . . . . .	Byte	 02CA	  _TEXT	
+StartMsg2  . . . . . . . . . . .	Byte	 02D5	  _TEXT	
+TotalSectors . . . . . . . . . .	Word	 011A	  _TEXT	
+TraceRec . . . . . . . . . . . .	Byte	 02E2	  _TEXT	
+VersionID  . . . . . . . . . . .	Byte	 0109	  _TEXT	
+VolumeLabel  . . . . . . . . . .	Byte	 0132	  _TEXT	
+VolumeSerialNo . . . . . . . . .	Byte	 012E	  _TEXT	
+WriteErrorMsg  . . . . . . . . .	Byte	 0619	  _TEXT	
+WriteOKMsg . . . . . . . . . . .	Byte	 0645	  _TEXT	
+cmd  . . . . . . . . . . . . . .	Byte	 06B0	  _TEXT	
+hex  . . . . . . . . . . . . . .	Byte	 06A0	  _TEXT	
+
+	   0 Warnings
+	   0 Errors

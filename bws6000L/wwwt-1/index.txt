@@ -1,0 +1,12 @@
+favicon.ico
+Welcome.htm
+index.htm
+tulogo.gif
+teaching\T-675.html
+teaching\T-439.html
+logo1.gif
+logo2.gif
+logo3.gif
+logo5.gif
+logo6.gif
+xyz

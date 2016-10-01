@@ -1,0 +1,253 @@
+Microsoft (R) Macro Assembler Version 6.11		    04/14/06 10:26:30
+ShortDelay.asm						     Page 1 - 1
+
+
+				;****************************************************************************
+				; ShortDelay.asm 
+				; modified by RKK and Karthick on 3-23-2004 
+				; passing by reference or pointers need special attention 
+				; passing return value from asm to c will done automatically if the results 
+				; are placed in eax 
+				; passing reference values must be done explicitly in asm code 
+				; as shown in the malloc example 
+				; ShortDelay can be used by prcycle code and as well as AOAShortDelay in C++
+				;*****************************************************************************
+						
+				;===============-=============================================================
+				; this assembly function can be called from C 
+				; 32 bit model and C type call settings 
+				; Modified by L Sun, date 01-14-2003 (to be used for communication program)
+				;=============================================================================
+					.386p	
+					.MODEL	FLAT, c
+				;=============================================================================
+				; the following header definition is created 
+				; by H2INC program and added here 
+				; It can take a C header file and generate 
+				; a .INC file which can be included in the 
+				; asm code as below 
+					include ethernetinc.inc 
+			      C 
+			      C option expr32
+			      C option casemap:none
+			      C 
+			      C ; Begin of file ethernetinc.h
+			      C ; all these values were obtained from the 3com manual 
+			      C ; no need to change them 
+ = 00000020		      C SizeOfDpd			EQU		00000020h
+ = 00000020		      C SizeOfUpd			EQU	        00000020h
+			      C 
+ = 00007800		      C Command_SetIndicationEnable	EQU		00007800h
+ = 00002800		      C Command_RXReset			EQU		00002800h
+ = 00000800		      C Command_SelectWindow		EQU		00000800h
+ = 00002000		      C Command_RXEnable		EQU		00002000h
+ = 00008000		      C Command_SetRXFilter		EQU		00008000h
+ = 00005800		      C Command_TXReset			EQU		00005800h
+ = 00004800		      C Command_TXEnable		EQU		00004800h
+ = 00005000		      C Command_TXDisable		EQU		00005000h
+ = 00000080		      C Command_ReadEpromCommand	EQU		00000080h
+ = 0000983C		      C Command_TxStartThresh		EQU		0000983ch 
+			      C ; 60 bytes = 3ch min threshold which is length of ethernet packet
+ = 00003002		      C Command_DnStall			EQU		00003002h 
+ = 00003003		      C Command_DnUnStall		EQU		00003003h 
+ = 00003000		      C Command_UpStall			EQU		00003000h 
+ = 00003001		      C Command_UpUnStall		EQU		00003001h 
+ = 0000A800		      C Command_StatsEnable		EQU		0000a800h
+			      C 
+			      C 
+			      C 
+			      C 
+ = 00000110		      C ID_PORT				EQU		00000110h
+ = 0000820C		      C PreambleData			EQU		0000820ch
+ = 00000000		      C Command_GlobalReset		EQU		00000000h
+ = 00001000		      C Command_StartIntXCVR		EQU		00001000h
+ = 00001800		      C Command_RXDisable		EQU		00001800h
+ = 00004000		      C Command_RXDiscard		EQU		00004000h
+ = 00006000		      C Command_RequestInt		EQU		00006000h
+ = 00006800		      C Command_AckInt			EQU		00006800h
+ = 00007000		      C Command_SetIntMask		EQU		00007000h
+			      C ;Command_SetRZMask		EQU		00007800h
+ = 00008800		      C Command_SetRXEarly		EQU		00008800h
+ = 00009000		      C Command_SetTXAvailable		EQU		00009000h
+ = 00009800		      C Command_SetTXStart		EQU		00009800h
+ = 0000B000		      C Command_StatsDisable		EQU		0000b000h
+ = 0000B800		      C Command_StopCoaxTrans		EQU		0000b800h
+			      C 
+			      C ;Processor Speed in MHZ. This is used by Short Delay Procedure
+			      C ;-------------------------------------------------------------
+ = 00000163		      C Processor_Speed		EQU		355
+ = 00000005		      C NoOfCycles_Delay	EQU		5	
+			      C ; No of cycles used to calculate the delay loop 
+			      C ;-------------------------------------------------------------
+ = 000000B8		      C GlobalDataSel		EQU		000000b8h
+ = 00000018		      C RDataSel		EQU		00000018h
+ = 00000308		      C GKKQ			EQU		00000308h
+ = 00000407		      C GKHead			EQU		00000407h
+ = 00000408		      C GKTail			EQU		00000408h
+ = 0000000C		      C StackSel		EQU		0000000Ch
+ = 00000090		      C Puthex32DataSel 	EQU		00000090h
+ = 000000C0		      C MEMDataSel         	EQU		000000C0h ; G4Data_Sel prcycle 
+			      C 
+			      C @proto_0		TYPEDEF		PROTO C :WORD, :PTR BYTE
+			      C initasm		PROTO		@proto_0
+			      C 
+			      C @proto_1		TYPEDEF		PROTO C :WORD, :PTR BYTE
+			      C receasm		PROTO		@proto_1
+			      C 
+			      C @proto_2		TYPEDEF		PROTO C :WORD, :PTR BYTE, :DWORD
+			      C transasm		PROTO		@proto_2
+			      C 
+			      C @proto_7		typedef		proto c :word
+			      C closeasm			proto		@proto_7
+			      C 
+			      C @proto_3		TYPEDEF		PROTO C 
+			      C Wait_Command_Finish		PROTO		@proto_3
+			      C 
+			      C @proto_4		TYPEDEF		PROTO C 
+			      C Wait_EEPROM_Unbusy		PROTO		@proto_4
+			      C 
+			      C @proto_5		TYPEDEF		PROTO C 
+			      C Check_Window6_Transmit_Success		PROTO		@proto_5
+			      C 
+			      C @proto_6		TYPEDEF		PROTO C 
+			      C Check_Window3_FreeTX		PROTO		@proto_6
+			      C 
+			      C ; End of file ethernetinc.h
+			      C 
+					
+				;=============================================================================
+				; The Dealy is in micro seconds
+				; Donot use this for more that 1 sec delays
+				; Formulae to Calculate the delay
+				; C- Loop Count
+				; N- Number of cycles in the loop
+				; D- Delay Required in Micor Seconds
+				; F- Clock Frequency in MHZ, the processor speed
+				; C- (F*D)/N
+
+ 00000000			.CODE
+ 00000000			ShortDelay PROC C public uses ebx ecx edx, Delay:dword
+ 00000006  53				push	ebx
+ 00000007  51				push	ecx
+ 00000008  52				push	edx
+					
+ 00000009  B8 00000163			mov	eax, Processor_Speed		; Get the speed of the processor
+ 0000000E  8B 55 08			mov	edx, Delay			; Get the delay in micro seconds
+ 00000011  F7 E2			mul	edx				; multiply the processor speed with the delay
+ 00000013  B9 00000005			mov	ecx, NoOfCycles_Delay		; Get the no of cycles for the loop instruction
+ 00000018  F7 F1			div	ecx; The result of div is in eax; divide the multiplied result with the No of cycles	
+ 0000001A  8B C8			mov	ecx, eax
+ 0000001C			DELAYLOOP:
+ 0000001C  E2 FE			loop	DELAYLOOP			; Wait in a loop untill the time is done
+ 0000001E  B8 00000000			mov	eax, 0
+
+ 00000023  5A				pop	edx
+ 00000024  59				pop	ecx
+ 00000025  5B				pop	ebx
+					ret
+ 0000002B			ShortDelay ENDP 	
+				;=========================================================================
+				END
+Microsoft (R) Macro Assembler Version 6.11		    04/14/06 10:26:30
+ShortDelay.asm						     Symbols 2 - 1
+
+
+
+
+Types:
+
+                N a m e                  Size     Attr
+
+@proto_0 . . . . . . . . . . . .	 00000004     CODE 
+@proto_1 . . . . . . . . . . . .	 00000004     CODE 
+@proto_2 . . . . . . . . . . . .	 00000004     CODE 
+@proto_3 . . . . . . . . . . . .	 00000004     CODE 
+@proto_4 . . . . . . . . . . . .	 00000004     CODE 
+@proto_5 . . . . . . . . . . . .	 00000004     CODE 
+@proto_6 . . . . . . . . . . . .	 00000004     CODE 
+@proto_7 . . . . . . . . . . . .	 00000004     CODE 
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000002B DWord	  Public  'CODE'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+Check_Window3_FreeTX . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+Check_Window6_Transmit_Success .	P Near	 00000000 FLAT	Length= 00000000 External C
+ShortDelay . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000002B Public C
+  Delay  . . . . . . . . . . . .	DWord	 bp + 00000008
+  DELAYLOOP  . . . . . . . . . .	L Near	 0000001C _TEXT	
+Wait_Command_Finish  . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+Wait_EEPROM_Unbusy . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+closeasm . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+initasm  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+receasm  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+transasm . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000001h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+Command_AckInt . . . . . . . . .	Number	 00006800h   
+Command_DnStall  . . . . . . . .	Number	 00003002h   
+Command_DnUnStall  . . . . . . .	Number	 00003003h   
+Command_GlobalReset  . . . . . .	Number	 00000000h   
+Command_RXDisable  . . . . . . .	Number	 00001800h   
+Command_RXDiscard  . . . . . . .	Number	 00004000h   
+Command_RXEnable . . . . . . . .	Number	 00002000h   
+Command_RXReset  . . . . . . . .	Number	 00002800h   
+Command_ReadEpromCommand . . . .	Number	 00000080h   
+Command_RequestInt . . . . . . .	Number	 00006000h   
+Command_SelectWindow . . . . . .	Number	 00000800h   
+Command_SetIndicationEnable  . .	Number	 00007800h   
+Command_SetIntMask . . . . . . .	Number	 00007000h   
+Command_SetRXEarly . . . . . . .	Number	 00008800h   
+Command_SetRXFilter  . . . . . .	Number	 00008000h   
+Command_SetTXAvailable . . . . .	Number	 00009000h   
+Command_SetTXStart . . . . . . .	Number	 00009800h   
+Command_StartIntXCVR . . . . . .	Number	 00001000h   
+Command_StatsDisable . . . . . .	Number	 0000B000h   
+Command_StatsEnable  . . . . . .	Number	 0000A800h   
+Command_StopCoaxTrans  . . . . .	Number	 0000B800h   
+Command_TXDisable  . . . . . . .	Number	 00005000h   
+Command_TXEnable . . . . . . . .	Number	 00004800h   
+Command_TXReset  . . . . . . . .	Number	 00005800h   
+Command_TxStartThresh  . . . . .	Number	 0000983Ch   
+Command_UpStall  . . . . . . . .	Number	 00003000h   
+Command_UpUnStall  . . . . . . .	Number	 00003001h   
+GKHead . . . . . . . . . . . . .	Number	 00000407h   
+GKKQ . . . . . . . . . . . . . .	Number	 00000308h   
+GKTail . . . . . . . . . . . . .	Number	 00000408h   
+GlobalDataSel  . . . . . . . . .	Number	 000000B8h   
+ID_PORT  . . . . . . . . . . . .	Number	 00000110h   
+MEMDataSel . . . . . . . . . . .	Number	 000000C0h   
+NoOfCycles_Delay . . . . . . . .	Number	 00000005h   
+PreambleData . . . . . . . . . .	Number	 0000820Ch   
+Processor_Speed  . . . . . . . .	Number	 00000163h   
+Puthex32DataSel  . . . . . . . .	Number	 00000090h   
+RDataSel . . . . . . . . . . . .	Number	 00000018h   
+SizeOfDpd  . . . . . . . . . . .	Number	 00000020h   
+SizeOfUpd  . . . . . . . . . . .	Number	 00000020h   
+StackSel . . . . . . . . . . . .	Number	 0000000Ch   
+
+	   0 Warnings
+	   0 Errors

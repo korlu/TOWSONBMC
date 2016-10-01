@@ -1,0 +1,318 @@
+//-------------------------------------------------
+//test.cpp file 
+//-------------------------------------------------
+//this program demonstrates the interfaces built to AO user 
+// these interfaces are tested 
+#include "../Interfaces/aoaprotected.h"
+#include "apptask.h"
+#include "aoatask.h"
+#include "wcirlist.h"
+#include "wstack.h"
+#include "wlist.h"
+//#include "HTTPIndex.h"
+#include "../TCP/Tcpobj.h"
+#include "../HTTPTABLE/HTTPList.h"
+#include "../FTP/FTPObj.h"
+#include "../UDP/UDPObj.h"
+#include "../FTOP/FTOPObj.h"
+#include "intexception.h"
+
+#define Line0 0
+
+//-------------------------------------------------
+// Function address or Task address related Types  
+//-------------------------------------------------
+typedef void (apptask::*pmfd)(long);  //typedef for a member ptr 	
+
+long *getFunctionPtr(pmfd);
+			
+//-------------------------------------------------
+void main()
+{
+	AOAProtected io;
+	EtherObj EO;
+	ARPObj arp; 
+	TCPObj tcp;
+	UDPObj udp;	
+	IPObj ip;
+
+	FTPObj ftp;	
+	FTOPObj fto;
+	//HTTPList http;
+	WCirList cir;
+	WStack stk;
+	WList wlst;
+
+	IntException intex;
+	apptask      first (4);	   // application task object 0, 1, 2 are reserved  
+				   // starting task id is 4 
+	AOATask      task;          // aoa task object  
+
+	//io.AOAcliTimer(); 
+
+	//--------------------
+	//Initialize ARP and IP
+	// Initialise the Parameters
+	
+	char SrcMAC[6];	
+	//char SrcIP[4]={0x0A, 0x37, 0x0A, 0x10};
+	//char SrcIP[4]={0x0A, 0x37, 0x0A, 0x10};	
+	char SrcIP[4]={0x0A, 0x37, 0x0c, 237};//10.55.12.237	
+	//char SrcIP[4]={0x0A, 0x37, 0x0A, 0xEB};	
+	char SubNetMask[4] = {0xFF, 0xFF, 0xFF, 0x00};	
+	char GateWayIP[4] = {0x0A, 0x37, 0x0B, 0xFE};
+	char GateWayMAC[6] = {0x00, 0x0f, 0x90, 0x2a, 0x6d, 0xbf};
+	unsigned short SrcPort = 0x0050; 
+	// FTP Parameters
+	char FTPServerIP[4] = {0x0A, 0x37, 0x0c, 24};//10.55.12.24
+	unsigned short port  = 5008;
+	unsigned short sport = 5000;
+	int starthttptaskno=0;
+	int endhttptaskno=0;
+	int HTTPListInitStatus =0;
+	int HTTPError;	
+	int state = 0;
+	int retcode = 0; 		//return code for a call  
+	int id = 0;  			//Task ID
+	long v2 = 0; 
+	int i=0;
+	long descht, desclt;	
+	int taskid;
+	long timer;
+	// -----------------------------------------
+	// Task related variables
+	// ------------------------------------------
+	long *Function_Address_Array;
+	long l100; 
+	long Task_ID;
+    int serverid = 0; 
+	//-------------------------------------------------------------
+	//memory or malloc pointers 
+    //-------------------------------------------------------------
+	char *Mem_Total_Ptr;		//used for malloc 
+	long  Mem_Base_Value=0;         //Memory Base Pointer to Malloc(), Base Value  
+	long  *Mem_Size_Ptr;            //Total no of bytes available for Malloc(), No of bytes  
+    long Mem_Addr_Ptr = 0x0000;
+	char c; 
+    int tcbsize = 0; 
+
+    Mem_Size_Ptr = &Mem_Addr_Ptr;     //initialize some address long type 
+
+	Function_Address_Array = &l100;   //to make a legitimate address pointer 
+	Function_Address_Array = (long*)(TASK_PTRS - ADDR_OFFSET);  //function addresses stored here 
+	
+	//-------------------------------------------------------------
+	// Function address or Task address related pointers   
+    //-------------------------------------------------------------
+    pmfd Function_Ptr_X = 0;          //pmfd type  
+    //has pointer addresses to all functions or tasks  
+	int GDT_Index=0;
+
+	// Change the time interrupt interval
+	io.AOAsetTimerPeriod(TIMER_PERIOD); // set timer period 1=55msec 2=55/2 msec 
+
+	io.AOAdisableIRQCntlr(2,0x01);  //disable Real Time Clock Interrupts IRQ8 
+	io.AOAdisableIRQCntlr(1,0x01);  //disable System Timer Interrupts IRQ0 Hardware Timer INT 08h 	
+
+    io.AOAPrintText("Enter Server ID:"); 
+    c = io.AOAgetCharacter(); 
+    if (c == 0x32) 
+    {
+        SrcIP[3] = 238;  //This server will be 238  
+    }
+
+	intex.IntExceptionInit();     //initialize exception code
+         
+	//prcycle gets the NIC port address and stores it in shared memory 
+	id = io.AOAgetSharedMem(0x9c); //get NIC device address  
+	EO.setBaseAddress(id);         //set the base address in the object 
+	id = 0; 
+	id = EO.getBaseAddress();        
+	io.AOAprintHex(id, Line24); 
+
+	EO.getMACEPROM(SrcMAC);
+	
+	retcode = EO.ColdReset();
+
+	retcode = EO.inittest(DPD_ADDR, DPD_DATA, UPD_ADDR, UPD_DATA);
+
+	retcode = EO.TEnable();
+	retcode = EO.REnable();
+
+	io.AOAenableIRQCntlr(1,0xfe);  //enable harderware timer IRQ0 INT08h
+
+	fto.init();
+    fto.setMode(1);  //fault tolerant bit needs to be set for ARP to run
+
+	arp.init(SrcIP, SubNetMask, GateWayIP);
+	ip.init(SrcIP);
+
+	//  init(SrcIP[4],SourceMAC[6],SubnetMask[4],GwayIP[4],GwayMAC[6],SrcPort,
+	//      TCPBuffBase,TCBBufferSize,NoTCBRecords, NoHashRecords)
+    retcode = tcp.initRecord();    //initialize TCB Record Size 
+    tcbsize = NO_OF_HASHRECORDS * 4 + tcp.sizeOfTCBRecord * NO_OF_TCBRECORDS; 
+    retcode = tcp.init(SrcIP,SrcMAC, SubNetMask, GateWayIP, GateWayMAC, SrcPort, TCP_ADDR, 
+           tcbsize, NO_OF_TCBRECORDS, NO_OF_HASHRECORDS);
+	if(retcode != 0)
+	{
+	   io.AOAPrintText("Memory is not sufficient for creating tcb records", Line23); 
+	   io.AOAExit();
+	}
+    //-------------------------------------------------------------------------------------
+	// Hashtable  : 10,000 entries each 4 bytes   = 10,000 *  4   =    40,000	
+	// TCB Record : 15,000 records each 320 bytes = 15,000 * 320  = 4,800,000
+	// 							       ---------
+	// 							        4,840,000 = 0x49da40
+	//we always make the tcb table the multiple of 32 to convenience the reading of memory map in DOSC option 9 
+    //-------------------------------------------------------------------------------------
+
+	//  init( BufferBase, BufferSize, BufferIndexCount, hashIndexCount, ftpDestIP, ftpDestPort)
+	ftp.init(FILE_ADDR, 0x04000000, 10000, 1000, FTPServerIP, port);
+	// Hash Index (file: hashindex.cpp) : 1000 records each 4 bytes    =   1000 *  4 =    4,000
+	// Resource Index (filenames)       : 10,000 buffers each 92 bytes = 10,000 * 92 =  920,000
+	// Resource Buffer (files)          : depends on the total size of files (allocate as needed)
+        //				       
+	// add the three values and give the result	
+	// result = 67,108,864 (64MB 0x04000000) (including hash index and resource index) 											
+	udp.init(SrcIP,sport);
+
+        // int init(long base, int size);	
+	stk.init(WSTACK_ADDR - ADDR_OFFSET, NO_HTTP_TASKS); 
+
+        // int init(long base, int size);	
+	cir.init(WCIRLIST_ADDR - ADDR_OFFSET, 10000); 
+        
+	// int init(long base, int size);	
+	wlst.init(WLIST_ADDR - ADDR_OFFSET, 1000); 
+	
+	io.AOAPrintText("Initialized Objects",Line7);
+
+	// Clear the Screen
+	for(i=0;i<4000;i++)
+	{
+	    io.AOAprintCharacter('\x20',i);
+
+	    i++;
+	}
+	
+	io.AOAPrintText("Press\x20ny\x20key\x20to\x20load\x20the\x20Resources...",Line10);	
+	c = io.AOAgetCharacter();
+
+	//clear screen 
+	for(i=0;i<3840;i++)
+	{
+	    io.AOAprintCharacter(' ',i);
+	    i++;
+	}
+	
+	// Get the IDT Table entry for the timer and store it so that later it can be restored
+	io.AOAgetIDTEntry(&descht,&desclt, 8);
+
+        //---------------------------------------------------------------------------
+	// For each task compute the function address and store it in the array 
+        //---------------------------------------------------------------------------
+	//Main Task  
+	Function_Ptr_X = &apptask::MainTask;     //initialize the ptr with a function main task  
+	Function_Address_Array[0] = (long)getFunctionPtr(Function_Ptr_X); // store funtion ptr in an array
+	//Receive Task 
+	Function_Ptr_X = &apptask::RcvTask;             //initialize the ptr with a function RcvTask  
+	Function_Address_Array[4] = (long)getFunctionPtr(Function_Ptr_X); // store funtion ptr in an array
+	//Interface Task  
+	Function_Ptr_X = &apptask::InterfaceTask;     //initialize the ptr with a function InterfaceTask 
+	Function_Address_Array[5] = (long)getFunctionPtr(Function_Ptr_X); // store funtion ptr in an array
+	//FileTransfer Task  
+	Function_Ptr_X = &apptask::FileTransferTask;     //initialize the ptr with a function FileTransferTask 
+	Function_Address_Array[6] = (long)getFunctionPtr(Function_Ptr_X); // store funtion ptr in an array        
+	//Http Task  
+	Function_Ptr_X = &apptask::HttpTask;     //initialize the ptr with a function HttpTask 
+	Function_Address_Array[7] = (long)getFunctionPtr(Function_Ptr_X); // store funtion ptr in an array   
+	
+	//initialize task structures 	
+	task.AOAinitTasks((long*)(TSS_ADDR - ADDR_OFFSET), STACK_ADDR, (long)Function_Address_Array[0]); 
+
+	//---------------------------------------------------------------------------
+	// Create Tasks 
+	// --------------------------------------------------------------------------
+	Task_ID=first.createTask((long)Function_Address_Array[4],0); //create a receive task  
+	Task_ID=first.createTask((long)Function_Address_Array[5],0); //create an interface task  
+	Task_ID=first.createTask((long)Function_Address_Array[6],0); //create an file transfer task  
+
+	// task id 7 
+	Task_ID=first.createTask((long)Function_Address_Array[7],0); //create an http task NOT USED 
+	// task id 8 
+	Task_ID=first.createTask((long)Function_Address_Array[7],0); //create an http task NOT USED 
+	//starting HTTP task is 9, thus the above two tasks are dummy; they are 
+	// not inserted into the circular list
+	// task id 9 and more 
+	
+	for(i=0; i < NO_HTTP_TASKS; i++)
+	{
+	   Task_ID=first.createTask((long)Function_Address_Array[7],0); //create an http task  Task Id = 8,9,10,11...
+	   if (i == 0) 
+	     first.MinTaskId = Task_ID;  //minimal task id for HTTP tasks 
+	   if(stk.full() == 0)
+	   {
+	     stk.push(Task_ID, io.AOAgetTimer());
+	   }
+	   else
+	     io.AOAPrintText("test.cpp stack is full", Line24);
+	}
+
+	first.MaxTaskId = Task_ID;  // maximum task id for HTTP tasks  
+
+	task.AOArunTask(0);
+	
+	io.AOAPrintText("Returned from main task, now in test.cpp", Line24+20); 	
+
+	long time1 = io.AOAgetTimer();
+	long desch, descl;
+	//---------------------------------------------------------------------------
+        //get IDT entry for timer interrupt and store it in local memory 	
+	io.AOAgetIDTEntry(&desch,&descl, 8);
+// 	You can change IDT entry and test it as follows 
+//	io.AOAprintHex(desch, 1440);
+//	io.AOAprintHex(descl, 1460);	
+//	desch = 0x00F00000;
+//	descl = 0x00008500;
+//	task.AOAsetIDTEntry(&desch,&descl, 8);	
+//	task.AOAgetIDTEntry(&desch,&descl, 8);
+//	io.AOAprintHex(desch, 1480);
+//	io.AOAprintHex(descl, 1500);		
+        while (i++<100000) 
+	{
+	      io.AOAprintDecimal(i,2780);
+        }
+	
+	long time2 = io.AOAgetTimer();
+	//io.AOAprintHex((time2-time1), 2800);
+	//io.AOAprintString  ("End of Tasks: ",14, 2720);	
+	// Restore IDT Entry for the timer so that it will use HTimer method in prcycle 
+	io.AOAsetIDTEntry(&descht,&desclt, 8);
+
+
+	
+	io.AOAExit();
+}
+
+//-------------------------------------------------
+long *getFunctionPtr(pmfd abc2)
+{
+//this approach uses xyz as a stack pointer to locate where the 
+//  address of the function is stored 
+AOAProtected io;
+long v2;
+long *ab1;
+long *xyz;
+pmfd abc1;                            //instance of a member ptr 
+apptask first;                        //instance of a class 
+xyz = (long *)&first;
+abc1 = abc2;                  //initialize the ptr with a function 
+xyz--;
+ab1= (long*)*xyz;
+return (long *)ab1;
+}
+
+
+
+
+

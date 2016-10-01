@@ -1,0 +1,461 @@
+Microsoft (R) Macro Assembler Version 6.11		    03/11/10 12:39:18
+wttrace.cpp						     Page 1 - 1
+
+
+					TITLE	wttrace.cpp
+					.386P
+				include listing.inc
+			      C ;; LISTING.INC
+			      C ;;
+			      C ;; This file contains assembler macros and is included by the files created
+			      C ;; with the -FA compiler switch to be assembled by MASM (Microsoft Macro
+			      C ;; Assembler).
+			      C ;;
+			      C ;; Copyright (c) 1993, Microsoft Corporation. All rights reserved.
+			      C 
+			      C ;; non destructive nops
+			      C npad macro size
+			      C if size eq 1
+			      C   nop
+			      C else
+			      C  if size eq 2
+			      C    mov edi, edi
+			      C  else
+			      C   if size eq 3
+			      C     ; lea ecx, [ecx+00]
+			      C     DB 8DH, 49H, 00H
+			      C   else
+			      C    if size eq 4
+			      C      ; lea esp, [esp+00]
+			      C      DB 8DH, 64H, 24H, 00H
+			      C    else
+			      C     if size eq 5
+			      C       add eax, DWORD PTR 0
+			      C     else
+			      C      if size eq 6
+			      C        ; lea ebx, [ebx+00000000]
+			      C        DB 8DH, 9BH, 00H, 00H, 00H, 00H
+			      C      else
+			      C       if size eq 7
+			      C 	; lea esp, [esp+00000000]
+			      C 	DB 8DH, 0A4H, 24H, 00H, 00H, 00H, 00H 
+			      C       else
+			      C 	%out error: unsupported npad size
+			      C 	.err
+			      C       endif
+			      C      endif
+			      C     endif
+			      C    endif
+			      C   endif
+			      C  endif
+			      C endif
+			      C endm
+			      C 
+			      C ;; destructive nops
+			      C dpad macro size, reg
+			      C if size eq 1
+			      C   inc reg
+			      C else
+			      C   %out error: unsupported dpad size
+			      C   .err
+			      C endif
+			      C endm
+			      C 
+				if @Version gt 510
+				.model FLAT
+				else
+				endif
+				PUBLIC	?base@WTTrace@@0HA				; WTTrace::base
+				PUBLIC	?size@WTTrace@@0HA				; WTTrace::size
+ 00000000			_BSS	SEGMENT
+ 00000000  00000001 [		?base@WTTrace@@0HA DD 01H DUP (?)			; WTTrace::base
+	    00000000
+	   ]
+ 00000004  00000001 [		?size@WTTrace@@0HA DD 01H DUP (?)			; WTTrace::size
+	    00000000
+	   ]
+ 00000008			_BSS	ENDS
+				PUBLIC	?init@WTTrace@@QAEHHH@Z				; WTTrace::init
+ 00000000			_TEXT	SEGMENT
+ = 00000008			_inpbase$ = 8
+ = 0000000C			_inpsize$ = 12
+ =-0000000C			_this$ = -12
+ =-00000008			_TRecordPtr$ = -8
+ =-00000004			_i$ = -4
+ 00000000			?init@WTTrace@@QAEHHH@Z PROC NEAR			; WTTrace::init
+				; File wttrace.cpp
+				; Line 16
+ 00000000  55				push	ebp
+ 00000001  8B EC			mov	ebp, esp
+ 00000003  83 EC 0C			sub	esp, 12					; 0000000cH
+ 00000006  89 4D F4			mov	DWORD PTR _this$[ebp], ecx
+				; Line 19
+ 00000009  8B 45 08			mov	eax, DWORD PTR _inpbase$[ebp]
+ 0000000C  A3 00000000 R		mov	DWORD PTR ?base@WTTrace@@0HA, eax	; WTTrace::base
+				; Line 20
+ 00000011  8B 4D 0C			mov	ecx, DWORD PTR _inpsize$[ebp]
+ 00000014  89 0D 00000004 R		mov	DWORD PTR ?size@WTTrace@@0HA, ecx	; WTTrace::size
+				; Line 23
+ 0000001A  C7 45 FC			mov	DWORD PTR _i$[ebp], 0
+	   00000000
+ 00000021  EB 09			jmp	SHORT $L848
+ 00000023			$L849:
+ 00000023  8B 55 FC			mov	edx, DWORD PTR _i$[ebp]
+ 00000026  83 C2 01			add	edx, 1
+ 00000029  89 55 FC			mov	DWORD PTR _i$[ebp], edx
+ 0000002C			$L848:
+ 0000002C  8B 45 FC			mov	eax, DWORD PTR _i$[ebp]
+ 0000002F  3B 05 00000004 R		cmp	eax, DWORD PTR ?size@WTTrace@@0HA	; WTTrace::size
+ 00000035  7D 1A			jge	SHORT $L850
+				; Line 25
+ 00000037  8B 4D FC			mov	ecx, DWORD PTR _i$[ebp]
+ 0000003A  8B 15 00000000 R		mov	edx, DWORD PTR ?base@WTTrace@@0HA	; WTTrace::base
+ 00000040  8D 04 8A			lea	eax, DWORD PTR [edx+ecx*4]
+ 00000043  89 45 F8			mov	DWORD PTR _TRecordPtr$[ebp], eax
+				; Line 26
+ 00000046  8B 4D F8			mov	ecx, DWORD PTR _TRecordPtr$[ebp]
+ 00000049  C7 01 00000000		mov	DWORD PTR [ecx], 0
+				; Line 27
+ 0000004F  EB D2			jmp	SHORT $L849
+ 00000051			$L850:
+				; Line 28
+ 00000051  33 C0			xor	eax, eax
+				; Line 29
+ 00000053  8B E5			mov	esp, ebp
+ 00000055  5D				pop	ebp
+ 00000056  C2 0008			ret	8
+ 00000059			?init@WTTrace@@QAEHHH@Z ENDP				; WTTrace::init
+ 00000059			_TEXT	ENDS
+				PUBLIC	?reset@WTTrace@@QAEHH@Z				; WTTrace::reset
+ 00000059			_TEXT	SEGMENT
+ = 00000008			_id$ = 8
+ =-00000008			_this$ = -8
+ =-00000004			_TRecordPtr$ = -4
+ 00000059			?reset@WTTrace@@QAEHH@Z PROC NEAR			; WTTrace::reset
+				; Line 35
+ 00000059  55				push	ebp
+ 0000005A  8B EC			mov	ebp, esp
+ 0000005C  83 EC 08			sub	esp, 8
+ 0000005F  89 4D F8			mov	DWORD PTR _this$[ebp], ecx
+				; Line 37
+ 00000062  8B 45 08			mov	eax, DWORD PTR _id$[ebp]
+ 00000065  8B 0D 00000000 R		mov	ecx, DWORD PTR ?base@WTTrace@@0HA	; WTTrace::base
+ 0000006B  8D 14 81			lea	edx, DWORD PTR [ecx+eax*4]
+ 0000006E  89 55 FC			mov	DWORD PTR _TRecordPtr$[ebp], edx
+				; Line 39
+ 00000071  8B 45 FC			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 00000074  C7 00 00000000		mov	DWORD PTR [eax], 0
+				; Line 40
+ 0000007A  33 C0			xor	eax, eax
+				; Line 41
+ 0000007C  8B E5			mov	esp, ebp
+ 0000007E  5D				pop	ebp
+ 0000007F  C2 0004			ret	4
+ 00000082			?reset@WTTrace@@QAEHH@Z ENDP				; WTTrace::reset
+ 00000082			_TEXT	ENDS
+				PUBLIC	?insertState@WTTrace@@QAEHHHH@Z			; WTTrace::insertState
+				EXTRN	?AOAprintHex@AOAProtected@@QAEHJH@Z:NEAR	; AOAProtected::AOAprintHex
+ 00000082			_TEXT	SEGMENT
+ = 00000008			_index$ = 8
+ = 0000000C			_mask$ = 12
+ = 00000010			_statec1$ = 16
+ =-00000010			_this$ = -16
+ =-00000004			_value$ = -4
+ =-00000008			_value1$ = -8
+ =-0000000C			_TRecordPtr$ = -12
+ 00000082			?insertState@WTTrace@@QAEHHHH@Z PROC NEAR		; WTTrace::insertState
+				; Line 46
+ 00000082  55				push	ebp
+ 00000083  8B EC			mov	ebp, esp
+ 00000085  83 EC 10			sub	esp, 16					; 00000010H
+ 00000088  89 4D F0			mov	DWORD PTR _this$[ebp], ecx
+				; Line 47
+ 0000008B  C7 45 FC			mov	DWORD PTR _value$[ebp], 0
+	   00000000
+				; Line 48
+ 00000092  C7 45 F8			mov	DWORD PTR _value1$[ebp], 0
+	   00000000
+				; Line 49
+ 00000099  68 00000BF4			push	3060					; 00000bf4H
+ 0000009E  8B 45 08			mov	eax, DWORD PTR _index$[ebp]
+ 000000A1  50				push	eax
+ 000000A2  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 000000A5  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 50
+ 000000AA  68 00000C08			push	3080					; 00000c08H
+ 000000AF  8B 4D 0C			mov	ecx, DWORD PTR _mask$[ebp]
+ 000000B2  51				push	ecx
+ 000000B3  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 000000B6  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 51
+ 000000BB  68 00000C1C			push	3100					; 00000c1cH
+ 000000C0  8B 55 10			mov	edx, DWORD PTR _statec1$[ebp]
+ 000000C3  52				push	edx
+ 000000C4  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 000000C7  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 54
+ 000000CC  8B 45 08			mov	eax, DWORD PTR _index$[ebp]
+ 000000CF  8B 0D 00000000 R		mov	ecx, DWORD PTR ?base@WTTrace@@0HA	; WTTrace::base
+ 000000D5  8D 14 81			lea	edx, DWORD PTR [ecx+eax*4]
+ 000000D8  89 55 F4			mov	DWORD PTR _TRecordPtr$[ebp], edx
+				; Line 56
+ 000000DB  8B 45 F4			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 000000DE  8B 08			mov	ecx, DWORD PTR [eax]
+ 000000E0  89 4D FC			mov	DWORD PTR _value$[ebp], ecx
+				; Line 57
+ 000000E3  68 00000B54			push	2900					; 00000b54H
+ 000000E8  8B 55 FC			mov	edx, DWORD PTR _value$[ebp]
+ 000000EB  52				push	edx
+ 000000EC  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 000000EF  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 58
+ 000000F4  8B 45 0C			mov	eax, DWORD PTR _mask$[ebp]
+ 000000F7  F7 D0			not	eax
+ 000000F9  8B 4D FC			mov	ecx, DWORD PTR _value$[ebp]
+ 000000FC  23 C8			and	ecx, eax
+ 000000FE  89 4D FC			mov	DWORD PTR _value$[ebp], ecx
+				; Line 59
+ 00000101  68 00000B68			push	2920					; 00000b68H
+ 00000106  8B 55 FC			mov	edx, DWORD PTR _value$[ebp]
+ 00000109  52				push	edx
+ 0000010A  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 0000010D  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 61
+ 00000112  8B 45 10			mov	eax, DWORD PTR _statec1$[ebp]
+ 00000115  89 45 F8			mov	DWORD PTR _value1$[ebp], eax
+				; Line 62
+ 00000118  68 00000B7C			push	2940					; 00000b7cH
+ 0000011D  8B 4D F8			mov	ecx, DWORD PTR _value1$[ebp]
+ 00000120  51				push	ecx
+ 00000121  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 00000124  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 63
+ 00000129  8B 55 F8			mov	edx, DWORD PTR _value1$[ebp]
+ 0000012C  C1 E2 10			shl	edx, 16					; 00000010H
+ 0000012F  89 55 F8			mov	DWORD PTR _value1$[ebp], edx
+				; Line 64
+ 00000132  68 00000B90			push	2960					; 00000b90H
+ 00000137  8B 45 F8			mov	eax, DWORD PTR _value1$[ebp]
+ 0000013A  50				push	eax
+ 0000013B  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 0000013E  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 65
+ 00000143  8B 4D FC			mov	ecx, DWORD PTR _value$[ebp]
+ 00000146  0B 4D F8			or	ecx, DWORD PTR _value1$[ebp]
+ 00000149  89 4D FC			mov	DWORD PTR _value$[ebp], ecx
+				; Line 66
+ 0000014C  68 00000BA4			push	2980					; 00000ba4H
+ 00000151  8B 55 FC			mov	edx, DWORD PTR _value$[ebp]
+ 00000154  52				push	edx
+ 00000155  8B 4D F0			mov	ecx, DWORD PTR _this$[ebp]
+ 00000158  E8 00000000 E		call	?AOAprintHex@AOAProtected@@QAEHJH@Z	; AOAProtected::AOAprintHex
+				; Line 67
+ 0000015D  8B 45 F4			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 00000160  8B 4D FC			mov	ecx, DWORD PTR _value$[ebp]
+ 00000163  89 08			mov	DWORD PTR [eax], ecx
+				; Line 68
+ 00000165  33 C0			xor	eax, eax
+				; Line 69
+ 00000167  8B E5			mov	esp, ebp
+ 00000169  5D				pop	ebp
+ 0000016A  C2 000C			ret	12					; 0000000cH
+ 0000016D			?insertState@WTTrace@@QAEHHHH@Z ENDP			; WTTrace::insertState
+ 0000016D			_TEXT	ENDS
+				PUBLIC	?insert@WTTrace@@QAEHHI@Z			; WTTrace::insert
+ 0000016D			_TEXT	SEGMENT
+ = 00000008			_index$ = 8
+ = 0000000C			_mask$ = 12
+ =-0000000C			_this$ = -12
+ =-00000004			_value$ = -4
+ =-00000008			_TRecordPtr$ = -8
+ 0000016D			?insert@WTTrace@@QAEHHI@Z PROC NEAR			; WTTrace::insert
+				; Line 75
+ 0000016D  55				push	ebp
+ 0000016E  8B EC			mov	ebp, esp
+ 00000170  83 EC 0C			sub	esp, 12					; 0000000cH
+ 00000173  89 4D F4			mov	DWORD PTR _this$[ebp], ecx
+				; Line 76
+ 00000176  C7 45 FC			mov	DWORD PTR _value$[ebp], 0
+	   00000000
+				; Line 79
+ 0000017D  8B 45 08			mov	eax, DWORD PTR _index$[ebp]
+ 00000180  8B 0D 00000000 R		mov	ecx, DWORD PTR ?base@WTTrace@@0HA	; WTTrace::base
+ 00000186  8D 14 81			lea	edx, DWORD PTR [ecx+eax*4]
+ 00000189  89 55 F8			mov	DWORD PTR _TRecordPtr$[ebp], edx
+				; Line 81
+ 0000018C  83 7D 0C 01			cmp	DWORD PTR _mask$[ebp], 1
+ 00000190  75 09			jne	SHORT $L880
+				; Line 82
+ 00000192  C7 45 FC			mov	DWORD PTR _value$[ebp], 327680		; 00050000H
+	   00050000
+				; Line 83
+ 00000199  EB 08			jmp	SHORT $L881
+ 0000019B			$L880:
+				; Line 84
+ 0000019B  8B 45 F8			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 0000019E  8B 08			mov	ecx, DWORD PTR [eax]
+ 000001A0  89 4D FC			mov	DWORD PTR _value$[ebp], ecx
+ 000001A3			$L881:
+				; Line 85
+ 000001A3  8B 55 FC			mov	edx, DWORD PTR _value$[ebp]
+ 000001A6  0B 55 0C			or	edx, DWORD PTR _mask$[ebp]
+ 000001A9  89 55 FC			mov	DWORD PTR _value$[ebp], edx
+				; Line 86
+ 000001AC  8B 45 F8			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 000001AF  8B 4D FC			mov	ecx, DWORD PTR _value$[ebp]
+ 000001B2  89 08			mov	DWORD PTR [eax], ecx
+				; Line 88
+ 000001B4  33 C0			xor	eax, eax
+				; Line 89
+ 000001B6  8B E5			mov	esp, ebp
+ 000001B8  5D				pop	ebp
+ 000001B9  C2 0008			ret	8
+ 000001BC			?insert@WTTrace@@QAEHHI@Z ENDP				; WTTrace::insert
+ 000001BC			_TEXT	ENDS
+				PUBLIC	?reset@WTTrace@@QAEHHI@Z			; WTTrace::reset
+ 000001BC			_TEXT	SEGMENT
+ = 00000008			_index$ = 8
+ = 0000000C			_mask$ = 12
+ =-00000010			_this$ = -16
+ =-00000004			_value$ = -4
+ =-0000000C			_mask1$ = -12
+ =-00000008			_TRecordPtr$ = -8
+ 000001BC			?reset@WTTrace@@QAEHHI@Z PROC NEAR			; WTTrace::reset
+				; Line 94
+ 000001BC  55				push	ebp
+ 000001BD  8B EC			mov	ebp, esp
+ 000001BF  83 EC 10			sub	esp, 16					; 00000010H
+ 000001C2  89 4D F0			mov	DWORD PTR _this$[ebp], ecx
+				; Line 95
+ 000001C5  C7 45 FC			mov	DWORD PTR _value$[ebp], 0
+	   00000000
+				; Line 96
+ 000001CC  C7 45 F4			mov	DWORD PTR _mask1$[ebp], 0
+	   00000000
+				; Line 99
+ 000001D3  8B 45 08			mov	eax, DWORD PTR _index$[ebp]
+ 000001D6  8B 0D 00000000 R		mov	ecx, DWORD PTR ?base@WTTrace@@0HA	; WTTrace::base
+ 000001DC  8D 14 81			lea	edx, DWORD PTR [ecx+eax*4]
+ 000001DF  89 55 F8			mov	DWORD PTR _TRecordPtr$[ebp], edx
+				; Line 101
+ 000001E2  8B 45 F8			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 000001E5  8B 08			mov	ecx, DWORD PTR [eax]
+ 000001E7  89 4D FC			mov	DWORD PTR _value$[ebp], ecx
+				; Line 102
+ 000001EA  8B 55 0C			mov	edx, DWORD PTR _mask$[ebp]
+ 000001ED  F7 D2			not	edx
+ 000001EF  89 55 F4			mov	DWORD PTR _mask1$[ebp], edx
+				; Line 103
+ 000001F2  8B 45 FC			mov	eax, DWORD PTR _value$[ebp]
+ 000001F5  23 45 F4			and	eax, DWORD PTR _mask1$[ebp]
+ 000001F8  89 45 FC			mov	DWORD PTR _value$[ebp], eax
+				; Line 104
+ 000001FB  8B 4D F8			mov	ecx, DWORD PTR _TRecordPtr$[ebp]
+ 000001FE  8B 55 FC			mov	edx, DWORD PTR _value$[ebp]
+ 00000201  89 11			mov	DWORD PTR [ecx], edx
+				; Line 106
+ 00000203  33 C0			xor	eax, eax
+				; Line 107
+ 00000205  8B E5			mov	esp, ebp
+ 00000207  5D				pop	ebp
+ 00000208  C2 0008			ret	8
+ 0000020B			?reset@WTTrace@@QAEHHI@Z ENDP				; WTTrace::reset
+ 0000020B			_TEXT	ENDS
+				PUBLIC	?get@WTTrace@@QAEIH@Z				; WTTrace::get
+ 0000020B			_TEXT	SEGMENT
+ = 00000008			_index$ = 8
+ =-00000008			_this$ = -8
+ =-00000004			_TRecordPtr$ = -4
+ 0000020B			?get@WTTrace@@QAEIH@Z PROC NEAR				; WTTrace::get
+				; Line 112
+ 0000020B  55				push	ebp
+ 0000020C  8B EC			mov	ebp, esp
+ 0000020E  83 EC 08			sub	esp, 8
+ 00000211  89 4D F8			mov	DWORD PTR _this$[ebp], ecx
+				; Line 114
+ 00000214  8B 45 08			mov	eax, DWORD PTR _index$[ebp]
+ 00000217  8B 0D 00000000 R		mov	ecx, DWORD PTR ?base@WTTrace@@0HA	; WTTrace::base
+ 0000021D  8D 14 81			lea	edx, DWORD PTR [ecx+eax*4]
+ 00000220  89 55 FC			mov	DWORD PTR _TRecordPtr$[ebp], edx
+				; Line 116
+ 00000223  8B 45 FC			mov	eax, DWORD PTR _TRecordPtr$[ebp]
+ 00000226  8B 00			mov	eax, DWORD PTR [eax]
+				; Line 120
+ 00000228  8B E5			mov	esp, ebp
+ 0000022A  5D				pop	ebp
+ 0000022B  C2 0004			ret	4
+ 0000022E			?get@WTTrace@@QAEIH@Z ENDP				; WTTrace::get
+ 0000022E			_TEXT	ENDS
+				END
+Microsoft (R) Macro Assembler Version 6.11		    03/11/10 12:39:18
+wttrace.cpp						     Symbols 2 - 1
+
+
+
+
+Macros:
+
+                N a m e                 Type
+
+dpad . . . . . . . . . . . . . .	Proc
+npad . . . . . . . . . . . . . .	Proc
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_BSS . . . . . . . . . . . . . .	32 Bit	 00000008 Para	  Private 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000022E DWord	  Public  'CODE'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+?get@WTTrace@@QAEIH@Z  . . . . .	P Near	 0000020B _TEXT	Length= 00000023 Public
+?init@WTTrace@@QAEHHH@Z  . . . .	P Near	 00000000 _TEXT	Length= 00000059 Public
+  $L849  . . . . . . . . . . . .	L Near	 00000023 _TEXT	
+  $L848  . . . . . . . . . . . .	L Near	 0000002C _TEXT	
+  $L850  . . . . . . . . . . . .	L Near	 00000051 _TEXT	
+?insert@WTTrace@@QAEHHI@Z  . . .	P Near	 0000016D _TEXT	Length= 0000004F Public
+  $L880  . . . . . . . . . . . .	L Near	 0000019B _TEXT	
+  $L881  . . . . . . . . . . . .	L Near	 000001A3 _TEXT	
+?insertState@WTTrace@@QAEHHHH@Z 	P Near	 00000082 _TEXT	Length= 000000EB Public
+?reset@WTTrace@@QAEHH@Z  . . . .	P Near	 00000059 _TEXT	Length= 00000029 Public
+?reset@WTTrace@@QAEHHI@Z . . . .	P Near	 000001BC _TEXT	Length= 0000004F Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+?AOAprintHex@AOAProtected@@QAEHJH@Z 	L Near	 00000000 FLAT	External
+?base@WTTrace@@0HA . . . . . . .	DWord	 00000000 _BSS	Public
+?size@WTTrace@@0HA . . . . . . .	DWord	 00000004 _BSS	Public
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000000h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+_TRecordPtr$ . . . . . . . . . .	Number	 -00000004h   
+_i$  . . . . . . . . . . . . . .	Number	 -00000004h   
+_id$ . . . . . . . . . . . . . .	Number	 00000008h   
+_index$  . . . . . . . . . . . .	Number	 00000008h   
+_inpbase$  . . . . . . . . . . .	Number	 00000008h   
+_inpsize$  . . . . . . . . . . .	Number	 0000000Ch   
+_mask$ . . . . . . . . . . . . .	Number	 0000000Ch   
+_mask1$  . . . . . . . . . . . .	Number	 -0000000Ch   
+_statec1$  . . . . . . . . . . .	Number	 00000010h   
+_this$ . . . . . . . . . . . . .	Number	 -00000008h   
+_value$  . . . . . . . . . . . .	Number	 -00000004h   
+_value1$ . . . . . . . . . . . .	Number	 -00000008h   
+
+	   0 Warnings
+	   0 Errors

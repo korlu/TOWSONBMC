@@ -1,0 +1,689 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>COSC578:    Database Management Systems 				Fall 97</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	color:blue;}
+h1
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.5in;
+	margin-bottom:.0001pt;
+	text-indent:-1.5in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	color:blue;
+	font-weight:normal;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	color:blue;}
+ /* Page Definitions */
+ @page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>COSC519:</span></u></b><span
+style='color:windowtext'>                  </span><b><span style='font-size:
+14.0pt;color:windowtext'>Operating Systems I                                  Fall
+2006</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>                     
+              Computer and Information Sciences </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:.5in'><span style='font-size:12.0pt;color:windowtext'>Towson</span><span style='font-size:12.0pt;
+ color:windowtext'> University</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>                     
+              Towson, MD 21252</span></p>
+
+<p class=MsoNormal><span style='position:relative;z-index:1;left:-8px;
+top:8px;width:602px;height:14px'><img width=602 height=6
+src="c519sy_files/image001.gif"></span><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'><span
+ style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<br clear=ALL>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>COURSE</span></u></b></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr style='height:51.75pt'>
+  <td width=74 valign=top style='width:55.35pt;border-top:double windowtext 4.5pt;
+  border-left:double windowtext 4.5pt;border-bottom:solid blue 2.25pt;
+  border-right:solid blue 3.0pt;padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Number</span></p>
+  </td>
+  <td width=89 valign=top style='width:67.05pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Title</span></p>
+  </td>
+  <td width=60 valign=top style='width:45.0pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Timings</span></p>
+  </td>
+  <td width=96 valign=top style='width:1.0in;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Text</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Alt-texts</span></p>
+  </td>
+  <td width=72 valign=top style='width:.75in;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Section</span></p>
+  </td>
+  <td width=59 valign=top style='width:44.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Class</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>room</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.35pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Final</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Exam Date</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=74 valign=top style='width:55.35pt;border-top:none;border-left:
+  double windowtext 4.5pt;border-bottom:double windowtext 4.5pt;border-right:
+  solid blue 3.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>COSC519</span></p>
+  </td>
+  <td width=89 valign=top style='width:67.05pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Operating </span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Systems I</span></p>
+  </td>
+  <td width=60 valign=top style='width:45.0pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>M, W 5.30-6:45 PM</span></p>
+  </td>
+  <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Operating Systems Concepts
+  Seventh  Edition, Silberschatz, Galvin, Gagne</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Class Notes</span></p>
+  </td>
+  <td width=72 valign=top style='width:.75in;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>101</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+  <td width=59 valign=top style='width:44.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>YR</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>301</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.35pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Wed Dec13,</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>5.30-6:45 PM</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>FACULTY</span></u></b></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:double windowtext 4.5pt;border-bottom:solid blue 2.25pt;
+  border-right:solid blue 2.25pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Name</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Office</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Phone</span></p>
+  </td>
+  <td width=127 valign=top style='width:95.25pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Email</span></p>
+  </td>
+  <td width=114 valign=top style='width:85.5pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>OfficeHours</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  double windowtext 4.5pt;border-bottom:double windowtext 4.5pt;border-right:
+  solid blue 2.25pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Dr. Ramesh K. Karne</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>7800 York Rd</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>#461, Lab 307</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>410-704-3955</span></p>
+  </td>
+  <td width=127 valign=top style='width:95.25pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>rkarne@towson.edu</span></p>
+  </td>
+  <td width=114 valign=top style='width:85.5pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>M,  T, W 4-5 PM</span></p>
+  <p class=MsoNormal><span style='color:windowtext'> </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>GRADES</span></u></b></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>90- 100 A </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>80-89    B</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>70-79   C</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&lt;70      F</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:double windowtext 4.5pt;border-bottom:solid blue 2.25pt;
+  border-right:solid blue 2.25pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Homework</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Project</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Midterm</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Final</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Class Participation/
+  Interaction</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:double windowtext 4.5pt;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>0</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Project</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>45%</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>25%</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>25%</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>5%</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Course Objectives:</span></u></b><span
+style='font-size:12.0pt;color:windowtext'> An overall focus in this course will
+be based on a practical approach to design, implementation, and management of
+operating systems. The general objectives of the course include:  build
+theoretical foundation for operating systems, understand operating systems role
+in emerging applications, learn process, memory, and file management
+techniques, study different operating system models, understand at least one
+commercial operating system through a case study, and get some hands on
+experience in building OS components. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Homework</span></u></b><b><span style='font-size:14.0pt;
+color:windowtext'>:  </span></b><span style='font-size:12.0pt;color:windowtext'>Reading
+assignments only, no points. </span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'> </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Project</span></u></b><b><span style='font-size:14.0pt;
+color:windowtext'>: </span></b><span style='font-size:12.0pt;color:windowtext'> There
+is a mandatory project based on the real world operating system components.
+Each student will work alone on the project to complete the tasks outlined
+below. As the project contains 45% of the grade, it is important that you spend
+enough time to achieve the project goals.  The project goals are: </span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;color:windowtext'>Understand bare
+PC computing environment and its OS related structures </span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;color:windowtext'>Make your project
+complete</span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;color:windowtext'>Demonstrate the project
+successfully to the instructor.  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>Project Tasks and grades (total points for the project 45): </span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Understand batch files      5%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Understand the bare PC compiling and
+linking environment  5%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Successfully run the boot and data
+disks   5%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Understand the I/O interfaces to
+hardware  5%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Understand task interfaces, should be
+able to explain how it works   10%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Pick a reasonably complex C++ program
+(which runs at least 10 minutes on the PC); run the above application on a
+Windows machine and measure the run time  10%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Make the above program run on the
+bare PC and measure the run time  30%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Compare the run times on Windows and
+on bare PC (some graphs) with details   5%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Provide analysis and explanation for
+the differences in run times 5%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>10.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Present your knowledge and
+demonstration of the program and results in the lab to the instructor 10%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>11.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Documentation and report 10%.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:12.0pt;
+color:windowtext'>If there is no actual working of any piece in your project,
+your entire project grade will be zero. Grading for the above steps is strictly
+enforced.  </span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Class Schedules: </span></u></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>#1, #2         
+                   </span></b><span style='font-size:12.0pt;color:windowtext'>Chapter
+1. Introduction</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>#3, #4,
+#5             </span></b><span style='font-size:12.0pt;color:windowtext'>Chapter
+2: OS Structures</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>#6, #7                             </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 3: Processes </span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>                                    <b>Project
+Discussions</b></span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>#8, #9                             </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 4: Threads</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#10, #11               </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 5: CPU Scheduling</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>#12, #13,
+#14       </span></b><span style='font-size:12.0pt;color:windowtext'>Chapter 6:
+Process Synchronization </span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>                   </span></b><span
+style='font-size:12.0pt;color:windowtext'>            Chapter 7: Deadlocks
+(Reading)</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>#15                       MIDT</span></b><b><span
+style='font-size:12.0pt;color:windowtext'>ERM EXAMINATION</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#16, #17, #18       </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 8: Memory Management</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<h1><span style='color:windowtext'>                                    <b>Project
+Discussions</b></span></h1>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#19, #20               </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 9: Virtual Memory</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#21                       </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 10: File System Interface </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#22                       </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 11: File System
+Implementation </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#23, #24               </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 12: Main Storage Systems </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#25, #26               </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 13: I/O System  </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#27                       </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 21: Linux</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:14.0pt;color:windowtext'>#28                       </span></b><span
+style='font-size:12.0pt;color:windowtext'>Chapter 22: Windows XP</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><b><span
+style='font-size:12.0pt;color:windowtext'>Presentations </span></b><span
+style='font-size:12.0pt;color:windowtext'>(Last week of classes) </span></p>
+
+<p class=MsoNormal style='line-height:200%'><span style='font-size:12.0pt;
+line-height:200%;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='line-height:200%'><span style='font-size:12.0pt;
+line-height:200%;color:windowtext'>Final Examination (Wednesday December 13,
+2006) </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Attendance Policy</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>Attendance is expected at all classes. Attendance may
+be taken some times in the class. There will be no make up tests given later to
+absentees.  If you miss a class for some foreseeable reason arrange for an
+earlier test. If you miss classes consistently, or come late to classes, you
+will be deducted 20% from your final grade. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Class Participation</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>The class participation of a student is mandatory.  This
+includes: questions, interaction with other students, project discussions, and
+demonstrating your understanding of the subject among peers. A brief overview
+of the previous class presentations will be summarized in some classes.  This
+is the best chance for you to participate and make your self well known in the
+class and to the instructor.  That means, you must come prepare for every
+class!  </span></p>
+
+<p class=MsoNormal><b><u><span style='color:windowtext'><span style='text-decoration:
+ none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Examinations</span></u></b><b><span style='font-size:
+14.0pt;color:windowtext'>:  </span></b><span style='font-size:12.0pt;
+color:windowtext'>There will be one mid-term and one final examination as
+scheduled.  The examinations will cover material taught in the class,
+textbooks, classroom discussions, and class assignments.  Class notes and
+attendance will be very crucial to score well in the exams. Class discussions,
+which are not in the text book will be tested in the exam.   </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Make Up Policy</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'> If a student must miss an exam, it is the student’s
+responsibility to provide sufficient documentation of the reason for the
+absence.  Otherwise, a grade of zero will be assigned. </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Grading Policy and Discussions</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>All grading controversies and discussions must be done
+during office hours and not in the classroom.  The grading as discussed in the
+syllabus will be strictly enforced. </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Office Hours</span></u></b><b><span style='font-size:
+14.0pt;color:windowtext'>: </span></b><span style='font-size:12.0pt;color:windowtext'>Even
+though office hours are as listed above, if some one needs immediate help and
+attention with the assignment, they are welcome to knock on my door when I am
+in the office or in the lab. You can also send me an email over the weekend and
+evenings.  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='color:windowtext'><span
+ style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Classroom Policies</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>There is no food allowed in the classroom.  If you
+happen to bring a soft or hot drink to the classroom, you must cleanup the
+mess.  You can’t show any rude behavior with your fellow classmates or
+instructor in the classroom, which may result in removing you from the class. 
+If you have any problems with people, you must discuss that with the instructor
+during the office hours and file an official complaint, which will be resolved
+by the instructor, or it will be taken to the Chair of the department for
+further resolution. There is absolutely no gossip in the classroom. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

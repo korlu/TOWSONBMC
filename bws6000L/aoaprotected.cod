@@ -1,0 +1,2255 @@
+	TITLE	aoaprotected.cpp
+	.386P
+include listing.inc
+if @Version gt 510
+.model FLAT
+else
+_TEXT	SEGMENT PARA USE32 PUBLIC 'CODE'
+_TEXT	ENDS
+_DATA	SEGMENT DWORD USE32 PUBLIC 'DATA'
+_DATA	ENDS
+CONST	SEGMENT DWORD USE32 PUBLIC 'CONST'
+CONST	ENDS
+_BSS	SEGMENT DWORD USE32 PUBLIC 'BSS'
+_BSS	ENDS
+_TLS	SEGMENT DWORD USE32 PUBLIC 'TLS'
+_TLS	ENDS
+FLAT	GROUP _DATA, CONST, _BSS
+	ASSUME	CS: FLAT, DS: FLAT, SS: FLAT
+endif
+PUBLIC	??0AOAProtected@@QAE@XZ				; AOAProtected::AOAProtected
+_TEXT	SEGMENT
+_this$ = -4
+??0AOAProtected@@QAE@XZ PROC NEAR			; AOAProtected::AOAProtected
+; File aoaprotected.cpp
+; Line 11
+  00000	55		 push	 ebp
+  00001	8b ec		 mov	 ebp, esp
+  00003	51		 push	 ecx
+  00004	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 12
+  00007	8b 45 fc	 mov	 eax, DWORD PTR _this$[ebp]
+  0000a	c7 00 01 00 00
+	00		 mov	 DWORD PTR [eax], 1
+; Line 13
+  00010	8b 45 fc	 mov	 eax, DWORD PTR _this$[ebp]
+  00013	8b e5		 mov	 esp, ebp
+  00015	5d		 pop	 ebp
+  00016	c3		 ret	 0
+??0AOAProtected@@QAE@XZ ENDP				; AOAProtected::AOAProtected
+_TEXT	ENDS
+PUBLIC	?AOAgetString@AOAProtected@@QAEHPAD@Z		; AOAProtected::AOAgetString
+EXTRN	_CgetStr32:NEAR
+_TEXT	SEGMENT
+_buffer$ = 8
+_this$ = -4
+?AOAgetString@AOAProtected@@QAEHPAD@Z PROC NEAR		; AOAProtected::AOAgetString
+; Line 15
+  00017	55		 push	 ebp
+  00018	8b ec		 mov	 ebp, esp
+  0001a	51		 push	 ecx
+  0001b	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 16
+  0001e	8b 45 08	 mov	 eax, DWORD PTR _buffer$[ebp]
+  00021	50		 push	 eax
+  00022	e8 00 00 00 00	 call	 _CgetStr32
+  00027	83 c4 04	 add	 esp, 4
+; Line 17
+  0002a	8b e5		 mov	 esp, ebp
+  0002c	5d		 pop	 ebp
+  0002d	c2 04 00	 ret	 4
+?AOAgetString@AOAProtected@@QAEHPAD@Z ENDP		; AOAProtected::AOAgetString
+_TEXT	ENDS
+PUBLIC	?passAddresscall@AOAProtected@@QAEHJJ@Z		; AOAProtected::passAddresscall
+EXTRN	_passAddress:NEAR
+_TEXT	SEGMENT
+_a$ = 8
+_b$ = 12
+_this$ = -4
+?passAddresscall@AOAProtected@@QAEHJJ@Z PROC NEAR	; AOAProtected::passAddresscall
+; Line 21
+  00030	55		 push	 ebp
+  00031	8b ec		 mov	 ebp, esp
+  00033	51		 push	 ecx
+  00034	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 22
+  00037	8b 45 0c	 mov	 eax, DWORD PTR _b$[ebp]
+  0003a	50		 push	 eax
+  0003b	8b 4d 08	 mov	 ecx, DWORD PTR _a$[ebp]
+  0003e	51		 push	 ecx
+  0003f	e8 00 00 00 00	 call	 _passAddress
+  00044	83 c4 08	 add	 esp, 8
+; Line 24
+  00047	8b e5		 mov	 esp, ebp
+  00049	5d		 pop	 ebp
+  0004a	c2 08 00	 ret	 8
+?passAddresscall@AOAProtected@@QAEHJJ@Z ENDP		; AOAProtected::passAddresscall
+_TEXT	ENDS
+PUBLIC	?AOAprintString@AOAProtected@@QAEHPADHH@Z	; AOAProtected::AOAprintString
+EXTRN	_CprintStr32:NEAR
+_TEXT	SEGMENT
+_buffer$ = 8
+_len$ = 12
+_pos$ = 16
+_this$ = -4
+?AOAprintString@AOAProtected@@QAEHPADHH@Z PROC NEAR	; AOAProtected::AOAprintString
+; Line 26
+  0004d	55		 push	 ebp
+  0004e	8b ec		 mov	 ebp, esp
+  00050	51		 push	 ecx
+  00051	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 27
+  00054	8b 45 10	 mov	 eax, DWORD PTR _pos$[ebp]
+  00057	50		 push	 eax
+  00058	8b 4d 0c	 mov	 ecx, DWORD PTR _len$[ebp]
+  0005b	51		 push	 ecx
+  0005c	8b 55 08	 mov	 edx, DWORD PTR _buffer$[ebp]
+  0005f	52		 push	 edx
+  00060	e8 00 00 00 00	 call	 _CprintStr32
+  00065	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 28
+  00068	8b e5		 mov	 esp, ebp
+  0006a	5d		 pop	 ebp
+  0006b	c2 0c 00	 ret	 12			; 0000000cH
+?AOAprintString@AOAProtected@@QAEHPADHH@Z ENDP		; AOAProtected::AOAprintString
+_TEXT	ENDS
+PUBLIC	?AOAprintString@AOAProtected@@QAEHPADH@Z	; AOAProtected::AOAprintString
+PUBLIC	?AOAgetCursor@AOAProtected@@QAEHXZ		; AOAProtected::AOAgetCursor
+_TEXT	SEGMENT
+_buffer$ = 8
+_len$ = 12
+_this$ = -8
+_pos$ = -4
+?AOAprintString@AOAProtected@@QAEHPADH@Z PROC NEAR	; AOAProtected::AOAprintString
+; Line 30
+  0006e	55		 push	 ebp
+  0006f	8b ec		 mov	 ebp, esp
+  00071	83 ec 08	 sub	 esp, 8
+  00074	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 33
+  00077	8b 4d f8	 mov	 ecx, DWORD PTR _this$[ebp]
+  0007a	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  0007f	89 45 fc	 mov	 DWORD PTR _pos$[ebp], eax
+; Line 34
+  00082	8b 45 fc	 mov	 eax, DWORD PTR _pos$[ebp]
+  00085	50		 push	 eax
+  00086	8b 4d 0c	 mov	 ecx, DWORD PTR _len$[ebp]
+  00089	51		 push	 ecx
+  0008a	8b 55 08	 mov	 edx, DWORD PTR _buffer$[ebp]
+  0008d	52		 push	 edx
+  0008e	e8 00 00 00 00	 call	 _CprintStr32
+  00093	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 35
+  00096	8b e5		 mov	 esp, ebp
+  00098	5d		 pop	 ebp
+  00099	c2 08 00	 ret	 8
+?AOAprintString@AOAProtected@@QAEHPADH@Z ENDP		; AOAProtected::AOAprintString
+_TEXT	ENDS
+EXTRN	_CgetCursor32:NEAR
+_TEXT	SEGMENT
+_this$ = -4
+?AOAgetCursor@AOAProtected@@QAEHXZ PROC NEAR		; AOAProtected::AOAgetCursor
+; Line 37
+  0009c	55		 push	 ebp
+  0009d	8b ec		 mov	 ebp, esp
+  0009f	51		 push	 ecx
+  000a0	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 38
+  000a3	e8 00 00 00 00	 call	 _CgetCursor32
+; Line 39
+  000a8	8b e5		 mov	 esp, ebp
+  000aa	5d		 pop	 ebp
+  000ab	c3		 ret	 0
+?AOAgetCursor@AOAProtected@@QAEHXZ ENDP			; AOAProtected::AOAgetCursor
+_TEXT	ENDS
+PUBLIC	?AOAgetTimer@AOAProtected@@QAEHXZ		; AOAProtected::AOAgetTimer
+EXTRN	_CgetTimer32:NEAR
+_TEXT	SEGMENT
+_this$ = -4
+?AOAgetTimer@AOAProtected@@QAEHXZ PROC NEAR		; AOAProtected::AOAgetTimer
+; Line 41
+  000ac	55		 push	 ebp
+  000ad	8b ec		 mov	 ebp, esp
+  000af	51		 push	 ecx
+  000b0	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 42
+  000b3	e8 00 00 00 00	 call	 _CgetTimer32
+; Line 43
+  000b8	8b e5		 mov	 esp, ebp
+  000ba	5d		 pop	 ebp
+  000bb	c3		 ret	 0
+?AOAgetTimer@AOAProtected@@QAEHXZ ENDP			; AOAProtected::AOAgetTimer
+_TEXT	ENDS
+PUBLIC	?AOAgetGDTEntry@AOAProtected@@QAEHPAJ0H@Z	; AOAProtected::AOAgetGDTEntry
+EXTRN	_CgetGDTEntry32:NEAR
+_TEXT	SEGMENT
+_desch$ = 8
+_descl$ = 12
+_GDTIndex$ = 16
+_this$ = -4
+?AOAgetGDTEntry@AOAProtected@@QAEHPAJ0H@Z PROC NEAR	; AOAProtected::AOAgetGDTEntry
+; Line 46
+  000bc	55		 push	 ebp
+  000bd	8b ec		 mov	 ebp, esp
+  000bf	51		 push	 ecx
+  000c0	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 47
+  000c3	8b 45 10	 mov	 eax, DWORD PTR _GDTIndex$[ebp]
+  000c6	50		 push	 eax
+  000c7	8b 4d 0c	 mov	 ecx, DWORD PTR _descl$[ebp]
+  000ca	51		 push	 ecx
+  000cb	8b 55 08	 mov	 edx, DWORD PTR _desch$[ebp]
+  000ce	52		 push	 edx
+  000cf	e8 00 00 00 00	 call	 _CgetGDTEntry32
+  000d4	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 48
+  000d7	8b e5		 mov	 esp, ebp
+  000d9	5d		 pop	 ebp
+  000da	c2 0c 00	 ret	 12			; 0000000cH
+?AOAgetGDTEntry@AOAProtected@@QAEHPAJ0H@Z ENDP		; AOAProtected::AOAgetGDTEntry
+_TEXT	ENDS
+PUBLIC	?AOAsetGDTEntry@AOAProtected@@QAEHPAJ0H@Z	; AOAProtected::AOAsetGDTEntry
+EXTRN	_CsetGDTEntry32:NEAR
+_TEXT	SEGMENT
+_desch$ = 8
+_descl$ = 12
+_GDTIndex$ = 16
+_this$ = -4
+?AOAsetGDTEntry@AOAProtected@@QAEHPAJ0H@Z PROC NEAR	; AOAProtected::AOAsetGDTEntry
+; Line 51
+  000dd	55		 push	 ebp
+  000de	8b ec		 mov	 ebp, esp
+  000e0	51		 push	 ecx
+  000e1	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 52
+  000e4	8b 45 10	 mov	 eax, DWORD PTR _GDTIndex$[ebp]
+  000e7	50		 push	 eax
+  000e8	8b 4d 0c	 mov	 ecx, DWORD PTR _descl$[ebp]
+  000eb	51		 push	 ecx
+  000ec	8b 55 08	 mov	 edx, DWORD PTR _desch$[ebp]
+  000ef	52		 push	 edx
+  000f0	e8 00 00 00 00	 call	 _CsetGDTEntry32
+  000f5	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 53
+  000f8	8b e5		 mov	 esp, ebp
+  000fa	5d		 pop	 ebp
+  000fb	c2 0c 00	 ret	 12			; 0000000cH
+?AOAsetGDTEntry@AOAProtected@@QAEHPAJ0H@Z ENDP		; AOAProtected::AOAsetGDTEntry
+_TEXT	ENDS
+PUBLIC	?AOAsetCursor@AOAProtected@@QAEHH@Z		; AOAProtected::AOAsetCursor
+EXTRN	_CsetCursor32:NEAR
+_TEXT	SEGMENT
+_pos$ = 8
+_this$ = -4
+?AOAsetCursor@AOAProtected@@QAEHH@Z PROC NEAR		; AOAProtected::AOAsetCursor
+; Line 57
+  000fe	55		 push	 ebp
+  000ff	8b ec		 mov	 ebp, esp
+  00101	51		 push	 ecx
+  00102	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 58
+  00105	8b 45 08	 mov	 eax, DWORD PTR _pos$[ebp]
+  00108	50		 push	 eax
+  00109	e8 00 00 00 00	 call	 _CsetCursor32
+  0010e	83 c4 04	 add	 esp, 4
+; Line 59
+  00111	8b e5		 mov	 esp, ebp
+  00113	5d		 pop	 ebp
+  00114	c2 04 00	 ret	 4
+?AOAsetCursor@AOAProtected@@QAEHH@Z ENDP		; AOAProtected::AOAsetCursor
+_TEXT	ENDS
+PUBLIC	?AOAcleanScreen@AOAProtected@@QAEHXZ		; AOAProtected::AOAcleanScreen
+EXTRN	_CcleanScreen32:NEAR
+_TEXT	SEGMENT
+_this$ = -4
+?AOAcleanScreen@AOAProtected@@QAEHXZ PROC NEAR		; AOAProtected::AOAcleanScreen
+; Line 61
+  00117	55		 push	 ebp
+  00118	8b ec		 mov	 ebp, esp
+  0011a	51		 push	 ecx
+  0011b	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 62
+  0011e	e8 00 00 00 00	 call	 _CcleanScreen32
+; Line 63
+  00123	8b e5		 mov	 esp, ebp
+  00125	5d		 pop	 ebp
+  00126	c3		 ret	 0
+?AOAcleanScreen@AOAProtected@@QAEHXZ ENDP		; AOAProtected::AOAcleanScreen
+_TEXT	ENDS
+PUBLIC	?AOAscrollUp@AOAProtected@@QAEHXZ		; AOAProtected::AOAscrollUp
+EXTRN	_CscrollUp32:NEAR
+_TEXT	SEGMENT
+_this$ = -4
+?AOAscrollUp@AOAProtected@@QAEHXZ PROC NEAR		; AOAProtected::AOAscrollUp
+; Line 65
+  00127	55		 push	 ebp
+  00128	8b ec		 mov	 ebp, esp
+  0012a	51		 push	 ecx
+  0012b	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 66
+  0012e	e8 00 00 00 00	 call	 _CscrollUp32
+; Line 67
+  00133	8b e5		 mov	 esp, ebp
+  00135	5d		 pop	 ebp
+  00136	c3		 ret	 0
+?AOAscrollUp@AOAProtected@@QAEHXZ ENDP			; AOAProtected::AOAscrollUp
+_TEXT	ENDS
+PUBLIC	?AOAprintCharacter@AOAProtected@@QAEHDH@Z	; AOAProtected::AOAprintCharacter
+EXTRN	_CprintChar32:NEAR
+_TEXT	SEGMENT
+_value$ = 8
+_pos$ = 12
+_this$ = -4
+?AOAprintCharacter@AOAProtected@@QAEHDH@Z PROC NEAR	; AOAProtected::AOAprintCharacter
+; Line 69
+  00137	55		 push	 ebp
+  00138	8b ec		 mov	 ebp, esp
+  0013a	51		 push	 ecx
+  0013b	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 70
+  0013e	8b 45 0c	 mov	 eax, DWORD PTR _pos$[ebp]
+  00141	50		 push	 eax
+  00142	8a 4d 08	 mov	 cl, BYTE PTR _value$[ebp]
+  00145	51		 push	 ecx
+  00146	e8 00 00 00 00	 call	 _CprintChar32
+  0014b	83 c4 08	 add	 esp, 8
+; Line 71
+  0014e	8b e5		 mov	 esp, ebp
+  00150	5d		 pop	 ebp
+  00151	c2 08 00	 ret	 8
+?AOAprintCharacter@AOAProtected@@QAEHDH@Z ENDP		; AOAProtected::AOAprintCharacter
+_TEXT	ENDS
+PUBLIC	?AOAprintCharacter@AOAProtected@@QAEHD@Z	; AOAProtected::AOAprintCharacter
+_TEXT	SEGMENT
+_value$ = 8
+_this$ = -8
+_pos$ = -4
+?AOAprintCharacter@AOAProtected@@QAEHD@Z PROC NEAR	; AOAProtected::AOAprintCharacter
+; Line 73
+  00154	55		 push	 ebp
+  00155	8b ec		 mov	 ebp, esp
+  00157	83 ec 08	 sub	 esp, 8
+  0015a	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 76
+  0015d	8b 4d f8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00160	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  00165	89 45 fc	 mov	 DWORD PTR _pos$[ebp], eax
+; Line 77
+  00168	8b 45 fc	 mov	 eax, DWORD PTR _pos$[ebp]
+  0016b	50		 push	 eax
+  0016c	8a 4d 08	 mov	 cl, BYTE PTR _value$[ebp]
+  0016f	51		 push	 ecx
+  00170	e8 00 00 00 00	 call	 _CprintChar32
+  00175	83 c4 08	 add	 esp, 8
+; Line 78
+  00178	8b e5		 mov	 esp, ebp
+  0017a	5d		 pop	 ebp
+  0017b	c2 04 00	 ret	 4
+?AOAprintCharacter@AOAProtected@@QAEHD@Z ENDP		; AOAProtected::AOAprintCharacter
+_TEXT	ENDS
+PUBLIC	?AOAprintSpace@AOAProtected@@QAEHHH@Z		; AOAProtected::AOAprintSpace
+_TEXT	SEGMENT
+_count$ = 8
+_pos$ = 12
+_this$ = -16
+_blank$ = -4
+_base$ = -12
+_i$ = -8
+?AOAprintSpace@AOAProtected@@QAEHHH@Z PROC NEAR		; AOAProtected::AOAprintSpace
+; Line 80
+  0017e	55		 push	 ebp
+  0017f	8b ec		 mov	 ebp, esp
+  00181	83 ec 10	 sub	 esp, 16			; 00000010H
+  00184	89 4d f0	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 81
+  00187	c6 45 fc 20	 mov	 BYTE PTR _blank$[ebp], 32 ; 00000020H
+; Line 84
+  0018b	8b 45 0c	 mov	 eax, DWORD PTR _pos$[ebp]
+  0018e	89 45 f4	 mov	 DWORD PTR _base$[ebp], eax
+; Line 85
+  00191	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  00198	eb 09		 jmp	 SHORT $L497
+$L498:
+  0019a	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
+  0019d	83 c1 01	 add	 ecx, 1
+  001a0	89 4d f8	 mov	 DWORD PTR _i$[ebp], ecx
+$L497:
+  001a3	8b 55 f8	 mov	 edx, DWORD PTR _i$[ebp]
+  001a6	3b 55 08	 cmp	 edx, DWORD PTR _count$[ebp]
+  001a9	7d 1b		 jge	 SHORT $L499
+; Line 86
+  001ab	8b 45 f4	 mov	 eax, DWORD PTR _base$[ebp]
+  001ae	50		 push	 eax
+  001af	8a 4d fc	 mov	 cl, BYTE PTR _blank$[ebp]
+  001b2	51		 push	 ecx
+  001b3	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  001b6	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 87
+  001bb	8b 55 f4	 mov	 edx, DWORD PTR _base$[ebp]
+  001be	83 c2 02	 add	 edx, 2
+  001c1	89 55 f4	 mov	 DWORD PTR _base$[ebp], edx
+; Line 88
+  001c4	eb d4		 jmp	 SHORT $L498
+$L499:
+; Line 90
+  001c6	33 c0		 xor	 eax, eax
+; Line 91
+  001c8	8b e5		 mov	 esp, ebp
+  001ca	5d		 pop	 ebp
+  001cb	c2 08 00	 ret	 8
+?AOAprintSpace@AOAProtected@@QAEHHH@Z ENDP		; AOAProtected::AOAprintSpace
+_TEXT	ENDS
+PUBLIC	?AOAprintSpace@AOAProtected@@QAEHH@Z		; AOAProtected::AOAprintSpace
+_TEXT	SEGMENT
+_count$ = 8
+_this$ = -16
+_blank$ = -4
+_base$ = -12
+_i$ = -8
+?AOAprintSpace@AOAProtected@@QAEHH@Z PROC NEAR		; AOAProtected::AOAprintSpace
+; Line 93
+  001ce	55		 push	 ebp
+  001cf	8b ec		 mov	 ebp, esp
+  001d1	83 ec 10	 sub	 esp, 16			; 00000010H
+  001d4	89 4d f0	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 94
+  001d7	c6 45 fc 20	 mov	 BYTE PTR _blank$[ebp], 32 ; 00000020H
+; Line 97
+  001db	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  001de	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  001e3	89 45 f4	 mov	 DWORD PTR _base$[ebp], eax
+; Line 98
+  001e6	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  001ed	eb 09		 jmp	 SHORT $L507
+$L508:
+  001ef	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  001f2	83 c0 01	 add	 eax, 1
+  001f5	89 45 f8	 mov	 DWORD PTR _i$[ebp], eax
+$L507:
+  001f8	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
+  001fb	3b 4d 08	 cmp	 ecx, DWORD PTR _count$[ebp]
+  001fe	7d 1b		 jge	 SHORT $L509
+; Line 99
+  00200	8b 55 f4	 mov	 edx, DWORD PTR _base$[ebp]
+  00203	52		 push	 edx
+  00204	8a 45 fc	 mov	 al, BYTE PTR _blank$[ebp]
+  00207	50		 push	 eax
+  00208	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  0020b	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 100
+  00210	8b 4d f4	 mov	 ecx, DWORD PTR _base$[ebp]
+  00213	83 c1 01	 add	 ecx, 1
+  00216	89 4d f4	 mov	 DWORD PTR _base$[ebp], ecx
+; Line 101
+  00219	eb d4		 jmp	 SHORT $L508
+$L509:
+; Line 103
+  0021b	33 c0		 xor	 eax, eax
+; Line 104
+  0021d	8b e5		 mov	 esp, ebp
+  0021f	5d		 pop	 ebp
+  00220	c2 04 00	 ret	 4
+?AOAprintSpace@AOAProtected@@QAEHH@Z ENDP		; AOAProtected::AOAprintSpace
+_TEXT	ENDS
+PUBLIC	?AOAskipLine@AOAProtected@@QAEHH@Z		; AOAProtected::AOAskipLine
+EXTRN	_CnewLine32:NEAR
+_TEXT	SEGMENT
+_lines$ = 8
+_this$ = -8
+_i$ = -4
+?AOAskipLine@AOAProtected@@QAEHH@Z PROC NEAR		; AOAProtected::AOAskipLine
+; Line 106
+  00223	55		 push	 ebp
+  00224	8b ec		 mov	 ebp, esp
+  00226	83 ec 08	 sub	 esp, 8
+  00229	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 107
+  0022c	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  00233	eb 09		 jmp	 SHORT $L515
+$L516:
+  00235	8b 45 fc	 mov	 eax, DWORD PTR _i$[ebp]
+  00238	83 c0 01	 add	 eax, 1
+  0023b	89 45 fc	 mov	 DWORD PTR _i$[ebp], eax
+$L515:
+  0023e	8b 4d fc	 mov	 ecx, DWORD PTR _i$[ebp]
+  00241	3b 4d 08	 cmp	 ecx, DWORD PTR _lines$[ebp]
+  00244	7d 07		 jge	 SHORT $L517
+; Line 108
+  00246	e8 00 00 00 00	 call	 _CnewLine32
+  0024b	eb e8		 jmp	 SHORT $L516
+$L517:
+; Line 110
+  0024d	33 c0		 xor	 eax, eax
+; Line 111
+  0024f	8b e5		 mov	 esp, ebp
+  00251	5d		 pop	 ebp
+  00252	c2 04 00	 ret	 4
+?AOAskipLine@AOAProtected@@QAEHH@Z ENDP			; AOAProtected::AOAskipLine
+_TEXT	ENDS
+PUBLIC	?AOAprintDecimal@AOAProtected@@QAEHHH@Z		; AOAProtected::AOAprintDecimal
+EXTRN	_CprintDec32:NEAR
+_TEXT	SEGMENT
+_value$ = 8
+_pos$ = 12
+_this$ = -4
+?AOAprintDecimal@AOAProtected@@QAEHHH@Z PROC NEAR	; AOAProtected::AOAprintDecimal
+; Line 113
+  00255	55		 push	 ebp
+  00256	8b ec		 mov	 ebp, esp
+  00258	51		 push	 ecx
+  00259	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 114
+  0025c	8b 45 0c	 mov	 eax, DWORD PTR _pos$[ebp]
+  0025f	50		 push	 eax
+  00260	8b 4d 08	 mov	 ecx, DWORD PTR _value$[ebp]
+  00263	51		 push	 ecx
+  00264	e8 00 00 00 00	 call	 _CprintDec32
+  00269	83 c4 08	 add	 esp, 8
+; Line 115
+  0026c	8b e5		 mov	 esp, ebp
+  0026e	5d		 pop	 ebp
+  0026f	c2 08 00	 ret	 8
+?AOAprintDecimal@AOAProtected@@QAEHHH@Z ENDP		; AOAProtected::AOAprintDecimal
+_TEXT	ENDS
+PUBLIC	?AOAprintDecimal@AOAProtected@@QAEHH@Z		; AOAProtected::AOAprintDecimal
+_TEXT	SEGMENT
+_value$ = 8
+_this$ = -8
+_pos$ = -4
+?AOAprintDecimal@AOAProtected@@QAEHH@Z PROC NEAR	; AOAProtected::AOAprintDecimal
+; Line 117
+  00272	55		 push	 ebp
+  00273	8b ec		 mov	 ebp, esp
+  00275	83 ec 08	 sub	 esp, 8
+  00278	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 118
+  0027b	8b 4d f8	 mov	 ecx, DWORD PTR _this$[ebp]
+  0027e	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  00283	89 45 fc	 mov	 DWORD PTR _pos$[ebp], eax
+; Line 119
+  00286	8b 45 fc	 mov	 eax, DWORD PTR _pos$[ebp]
+  00289	50		 push	 eax
+  0028a	8b 4d 08	 mov	 ecx, DWORD PTR _value$[ebp]
+  0028d	51		 push	 ecx
+  0028e	e8 00 00 00 00	 call	 _CprintDec32
+  00293	83 c4 08	 add	 esp, 8
+; Line 120
+  00296	8b e5		 mov	 esp, ebp
+  00298	5d		 pop	 ebp
+  00299	c2 04 00	 ret	 4
+?AOAprintDecimal@AOAProtected@@QAEHH@Z ENDP		; AOAProtected::AOAprintDecimal
+_TEXT	ENDS
+PUBLIC	?AOAprintHex@AOAProtected@@QAEHHH@Z		; AOAProtected::AOAprintHex
+EXTRN	_CprintHex32:NEAR
+_TEXT	SEGMENT
+_value$ = 8
+_pos$ = 12
+_this$ = -4
+?AOAprintHex@AOAProtected@@QAEHHH@Z PROC NEAR		; AOAProtected::AOAprintHex
+; Line 122
+  0029c	55		 push	 ebp
+  0029d	8b ec		 mov	 ebp, esp
+  0029f	51		 push	 ecx
+  002a0	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 123
+  002a3	8b 45 0c	 mov	 eax, DWORD PTR _pos$[ebp]
+  002a6	50		 push	 eax
+  002a7	8b 4d 08	 mov	 ecx, DWORD PTR _value$[ebp]
+  002aa	51		 push	 ecx
+  002ab	e8 00 00 00 00	 call	 _CprintHex32
+  002b0	83 c4 08	 add	 esp, 8
+; Line 124
+  002b3	8b e5		 mov	 esp, ebp
+  002b5	5d		 pop	 ebp
+  002b6	c2 08 00	 ret	 8
+?AOAprintHex@AOAProtected@@QAEHHH@Z ENDP		; AOAProtected::AOAprintHex
+_TEXT	ENDS
+PUBLIC	?AOAprintHex@AOAProtected@@QAEHH@Z		; AOAProtected::AOAprintHex
+_TEXT	SEGMENT
+_value$ = 8
+_this$ = -8
+_pos$ = -4
+?AOAprintHex@AOAProtected@@QAEHH@Z PROC NEAR		; AOAProtected::AOAprintHex
+; Line 126
+  002b9	55		 push	 ebp
+  002ba	8b ec		 mov	 ebp, esp
+  002bc	83 ec 08	 sub	 esp, 8
+  002bf	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 127
+  002c2	8b 4d f8	 mov	 ecx, DWORD PTR _this$[ebp]
+  002c5	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  002ca	89 45 fc	 mov	 DWORD PTR _pos$[ebp], eax
+; Line 128
+  002cd	8b 45 fc	 mov	 eax, DWORD PTR _pos$[ebp]
+  002d0	50		 push	 eax
+  002d1	8b 4d 08	 mov	 ecx, DWORD PTR _value$[ebp]
+  002d4	51		 push	 ecx
+  002d5	e8 00 00 00 00	 call	 _CprintHex32
+  002da	83 c4 08	 add	 esp, 8
+; Line 129
+  002dd	8b e5		 mov	 esp, ebp
+  002df	5d		 pop	 ebp
+  002e0	c2 04 00	 ret	 4
+?AOAprintHex@AOAProtected@@QAEHH@Z ENDP			; AOAProtected::AOAprintHex
+_TEXT	ENDS
+PUBLIC	?AOAgetCharacter@AOAProtected@@QAEDXZ		; AOAProtected::AOAgetCharacter
+PUBLIC	?AOAgetDecimal@AOAProtected@@QAEHXZ		; AOAProtected::AOAgetDecimal
+_TEXT	SEGMENT
+_this$ = -16
+_ch$ = -12
+_mul$ = -8
+_result$ = -4
+?AOAgetDecimal@AOAProtected@@QAEHXZ PROC NEAR		; AOAProtected::AOAgetDecimal
+; Line 131
+  002e3	55		 push	 ebp
+  002e4	8b ec		 mov	 ebp, esp
+  002e6	83 ec 10	 sub	 esp, 16			; 00000010H
+  002e9	89 4d f0	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 133
+  002ec	c7 45 f8 0a 00
+	00 00		 mov	 DWORD PTR _mul$[ebp], 10 ; 0000000aH
+; Line 134
+  002f3	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _result$[ebp], 0
+; Line 136
+  002fa	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  002fd	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00302	88 45 f4	 mov	 BYTE PTR _ch$[ebp], al
+$L545:
+; Line 137
+  00305	0f be 45 f4	 movsx	 eax, BYTE PTR _ch$[ebp]
+  00309	83 f8 30	 cmp	 eax, 48			; 00000030H
+  0030c	7c 2e		 jl	 SHORT $L546
+  0030e	0f be 4d f4	 movsx	 ecx, BYTE PTR _ch$[ebp]
+  00312	83 f9 39	 cmp	 ecx, 57			; 00000039H
+  00315	7f 25		 jg	 SHORT $L546
+; Line 138
+  00317	8b 55 fc	 mov	 edx, DWORD PTR _result$[ebp]
+  0031a	0f af 55 f8	 imul	 edx, DWORD PTR _mul$[ebp]
+  0031e	89 55 fc	 mov	 DWORD PTR _result$[ebp], edx
+; Line 139
+  00321	0f be 45 f4	 movsx	 eax, BYTE PTR _ch$[ebp]
+  00325	8b 4d fc	 mov	 ecx, DWORD PTR _result$[ebp]
+  00328	8d 54 01 d0	 lea	 edx, DWORD PTR [ecx+eax-48]
+  0032c	89 55 fc	 mov	 DWORD PTR _result$[ebp], edx
+; Line 140
+  0032f	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  00332	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00337	88 45 f4	 mov	 BYTE PTR _ch$[ebp], al
+; Line 141
+  0033a	eb c9		 jmp	 SHORT $L545
+$L546:
+; Line 143
+  0033c	8b 45 fc	 mov	 eax, DWORD PTR _result$[ebp]
+; Line 144
+  0033f	8b e5		 mov	 esp, ebp
+  00341	5d		 pop	 ebp
+  00342	c3		 ret	 0
+?AOAgetDecimal@AOAProtected@@QAEHXZ ENDP		; AOAProtected::AOAgetDecimal
+_TEXT	ENDS
+PUBLIC	?AOAgetHex@AOAProtected@@QAEHXZ			; AOAProtected::AOAgetHex
+_TEXT	SEGMENT
+_this$ = -20
+_ch$ = -16
+_mul$ = -12
+_result$ = -4
+_tmp$ = -8
+?AOAgetHex@AOAProtected@@QAEHXZ PROC NEAR		; AOAProtected::AOAgetHex
+; Line 146
+  00343	55		 push	 ebp
+  00344	8b ec		 mov	 ebp, esp
+  00346	83 ec 14	 sub	 esp, 20			; 00000014H
+  00349	89 4d ec	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 148
+  0034c	c7 45 f4 10 00
+	00 00		 mov	 DWORD PTR _mul$[ebp], 16 ; 00000010H
+; Line 149
+  00353	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _result$[ebp], 0
+; Line 150
+  0035a	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _tmp$[ebp], 0
+; Line 152
+  00361	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00364	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00369	88 45 f0	 mov	 BYTE PTR _ch$[ebp], al
+$L555:
+; Line 153
+  0036c	0f be 45 f0	 movsx	 eax, BYTE PTR _ch$[ebp]
+  00370	83 f8 30	 cmp	 eax, 48			; 00000030H
+  00373	7c 09		 jl	 SHORT $L558
+  00375	0f be 4d f0	 movsx	 ecx, BYTE PTR _ch$[ebp]
+  00379	83 f9 39	 cmp	 ecx, 57			; 00000039H
+  0037c	7e 24		 jle	 SHORT $L557
+$L558:
+  0037e	0f be 55 f0	 movsx	 edx, BYTE PTR _ch$[ebp]
+  00382	83 fa 61	 cmp	 edx, 97			; 00000061H
+  00385	7c 09		 jl	 SHORT $L559
+  00387	0f be 45 f0	 movsx	 eax, BYTE PTR _ch$[ebp]
+  0038b	83 f8 66	 cmp	 eax, 102		; 00000066H
+  0038e	7e 12		 jle	 SHORT $L557
+$L559:
+  00390	0f be 4d f0	 movsx	 ecx, BYTE PTR _ch$[ebp]
+  00394	83 f9 41	 cmp	 ecx, 65			; 00000041H
+  00397	7c 72		 jl	 SHORT $L556
+  00399	0f be 55 f0	 movsx	 edx, BYTE PTR _ch$[ebp]
+  0039d	83 fa 46	 cmp	 edx, 70			; 00000046H
+  003a0	7f 69		 jg	 SHORT $L556
+$L557:
+; Line 154
+  003a2	0f be 45 f0	 movsx	 eax, BYTE PTR _ch$[ebp]
+  003a6	83 f8 30	 cmp	 eax, 48			; 00000030H
+  003a9	7c 15		 jl	 SHORT $L560
+  003ab	0f be 4d f0	 movsx	 ecx, BYTE PTR _ch$[ebp]
+  003af	83 f9 39	 cmp	 ecx, 57			; 00000039H
+  003b2	7f 0c		 jg	 SHORT $L560
+; Line 155
+  003b4	0f be 55 f0	 movsx	 edx, BYTE PTR _ch$[ebp]
+  003b8	83 ea 30	 sub	 edx, 48			; 00000030H
+  003bb	89 55 f8	 mov	 DWORD PTR _tmp$[ebp], edx
+; Line 156
+  003be	eb 28		 jmp	 SHORT $L563
+$L560:
+  003c0	0f be 45 f0	 movsx	 eax, BYTE PTR _ch$[ebp]
+  003c4	83 f8 61	 cmp	 eax, 97			; 00000061H
+  003c7	7c 15		 jl	 SHORT $L562
+  003c9	0f be 4d f0	 movsx	 ecx, BYTE PTR _ch$[ebp]
+  003cd	83 f9 66	 cmp	 ecx, 102		; 00000066H
+  003d0	7f 0c		 jg	 SHORT $L562
+; Line 157
+  003d2	0f be 55 f0	 movsx	 edx, BYTE PTR _ch$[ebp]
+  003d6	83 ea 57	 sub	 edx, 87			; 00000057H
+  003d9	89 55 f8	 mov	 DWORD PTR _tmp$[ebp], edx
+; Line 158
+  003dc	eb 0a		 jmp	 SHORT $L563
+$L562:
+; Line 159
+  003de	0f be 45 f0	 movsx	 eax, BYTE PTR _ch$[ebp]
+  003e2	83 e8 37	 sub	 eax, 55			; 00000037H
+  003e5	89 45 f8	 mov	 DWORD PTR _tmp$[ebp], eax
+$L563:
+; Line 162
+  003e8	8b 4d fc	 mov	 ecx, DWORD PTR _result$[ebp]
+  003eb	0f af 4d f4	 imul	 ecx, DWORD PTR _mul$[ebp]
+  003ef	89 4d fc	 mov	 DWORD PTR _result$[ebp], ecx
+; Line 163
+  003f2	8b 55 fc	 mov	 edx, DWORD PTR _result$[ebp]
+  003f5	03 55 f8	 add	 edx, DWORD PTR _tmp$[ebp]
+  003f8	89 55 fc	 mov	 DWORD PTR _result$[ebp], edx
+; Line 164
+  003fb	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  003fe	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00403	88 45 f0	 mov	 BYTE PTR _ch$[ebp], al
+; Line 165
+  00406	e9 61 ff ff ff	 jmp	 $L555
+$L556:
+; Line 167
+  0040b	8b 45 fc	 mov	 eax, DWORD PTR _result$[ebp]
+; Line 168
+  0040e	8b e5		 mov	 esp, ebp
+  00410	5d		 pop	 ebp
+  00411	c3		 ret	 0
+?AOAgetHex@AOAProtected@@QAEHXZ ENDP			; AOAProtected::AOAgetHex
+_TEXT	ENDS
+EXTRN	_CgetChar32:NEAR
+_TEXT	SEGMENT
+_this$ = -4
+?AOAgetCharacter@AOAProtected@@QAEDXZ PROC NEAR		; AOAProtected::AOAgetCharacter
+; Line 170
+  00412	55		 push	 ebp
+  00413	8b ec		 mov	 ebp, esp
+  00415	51		 push	 ecx
+  00416	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 171
+  00419	e8 00 00 00 00	 call	 _CgetChar32
+; Line 172
+  0041e	8b e5		 mov	 esp, ebp
+  00420	5d		 pop	 ebp
+  00421	c3		 ret	 0
+?AOAgetCharacter@AOAProtected@@QAEDXZ ENDP		; AOAProtected::AOAgetCharacter
+_TEXT	ENDS
+PUBLIC	?AOAreadFloppy@AOAProtected@@QAEHPADJ@Z		; AOAProtected::AOAreadFloppy
+EXTRN	_CreadFloppy32:NEAR
+_TEXT	SEGMENT
+_buff$ = 8
+_sectorno$ = 12
+_this$ = -4
+?AOAreadFloppy@AOAProtected@@QAEHPADJ@Z PROC NEAR	; AOAProtected::AOAreadFloppy
+; Line 174
+  00422	55		 push	 ebp
+  00423	8b ec		 mov	 ebp, esp
+  00425	51		 push	 ecx
+  00426	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 175
+  00429	8b 45 0c	 mov	 eax, DWORD PTR _sectorno$[ebp]
+  0042c	50		 push	 eax
+  0042d	8b 4d 08	 mov	 ecx, DWORD PTR _buff$[ebp]
+  00430	51		 push	 ecx
+  00431	e8 00 00 00 00	 call	 _CreadFloppy32
+  00436	83 c4 08	 add	 esp, 8
+; Line 176
+  00439	8b e5		 mov	 esp, ebp
+  0043b	5d		 pop	 ebp
+  0043c	c2 08 00	 ret	 8
+?AOAreadFloppy@AOAProtected@@QAEHPADJ@Z ENDP		; AOAProtected::AOAreadFloppy
+_TEXT	ENDS
+PUBLIC	?AOAwriteFloppy@AOAProtected@@QAEHPADJ@Z	; AOAProtected::AOAwriteFloppy
+EXTRN	_CwriteFloppy32:NEAR
+_TEXT	SEGMENT
+_buff$ = 8
+_sectorno$ = 12
+_this$ = -4
+?AOAwriteFloppy@AOAProtected@@QAEHPADJ@Z PROC NEAR	; AOAProtected::AOAwriteFloppy
+; Line 178
+  0043f	55		 push	 ebp
+  00440	8b ec		 mov	 ebp, esp
+  00442	51		 push	 ecx
+  00443	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 179
+  00446	8b 45 0c	 mov	 eax, DWORD PTR _sectorno$[ebp]
+  00449	50		 push	 eax
+  0044a	8b 4d 08	 mov	 ecx, DWORD PTR _buff$[ebp]
+  0044d	51		 push	 ecx
+  0044e	e8 00 00 00 00	 call	 _CwriteFloppy32
+  00453	83 c4 08	 add	 esp, 8
+; Line 180
+  00456	8b e5		 mov	 esp, ebp
+  00458	5d		 pop	 ebp
+  00459	c2 08 00	 ret	 8
+?AOAwriteFloppy@AOAProtected@@QAEHPADJ@Z ENDP		; AOAProtected::AOAwriteFloppy
+_TEXT	ENDS
+PUBLIC	?AOAmallocTotal@AOAProtected@@QAEJPAJ@Z		; AOAProtected::AOAmallocTotal
+EXTRN	_Cmalloc32:NEAR
+_TEXT	SEGMENT
+_size$ = 8
+_this$ = -4
+?AOAmallocTotal@AOAProtected@@QAEJPAJ@Z PROC NEAR	; AOAProtected::AOAmallocTotal
+; Line 183
+  0045c	55		 push	 ebp
+  0045d	8b ec		 mov	 ebp, esp
+  0045f	51		 push	 ecx
+  00460	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 184
+  00463	8b 45 08	 mov	 eax, DWORD PTR _size$[ebp]
+  00466	50		 push	 eax
+  00467	e8 00 00 00 00	 call	 _Cmalloc32
+  0046c	83 c4 04	 add	 esp, 4
+; Line 185
+  0046f	8b e5		 mov	 esp, ebp
+  00471	5d		 pop	 ebp
+  00472	c2 04 00	 ret	 4
+?AOAmallocTotal@AOAProtected@@QAEJPAJ@Z ENDP		; AOAProtected::AOAmallocTotal
+_TEXT	ENDS
+PUBLIC	?AOAclearTotalMemory@AOAProtected@@QAEHJPAJ@Z	; AOAProtected::AOAclearTotalMemory
+_TEXT	SEGMENT
+_MEMBaseValue$ = 8
+_MEMSizePtr$ = 12
+_this$ = -12
+_ptr$ = -4
+_i$ = -8
+?AOAclearTotalMemory@AOAProtected@@QAEHJPAJ@Z PROC NEAR	; AOAProtected::AOAclearTotalMemory
+; Line 187
+  00475	55		 push	 ebp
+  00476	8b ec		 mov	 ebp, esp
+  00478	83 ec 0c	 sub	 esp, 12			; 0000000cH
+  0047b	89 4d f4	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 188
+  0047e	8b 45 08	 mov	 eax, DWORD PTR _MEMBaseValue$[ebp]
+  00481	89 45 fc	 mov	 DWORD PTR _ptr$[ebp], eax
+; Line 189
+  00484	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  0048b	eb 09		 jmp	 SHORT $L589
+$L590:
+  0048d	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
+  00490	83 c1 04	 add	 ecx, 4
+  00493	89 4d f8	 mov	 DWORD PTR _i$[ebp], ecx
+$L589:
+  00496	8b 55 0c	 mov	 edx, DWORD PTR _MEMSizePtr$[ebp]
+  00499	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  0049c	3b 02		 cmp	 eax, DWORD PTR [edx]
+  0049e	7d 14		 jge	 SHORT $L591
+; Line 191
+  004a0	8b 4d fc	 mov	 ecx, DWORD PTR _ptr$[ebp]
+  004a3	c7 01 00 00 00
+	00		 mov	 DWORD PTR [ecx], 0
+; Line 192
+  004a9	8b 55 fc	 mov	 edx, DWORD PTR _ptr$[ebp]
+  004ac	83 c2 04	 add	 edx, 4
+  004af	89 55 fc	 mov	 DWORD PTR _ptr$[ebp], edx
+; Line 193
+  004b2	eb d9		 jmp	 SHORT $L590
+$L591:
+; Line 194
+  004b4	33 c0		 xor	 eax, eax
+; Line 195
+  004b6	8b e5		 mov	 esp, ebp
+  004b8	5d		 pop	 ebp
+  004b9	c2 08 00	 ret	 8
+?AOAclearTotalMemory@AOAProtected@@QAEHJPAJ@Z ENDP	; AOAProtected::AOAclearTotalMemory
+_TEXT	ENDS
+PUBLIC	?AOAgetTaskPtr@AOAProtected@@QAEPAXXZ		; AOAProtected::AOAgetTaskPtr
+EXTRN	_CgetTaskPtr:NEAR
+_TEXT	SEGMENT
+_this$ = -4
+?AOAgetTaskPtr@AOAProtected@@QAEPAXXZ PROC NEAR		; AOAProtected::AOAgetTaskPtr
+; Line 200
+  004bc	55		 push	 ebp
+  004bd	8b ec		 mov	 ebp, esp
+  004bf	51		 push	 ecx
+  004c0	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 201
+  004c3	e8 00 00 00 00	 call	 _CgetTaskPtr
+; Line 202
+  004c8	8b e5		 mov	 esp, ebp
+  004ca	5d		 pop	 ebp
+  004cb	c3		 ret	 0
+?AOAgetTaskPtr@AOAProtected@@QAEPAXXZ ENDP		; AOAProtected::AOAgetTaskPtr
+_TEXT	ENDS
+PUBLIC	?AOAExit@AOAProtected@@QAEXXZ			; AOAProtected::AOAExit
+_TEXT	SEGMENT
+_this$ = -4
+?AOAExit@AOAProtected@@QAEXXZ PROC NEAR			; AOAProtected::AOAExit
+; Line 206
+  004cc	55		 push	 ebp
+  004cd	8b ec		 mov	 ebp, esp
+  004cf	51		 push	 ecx
+  004d0	53		 push	 ebx
+  004d1	56		 push	 esi
+  004d2	57		 push	 edi
+  004d3	89 4d fc	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 208
+  004d6	5f		 pop	 edi
+; Line 209
+  004d7	5e		 pop	 esi
+; Line 210
+  004d8	5b		 pop	 ebx
+; Line 211
+  004d9	8b e5		 mov	 esp, ebp
+; Line 212
+  004db	5d		 pop	 ebp
+; Line 213
+  004dc	cf		 iretd
+; Line 215
+  004dd	5f		 pop	 edi
+  004de	5e		 pop	 esi
+  004df	5b		 pop	 ebx
+  004e0	8b e5		 mov	 esp, ebp
+  004e2	5d		 pop	 ebp
+  004e3	c3		 ret	 0
+?AOAExit@AOAProtected@@QAEXXZ ENDP			; AOAProtected::AOAExit
+_TEXT	ENDS
+PUBLIC	?AOAPrintText@AOAProtected@@QAEXPADH@Z		; AOAProtected::AOAPrintText
+_TEXT	SEGMENT
+_str$ = 8
+_base$ = 12
+_this$ = -16
+_charpos$ = -8
+_temp1$ = -4
+_i$ = -12
+?AOAPrintText@AOAProtected@@QAEXPADH@Z PROC NEAR	; AOAProtected::AOAPrintText
+; Line 223
+  004e4	55		 push	 ebp
+  004e5	8b ec		 mov	 ebp, esp
+  004e7	83 ec 10	 sub	 esp, 16			; 00000010H
+  004ea	89 4d f0	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 226
+  004ed	c7 45 f4 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  004f4	eb 09		 jmp	 SHORT $L607
+$L608:
+  004f6	8b 45 f4	 mov	 eax, DWORD PTR _i$[ebp]
+  004f9	83 c0 01	 add	 eax, 1
+  004fc	89 45 f4	 mov	 DWORD PTR _i$[ebp], eax
+$L607:
+  004ff	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00502	03 4d f4	 add	 ecx, DWORD PTR _i$[ebp]
+  00505	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00508	85 d2		 test	 edx, edx
+  0050a	74 65		 je	 SHORT $L609
+; Line 229
+  0050c	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  0050f	03 45 f4	 add	 eax, DWORD PTR _i$[ebp]
+  00512	0f be 08	 movsx	 ecx, BYTE PTR [eax]
+  00515	83 f9 0a	 cmp	 ecx, 10			; 0000000aH
+  00518	75 37		 jne	 SHORT $L610
+; Line 231
+  0051a	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  0051d	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  00522	89 45 f8	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 232
+  00525	8b 45 f8	 mov	 eax, DWORD PTR _charpos$[ebp]
+  00528	99		 cdq
+  00529	b9 50 00 00 00	 mov	 ecx, 80			; 00000050H
+  0052e	f7 f9		 idiv	 ecx
+  00530	89 55 fc	 mov	 DWORD PTR _temp1$[ebp], edx
+; Line 233
+  00533	ba 50 00 00 00	 mov	 edx, 80			; 00000050H
+  00538	2b 55 fc	 sub	 edx, DWORD PTR _temp1$[ebp]
+  0053b	8b 45 f8	 mov	 eax, DWORD PTR _charpos$[ebp]
+  0053e	03 c2		 add	 eax, edx
+  00540	89 45 f8	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 234
+  00543	8b 4d f8	 mov	 ecx, DWORD PTR _charpos$[ebp]
+  00546	51		 push	 ecx
+  00547	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  0054a	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 236
+  0054f	eb 1e		 jmp	 SHORT $L611
+$L610:
+; Line 238
+  00551	8b 55 0c	 mov	 edx, DWORD PTR _base$[ebp]
+  00554	52		 push	 edx
+  00555	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  00558	03 45 f4	 add	 eax, DWORD PTR _i$[ebp]
+  0055b	8a 08		 mov	 cl, BYTE PTR [eax]
+  0055d	51		 push	 ecx
+  0055e	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  00561	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 239
+  00566	8b 55 0c	 mov	 edx, DWORD PTR _base$[ebp]
+  00569	83 c2 02	 add	 edx, 2
+  0056c	89 55 0c	 mov	 DWORD PTR _base$[ebp], edx
+$L611:
+; Line 241
+  0056f	eb 85		 jmp	 SHORT $L608
+$L609:
+; Line 243
+  00571	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00574	99		 cdq
+  00575	2b c2		 sub	 eax, edx
+  00577	d1 f8		 sar	 eax, 1
+  00579	50		 push	 eax
+  0057a	8b 4d f0	 mov	 ecx, DWORD PTR _this$[ebp]
+  0057d	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 244
+  00582	8b e5		 mov	 esp, ebp
+  00584	5d		 pop	 ebp
+  00585	c2 08 00	 ret	 8
+?AOAPrintText@AOAProtected@@QAEXPADH@Z ENDP		; AOAProtected::AOAPrintText
+_TEXT	ENDS
+PUBLIC	?AOAPrintText@AOAProtected@@QAEXPAD@Z		; AOAProtected::AOAPrintText
+_TEXT	SEGMENT
+_str$ = 8
+_this$ = -20
+_charpos$ = -8
+_temp1$ = -4
+_base$ = -16
+_i$ = -12
+?AOAPrintText@AOAProtected@@QAEXPAD@Z PROC NEAR		; AOAProtected::AOAPrintText
+; Line 251
+  00588	55		 push	 ebp
+  00589	8b ec		 mov	 ebp, esp
+  0058b	83 ec 14	 sub	 esp, 20			; 00000014H
+  0058e	89 4d ec	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 253
+  00591	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00594	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  00599	89 45 f8	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 254
+  0059c	8b 45 f8	 mov	 eax, DWORD PTR _charpos$[ebp]
+  0059f	d1 e0		 shl	 eax, 1
+  005a1	89 45 f0	 mov	 DWORD PTR _base$[ebp], eax
+; Line 256
+  005a4	c7 45 f4 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  005ab	eb 09		 jmp	 SHORT $L620
+$L621:
+  005ad	8b 4d f4	 mov	 ecx, DWORD PTR _i$[ebp]
+  005b0	83 c1 01	 add	 ecx, 1
+  005b3	89 4d f4	 mov	 DWORD PTR _i$[ebp], ecx
+$L620:
+  005b6	8b 55 08	 mov	 edx, DWORD PTR _str$[ebp]
+  005b9	03 55 f4	 add	 edx, DWORD PTR _i$[ebp]
+  005bc	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  005bf	85 c0		 test	 eax, eax
+  005c1	74 65		 je	 SHORT $L622
+; Line 258
+  005c3	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  005c6	03 4d f4	 add	 ecx, DWORD PTR _i$[ebp]
+  005c9	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  005cc	83 fa 0a	 cmp	 edx, 10			; 0000000aH
+  005cf	75 37		 jne	 SHORT $L623
+; Line 260
+  005d1	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  005d4	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  005d9	89 45 f8	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 261
+  005dc	8b 45 f8	 mov	 eax, DWORD PTR _charpos$[ebp]
+  005df	99		 cdq
+  005e0	b9 50 00 00 00	 mov	 ecx, 80			; 00000050H
+  005e5	f7 f9		 idiv	 ecx
+  005e7	89 55 fc	 mov	 DWORD PTR _temp1$[ebp], edx
+; Line 262
+  005ea	ba 50 00 00 00	 mov	 edx, 80			; 00000050H
+  005ef	2b 55 fc	 sub	 edx, DWORD PTR _temp1$[ebp]
+  005f2	8b 45 f8	 mov	 eax, DWORD PTR _charpos$[ebp]
+  005f5	03 c2		 add	 eax, edx
+  005f7	89 45 f8	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 263
+  005fa	8b 4d f8	 mov	 ecx, DWORD PTR _charpos$[ebp]
+  005fd	51		 push	 ecx
+  005fe	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00601	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 265
+  00606	eb 1e		 jmp	 SHORT $L624
+$L623:
+; Line 267
+  00608	8b 55 f0	 mov	 edx, DWORD PTR _base$[ebp]
+  0060b	52		 push	 edx
+  0060c	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  0060f	03 45 f4	 add	 eax, DWORD PTR _i$[ebp]
+  00612	8a 08		 mov	 cl, BYTE PTR [eax]
+  00614	51		 push	 ecx
+  00615	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00618	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 268
+  0061d	8b 55 f0	 mov	 edx, DWORD PTR _base$[ebp]
+  00620	83 c2 02	 add	 edx, 2
+  00623	89 55 f0	 mov	 DWORD PTR _base$[ebp], edx
+$L624:
+; Line 270
+  00626	eb 85		 jmp	 SHORT $L621
+$L622:
+; Line 271
+  00628	8b 45 f0	 mov	 eax, DWORD PTR _base$[ebp]
+  0062b	99		 cdq
+  0062c	2b c2		 sub	 eax, edx
+  0062e	d1 f8		 sar	 eax, 1
+  00630	50		 push	 eax
+  00631	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00634	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 273
+  00639	8b e5		 mov	 esp, ebp
+  0063b	5d		 pop	 ebp
+  0063c	c2 04 00	 ret	 4
+?AOAPrintText@AOAProtected@@QAEXPAD@Z ENDP		; AOAProtected::AOAPrintText
+_TEXT	ENDS
+PUBLIC	?AOACharToDecimal@AOAProtected@@QAEHQAD@Z	; AOAProtected::AOACharToDecimal
+_TEXT	SEGMENT
+_nom$ = 8
+_this$ = -24
+_num$ = -16
+_charno$ = -12
+_h$ = -8
+_g$ = -4
+_d$639 = -20
+?AOACharToDecimal@AOAProtected@@QAEHQAD@Z PROC NEAR	; AOAProtected::AOACharToDecimal
+; Line 282
+  0063f	55		 push	 ebp
+  00640	8b ec		 mov	 ebp, esp
+  00642	83 ec 18	 sub	 esp, 24			; 00000018H
+  00645	89 4d e8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 285
+  00648	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _h$[ebp], 0
+  0064f	eb 09		 jmp	 SHORT $L632
+$L633:
+  00651	8b 45 f8	 mov	 eax, DWORD PTR _h$[ebp]
+  00654	83 c0 01	 add	 eax, 1
+  00657	89 45 f8	 mov	 DWORD PTR _h$[ebp], eax
+$L632:
+  0065a	8b 4d 08	 mov	 ecx, DWORD PTR _nom$[ebp]
+  0065d	03 4d f8	 add	 ecx, DWORD PTR _h$[ebp]
+  00660	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00663	85 d2		 test	 edx, edx
+  00665	74 02		 je	 SHORT $L634
+  00667	eb e8		 jmp	 SHORT $L633
+$L634:
+; Line 286
+  00669	8b 45 f8	 mov	 eax, DWORD PTR _h$[ebp]
+  0066c	83 e8 01	 sub	 eax, 1
+  0066f	89 45 f8	 mov	 DWORD PTR _h$[ebp], eax
+  00672	8b 4d 08	 mov	 ecx, DWORD PTR _nom$[ebp]
+  00675	03 4d f8	 add	 ecx, DWORD PTR _h$[ebp]
+  00678	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  0067b	83 ea 30	 sub	 edx, 48			; 00000030H
+  0067e	89 55 f0	 mov	 DWORD PTR _num$[ebp], edx
+; Line 290
+  00681	c7 45 fc 01 00
+	00 00		 mov	 DWORD PTR _g$[ebp], 1
+  00688	eb 12		 jmp	 SHORT $L636
+$L637:
+  0068a	8b 45 f8	 mov	 eax, DWORD PTR _h$[ebp]
+  0068d	83 e8 01	 sub	 eax, 1
+  00690	89 45 f8	 mov	 DWORD PTR _h$[ebp], eax
+  00693	8b 4d fc	 mov	 ecx, DWORD PTR _g$[ebp]
+  00696	83 c1 01	 add	 ecx, 1
+  00699	89 4d fc	 mov	 DWORD PTR _g$[ebp], ecx
+$L636:
+  0069c	83 7d f8 00	 cmp	 DWORD PTR _h$[ebp], 0
+  006a0	7e 3d		 jle	 SHORT $L638
+; Line 292
+  006a2	8b 55 08	 mov	 edx, DWORD PTR _nom$[ebp]
+  006a5	03 55 f8	 add	 edx, DWORD PTR _h$[ebp]
+  006a8	0f be 42 ff	 movsx	 eax, BYTE PTR [edx-1]
+  006ac	83 e8 30	 sub	 eax, 48			; 00000030H
+  006af	89 45 f4	 mov	 DWORD PTR _charno$[ebp], eax
+; Line 294
+  006b2	8b 4d fc	 mov	 ecx, DWORD PTR _g$[ebp]
+  006b5	89 4d ec	 mov	 DWORD PTR _d$639[ebp], ecx
+  006b8	eb 09		 jmp	 SHORT $L640
+$L641:
+  006ba	8b 55 ec	 mov	 edx, DWORD PTR _d$639[ebp]
+  006bd	83 ea 01	 sub	 edx, 1
+  006c0	89 55 ec	 mov	 DWORD PTR _d$639[ebp], edx
+$L640:
+  006c3	83 7d ec 00	 cmp	 DWORD PTR _d$639[ebp], 0
+  006c7	7e 0b		 jle	 SHORT $L642
+; Line 296
+  006c9	8b 45 f4	 mov	 eax, DWORD PTR _charno$[ebp]
+  006cc	6b c0 0a	 imul	 eax, 10			; 0000000aH
+  006cf	89 45 f4	 mov	 DWORD PTR _charno$[ebp], eax
+; Line 298
+  006d2	eb e6		 jmp	 SHORT $L641
+$L642:
+; Line 300
+  006d4	8b 4d f0	 mov	 ecx, DWORD PTR _num$[ebp]
+  006d7	03 4d f4	 add	 ecx, DWORD PTR _charno$[ebp]
+  006da	89 4d f0	 mov	 DWORD PTR _num$[ebp], ecx
+; Line 301
+  006dd	eb ab		 jmp	 SHORT $L637
+$L638:
+; Line 302
+  006df	8b 45 f0	 mov	 eax, DWORD PTR _num$[ebp]
+; Line 303
+  006e2	8b e5		 mov	 esp, ebp
+  006e4	5d		 pop	 ebp
+  006e5	c2 04 00	 ret	 4
+?AOACharToDecimal@AOAProtected@@QAEHQAD@Z ENDP		; AOAProtected::AOACharToDecimal
+_TEXT	ENDS
+PUBLIC	?AOAChartoIP@AOAProtected@@QAEXQAD0@Z		; AOAProtected::AOAChartoIP
+_TEXT	SEGMENT
+_ip$ = 8
+_ipchar$ = 12
+_this$ = -32
+_temp$ = -4
+_i$ = -8
+_l$ = -20
+_j$656 = -24
+_k$657 = -28
+?AOAChartoIP@AOAProtected@@QAEXQAD0@Z PROC NEAR		; AOAProtected::AOAChartoIP
+; Line 314
+  006e8	55		 push	 ebp
+  006e9	8b ec		 mov	 ebp, esp
+  006eb	83 ec 20	 sub	 esp, 32			; 00000020H
+  006ee	89 4d e0	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 317
+  006f1	c7 45 ec 00 00
+	00 00		 mov	 DWORD PTR _l$[ebp], 0
+; Line 318
+  006f8	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  006ff	eb 09		 jmp	 SHORT $L653
+$L654:
+  00701	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  00704	83 c0 01	 add	 eax, 1
+  00707	89 45 f8	 mov	 DWORD PTR _i$[ebp], eax
+$L653:
+  0070a	8b 4d 08	 mov	 ecx, DWORD PTR _ip$[ebp]
+  0070d	03 4d f8	 add	 ecx, DWORD PTR _i$[ebp]
+  00710	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00713	85 d2		 test	 edx, edx
+  00715	0f 84 80 00 00
+	00		 je	 $L655
+; Line 320
+  0071b	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  0071e	89 45 e8	 mov	 DWORD PTR _j$656[ebp], eax
+  00721	c7 45 e4 00 00
+	00 00		 mov	 DWORD PTR _k$657[ebp], 0
+  00728	eb 1b		 jmp	 SHORT $L658
+$L659:
+  0072a	8b 4d e8	 mov	 ecx, DWORD PTR _j$656[ebp]
+  0072d	83 c1 01	 add	 ecx, 1
+  00730	89 4d e8	 mov	 DWORD PTR _j$656[ebp], ecx
+  00733	8b 55 f8	 mov	 edx, DWORD PTR _i$[ebp]
+  00736	83 c2 01	 add	 edx, 1
+  00739	89 55 f8	 mov	 DWORD PTR _i$[ebp], edx
+  0073c	8b 45 e4	 mov	 eax, DWORD PTR _k$657[ebp]
+  0073f	83 c0 01	 add	 eax, 1
+  00742	89 45 e4	 mov	 DWORD PTR _k$657[ebp], eax
+$L658:
+  00745	8b 4d 08	 mov	 ecx, DWORD PTR _ip$[ebp]
+  00748	03 4d e8	 add	 ecx, DWORD PTR _j$656[ebp]
+  0074b	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  0074e	83 fa 2e	 cmp	 edx, 46			; 0000002eH
+  00751	74 1e		 je	 SHORT $L660
+  00753	8b 45 08	 mov	 eax, DWORD PTR _ip$[ebp]
+  00756	03 45 e8	 add	 eax, DWORD PTR _j$656[ebp]
+  00759	0f be 08	 movsx	 ecx, BYTE PTR [eax]
+  0075c	85 c9		 test	 ecx, ecx
+  0075e	74 11		 je	 SHORT $L660
+; Line 322
+  00760	8b 55 08	 mov	 edx, DWORD PTR _ip$[ebp]
+  00763	03 55 e8	 add	 edx, DWORD PTR _j$656[ebp]
+  00766	8b 45 e4	 mov	 eax, DWORD PTR _k$657[ebp]
+  00769	8a 0a		 mov	 cl, BYTE PTR [edx]
+  0076b	88 4c 05 fc	 mov	 BYTE PTR _temp$[ebp+eax], cl
+; Line 323
+  0076f	eb b9		 jmp	 SHORT $L659
+$L660:
+; Line 324
+  00771	8b 55 e4	 mov	 edx, DWORD PTR _k$657[ebp]
+  00774	c6 44 15 fc 00	 mov	 BYTE PTR _temp$[ebp+edx], 0
+; Line 325
+  00779	8d 45 fc	 lea	 eax, DWORD PTR _temp$[ebp]
+  0077c	50		 push	 eax
+  0077d	8b 4d e0	 mov	 ecx, DWORD PTR _this$[ebp]
+  00780	e8 00 00 00 00	 call	 ?AOACharToDecimal@AOAProtected@@QAEHQAD@Z ; AOAProtected::AOACharToDecimal
+  00785	8b 4d 0c	 mov	 ecx, DWORD PTR _ipchar$[ebp]
+  00788	03 4d ec	 add	 ecx, DWORD PTR _l$[ebp]
+  0078b	88 01		 mov	 BYTE PTR [ecx], al
+  0078d	8b 55 ec	 mov	 edx, DWORD PTR _l$[ebp]
+  00790	83 c2 01	 add	 edx, 1
+  00793	89 55 ec	 mov	 DWORD PTR _l$[ebp], edx
+; Line 326
+  00796	e9 66 ff ff ff	 jmp	 $L654
+$L655:
+; Line 327
+  0079b	8b 45 0c	 mov	 eax, DWORD PTR _ipchar$[ebp]
+  0079e	03 45 ec	 add	 eax, DWORD PTR _l$[ebp]
+  007a1	c6 00 00	 mov	 BYTE PTR [eax], 0
+; Line 328
+  007a4	8b e5		 mov	 esp, ebp
+  007a6	5d		 pop	 ebp
+  007a7	c2 08 00	 ret	 8
+?AOAChartoIP@AOAProtected@@QAEXQAD0@Z ENDP		; AOAProtected::AOAChartoIP
+_TEXT	ENDS
+PUBLIC	?AOAStrLen@AOAProtected@@QAEHPAD@Z		; AOAProtected::AOAStrLen
+_TEXT	SEGMENT
+_str$ = 8
+_this$ = -8
+_len$ = -4
+?AOAStrLen@AOAProtected@@QAEHPAD@Z PROC NEAR		; AOAProtected::AOAStrLen
+; Line 338
+  007aa	55		 push	 ebp
+  007ab	8b ec		 mov	 ebp, esp
+  007ad	83 ec 08	 sub	 esp, 8
+  007b0	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 340
+  007b3	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _len$[ebp], 0
+$L667:
+; Line 342
+  007ba	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  007bd	03 45 fc	 add	 eax, DWORD PTR _len$[ebp]
+  007c0	0f be 08	 movsx	 ecx, BYTE PTR [eax]
+  007c3	85 c9		 test	 ecx, ecx
+  007c5	74 0b		 je	 SHORT $L668
+; Line 344
+  007c7	8b 55 fc	 mov	 edx, DWORD PTR _len$[ebp]
+  007ca	83 c2 01	 add	 edx, 1
+  007cd	89 55 fc	 mov	 DWORD PTR _len$[ebp], edx
+; Line 345
+  007d0	eb e8		 jmp	 SHORT $L667
+$L668:
+; Line 346
+  007d2	8b 45 fc	 mov	 eax, DWORD PTR _len$[ebp]
+; Line 347
+  007d5	8b e5		 mov	 esp, ebp
+  007d7	5d		 pop	 ebp
+  007d8	c2 04 00	 ret	 4
+?AOAStrLen@AOAProtected@@QAEHPAD@Z ENDP			; AOAProtected::AOAStrLen
+_TEXT	ENDS
+PUBLIC	?AOAStrRev@AOAProtected@@QAEXPAD@Z		; AOAProtected::AOAStrRev
+_TEXT	SEGMENT
+_str$ = 8
+_this$ = -276
+_len$ = -272
+_str1$ = -256
+_h$ = -260
+_i$ = -264
+_k$ = -268
+?AOAStrRev@AOAProtected@@QAEXPAD@Z PROC NEAR		; AOAProtected::AOAStrRev
+; Line 357
+  007db	55		 push	 ebp
+  007dc	8b ec		 mov	 ebp, esp
+  007de	81 ec 14 01 00
+	00		 sub	 esp, 276		; 00000114H
+  007e4	89 8d ec fe ff
+	ff		 mov	 DWORD PTR _this$[ebp], ecx
+; Line 358
+  007ea	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  007ed	50		 push	 eax
+  007ee	8b 8d ec fe ff
+	ff		 mov	 ecx, DWORD PTR _this$[ebp]
+  007f4	e8 00 00 00 00	 call	 ?AOAStrLen@AOAProtected@@QAEHPAD@Z ; AOAProtected::AOAStrLen
+  007f9	89 85 f0 fe ff
+	ff		 mov	 DWORD PTR _len$[ebp], eax
+; Line 360
+  007ff	8b 8d f0 fe ff
+	ff		 mov	 ecx, DWORD PTR _len$[ebp]
+  00805	89 8d fc fe ff
+	ff		 mov	 DWORD PTR _h$[ebp], ecx
+  0080b	c7 85 f8 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _i$[ebp], 0
+  00815	eb 1e		 jmp	 SHORT $L677
+$L678:
+  00817	8b 95 fc fe ff
+	ff		 mov	 edx, DWORD PTR _h$[ebp]
+  0081d	83 ea 01	 sub	 edx, 1
+  00820	89 95 fc fe ff
+	ff		 mov	 DWORD PTR _h$[ebp], edx
+  00826	8b 85 f8 fe ff
+	ff		 mov	 eax, DWORD PTR _i$[ebp]
+  0082c	83 c0 01	 add	 eax, 1
+  0082f	89 85 f8 fe ff
+	ff		 mov	 DWORD PTR _i$[ebp], eax
+$L677:
+  00835	83 bd fc fe ff
+	ff 00		 cmp	 DWORD PTR _h$[ebp], 0
+  0083c	7e 1b		 jle	 SHORT $L679
+; Line 362
+  0083e	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00841	03 8d fc fe ff
+	ff		 add	 ecx, DWORD PTR _h$[ebp]
+  00847	8b 95 f8 fe ff
+	ff		 mov	 edx, DWORD PTR _i$[ebp]
+  0084d	8a 41 ff	 mov	 al, BYTE PTR [ecx-1]
+  00850	88 84 15 00 ff
+	ff ff		 mov	 BYTE PTR _str1$[ebp+edx], al
+; Line 363
+  00857	eb be		 jmp	 SHORT $L678
+$L679:
+; Line 364
+  00859	8b 8d f8 fe ff
+	ff		 mov	 ecx, DWORD PTR _i$[ebp]
+  0085f	c6 84 0d 00 ff
+	ff ff 00	 mov	 BYTE PTR _str1$[ebp+ecx], 0
+; Line 365
+  00867	c7 85 f4 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _k$[ebp], 0
+$L682:
+; Line 366
+  00871	8b 95 f4 fe ff
+	ff		 mov	 edx, DWORD PTR _k$[ebp]
+  00877	0f be 84 15 00
+	ff ff ff	 movsx	 eax, BYTE PTR _str1$[ebp+edx]
+  0087f	85 c0		 test	 eax, eax
+  00881	74 29		 je	 SHORT $L683
+; Line 368
+  00883	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00886	03 8d f4 fe ff
+	ff		 add	 ecx, DWORD PTR _k$[ebp]
+  0088c	8b 95 f4 fe ff
+	ff		 mov	 edx, DWORD PTR _k$[ebp]
+  00892	8a 84 15 00 ff
+	ff ff		 mov	 al, BYTE PTR _str1$[ebp+edx]
+  00899	88 01		 mov	 BYTE PTR [ecx], al
+; Line 369
+  0089b	8b 8d f4 fe ff
+	ff		 mov	 ecx, DWORD PTR _k$[ebp]
+  008a1	83 c1 01	 add	 ecx, 1
+  008a4	89 8d f4 fe ff
+	ff		 mov	 DWORD PTR _k$[ebp], ecx
+; Line 370
+  008aa	eb c5		 jmp	 SHORT $L682
+$L683:
+; Line 371
+  008ac	8b 55 08	 mov	 edx, DWORD PTR _str$[ebp]
+  008af	03 95 f4 fe ff
+	ff		 add	 edx, DWORD PTR _k$[ebp]
+  008b5	c6 02 00	 mov	 BYTE PTR [edx], 0
+; Line 372
+  008b8	8b e5		 mov	 esp, ebp
+  008ba	5d		 pop	 ebp
+  008bb	c2 04 00	 ret	 4
+?AOAStrRev@AOAProtected@@QAEXPAD@Z ENDP			; AOAProtected::AOAStrRev
+_TEXT	ENDS
+PUBLIC	?AOADecimalToChar@AOAProtected@@QAEXHQAD@Z	; AOAProtected::AOADecimalToChar
+_TEXT	SEGMENT
+_num$ = 8
+_nom$ = 12
+_this$ = -8
+_i$ = -4
+?AOADecimalToChar@AOAProtected@@QAEXHQAD@Z PROC NEAR	; AOAProtected::AOADecimalToChar
+; Line 380
+  008be	55		 push	 ebp
+  008bf	8b ec		 mov	 ebp, esp
+  008c1	83 ec 08	 sub	 esp, 8
+  008c4	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 381
+  008c7	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+$L691:
+; Line 383
+  008ce	83 7d 08 00	 cmp	 DWORD PTR _num$[ebp], 0
+  008d2	7e 2f		 jle	 SHORT $L692
+; Line 385
+  008d4	8b 45 08	 mov	 eax, DWORD PTR _num$[ebp]
+  008d7	99		 cdq
+  008d8	b9 0a 00 00 00	 mov	 ecx, 10			; 0000000aH
+  008dd	f7 f9		 idiv	 ecx
+  008df	83 c2 30	 add	 edx, 48			; 00000030H
+  008e2	8b 45 0c	 mov	 eax, DWORD PTR _nom$[ebp]
+  008e5	03 45 fc	 add	 eax, DWORD PTR _i$[ebp]
+  008e8	88 10		 mov	 BYTE PTR [eax], dl
+  008ea	8b 4d fc	 mov	 ecx, DWORD PTR _i$[ebp]
+  008ed	83 c1 01	 add	 ecx, 1
+  008f0	89 4d fc	 mov	 DWORD PTR _i$[ebp], ecx
+; Line 386
+  008f3	8b 45 08	 mov	 eax, DWORD PTR _num$[ebp]
+  008f6	99		 cdq
+  008f7	b9 0a 00 00 00	 mov	 ecx, 10			; 0000000aH
+  008fc	f7 f9		 idiv	 ecx
+  008fe	89 45 08	 mov	 DWORD PTR _num$[ebp], eax
+; Line 387
+  00901	eb cb		 jmp	 SHORT $L691
+$L692:
+; Line 389
+  00903	8b 55 0c	 mov	 edx, DWORD PTR _nom$[ebp]
+  00906	03 55 fc	 add	 edx, DWORD PTR _i$[ebp]
+  00909	c6 02 00	 mov	 BYTE PTR [edx], 0
+; Line 390
+  0090c	8b 45 0c	 mov	 eax, DWORD PTR _nom$[ebp]
+  0090f	50		 push	 eax
+  00910	8b 4d f8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00913	e8 00 00 00 00	 call	 ?AOAStrRev@AOAProtected@@QAEXPAD@Z ; AOAProtected::AOAStrRev
+; Line 392
+  00918	8b e5		 mov	 esp, ebp
+  0091a	5d		 pop	 ebp
+  0091b	c2 08 00	 ret	 8
+?AOADecimalToChar@AOAProtected@@QAEXHQAD@Z ENDP		; AOAProtected::AOADecimalToChar
+_TEXT	ENDS
+PUBLIC	?AOAStrCat@AOAProtected@@QAEXPAD00@Z		; AOAProtected::AOAStrCat
+_TEXT	SEGMENT
+_str$ = 8
+_str1$ = 12
+_str2$ = 16
+_this$ = -12
+_i$ = -4
+_j$ = -8
+?AOAStrCat@AOAProtected@@QAEXPAD00@Z PROC NEAR		; AOAProtected::AOAStrCat
+; Line 402
+  0091e	55		 push	 ebp
+  0091f	8b ec		 mov	 ebp, esp
+  00921	83 ec 0c	 sub	 esp, 12			; 0000000cH
+  00924	89 4d f4	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 405
+  00927	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  0092e	eb 09		 jmp	 SHORT $L700
+$L701:
+  00930	8b 45 fc	 mov	 eax, DWORD PTR _i$[ebp]
+  00933	83 c0 01	 add	 eax, 1
+  00936	89 45 fc	 mov	 DWORD PTR _i$[ebp], eax
+$L700:
+  00939	8b 4d 0c	 mov	 ecx, DWORD PTR _str1$[ebp]
+  0093c	03 4d fc	 add	 ecx, DWORD PTR _i$[ebp]
+  0093f	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00942	85 d2		 test	 edx, edx
+  00944	74 12		 je	 SHORT $L702
+; Line 407
+  00946	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  00949	03 45 fc	 add	 eax, DWORD PTR _i$[ebp]
+  0094c	8b 4d 0c	 mov	 ecx, DWORD PTR _str1$[ebp]
+  0094f	03 4d fc	 add	 ecx, DWORD PTR _i$[ebp]
+  00952	8a 11		 mov	 dl, BYTE PTR [ecx]
+  00954	88 10		 mov	 BYTE PTR [eax], dl
+; Line 408
+  00956	eb d8		 jmp	 SHORT $L701
+$L702:
+; Line 411
+  00958	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _j$[ebp], 0
+  0095f	eb 12		 jmp	 SHORT $L704
+$L705:
+  00961	8b 45 f8	 mov	 eax, DWORD PTR _j$[ebp]
+  00964	83 c0 01	 add	 eax, 1
+  00967	89 45 f8	 mov	 DWORD PTR _j$[ebp], eax
+  0096a	8b 4d fc	 mov	 ecx, DWORD PTR _i$[ebp]
+  0096d	83 c1 01	 add	 ecx, 1
+  00970	89 4d fc	 mov	 DWORD PTR _i$[ebp], ecx
+$L704:
+  00973	8b 55 10	 mov	 edx, DWORD PTR _str2$[ebp]
+  00976	03 55 f8	 add	 edx, DWORD PTR _j$[ebp]
+  00979	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  0097c	85 c0		 test	 eax, eax
+  0097e	74 12		 je	 SHORT $L706
+; Line 413
+  00980	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00983	03 4d fc	 add	 ecx, DWORD PTR _i$[ebp]
+  00986	8b 55 10	 mov	 edx, DWORD PTR _str2$[ebp]
+  00989	03 55 f8	 add	 edx, DWORD PTR _j$[ebp]
+  0098c	8a 02		 mov	 al, BYTE PTR [edx]
+  0098e	88 01		 mov	 BYTE PTR [ecx], al
+; Line 414
+  00990	eb cf		 jmp	 SHORT $L705
+$L706:
+; Line 415
+  00992	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00995	03 4d fc	 add	 ecx, DWORD PTR _i$[ebp]
+  00998	c6 01 00	 mov	 BYTE PTR [ecx], 0
+; Line 418
+  0099b	8b e5		 mov	 esp, ebp
+  0099d	5d		 pop	 ebp
+  0099e	c2 0c 00	 ret	 12			; 0000000cH
+?AOAStrCat@AOAProtected@@QAEXPAD00@Z ENDP		; AOAProtected::AOAStrCat
+_TEXT	ENDS
+PUBLIC	?AOAGetText@AOAProtected@@QAEXPAD@Z		; AOAProtected::AOAGetText
+_TEXT	SEGMENT
+_str$ = 8
+_this$ = -24
+_i$ = -20
+_temp1$ = -8
+_a$ = -4
+_charpos$ = -16
+?AOAGetText@AOAProtected@@QAEXPAD@Z PROC NEAR		; AOAProtected::AOAGetText
+; Line 428
+  009a1	55		 push	 ebp
+  009a2	8b ec		 mov	 ebp, esp
+  009a4	83 ec 18	 sub	 esp, 24			; 00000018H
+  009a7	89 4d e8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 429
+  009aa	c7 45 ec 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+; Line 430
+  009b1	c6 45 fc 00	 mov	 BYTE PTR _a$[ebp], 0
+$L717:
+; Line 432
+  009b5	0f be 45 fc	 movsx	 eax, BYTE PTR _a$[ebp]
+  009b9	83 f8 1b	 cmp	 eax, 27			; 0000001bH
+  009bc	0f 84 df 00 00
+	00		 je	 $L718
+; Line 434
+  009c2	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  009c5	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  009ca	88 45 fc	 mov	 BYTE PTR _a$[ebp], al
+; Line 435
+  009cd	0f be 4d fc	 movsx	 ecx, BYTE PTR _a$[ebp]
+  009d1	83 f9 08	 cmp	 ecx, 8
+  009d4	75 60		 jne	 SHORT $L719
+; Line 437
+  009d6	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  009d9	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  009de	89 45 f0	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 438
+  009e1	8b 55 f0	 mov	 edx, DWORD PTR _charpos$[ebp]
+  009e4	83 ea 01	 sub	 edx, 1
+  009e7	89 55 f0	 mov	 DWORD PTR _charpos$[ebp], edx
+; Line 439
+  009ea	8b 45 f0	 mov	 eax, DWORD PTR _charpos$[ebp]
+  009ed	d1 e0		 shl	 eax, 1
+  009ef	50		 push	 eax
+  009f0	6a 20		 push	 32			; 00000020H
+  009f2	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  009f5	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 440
+  009fa	8b 4d f0	 mov	 ecx, DWORD PTR _charpos$[ebp]
+  009fd	83 e9 01	 sub	 ecx, 1
+  00a00	89 4d f0	 mov	 DWORD PTR _charpos$[ebp], ecx
+; Line 441
+  00a03	8b 55 f0	 mov	 edx, DWORD PTR _charpos$[ebp]
+  00a06	52		 push	 edx
+  00a07	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00a0a	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 442
+  00a0f	8b 45 f0	 mov	 eax, DWORD PTR _charpos$[ebp]
+  00a12	d1 e0		 shl	 eax, 1
+  00a14	50		 push	 eax
+  00a15	6a 20		 push	 32			; 00000020H
+  00a17	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00a1a	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 443
+  00a1f	8b 4d f0	 mov	 ecx, DWORD PTR _charpos$[ebp]
+  00a22	51		 push	 ecx
+  00a23	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00a26	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 444
+  00a2b	8b 55 ec	 mov	 edx, DWORD PTR _i$[ebp]
+  00a2e	83 ea 01	 sub	 edx, 1
+  00a31	89 55 ec	 mov	 DWORD PTR _i$[ebp], edx
+; Line 446
+  00a34	eb 66		 jmp	 SHORT $L722
+$L719:
+  00a36	0f be 45 fc	 movsx	 eax, BYTE PTR _a$[ebp]
+  00a3a	83 f8 0d	 cmp	 eax, 13			; 0000000dH
+  00a3d	75 49		 jne	 SHORT $L721
+; Line 448
+  00a3f	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00a42	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  00a47	89 45 f0	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 449
+  00a4a	8b 45 f0	 mov	 eax, DWORD PTR _charpos$[ebp]
+  00a4d	99		 cdq
+  00a4e	b9 50 00 00 00	 mov	 ecx, 80			; 00000050H
+  00a53	f7 f9		 idiv	 ecx
+  00a55	89 55 f8	 mov	 DWORD PTR _temp1$[ebp], edx
+; Line 450
+  00a58	ba 50 00 00 00	 mov	 edx, 80			; 00000050H
+  00a5d	2b 55 f8	 sub	 edx, DWORD PTR _temp1$[ebp]
+  00a60	8b 45 f0	 mov	 eax, DWORD PTR _charpos$[ebp]
+  00a63	03 c2		 add	 eax, edx
+  00a65	89 45 f0	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 451
+  00a68	8b 4d f0	 mov	 ecx, DWORD PTR _charpos$[ebp]
+  00a6b	51		 push	 ecx
+  00a6c	8b 4d e8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00a6f	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 452
+  00a74	8b 55 08	 mov	 edx, DWORD PTR _str$[ebp]
+  00a77	03 55 ec	 add	 edx, DWORD PTR _i$[ebp]
+  00a7a	c6 02 0a	 mov	 BYTE PTR [edx], 10	; 0000000aH
+  00a7d	8b 45 ec	 mov	 eax, DWORD PTR _i$[ebp]
+  00a80	83 c0 01	 add	 eax, 1
+  00a83	89 45 ec	 mov	 DWORD PTR _i$[ebp], eax
+; Line 454
+  00a86	eb 14		 jmp	 SHORT $L722
+$L721:
+; Line 457
+  00a88	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00a8b	03 4d ec	 add	 ecx, DWORD PTR _i$[ebp]
+  00a8e	8a 55 fc	 mov	 dl, BYTE PTR _a$[ebp]
+  00a91	88 11		 mov	 BYTE PTR [ecx], dl
+  00a93	8b 45 ec	 mov	 eax, DWORD PTR _i$[ebp]
+  00a96	83 c0 01	 add	 eax, 1
+  00a99	89 45 ec	 mov	 DWORD PTR _i$[ebp], eax
+$L722:
+; Line 459
+  00a9c	e9 14 ff ff ff	 jmp	 $L717
+$L718:
+; Line 460
+  00aa1	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00aa4	03 4d ec	 add	 ecx, DWORD PTR _i$[ebp]
+  00aa7	c6 41 ff 00	 mov	 BYTE PTR [ecx-1], 0
+; Line 461
+  00aab	8b e5		 mov	 esp, ebp
+  00aad	5d		 pop	 ebp
+  00aae	c2 04 00	 ret	 4
+?AOAGetText@AOAProtected@@QAEXPAD@Z ENDP		; AOAProtected::AOAGetText
+_TEXT	ENDS
+PUBLIC	?AOAStrAppend@AOAProtected@@QAEXPAD0@Z		; AOAProtected::AOAStrAppend
+_TEXT	SEGMENT
+_str1$ = 8
+_str2$ = 12
+_this$ = -12
+_len$ = -8
+_j$ = -4
+?AOAStrAppend@AOAProtected@@QAEXPAD0@Z PROC NEAR	; AOAProtected::AOAStrAppend
+; Line 467
+  00ab1	55		 push	 ebp
+  00ab2	8b ec		 mov	 ebp, esp
+  00ab4	83 ec 0c	 sub	 esp, 12			; 0000000cH
+  00ab7	89 4d f4	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 470
+  00aba	8b 45 08	 mov	 eax, DWORD PTR _str1$[ebp]
+  00abd	50		 push	 eax
+  00abe	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00ac1	e8 00 00 00 00	 call	 ?AOAStrLen@AOAProtected@@QAEHPAD@Z ; AOAProtected::AOAStrLen
+  00ac6	89 45 f8	 mov	 DWORD PTR _len$[ebp], eax
+; Line 473
+  00ac9	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _j$[ebp], 0
+  00ad0	eb 09		 jmp	 SHORT $L730
+$L731:
+  00ad2	8b 4d fc	 mov	 ecx, DWORD PTR _j$[ebp]
+  00ad5	83 c1 01	 add	 ecx, 1
+  00ad8	89 4d fc	 mov	 DWORD PTR _j$[ebp], ecx
+$L730:
+  00adb	8b 55 0c	 mov	 edx, DWORD PTR _str2$[ebp]
+  00ade	03 55 fc	 add	 edx, DWORD PTR _j$[ebp]
+  00ae1	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00ae4	85 c0		 test	 eax, eax
+  00ae6	74 16		 je	 SHORT $L732
+; Line 475
+  00ae8	8b 4d f8	 mov	 ecx, DWORD PTR _len$[ebp]
+  00aeb	03 4d fc	 add	 ecx, DWORD PTR _j$[ebp]
+  00aee	8b 55 0c	 mov	 edx, DWORD PTR _str2$[ebp]
+  00af1	03 55 fc	 add	 edx, DWORD PTR _j$[ebp]
+  00af4	8b 45 08	 mov	 eax, DWORD PTR _str1$[ebp]
+  00af7	8a 12		 mov	 dl, BYTE PTR [edx]
+  00af9	88 14 08	 mov	 BYTE PTR [eax+ecx], dl
+; Line 476
+  00afc	eb d4		 jmp	 SHORT $L731
+$L732:
+; Line 477
+  00afe	8b 45 f8	 mov	 eax, DWORD PTR _len$[ebp]
+  00b01	03 45 fc	 add	 eax, DWORD PTR _j$[ebp]
+  00b04	8b 4d 08	 mov	 ecx, DWORD PTR _str1$[ebp]
+  00b07	c6 04 01 00	 mov	 BYTE PTR [ecx+eax], 0
+; Line 480
+  00b0b	8b e5		 mov	 esp, ebp
+  00b0d	5d		 pop	 ebp
+  00b0e	c2 08 00	 ret	 8
+?AOAStrAppend@AOAProtected@@QAEXPAD0@Z ENDP		; AOAProtected::AOAStrAppend
+_TEXT	ENDS
+PUBLIC	?AOAClearScreen@AOAProtected@@QAEXHH@Z		; AOAProtected::AOAClearScreen
+_TEXT	SEGMENT
+_sp$ = 8
+_ep$ = 12
+_this$ = -8
+_i$ = -4
+?AOAClearScreen@AOAProtected@@QAEXHH@Z PROC NEAR	; AOAProtected::AOAClearScreen
+; Line 486
+  00b11	55		 push	 ebp
+  00b12	8b ec		 mov	 ebp, esp
+  00b14	83 ec 08	 sub	 esp, 8
+  00b17	89 4d f8	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 487
+  00b1a	8b 45 08	 mov	 eax, DWORD PTR _sp$[ebp]
+  00b1d	89 45 fc	 mov	 DWORD PTR _i$[ebp], eax
+  00b20	eb 09		 jmp	 SHORT $L739
+$L740:
+  00b22	8b 4d fc	 mov	 ecx, DWORD PTR _i$[ebp]
+  00b25	83 c1 02	 add	 ecx, 2
+  00b28	89 4d fc	 mov	 DWORD PTR _i$[ebp], ecx
+$L739:
+  00b2b	8b 55 fc	 mov	 edx, DWORD PTR _i$[ebp]
+  00b2e	3b 55 0c	 cmp	 edx, DWORD PTR _ep$[ebp]
+  00b31	7d 10		 jge	 SHORT $L741
+; Line 489
+  00b33	8b 45 fc	 mov	 eax, DWORD PTR _i$[ebp]
+  00b36	50		 push	 eax
+  00b37	6a 20		 push	 32			; 00000020H
+  00b39	8b 4d f8	 mov	 ecx, DWORD PTR _this$[ebp]
+  00b3c	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 490
+  00b41	eb df		 jmp	 SHORT $L740
+$L741:
+; Line 491
+  00b43	8b e5		 mov	 esp, ebp
+  00b45	5d		 pop	 ebp
+  00b46	c2 08 00	 ret	 8
+?AOAClearScreen@AOAProtected@@QAEXHH@Z ENDP		; AOAProtected::AOAClearScreen
+_TEXT	ENDS
+PUBLIC	?AOAMsPrintText@AOAProtected@@QAEXPADH@Z	; AOAProtected::AOAMsPrintText
+_DATA	SEGMENT
+$SG754	DB	'press space to next page', 00H
+	ORG $+3
+$SG763	DB	'press space to next page', 00H
+_DATA	ENDS
+_TEXT	SEGMENT
+_str$ = 8
+_base$ = 12
+_this$ = -12
+_temp1$ = -4
+_i$ = -8
+?AOAMsPrintText@AOAProtected@@QAEXPADH@Z PROC NEAR	; AOAProtected::AOAMsPrintText
+; Line 498
+  00b49	55		 push	 ebp
+  00b4a	8b ec		 mov	 ebp, esp
+  00b4c	83 ec 0c	 sub	 esp, 12			; 0000000cH
+  00b4f	89 4d f4	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 500
+  00b52	68 20 0d 00 00	 push	 3360			; 00000d20H
+  00b57	68 40 01 00 00	 push	 320			; 00000140H
+  00b5c	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00b5f	e8 00 00 00 00	 call	 ?AOAClearScreen@AOAProtected@@QAEXHH@Z ; AOAProtected::AOAClearScreen
+; Line 501
+  00b64	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00b67	99		 cdq
+  00b68	2b c2		 sub	 eax, edx
+  00b6a	d1 f8		 sar	 eax, 1
+  00b6c	50		 push	 eax
+  00b6d	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00b70	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 502
+  00b75	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  00b7c	eb 09		 jmp	 SHORT $L749
+$L750:
+  00b7e	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  00b81	83 c0 01	 add	 eax, 1
+  00b84	89 45 f8	 mov	 DWORD PTR _i$[ebp], eax
+$L749:
+  00b87	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00b8a	03 4d f8	 add	 ecx, DWORD PTR _i$[ebp]
+  00b8d	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00b90	85 d2		 test	 edx, edx
+  00b92	0f 84 1c 01 00
+	00		 je	 $L751
+; Line 504
+  00b98	8b 45 08	 mov	 eax, DWORD PTR _str$[ebp]
+  00b9b	03 45 f8	 add	 eax, DWORD PTR _i$[ebp]
+  00b9e	0f be 08	 movsx	 ecx, BYTE PTR [eax]
+  00ba1	83 f9 0a	 cmp	 ecx, 10			; 0000000aH
+  00ba4	75 78		 jne	 SHORT $L752
+; Line 506
+  00ba6	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00ba9	99		 cdq
+  00baa	b9 a0 00 00 00	 mov	 ecx, 160		; 000000a0H
+  00baf	f7 f9		 idiv	 ecx
+  00bb1	89 55 fc	 mov	 DWORD PTR _temp1$[ebp], edx
+; Line 507
+  00bb4	ba a0 00 00 00	 mov	 edx, 160		; 000000a0H
+  00bb9	2b 55 fc	 sub	 edx, DWORD PTR _temp1$[ebp]
+  00bbc	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00bbf	03 c2		 add	 eax, edx
+  00bc1	89 45 0c	 mov	 DWORD PTR _base$[ebp], eax
+; Line 508
+  00bc4	81 7d 0c 80 0c
+	00 00		 cmp	 DWORD PTR _base$[ebp], 3200 ; 00000c80H
+  00bcb	7c 4c		 jl	 SHORT $L753
+; Line 510
+  00bcd	c7 45 0c 40 01
+	00 00		 mov	 DWORD PTR _base$[ebp], 320 ; 00000140H
+; Line 511
+  00bd4	68 a8 0c 00 00	 push	 3240			; 00000ca8H
+  00bd9	6a 18		 push	 24			; 00000018H
+  00bdb	68 00 00 00 00	 push	 OFFSET FLAT:$SG754
+  00be0	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00be3	e8 00 00 00 00	 call	 ?AOAprintString@AOAProtected@@QAEHPADHH@Z ; AOAProtected::AOAprintString
+; Line 512
+  00be8	68 6c 06 00 00	 push	 1644			; 0000066cH
+  00bed	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00bf0	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+$L756:
+; Line 513
+  00bf5	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00bf8	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00bfd	0f be c8	 movsx	 ecx, al
+  00c00	83 f9 20	 cmp	 ecx, 32			; 00000020H
+  00c03	74 02		 je	 SHORT $L757
+  00c05	eb ee		 jmp	 SHORT $L756
+$L757:
+; Line 514
+  00c07	68 20 0d 00 00	 push	 3360			; 00000d20H
+  00c0c	68 40 01 00 00	 push	 320			; 00000140H
+  00c11	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00c14	e8 00 00 00 00	 call	 ?AOAClearScreen@AOAProtected@@QAEXHH@Z ; AOAProtected::AOAClearScreen
+$L753:
+; Line 517
+  00c19	e9 91 00 00 00	 jmp	 $L762
+$L752:
+  00c1e	8b 55 08	 mov	 edx, DWORD PTR _str$[ebp]
+  00c21	03 55 f8	 add	 edx, DWORD PTR _i$[ebp]
+  00c24	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00c27	83 f8 09	 cmp	 eax, 9
+  00c2a	74 0e		 je	 SHORT $L760
+  00c2c	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00c2f	03 4d f8	 add	 ecx, DWORD PTR _i$[ebp]
+  00c32	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00c35	83 fa 0d	 cmp	 edx, 13			; 0000000dH
+  00c38	75 02		 jne	 SHORT $L759
+$L760:
+; Line 520
+  00c3a	eb 73		 jmp	 SHORT $L762
+$L759:
+; Line 522
+  00c3c	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00c3f	50		 push	 eax
+  00c40	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00c43	03 4d f8	 add	 ecx, DWORD PTR _i$[ebp]
+  00c46	8a 11		 mov	 dl, BYTE PTR [ecx]
+  00c48	52		 push	 edx
+  00c49	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00c4c	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 523
+  00c51	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00c54	83 c0 02	 add	 eax, 2
+  00c57	89 45 0c	 mov	 DWORD PTR _base$[ebp], eax
+; Line 524
+  00c5a	81 7d 0c 80 0c
+	00 00		 cmp	 DWORD PTR _base$[ebp], 3200 ; 00000c80H
+  00c61	7c 4c		 jl	 SHORT $L762
+; Line 526
+  00c63	c7 45 0c 40 01
+	00 00		 mov	 DWORD PTR _base$[ebp], 320 ; 00000140H
+; Line 527
+  00c6a	68 a8 0c 00 00	 push	 3240			; 00000ca8H
+  00c6f	6a 18		 push	 24			; 00000018H
+  00c71	68 00 00 00 00	 push	 OFFSET FLAT:$SG763
+  00c76	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00c79	e8 00 00 00 00	 call	 ?AOAprintString@AOAProtected@@QAEHPADHH@Z ; AOAProtected::AOAprintString
+; Line 528
+  00c7e	68 6c 06 00 00	 push	 1644			; 0000066cH
+  00c83	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00c86	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+$L765:
+; Line 529
+  00c8b	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00c8e	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00c93	0f be c8	 movsx	 ecx, al
+  00c96	83 f9 20	 cmp	 ecx, 32			; 00000020H
+  00c99	74 02		 je	 SHORT $L766
+  00c9b	eb ee		 jmp	 SHORT $L765
+$L766:
+; Line 530
+  00c9d	68 20 0d 00 00	 push	 3360			; 00000d20H
+  00ca2	68 40 01 00 00	 push	 320			; 00000140H
+  00ca7	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00caa	e8 00 00 00 00	 call	 ?AOAClearScreen@AOAProtected@@QAEXHH@Z ; AOAProtected::AOAClearScreen
+$L762:
+; Line 534
+  00caf	e9 ca fe ff ff	 jmp	 $L750
+$L751:
+; Line 535
+  00cb4	8b 45 0c	 mov	 eax, DWORD PTR _base$[ebp]
+  00cb7	99		 cdq
+  00cb8	2b c2		 sub	 eax, edx
+  00cba	d1 f8		 sar	 eax, 1
+  00cbc	50		 push	 eax
+  00cbd	8b 4d f4	 mov	 ecx, DWORD PTR _this$[ebp]
+  00cc0	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 536
+  00cc5	8b e5		 mov	 esp, ebp
+  00cc7	5d		 pop	 ebp
+  00cc8	c2 08 00	 ret	 8
+?AOAMsPrintText@AOAProtected@@QAEXPADH@Z ENDP		; AOAProtected::AOAMsPrintText
+_TEXT	ENDS
+PUBLIC	?AOAMsPrintText@AOAProtected@@QAEXPAD@Z		; AOAProtected::AOAMsPrintText
+_DATA	SEGMENT
+	ORG $+3
+$SG780	DB	'press space to next page', 00H
+	ORG $+3
+$SG789	DB	'press space to next page', 00H
+_DATA	ENDS
+_TEXT	SEGMENT
+_str$ = 8
+_this$ = -20
+_charpos$ = -8
+_temp1$ = -4
+_base$ = -16
+_i$ = -12
+?AOAMsPrintText@AOAProtected@@QAEXPAD@Z PROC NEAR	; AOAProtected::AOAMsPrintText
+; Line 542
+  00ccb	55		 push	 ebp
+  00ccc	8b ec		 mov	 ebp, esp
+  00cce	83 ec 14	 sub	 esp, 20			; 00000014H
+  00cd1	89 4d ec	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 544
+  00cd4	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00cd7	e8 00 00 00 00	 call	 ?AOAgetCursor@AOAProtected@@QAEHXZ ; AOAProtected::AOAgetCursor
+  00cdc	89 45 f8	 mov	 DWORD PTR _charpos$[ebp], eax
+; Line 545
+  00cdf	8b 45 f8	 mov	 eax, DWORD PTR _charpos$[ebp]
+  00ce2	d1 e0		 shl	 eax, 1
+  00ce4	89 45 f0	 mov	 DWORD PTR _base$[ebp], eax
+; Line 547
+  00ce7	c7 45 f4 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  00cee	eb 09		 jmp	 SHORT $L775
+$L776:
+  00cf0	8b 4d f4	 mov	 ecx, DWORD PTR _i$[ebp]
+  00cf3	83 c1 01	 add	 ecx, 1
+  00cf6	89 4d f4	 mov	 DWORD PTR _i$[ebp], ecx
+$L775:
+  00cf9	8b 55 08	 mov	 edx, DWORD PTR _str$[ebp]
+  00cfc	03 55 f4	 add	 edx, DWORD PTR _i$[ebp]
+  00cff	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00d02	85 c0		 test	 eax, eax
+  00d04	0f 84 1c 01 00
+	00		 je	 $L777
+; Line 549
+  00d0a	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00d0d	03 4d f4	 add	 ecx, DWORD PTR _i$[ebp]
+  00d10	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00d13	83 fa 0a	 cmp	 edx, 10			; 0000000aH
+  00d16	75 78		 jne	 SHORT $L778
+; Line 551
+  00d18	8b 45 f0	 mov	 eax, DWORD PTR _base$[ebp]
+  00d1b	99		 cdq
+  00d1c	b9 a0 00 00 00	 mov	 ecx, 160		; 000000a0H
+  00d21	f7 f9		 idiv	 ecx
+  00d23	89 55 fc	 mov	 DWORD PTR _temp1$[ebp], edx
+; Line 552
+  00d26	ba a0 00 00 00	 mov	 edx, 160		; 000000a0H
+  00d2b	2b 55 fc	 sub	 edx, DWORD PTR _temp1$[ebp]
+  00d2e	8b 45 f0	 mov	 eax, DWORD PTR _base$[ebp]
+  00d31	03 c2		 add	 eax, edx
+  00d33	89 45 f0	 mov	 DWORD PTR _base$[ebp], eax
+; Line 553
+  00d36	81 7d f0 80 0c
+	00 00		 cmp	 DWORD PTR _base$[ebp], 3200 ; 00000c80H
+  00d3d	7c 4c		 jl	 SHORT $L779
+; Line 555
+  00d3f	c7 45 f0 40 01
+	00 00		 mov	 DWORD PTR _base$[ebp], 320 ; 00000140H
+; Line 556
+  00d46	68 a8 0c 00 00	 push	 3240			; 00000ca8H
+  00d4b	6a 18		 push	 24			; 00000018H
+  00d4d	68 00 00 00 00	 push	 OFFSET FLAT:$SG780
+  00d52	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00d55	e8 00 00 00 00	 call	 ?AOAprintString@AOAProtected@@QAEHPADHH@Z ; AOAProtected::AOAprintString
+; Line 557
+  00d5a	68 6c 06 00 00	 push	 1644			; 0000066cH
+  00d5f	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00d62	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+$L782:
+; Line 558
+  00d67	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00d6a	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00d6f	0f be c8	 movsx	 ecx, al
+  00d72	83 f9 20	 cmp	 ecx, 32			; 00000020H
+  00d75	74 02		 je	 SHORT $L783
+  00d77	eb ee		 jmp	 SHORT $L782
+$L783:
+; Line 559
+  00d79	68 20 0d 00 00	 push	 3360			; 00000d20H
+  00d7e	68 40 01 00 00	 push	 320			; 00000140H
+  00d83	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00d86	e8 00 00 00 00	 call	 ?AOAClearScreen@AOAProtected@@QAEXHH@Z ; AOAProtected::AOAClearScreen
+$L779:
+; Line 562
+  00d8b	e9 91 00 00 00	 jmp	 $L788
+$L778:
+  00d90	8b 55 08	 mov	 edx, DWORD PTR _str$[ebp]
+  00d93	03 55 f4	 add	 edx, DWORD PTR _i$[ebp]
+  00d96	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00d99	83 f8 09	 cmp	 eax, 9
+  00d9c	74 0e		 je	 SHORT $L786
+  00d9e	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00da1	03 4d f4	 add	 ecx, DWORD PTR _i$[ebp]
+  00da4	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00da7	83 fa 0d	 cmp	 edx, 13			; 0000000dH
+  00daa	75 02		 jne	 SHORT $L785
+$L786:
+; Line 565
+  00dac	eb 73		 jmp	 SHORT $L788
+$L785:
+; Line 567
+  00dae	8b 45 f0	 mov	 eax, DWORD PTR _base$[ebp]
+  00db1	50		 push	 eax
+  00db2	8b 4d 08	 mov	 ecx, DWORD PTR _str$[ebp]
+  00db5	03 4d f4	 add	 ecx, DWORD PTR _i$[ebp]
+  00db8	8a 11		 mov	 dl, BYTE PTR [ecx]
+  00dba	52		 push	 edx
+  00dbb	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00dbe	e8 00 00 00 00	 call	 ?AOAprintCharacter@AOAProtected@@QAEHDH@Z ; AOAProtected::AOAprintCharacter
+; Line 568
+  00dc3	8b 45 f0	 mov	 eax, DWORD PTR _base$[ebp]
+  00dc6	83 c0 02	 add	 eax, 2
+  00dc9	89 45 f0	 mov	 DWORD PTR _base$[ebp], eax
+; Line 569
+  00dcc	81 7d f0 80 0c
+	00 00		 cmp	 DWORD PTR _base$[ebp], 3200 ; 00000c80H
+  00dd3	7c 4c		 jl	 SHORT $L788
+; Line 571
+  00dd5	c7 45 f0 40 01
+	00 00		 mov	 DWORD PTR _base$[ebp], 320 ; 00000140H
+; Line 572
+  00ddc	68 a8 0c 00 00	 push	 3240			; 00000ca8H
+  00de1	6a 18		 push	 24			; 00000018H
+  00de3	68 00 00 00 00	 push	 OFFSET FLAT:$SG789
+  00de8	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00deb	e8 00 00 00 00	 call	 ?AOAprintString@AOAProtected@@QAEHPADHH@Z ; AOAProtected::AOAprintString
+; Line 573
+  00df0	68 6c 06 00 00	 push	 1644			; 0000066cH
+  00df5	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00df8	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+$L791:
+; Line 574
+  00dfd	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00e00	e8 00 00 00 00	 call	 ?AOAgetCharacter@AOAProtected@@QAEDXZ ; AOAProtected::AOAgetCharacter
+  00e05	0f be c8	 movsx	 ecx, al
+  00e08	83 f9 20	 cmp	 ecx, 32			; 00000020H
+  00e0b	74 02		 je	 SHORT $L792
+  00e0d	eb ee		 jmp	 SHORT $L791
+$L792:
+; Line 575
+  00e0f	68 20 0d 00 00	 push	 3360			; 00000d20H
+  00e14	68 40 01 00 00	 push	 320			; 00000140H
+  00e19	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00e1c	e8 00 00 00 00	 call	 ?AOAClearScreen@AOAProtected@@QAEXHH@Z ; AOAProtected::AOAClearScreen
+$L788:
+; Line 578
+  00e21	e9 ca fe ff ff	 jmp	 $L776
+$L777:
+; Line 579
+  00e26	8b 45 f0	 mov	 eax, DWORD PTR _base$[ebp]
+  00e29	99		 cdq
+  00e2a	2b c2		 sub	 eax, edx
+  00e2c	d1 f8		 sar	 eax, 1
+  00e2e	50		 push	 eax
+  00e2f	8b 4d ec	 mov	 ecx, DWORD PTR _this$[ebp]
+  00e32	e8 00 00 00 00	 call	 ?AOAsetCursor@AOAProtected@@QAEHH@Z ; AOAProtected::AOAsetCursor
+; Line 580
+  00e37	8b e5		 mov	 esp, ebp
+  00e39	5d		 pop	 ebp
+  00e3a	c2 04 00	 ret	 4
+?AOAMsPrintText@AOAProtected@@QAEXPAD@Z ENDP		; AOAProtected::AOAMsPrintText
+_TEXT	ENDS
+PUBLIC	?AOAStrMatch@AOAProtected@@QAEHHPAD0@Z		; AOAProtected::AOAStrMatch
+_TEXT	SEGMENT
+_start$ = 8
+_str1$ = 12
+_str2$ = 16
+_this$ = -16
+_match$ = -4
+_i$ = -8
+_j$804 = -12
+?AOAStrMatch@AOAProtected@@QAEHHPAD0@Z PROC NEAR	; AOAProtected::AOAStrMatch
+; Line 587
+  00e3d	55		 push	 ebp
+  00e3e	8b ec		 mov	 ebp, esp
+  00e40	83 ec 10	 sub	 esp, 16			; 00000010H
+  00e43	89 4d f0	 mov	 DWORD PTR _this$[ebp], ecx
+; Line 588
+  00e46	c6 45 fc 00	 mov	 BYTE PTR _match$[ebp], 0
+; Line 589
+  00e4a	8b 45 08	 mov	 eax, DWORD PTR _start$[ebp]
+  00e4d	89 45 f8	 mov	 DWORD PTR _i$[ebp], eax
+  00e50	eb 09		 jmp	 SHORT $L801
+$L802:
+  00e52	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
+  00e55	83 c1 01	 add	 ecx, 1
+  00e58	89 4d f8	 mov	 DWORD PTR _i$[ebp], ecx
+$L801:
+  00e5b	8b 55 0c	 mov	 edx, DWORD PTR _str1$[ebp]
+  00e5e	03 55 f8	 add	 edx, DWORD PTR _i$[ebp]
+  00e61	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00e64	85 c0		 test	 eax, eax
+  00e66	74 5b		 je	 SHORT $L803
+; Line 591
+  00e68	c7 45 f4 00 00
+	00 00		 mov	 DWORD PTR _j$804[ebp], 0
+  00e6f	eb 09		 jmp	 SHORT $L805
+$L806:
+  00e71	8b 4d f4	 mov	 ecx, DWORD PTR _j$804[ebp]
+  00e74	83 c1 01	 add	 ecx, 1
+  00e77	89 4d f4	 mov	 DWORD PTR _j$804[ebp], ecx
+$L805:
+  00e7a	8b 55 10	 mov	 edx, DWORD PTR _str2$[ebp]
+  00e7d	03 55 f4	 add	 edx, DWORD PTR _j$804[ebp]
+  00e80	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00e83	85 c0		 test	 eax, eax
+  00e85	74 28		 je	 SHORT $L807
+; Line 593
+  00e87	8b 4d 10	 mov	 ecx, DWORD PTR _str2$[ebp]
+  00e8a	03 4d f4	 add	 ecx, DWORD PTR _j$804[ebp]
+  00e8d	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00e90	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  00e93	03 45 f4	 add	 eax, DWORD PTR _j$804[ebp]
+  00e96	8b 4d 0c	 mov	 ecx, DWORD PTR _str1$[ebp]
+  00e99	0f be 04 01	 movsx	 eax, BYTE PTR [ecx+eax]
+  00e9d	3b d0		 cmp	 edx, eax
+  00e9f	75 06		 jne	 SHORT $L808
+; Line 594
+  00ea1	c6 45 fc 01	 mov	 BYTE PTR _match$[ebp], 1
+; Line 595
+  00ea5	eb 06		 jmp	 SHORT $L809
+$L808:
+; Line 597
+  00ea7	c6 45 fc 00	 mov	 BYTE PTR _match$[ebp], 0
+; Line 598
+  00eab	eb 02		 jmp	 SHORT $L807
+$L809:
+; Line 600
+  00ead	eb c2		 jmp	 SHORT $L806
+$L807:
+; Line 601
+  00eaf	8b 4d fc	 mov	 ecx, DWORD PTR _match$[ebp]
+  00eb2	81 e1 ff 00 00
+	00		 and	 ecx, 255		; 000000ffH
+  00eb8	85 c9		 test	 ecx, ecx
+  00eba	74 05		 je	 SHORT $L810
+; Line 603
+  00ebc	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+  00ebf	eb 05		 jmp	 SHORT $L798
+$L810:
+; Line 605
+  00ec1	eb 8f		 jmp	 SHORT $L802
+$L803:
+; Line 606
+  00ec3	83 c8 ff	 or	 eax, -1
+$L798:
+; Line 607
+  00ec6	8b e5		 mov	 esp, ebp
+  00ec8	5d		 pop	 ebp
+  00ec9	c2 0c 00	 ret	 12			; 0000000cH
+?AOAStrMatch@AOAProtected@@QAEHHPAD0@Z ENDP		; AOAProtected::AOAStrMatch
+_TEXT	ENDS
+END

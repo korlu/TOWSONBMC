@@ -1,0 +1,107 @@
+Microsoft (R) Macro Assembler Version 6.11		    04/29/10 16:34:21
+runTaskasm32.asm					     Page 1 - 1
+
+
+				;***************************************************
+						;runTaskasm32.asm 
+				;***************************************************
+						
+				;===============-=====================================================
+				;this assembly function can be called from C 
+				;32 bit model and C type call settings 
+				; Modified by L Sun, date 01-14-2003 (to be used for communication program)
+				;=====================================================================
+					.386p	
+					.387
+					.MODEL	FLAT, c
+				;=====================================================================
+				; the following header definition is created 
+				; by H2INC program and added here 
+				; It can take a C header file and generate 
+				; a .INC file which can be included in the 
+				;  asm code as below 
+
+				;	include aoainc.inc
+
+				;===================================================================
+
+ 00000000			.CODE
+				;------------------------------------------------------------------
+				;RunTask using int 0efh APP1Tssc
+				;------------------------------------------------------------------
+ 00000000			runTaskasm32 PROC C public Task_ID:DWORD
+ 00000003  50				push eax
+ 00000004  8B 45 08			mov  eax, Task_ID
+ 00000007  83 F8 00			cmp  eax, 0h
+ 0000000A  74 05			je   Sch
+ 0000000C  FB				sti			; Sti is to enable the interrupts in the processor before starting other tasks	
+ 0000000D  CD EF			int 0efh ;invoke the task
+ 0000000F  EB 02			jmp Schend	
+ 00000011  CD EB		Sch:	int 0ebh		; if it is scheduler task dont enable timer 
+ 00000013  58			Schend:	pop eax
+					ret
+ 00000016			runTaskasm32 ENDP 	
+				;------------------------------------------------------------------
+				; return to main task 
+				;------------------------------------------------------------------
+ 00000016			runTaskMainasm32 PROC C
+					        ;--------------------------------------------------
+ 00000016  FA					cli
+ 00000017  52					push	edx
+ 00000018  9C					pushfd ; turn on NT flag in the CPU not in the TSS
+						; so that CPU will return to its application during IRETD
+ 00000019  5A					pop	edx;
+ 0000001A  81 CA 00004000			or	edx, 00004000h
+ 00000020  52					push	edx
+ 00000021  9D					popfd
+ 00000022  5A					pop	edx
+ 00000023  FB					sti
+						;--------------------------------------------------
+ 00000024  CF				  iretd
+ 00000025  90				  nop
+ 00000026  C3				  ret
+ 00000027			runTaskMainasm32 ENDP 	
+				;=========================================================================
+				END
+Microsoft (R) Macro Assembler Version 6.11		    04/29/10 16:34:21
+runTaskasm32.asm					     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000027 DWord	  Public  'CODE'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+runTaskMainasm32 . . . . . . . .	P Near	 00000016 _TEXT	Length= 00000011 Public C
+runTaskasm32 . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000016 Public C
+  Task_ID  . . . . . . . . . . .	DWord	 bp + 00000008
+  Sch  . . . . . . . . . . . . .	L Near	 00000011 _TEXT	
+  Schend . . . . . . . . . . . .	L Near	 00000013 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000001h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+
+	   0 Warnings
+	   0 Errors

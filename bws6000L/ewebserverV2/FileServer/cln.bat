@@ -1,0 +1,9 @@
+del *.*~
+del server.exe
+del j*.exe
+del *.obj
+del *.lst
+del *.log
+del *.map
+del *.dbg
+del *.ini

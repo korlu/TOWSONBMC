@@ -1,0 +1,356 @@
+Script started on Mon Dec 14 17:40:23 1998
+triton%	sqlplus
+
+SQL*Plus: Release 8.0.3.0.0 - Production on Mon Dec 14 17:40:31 1998
+
+(c) Copyright 1997 Oracle Corporation.  All rights reserved.
+
+Enter user-name: dbms311
+Enter password: 
+
+Connected to:
+Oracle8 Enterprise Edition Release 8.0.3.0.0 - Production
+With the Partitioning and Objects options
+PL/SQL Release 8.0.3.0.0 - Production
+
+SQL> !cat query1.sql
+SELECT     D.FNAME,D.LNAME,D.DSSN
+FROM       DEPARTMENT P, DOCTOR D
+WHERE      P.DNAME='Surgery' AND D.DNUM=P.DNUMBER;
+
+SQL> @report
+SQL> @query1
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME		LNAME		DSSN
+--------------- --------------- ---------
+Jack		Wong		212301123
+Robin		Albert		296383311
+Stephen 	Hardin		202591926
+Richard 	Brown		212301130
+Kathy		Brown		586351423
+
+SQL> !cat query2.sql
+select    p.fname, p.lname, i.diagnosis, i.treatment
+from      patient p,inpatient i
+where     i.patientnum = p.pnumber and i.diagnosis = 'Lung cancer' ;
+
+SQL> @report
+SQL> @query2
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      DIAGNOSIS       TREATMENT
+---------- ---------- --------------- ---------------
+Jack	   Erdossy    Lung cancer     Operation
+Jerry	   Fruit      Lung cancer     Chemotherapy
+Arthur	   Jones      Lung cancer     Chemotherapy
+James	   Kues       Lung cancer     Radiology
+Richard    Lewis      Lung cancer     Operation
+Mandir	   Malwitz    Lung cancer     Operation
+
+Mon Dec 14							       page    2
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      DIAGNOSIS       TREATMENT
+---------- ---------- --------------- ---------------
+Clara	   Mason      Lung cancer     Operation
+Ann	   Marris     Lung cancer     Chemotherapy
+Narayan    Lyer       Lung cancer     Operation
+Michael    Reagan     Lung cancer     Chemotherapy
+Miria	   Stefenini  Lung cancer     Chemotherapy
+Alan	   Lehmann    Lung cancer     Radiology
+
+Mon Dec 14							       page    3
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      DIAGNOSIS       TREATMENT
+---------- ---------- --------------- ---------------
+Robert	   Tjian      Lung cancer     Operation
+Daniel	   Reines     Lung cancer     Operation
+Paul	   Doetsh     Lung cancer     Chemotherapy
+Victor	   Corces     Lung cancer     Operation
+
+16 rows selected.
+
+SQL> !cat query3.sql
+SELECT	FNAME,LNAME,ITEMNAME,CHARGEDATE,CHARGETOPA,CHARGETOIC
+FROM	PATIENT ,INSURANCE_COMPANY , CHARGE 
+WHERE	ICNAME='NYHL' AND ICNUM=ICNUMBER  AND PATIENTNUM=PNUMBER;
+ 
+
+SQL> @report
+SQL> @query3
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      ITEMNAME	    CHARGEDAT CHARGETOPA CHARGETOIC
+---------- ---------- ------------- --------- ---------- ----------
+Alan	   Lehmann    injection     26-NOV-97	    32.3	110
+Daniel	   Reines     operation     10-MAY-97	      10       2450
+David	   Gdula      chemotherapy  21-MAR-97	      10       3150
+Olga	   Simonova   operation     23-JUN-97	      10       4250
+Kethy	   Brown      injection     26-NOV-97	    32.3	110
+Hellen	   Tailor     operation     10-MAY-97	      10       2450
+
+Mon Dec 14							       page    2
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      ITEMNAME	    CHARGEDAT CHARGETOPA CHARGETOIC
+---------- ---------- ------------- --------- ---------- ----------
+Steven	   Zimmerly   chemotherapy  21-MAR-97	      10       3150
+Philip	   Perlman    operation     23-JUN-97	      10       4250
+George	   Wong       injection     26-NOV-97	    32.3	110
+Jack	   Erdossy    operation     10-MAY-97	      10       2450
+Jerry	   Fruit      chemotherapy  21-MAR-97	      10       3150
+John	   Harden     operation     23-JUN-97	      10       4250
+
+12 rows selected.
+
+SQL> !cat query4.sql
+SELECT	P.FNAME, P.LNAME,P.SEX,P.BDATE,P.ADDRESS
+FROM    PATIENT P,DOCTOR D,OUTPATIENT O
+WHERE   D.LNAME='Wong' AND O.PATIENTNUM=P.PNUMBER AND D.DSSN=O.DSSN;
+
+
+SQL> @report
+SQL> @query4
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  ADDRESS
+---------- ---------- ----- ------------- ------------------------------
+George	   Wong       M     28-May-32	  916 Alan Dr. Baltimore MD
+Carol	   Best       F     12-May-60	  202 Creenway, Baltimore MD
+Robert	   Brown      M     25-Mar-41	  10 Grass Ct Owings Mills MD
+Harvey	   Cohen      F     11-Oct-58	  1132 Gypsy Ln. Towson MD
+Stephen    David      M     22-May-53	  637 Sunspot Ct. Towson MD
+Thomas	   Mcdaniel   M     05-Mar-41	  2143 Lori Dr. Glen Burnie MD
+
+Mon Dec 14							       page    2
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  ADDRESS
+---------- ---------- ----- ------------- ------------------------------
+Anne	   Vojtek     F     19-Apr-35	  408 Alan Dr. Baltimore MD
+Robin	   Weiss      M     05-Dec-41	  518 Sun Rise Rd. Ellicott MD
+Steven	   Zimmerly   M     02-Nov-45	  5662 Fox Dr. Ellicott MD
+
+9 rows selected.
+
+SQL> !cat query5.sql
+SELECT	FNAME,LNAME,SEX,BDATE,ANAPHYLACTOGEN,STARTDATE
+FROM	PATIENT,ALLERGY
+WHERE	PATIENTNUM=PNUMBER;
+
+SQL> @report
+SQL> @query5
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  ANAPHYLACTOGEN  STARTDATE
+---------- ---------- ----- ------------- --------------- ---------
+Miria	   Stefenini  F     05-Jan-58	  Penicillin	  26-NOV-97
+Alan	   Lehmann    M     22-Jul-38	  Pollen	  22-NOV-97
+Lynne	   Mayne      F     03-May-42	  Penicillin	  30-SEP-97
+Errol	   Freidberg  F     05-Mar-41	  Polyvalent	  29-NOV-97
+Stig	   Hansen     F     08-May-47	  Penicillin	  10-NOV-97
+Robert	   Tjian      M     11-Oct-56	  Pollen	  23-SEP-97
+
+Mon Dec 14							       page    2
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  ANAPHYLACTOGEN  STARTDATE
+---------- ---------- ----- ------------- --------------- ---------
+Daniel	   Reines     F     05-Apr-32	  Penicillin	  14-SEP-97
+Paul	   Doetsh     M     04-Aug-52	  Polyvalent	  02-NOV-97
+David	   Gdula      M     05-Mar-66	  Penicillin	  19-SEP-97
+Clara	   Mason      F     14-Apr-32	  Penicillin	  11-MAY-93
+Adana	   Masur      F     06-Nov-57	  Pollen	  24-MAR-92
+Warren	   Ershow     F     28-May-65	  Penicillin	  02-JUN-91
+
+Mon Dec 14							       page    3
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  ANAPHYLACTOGEN  STARTDATE
+---------- ---------- ----- ------------- --------------- ---------
+Kevin	   Lykens     F     09-Feb-45	  Polyvalent	  15-AUG-89
+Alice	   Massey     F     04-May-66	  Penicillin	  20-JUL-91
+
+14 rows selected.
+
+SQL> !cat query6.sql
+SELECT	FNAME,LNAME,SEX,BDATE,RELATIONSHIP,CancerType
+FROM	FAMILY_HISTORY,PATIENT
+WHERE	PATIENTNUM=PNUMBER;
+
+SQL> @report
+SQL> @query6
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  RELATIONSHIP CANCERTYPE
+---------- ---------- ----- ------------- ------------ --------------
+Kevin	   Lykens     F     09-Feb-45	  Father       Stomach cancer
+Ann	   Marris     F     22-Nov-62	  Mother       Lung cancer
+Benjamine  Mathews    M     22-Oct-33	  Grandfather  Colon cancer
+Lisa	   McDaniel   F     11-Oct-48	  Father       Stomach cancer
+Michael    Reagan     M     02-Nov-34	  Mother       Lung cancer
+Randy	   Legerski   M     05-Apr-38	  Grandfather  Colon cancer
+
+Mon Dec 14							       page    2
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      SEX   BDATE	  RELATIONSHIP CANCERTYPE
+---------- ---------- ----- ------------- ------------ --------------
+Denis	   Gerosmov   F     08-Apr-45	  Father       Stomach cancer
+Olga	   Simonova   F     11-Dec-56	  Mother       Lung cancer
+Victor	   Corces     M     10-Nov-58	  Grandfather  Colon cancer
+
+9 rows selected.
+
+SQL> !cat query7.sql
+select fname,lname,starttime,endtime,visitreason,diagnosis
+from   patient,outpatient
+where  visitdate='26-Nov-97' and pnumber=patientnum;
+                              
+
+SQL> @report
+SQL> @query7
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME	   LNAME      STARTTIME  ENDTIME    VISITREASON     DIAGNOSIS
+---------- ---------- ---------- ---------- --------------- ---------------
+George	   Wong       08:00 AM	 09:00 AM   Chest pain	    Lung cancer
+Alan	   Lehmann    10:00 AM	 11:00 AM   Abdominal pain  Duodenum ulcer
+Carol	   Best       09:30 AM	 10:30 AM   Dizziness	    Common cold
+Kohan	   David      01:00 PM	 02:00 PM   Vomiting	    Common cold
+
+SQL> !cat query8.sql
+SELECT	D.LNAME, D.FNAME, D.SEX, D.DSSN
+FROM	DOCTOR D, PROJECT P
+WHERE	PNAME='New medicine for tumor' AND D.DNUM=P.DNUM;
+
+SQL> @report
+SQL> @query8
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+LNAME		FNAME		S DSSN
+--------------- --------------- - ---------
+Wong		Jack		M 212301123
+Albert		Robin		M 296383311
+Hardin		Stephen 	M 202591926
+Brown		Richard 	M 212301130
+Brown		Kathy		F 586351423
+
+SQL> !cat query9.sql
+SELECT	FNAME, LNAME
+FROM	DOCTOR D
+WHERE	NOT EXISTS (SELECT	*
+		    FROM	OUTPATIENT O
+		    WHERE	D.DSSN=O.DSSN )
+	AND
+	NOT EXISTS (SELECT	*
+		    FROM	INPATIENT I
+		    WHERE	D.DSSN=I.DSSN );
+
+SQL> @report
+SQL> @query9
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME		LNAME
+--------------- ---------------
+Stephen 	Hardin
+Richard 	Brown
+Jerry		Fruit
+William 	Lee
+Kathy		Brown
+Alice		Marris
+
+Mon Dec 14							       page    2
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME		LNAME
+--------------- ---------------
+Lynne		McDaniel
+Ann		Dafin
+
+8 rows selected.
+
+SQL> !cat query10.sql
+SELECT	D.FNAME, D.LNAME, D.SEX, P.DNUM, P.PNUMBER
+FROM	PROJECT P, DEPARTMENT T, DOCTOR D
+WHERE	P.DNUM=T.DNUMBER AND D.DNUM=T.DNUMBER 
+	AND PNAME='New medicine for tumor';
+
+SQL> @report
+SQL> @query10
+
+Mon Dec 14							       page    1
+			      Project Query Report
+			      Reported By Hui Liu
+			     COSC 578/101 Fall 1998
+
+FNAME		LNAME		S	DNUM	PNUMBER
+--------------- --------------- - ---------- ----------
+Jack		Wong		M	   1	   2836
+Robin		Albert		M	   1	   2836
+Stephen 	Hardin		M	   1	   2836
+Richard 	Brown		M	   1	   2836
+Kathy		Brown		F	   1	   2836
+
+SQL> quit
+Disconnected from Oracle8 Enterprise Edition Release 8.0.3.0.0 - Production
+With the Partitioning and Objects options
+PL/SQL Release 8.0.3.0.0 - Production
+triton%	exit
+exit
+
+script done on Mon Dec 14 17:47:40 1998

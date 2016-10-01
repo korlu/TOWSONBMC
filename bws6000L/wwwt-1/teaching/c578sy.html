@@ -1,0 +1,633 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>COSC578:    Database Management Systems 				Fall 97</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	color:blue;}
+h1
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.5in;
+	margin-bottom:.0001pt;
+	text-indent:-1.5in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	color:blue;
+	font-weight:normal;}
+h2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.5in;
+	margin-bottom:.0001pt;
+	text-indent:-1.5in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	font-weight:normal;}
+h3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.5in;
+	margin-bottom:.0001pt;
+	text-indent:-1.0in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	color:blue;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	color:blue;}
+ /* Page Definitions */
+ @page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>COSC578:</span></u></b><span
+style='color:windowtext'>                  </span><b><span style='font-size:
+14.0pt;color:windowtext'>Database Management Systems I              Fall 2006</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>                     
+              Computer and Information Sciences </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:.5in'><span style='font-size:12.0pt;color:windowtext'>Towson</span><span style='font-size:12.0pt;
+ color:windowtext'> University</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>                     
+              Towson, MD 21252</span></p>
+
+<p class=MsoNormal><span style='position:relative;z-index:1;left:-8px;
+top:8px;width:602px;height:14px'><img width=602 height=6
+src="c578sy_files/image001.gif"></span><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'><span
+ style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<br clear=ALL>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>COURSE</span></u></b></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr style='height:51.75pt'>
+  <td width=74 valign=top style='width:55.35pt;border-top:double windowtext 4.5pt;
+  border-left:double windowtext 4.5pt;border-bottom:solid blue 2.25pt;
+  border-right:solid blue 3.0pt;padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Number</span></p>
+  </td>
+  <td width=89 valign=top style='width:67.05pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Title</span></p>
+  </td>
+  <td width=60 valign=top style='width:45.0pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Timings</span></p>
+  </td>
+  <td width=96 valign=top style='width:1.0in;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Text</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Alt-texts</span></p>
+  </td>
+  <td width=72 valign=top style='width:.75in;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Section</span></p>
+  </td>
+  <td width=59 valign=top style='width:44.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Class</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>room</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.35pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:51.75pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Final</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Exam Date</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=74 valign=top style='width:55.35pt;border-top:none;border-left:
+  double windowtext 4.5pt;border-bottom:double windowtext 4.5pt;border-right:
+  solid blue 3.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>COSC578</span></p>
+  </td>
+  <td width=89 valign=top style='width:67.05pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Database Management </span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Systems I</span></p>
+  </td>
+  <td width=60 valign=top style='width:45.0pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>T-Th 5.30 – 6.45 PM</span></p>
+  </td>
+  <td width=96 valign=top style='width:1.0in;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Fundamentals of Database
+  Systems</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Elmasri &amp; Navathe</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>fifth</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Edition</span></p>
+  </td>
+  <td width=66 valign=top style='width:49.5pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+  <td width=72 valign=top style='width:.75in;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>101</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+  <td width=59 valign=top style='width:44.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 3.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>YR</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>301</span></p>
+  </td>
+  <td width=74 valign=top style='width:55.35pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>T</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>Dec 12</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>5.30-6.45 PM</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>FACULTY</span></u></b></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:double windowtext 4.5pt;border-bottom:solid blue 2.25pt;
+  border-right:solid blue 2.25pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Name</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Office</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Phone</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Email</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>OfficeHours</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  double windowtext 4.5pt;border-bottom:double windowtext 4.5pt;border-right:
+  solid blue 2.25pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Dr. Ramesh K. Karne</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>YR 7800</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>#461, Lab 307</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>704-3955</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>rkarne@towson.edu</span></p>
+  </td>
+  <td width=118 valign=top style='width:88.55pt;border-top:none;border-left:
+  none;border-bottom:double windowtext 4.5pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>M-T-W 4-5 PM </span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span style='font-size:14.0pt;color:windowtext'>GRADES</span></u></b></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;color:windowtext'>90-100   A</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;color:windowtext'>80-89     B </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;color:windowtext'>70-79     C</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;color:windowtext'>&lt;70        
+F</span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:double windowtext 4.5pt;border-bottom:solid blue 2.25pt;
+  border-right:solid blue 2.25pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Homeworks</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Project</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Midterm</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Final</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:double windowtext 4.5pt;
+  border-left:none;border-bottom:solid blue 2.25pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>ClassParticipation/
+  Interaction</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:double windowtext 4.5pt;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>0</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>Project</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>45%</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>25%</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:solid blue 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>25%</span></p>
+  </td>
+  <td width=98 valign=top style='width:73.8pt;border-top:none;border-left:none;
+  border-bottom:double windowtext 4.5pt;border-right:double windowtext 4.5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+  <p class=MsoNormal><span style='color:windowtext'>5%</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Course Objectives:</span></u></b><span
+style='font-size:12.0pt;color:windowtext'> An overall focus in this course will
+be based on a practical approach to design, implementation, and management of
+database management systems. The general objectives of the course include: 
+build theoretical foundation for database management systems, understand
+database management systems role in emerging applications, learn database
+modeling techniques, study different database models, study relational algebra,
+learn query writing using SQL, and database analysis and design.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Homework</span></u></b><b><span style='font-size:14.0pt;
+color:windowtext'>:  </span></b><span style='font-size:12.0pt;color:windowtext'>Reading
+assignment only, no points.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'> </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Project</span></u></b><b><span style='font-size:14.0pt;
+color:windowtext'>: </span></b><span style='font-size:12.0pt;color:windowtext'> There
+is a mandatory project based on a real world database application selected by
+the student. Each student will work alone on the project to complete the tasks
+outlined below. As the project contains 45% of the grade, it is important that
+you spend enough time to achieve the project goals.  The project goals are: </span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;color:windowtext'>Understand a real
+world problem, design and implement it in Oracle DBMS  </span></p>
+
+<p class=MsoNormal style='margin-left:3.0pt;text-align:justify'><span
+style='font-size:12.0pt;color:windowtext'>-    Make your project complete </span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>-<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:12.0pt;color:windowtext'>Demonstrate your
+project successfully to the instructor.  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:12.0pt;
+color:windowtext'>Project Description:  </span></b><span style='font-size:12.0pt;
+color:windowtext'>Choose a problem that consists of at least 6 entities in your
+model. Develop an E-R model or a UML model for this database. Perform a
+database design with constraints, attributes, and relationships. Implement this
+model in the Triton based system using Oracle DBMS.  Write reasonable number of
+complex queries that can be run in the SQL prompt mode. Run the same number of
+queries using a Java JDBC or a C++ ODBC program. If possible, run your database
+through your Web page (extra points 10%).  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>Project Tasks and grades (total points for the project 45): </span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Data model          10%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Database design   10%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Database implementation                          20%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Running complex queries in SQL prompt
+30%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Running complex queries in Java JDBC,
+or C++ ODBC program 20%</span></p>
+
+<p class=MsoNormal style='margin-left:39.0pt;text-align:justify;text-indent:
+-.25in'><span style='font-size:12.0pt;color:windowtext'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:12.0pt;color:windowtext'>Documentation and Report 10%.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span style='font-size:12.0pt;
+color:windowtext'>If there is no actual working of any piece in your project,
+your entire project grade will be zero. Grading for the above steps is strictly
+enforced.  </span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Class Schedules: </span></u></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>Chapter 1:
+Databases and Database Users</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>Chapter 2:
+Database System Concepts and Architectures</span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>Chapter 3:
+Data Modeling Using the  Entity-Relationship Model </span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>Chapter 4:
+Enhanced Entity-Relationship and UML Modeling</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>Chapter 5,6: The Relational Data
+Model, Relational Constraints, and the Relational Algebra</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>Chapter 7: Relational Database Design
+by ER and EER-to-Relational Mapping </span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>Chapter 8,9:
+SQL </span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt'>Chapter10: </span><span style='font-size:12.0pt;
+color:windowtext'>Functional Dependencies and Normalization for Relational
+Databases </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-indent:-1.5in'><span
+style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>Chapter 12:
+Practical Database Design </span></p>
+
+<p class=MsoNormal><b><span style='font-size:14.0pt;color:windowtext'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:12.0pt;color:windowtext'>Project
+Presentations (Last week of classes)</span></b></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:14.0pt;
+color:windowtext'>December 12, 2006<b>         </b></span><span
+style='font-size:12.0pt;color:windowtext'>Final Examination</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Attendance Policy</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>Attendance is expected at all classes. Attendance may
+be taken some times in the class. There will be no make up tests given later to
+absentees.  If you miss a class for some foreseeable reason arrange for an
+earlier test. If you miss classes consistently, or come late to classes, you
+will be deducted 20% from your final grade. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Class Participation</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>The class participation of a student is mandatory. 
+This includes: questions, interaction with other students, project discussions,
+and demonstrating your understanding of the subject among peers. A brief
+overview of the previous class presentations will be summarized in some
+classes.  This is the best chance for you to participate and make your self
+well known in the class and to the instructor.  That means, you must come
+prepare for every class!  </span></p>
+
+<p class=MsoNormal><b><u><span style='color:windowtext'><span style='text-decoration:
+ none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Examinations</span></u></b><b><span style='font-size:
+14.0pt;color:windowtext'>:  </span></b><span style='font-size:12.0pt;
+color:windowtext'>There will be one mid-term and one final examination as
+scheduled.  The examinations will cover material taught in the class,
+textbooks, classroom discussions, and class assignments.  Class notes and
+attendance will be very crucial to score well in the exams. Class discussions,
+which are not in the text book will be tested in the exam.   </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Make Up Policy</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'> If a student must miss an exam, it is the student’s
+responsibility to provide sufficient documentation of the reason for the
+absence.  Otherwise, a grade of zero will be assigned. </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Grading Policy and Discussions</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>All grading controversies and discussions must be done
+during office hours and not in the classroom.  The grading as discussed in the
+syllabus will be strictly enforced. </span></p>
+
+<p class=MsoNormal><span style='color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Office Hours</span></u></b><b><span style='font-size:
+14.0pt;color:windowtext'>: </span></b><span style='font-size:12.0pt;color:windowtext'>Even
+though office hours are as listed above, if some one needs immediate help and
+attention with the assignment, they are welcome to knock on my door when I am
+in the office or in the lab. You can also send me an email over the weekend and
+evenings.  </span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='color:windowtext'><span
+ style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='text-align:justify'><b><u><span style='font-size:
+14.0pt;color:windowtext'>Classroom Policies</span></u></b><b><span
+style='font-size:14.0pt;color:windowtext'>: </span></b><span style='font-size:
+12.0pt;color:windowtext'>There is no food allowed in the classroom.  If you
+happen to bring a soft or hot drink to the classroom, you must cleanup the
+mess.  You can’t show any rude behavior with your fellow classmates or
+instructor in the classroom, which may result in removing you from the class. 
+If you have any problems with people, you must discuss that with the instructor
+during the office hours and file an official complaint, which will be resolved
+by the instructor, or it will be taken to the Chair of the department for
+further resolution. There is absolutely no gossip in the classroom. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span style='font-size:12.0pt;
+color:windowtext'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

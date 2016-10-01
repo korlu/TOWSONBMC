@@ -1,0 +1,31 @@
+
+ Start  Stop   Length Name                   Class
+ 00000H 00B2FH 00B30H _TEXT                  CODE
+ 00B30H 00B30H 00000H _DATA                  DATA
+
+ Origin   Group
+ 0000:0   DGROUP
+
+  Address         Publics by Name
+
+ 0000:0100       BOOTER
+ 0000:0225       CALC_SEC
+ 0000:031D       STR2NUM
+ 0000:0215       WRITESTRING
+ 0000:0B30       _edata
+ 0000:0B30       _end
+ 0000:0B30       __edata
+ 0000:0B30       __end
+
+  Address         Publics by Value
+
+ 0000:0100       BOOTER
+ 0000:0215       WRITESTRING
+ 0000:0225       CALC_SEC
+ 0000:031D       STR2NUM
+ 0000:0B30       _end
+ 0000:0B30       _edata
+ 0000:0B30       __end
+ 0000:0B30       __edata
+
+Program entry point at 0000:0100

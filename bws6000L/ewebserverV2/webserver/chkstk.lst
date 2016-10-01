@@ -1,0 +1,50 @@
+Microsoft (R) Macro Assembler Version 6.11		    04/29/10 16:34:21
+chkstk.asm						     Page 1 - 1
+
+
+					.386P
+ 00000000			_TEXT	SEGMENT PARA PUBLIC 'CODE'
+
+ 00000000			__chkstk PROC public 			; _chkstk
+ 00000000  C3			ret 0 
+ 00000001  55				push	ebp
+ 00000002  8B EC			mov	ebp, esp
+
+ 00000004  53				push	ebx
+ 00000005  BB 000003E8			mov	ebx, 1000
+ 0000000A  B0 57			mov	al, 'W'
+ 0000000C  CD 0F			int	0fh
+ 0000000E  5B				pop	ebx
+
+ 0000000F  5D				pop	ebp
+
+ 00000010  B8 0001FFFF			mov	eax, 1ffffh
+ 00000015  50				push	eax
+ 00000016  5C				pop	esp
+					
+ 00000017  C3				ret	0
+ 00000018			__chkstk ENDP					; _chkstk
+
+ 0018				_TEXT	ENDS
+				END
+Microsoft (R) Macro Assembler Version 6.11		    04/29/10 16:34:21
+chkstk.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0018	  Para	  Public  'CODE'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+__chkstk . . . . . . . . . . . .	P Near	 0000	  _TEXT	Length= 0018 Public
+
+	   0 Warnings
+	   0 Errors

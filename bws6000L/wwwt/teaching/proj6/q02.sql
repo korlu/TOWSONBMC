@@ -1,0 +1,3 @@
+select ELNAME || ', ' || EFNAME || ' ' || EMINIT || '.' EMPLOYEE_NAME, ESSN,
+   EMPNUM, ETITLE, ESALARY, EADDRESS, EDEPTNUM, EBRANCH
+from employees;

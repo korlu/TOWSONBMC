@@ -1,0 +1,10 @@
+start checking.sql;
+start departments.sql;
+start employees.sql;
+start has_account.sql;
+start loans.sql;
+start location.sql;
+start members.sql;
+start savings.sql;
+start transaction.sql;
+start vendors.sql;

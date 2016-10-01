@@ -1,0 +1,886 @@
+/////////////////////////////////////////////////////////////////////*
+//                                                                //
+//   // AFTP uses UDP protocol to transfer files to DOSC Machines   //
+//								  //
+////////////////////////////////////////////////////////////////////*
+
+#define WIN32_LEAN_AND_MEAN
+//#include <winsock.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include <windows.h>
+#include <winsock2.h>
+#define DEFAULT_PORT 5008
+#define DEFAULT_PROTO SOCK_DGRAM// UDP
+#define Max 10000
+#define MAXDATA 1000
+#define MAXBUFF MAXDATA+20
+
+struct fileTable
+{
+char fileName[80];
+unsigned long fileSize;
+}File[Max];
+int fileNumber=0;
+unsigned int nextSeq=0;
+int totalFiles=0;
+FILE *rdFile;
+char IP[20]="";
+long TPACK=0;
+long LPACK=0;
+time_t startTime,endTime;
+double dif;
+long min, sec;
+int main(void)
+{
+
+
+char Buffer[128];						//recv buffer
+char sendBuffer[MAXBUFF];						//send buffer
+
+char *interface= NULL;
+char Path[100]="C:\\home\\student\\rkk\\wwwt\\";	//we just use one interface
+char Path2[180];
+unsigned short port=DEFAULT_PORT;				//default port 5001
+int retval;
+int fromlen;
+int i;
+int statusCode=0; 						//says what to send to the client
+int Size=0;
+unsigned int ack;
+char *conv;
+char *seq;
+int iMode=0;
+int block;
+int socket_type = DEFAULT_PROTO;				//udp
+struct sockaddr_in local, from; 						//says what file to send
+
+WSADATA wsaData;			
+SOCKET listen_socket, msgsock;
+
+
+
+
+
+Init();							//Start Indexing first
+
+
+
+	if((retval = WSAStartup(0x202,&wsaData)) != 0) 
+		{
+		fprintf(stderr,"WSAStartup failed with error %d\n",retval);
+        	WSACleanup();
+        	//return -1;
+    		}
+
+	local.sin_family = AF_INET;
+	local.sin_addr.s_addr = (!interface)?INADDR_ANY:inet_addr(interface); 
+
+/* 
+ Port MUST be in Network Byte Order
+*/
+	local.sin_port = htons(port);
+
+	listen_socket = socket(AF_INET, socket_type,0); // UDP socket	
+	
+	if (listen_socket == INVALID_SOCKET)
+		{
+        	fprintf(stderr,"socket() failed with error %d\n",WSAGetLastError());
+        	WSACleanup();
+        	//return -1;
+    		}	
+
+//
+    // bind() associates a local address and port combination with the
+    // socket just created. This is most useful when the application is a 
+    // server that has a well-known port that clients know about in advance.
+    //
+
+	if (bind(listen_socket,(struct sockaddr*)&local,sizeof(local) ) == SOCKET_ERROR) 
+		{
+        	fprintf(stderr,"bind() failed with error %d\n",WSAGetLastError());
+        	WSACleanup();
+       		// return -1;
+    		}
+
+    while(1)
+    		{
+		    
+		fromlen =sizeof(from);	
+		msgsock = listen_socket;	
+		
+		// However, for SOCK_DGRAM (UDP), the server will do
+        	// recvfrom() and sendto()  in a loop.
+
+		retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);
+            	
+			
+		strcpy(IP,inet_ntoa(from.sin_addr));
+	 	
+		if (retval == SOCKET_ERROR) 
+			{
+            		fprintf(stderr,"A: recv() failec: error %d\n",WSAGetLastError());
+            		closesocket(msgsock);
+            		continue;
+        		}	
+	
+		if (retval == 0) 
+			{
+            		printf("\nError::Client closed connection\n");
+            		closesocket(msgsock);
+            		continue;
+        		}
+		
+		//Buffer[retval-1] = '\0';
+		//printf("Received %d bytes, data [%s] from client\n",retval,Buffer);
+		//printf("Received message:");
+		
+		statusCode=Protocol(Buffer);
+		if(statusCode==-1)
+			{
+			continue;
+			}
+		else if(statusCode==201)
+			{
+			
+EndTransfer:			    if(fileNumber>=totalFiles)
+
+			    //send 103
+			    {
+			    sendBuffer[0]='1';
+			    sendBuffer[1]='0';
+			    sendBuffer[2]='3';
+			    
+	//RKK retval = sendto(msgsock, sendBuffer, sizeof(sendBuffer), 0,(struct sockaddr *)&from, fromlen);	
+		retval = sendto(msgsock, sendBuffer, 18, 0,(struct sockaddr *)&from, fromlen);	
+			Sleep(1);	//end of transmission delay does not matter  
+			retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);	 
+			if (retval == SOCKET_ERROR) 
+			{
+            			fprintf(stderr,"B1: recv() failec: error %d\n",WSAGetLastError());
+            			//closesocket(msgsock);
+            			goto EndTransfer;
+        		}			
+			else
+			{	
+			
+			    if(Buffer[0]=='1'&& Buffer[1]=='0' && Buffer[2]=='4')
+			    	{
+				fileNumber=0;
+				totalFiles=0;
+				
+				printf("\nTotal Packets Sent: %ld ",TPACK);
+				time (&endTime);
+				dif = difftime (endTime,startTime);
+				min = dif / 60;
+ 				sec = (long)dif % 60;
+				printf ("\nTransferTime %ld.%2ld\n", min,sec);
+				printf("\nEnd of file Transfer, Press any key to exit....");			
+				getch();
+				exit(0);
+				}
+			    else
+			    {
+            			goto EndTransfer;	
+			    }
+			    
+			    
+			    }
+			    
+			  }   
+				    //create 102 and send
+Label102:
+			Create102(sendBuffer);
+				
+			time (&startTime);
+					
+		//RKK retval = sendto(msgsock, sendBuffer, sizeof(sendBuffer), 0,(struct sockaddr *)&from, fromlen);	
+			retval = sendto(msgsock, sendBuffer, 18, 0,(struct sockaddr *)&from, fromlen);	
+			
+			
+			if (retval == SOCKET_ERROR) 
+				{
+            			fprintf(stderr,"send() failec: error %d\n",WSAGetLastError());	
+				}	
+			
+	
+			//empty buffer
+				sendBuffer[0]='\0';
+			  
+			
+OpenNext:
+				strcpy(Path2,Path);
+				strcat(Path2,File[fileNumber].fileName);	
+				rdFile = fopen(Path2,"rb");
+				if(rdFile==NULL)
+	      				{
+					printf("\nError:A Cannot open File: %s",Path2);
+					fclose(rdFile);
+					if(fileNumber>=totalFiles)
+						{
+						printf("\nError:B Cannot open File: %s",Path2);
+						goto EndTransfer;
+						}	
+					fileNumber++;
+					goto OpenNext;
+	      				} 
+				fclose(rdFile);
+Label201:
+			//create 201	
+				Create201(fileNumber,sendBuffer);						
+			//send 201
+
+			printf("\nTotal Packets Sent: %ld ",TPACK);	
+    //RKK retval = sendto(msgsock, sendBuffer, sizeof(sendBuffer), 0,(struct sockaddr *)&from, fromlen);	
+    retval = sendto(msgsock, sendBuffer, 100, 0,(struct sockaddr *)&from, fromlen);	
+			
+			if (retval == SOCKET_ERROR) 
+				{
+            			fprintf(stderr,"send() failec: error %d\n",WSAGetLastError());	
+				}
+			
+			//empty buffer
+				sendBuffer[0]='\0';
+				
+		
+			//do recieve here
+				//putting the socket to non-blocking mode
+				
+				if(iMode==0)
+				{
+				 iMode=1;
+				block=ioctlsocket(msgsock, FIONBIO, (u_long FAR*) &iMode);
+				if(block!=0)
+				{
+					printf("Error:Could put Socket in non-Blocking mode");
+					printf("Press any key to exit..........");	
+					getch();
+					exit(0);
+				}
+				}
+				
+				Buffer[0]='\0';
+				Buffer[1]='\0';	
+				Buffer[2]='\0';	
+				Sleep(1);	 //ready to transfer delay, waiting for 202  
+				                  //this delay matters 
+				retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);	
+				
+			//Putting back to block mode	
+			/*	if(iMode!=0)
+				{
+				iMode=0;
+				block=ioctlsocket(msgsock, FIONBIO, (u_long FAR*) &iMode);
+				if(block!=0)
+				{
+				printf("Error:Could put Socket in Blocking mode");
+				printf("Press any key to exit..........");	
+			//	getch();
+				exit(0); 
+			    	}		
+				}
+				
+			*/	
+				if (retval == SOCKET_ERROR) 
+				{
+            				fprintf(stderr,"B: recv() failec: error %d\n",WSAGetLastError());
+            			//closesocket(msgsock);
+            				goto Label201;
+        			}			
+				else
+				{
+				   if(Buffer[0]=='2' && Buffer[1]=='0' && Buffer[2]=='2')	
+					{
+					goto Label301;
+					}
+					else if(Buffer[0]=='2' && Buffer[1]=='0' && Buffer[2]=='4')
+					{
+					    fileNumber++;
+					goto OpenNext;
+					}
+					else if(Buffer[0]=='2' && Buffer[1]=='0' && Buffer[2]=='3') 
+					{
+					printf("Client Not ready to accept.Press any key to exit......");
+					getch();
+					exit(0);
+					}
+					if(Buffer[0]=='1' && Buffer[1]=='0' && Buffer[2]=='1')	
+					{
+					goto Label102;
+					}	
+					else
+					{
+					goto Label201;
+					}
+				}
+							
+			}
+
+		else if(statusCode==301)
+			{
+			
+Label301:
+			
+			strcpy(Path2,Path);
+			strcat(Path2,File[fileNumber].fileName);
+			rdFile = fopen(Path2,"rb");
+			if(rdFile==NULL)
+	      			{
+				printf("\nError:C Cannot open File: %s",Path2);
+				fileNumber++;
+				goto OpenNext;
+				//return -2;//file in index could not open
+	      			} 
+	
+			fseek(rdFile,0,SEEK_SET);
+			
+			
+			
+				sendBuffer[0]='3';
+				sendBuffer[1]='0';
+				sendBuffer[2]='1';
+						
+				//line break
+				sendBuffer[3]=0x10;
+				sendBuffer[4]=0x13;	
+				//line break
+				sendBuffer[7]=0x10;
+				sendBuffer[8]=0x13;	
+				//line break
+				sendBuffer[11]=0x10;
+				sendBuffer[12]=0x13;	
+
+				
+				//seqNum
+			
+				
+				seq=(char*)(&nextSeq);	
+				do{
+Label2:			
+
+				sendBuffer[5]=seq[0];
+				sendBuffer[6]=seq[1];	
+    				Size = fread(&sendBuffer[13],1,MAXDATA,rdFile);
+					
+				if(Size<MAXDATA)
+					{
+						for(i=0;i<(MAXDATA-Size);i++)
+						{
+						sendBuffer[13+(Size+i)]='\0';
+						
+						}
+					
+					}
+			  	conv=(char*)(&Size);
+				sendBuffer[9]=conv[0];   
+				sendBuffer[10]=conv[1];	
+				
+				nextSeq++;	
+Label1:	
+				Sleep(1);  //this is for data in milliseconds 
+				retval = sendto(msgsock, sendBuffer, sizeof(sendBuffer), 0,(struct sockaddr *)&from, fromlen);				     
+				TPACK=TPACK+1;	
+				if (retval == SOCKET_ERROR) 
+				{
+            				fprintf(stderr,"send() failec: error %d\n",WSAGetLastError());	
+				}	
+				//printf("UDP server looping back for more requests\n");		
+			        //Sleep(100);	
+				//retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);	
+				//To make a socket non-blocking without registering for asynchronous notification, use ioctls				       ocket(FIONBIO).It uses winsock2.h header file
+				// If iMode = 0, blocking is enabled; 
+				// If iMode != 0, non-blocking mode is enabled.
+				
+				if(iMode==0)
+				{
+				iMode=1;
+				block=ioctlsocket(msgsock, FIONBIO, (u_long FAR*) &iMode);
+				if(block!=0)
+				{
+				printf("Error:Could put Socket in non-Blocking mode");
+				printf("Press any key to exit..........");	
+				getch();
+				exit(0);
+				}
+				}
+				Buffer[0]='\0';
+				Buffer[1]='\0';	
+				Buffer[2]='\0';	
+				/*Sleep(300);	
+				retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);	
+				if (retval == SOCKET_ERROR) 
+				{
+            			fprintf(stderr,"C: recv() failec: error %d\n",WSAGetLastError());
+            			//closesocket(msgsock);
+            			goto Label1;
+        			}		
+					
+				//continue listening	
+			    if(Buffer[0]=='3' && Buffer[1]=='0' && Buffer[2]=='2')
+			    	{
+				ack=Buffer[6]&0xFF;				
+				ack=((ack<<8) & 0xFF00) | Buffer[5]&0xFF;				
+				
+					if(ack!=nextSeq)
+					{
+					    LPACK=LPACK+1;
+					    
+					    printf("\n1.Retransmission");
+				    	goto Label1;
+					}
+					else
+					{
+					continue;
+				
+					}
+				}
+			    else
+			    	{
+				    printf("\n2.Retransmission"); 
+				goto Label1;
+				
+				}*/
+			    	
+				}while(Size == MAXDATA);
+			    
+				
+
+
+			    
+			    
+			    
+			    nextSeq=0;
+			  
+				//sending 303
+Label303:	
+				sendBuffer[0]='3';
+				sendBuffer[1]='0';
+				sendBuffer[2]='3';
+				
+				//Putting back to block mode	
+				if(iMode!=0)
+				{
+				iMode=0;
+				block=ioctlsocket(msgsock, FIONBIO, (u_long FAR*) &iMode);
+				if(block!=0)
+				{
+				printf("Error:Could put Socket in Blocking mode");
+				printf("Press any key to exit..........");	
+			//	getch();
+				exit(0); 
+			    	}	
+				}
+
+
+//RKK	retval = sendto(msgsock, sendBuffer, sizeof(sendBuffer), 0,(struct sockaddr *)&from, fromlen);		
+	retval = sendto(msgsock, sendBuffer, 18, 0,(struct sockaddr *)&from, fromlen);		
+				if (retval == SOCKET_ERROR) 
+				{
+            			fprintf(stderr,"send() failec: error %d\n",WSAGetLastError());	
+				}
+			
+			//empty buffer
+				sendBuffer[0]='\0';
+						
+				Buffer[0]='\0';
+				Buffer[1]='\0';	
+				Buffer[2]='\0';	
+				
+			if(iMode==0)
+				{
+				iMode=1;
+				block=ioctlsocket(msgsock, FIONBIO, (u_long FAR*) &iMode);
+				if(block!=0)
+				{
+					printf("Error:Could put Socket in Blocking mode");
+					printf("Press any key to exit..........");	
+			//		getch();
+					exit(0); 
+			    	}	
+				}	
+Label305:					
+				Sleep(1);	 //file finished, waiting for 304 
+				                 // delay matters 
+				
+				retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);	
+				
+				
+				
+				if (retval == SOCKET_ERROR) 
+				{
+            				fprintf(stderr,"C: recv() failec: error %d\n",WSAGetLastError());
+            			//resend 303
+            				goto Label303;
+        			}			
+				else
+				{
+					if(Buffer[0]=='3' && Buffer[1]=='0' && Buffer[2]=='4')	
+					{
+					fclose(rdFile);
+					fileNumber++;
+				 		if(fileNumber>=totalFiles)	
+						{
+						    goto EndTransfer;
+						}
+						else
+						{
+						
+							goto OpenNext;
+						}
+					}
+					else if(Buffer[0]=='3' && Buffer[1]=='0' && Buffer[2]=='6')
+					{
+
+					ack=Buffer[6]&0xFF;				
+					ack=((ack<<8) & 0xFF00) | Buffer[5]&0xFF;	
+					printf("\nRetransmission %d", ack);    	
+
+				fseek(rdFile,(MAXDATA*ack),SEEK_SET);
+				
+				seq=(char*)(&ack);	
+
+				sendBuffer[5]=seq[0];
+				sendBuffer[6]=seq[1];	
+    				Size = fread(&sendBuffer[13],1,MAXDATA,rdFile);
+					
+				if(Size<MAXDATA)
+					{
+						for(i=0;i<(MAXDATA-Size);i++)
+						{
+						sendBuffer[13+(Size+i)]='\0';
+						
+						}
+					
+					}
+			  	conv=(char*)(&Size);
+				sendBuffer[9]=conv[0];   
+				sendBuffer[10]=conv[1];	
+				
+	
+							
+				sendBuffer[0]='3';
+				sendBuffer[1]='0';
+				sendBuffer[2]='5';
+						
+				//line break
+				sendBuffer[3]=0x10;
+				sendBuffer[4]=0x13;	
+				//line break
+				sendBuffer[7]=0x10;
+				sendBuffer[8]=0x13;	
+				//line break
+				sendBuffer[11]=0x10;
+				sendBuffer[12]=0x13;		
+				
+
+					
+				
+//RKK	retval = sendto(msgsock, sendBuffer, sizeof(sendBuffer), 0,(struct sockaddr *)&from, fromlen);		
+	retval = sendto(msgsock, sendBuffer, 18, 0,(struct sockaddr *)&from, fromlen);		
+					goto Label305;					
+					}
+					
+					else
+					    goto Label303;
+					
+				}	
+				//retval = recvfrom(msgsock,Buffer,sizeof (Buffer),0,(struct sockaddr *)&from,&fromlen);		
+				
+				
+		
+			
+			}//end of if
+	
+		else
+			continue;
+
+
+
+
+		
+        //	printf("Echoing same data back to client\n");
+	//	printf("Message to send back:");
+	//	gets(Buffer);
+	//	retval = strlen(Buffer);	
+		
+		//retval = sendto(msgsock,Buffer,sizeof (Buffer),0,
+		//(struct sockaddr *)&from,fromlen);
+
+
+
+		
+		}
+}
+
+int Protocol(long bufferAdd)
+{
+int i;
+char *bufferPtr;
+bufferPtr=(char *)bufferAdd;
+    for(i=0;i<3;i++)
+    	{
+    	if(bufferPtr[0]=='1' && bufferPtr[1]=='0' && bufferPtr[2]=='1')
+    		{
+    		//101 means Start Transferring
+		printf("\nConnection requested by %s\n",IP);	
+		return 201;		//means send first file in index
+		}
+	else if(bufferPtr[0]=='2' && bufferPtr[1]=='0' && bufferPtr[2]=='2')
+		{
+		//202 means client is ready to accept files
+		return 301; 
+		}
+	else if(bufferPtr[0]=='2' && bufferPtr[1]=='0' && bufferPtr[2]=='3')
+		{
+		//203 means client is not ready to accept files
+		return -1;
+		}
+	else if(bufferPtr[0]=='2' && bufferPtr[1]=='0' && bufferPtr[2]=='4')
+		{
+		//204 means file already exists
+		fileNumber++;
+		return 201;			//means that send next file
+		}	
+   	else if(bufferPtr[0]=='3' && bufferPtr[1]=='0' && bufferPtr[2]=='2')
+		{
+		//302 is an ack meaning data send was recieved send more
+		//if filesend complete then return 303
+		//else
+		return -1; 			//means countinue sending next chunk
+		
+		}
+	else if(bufferPtr[0]=='3' && bufferPtr[1]=='0' && bufferPtr[2]=='4')
+		{
+		fileNumber++;
+		//304 is an ack from client meaning that file rec complete
+		return 201;			// next file
+		}	
+	else if(bufferPtr[0]=='1' && bufferPtr[1]=='0' && bufferPtr[2]=='4')
+		{
+		    IP[0]='\0';
+		//104 is an ack meaning Connection should end
+		return -1;
+		}
+	else
+		return -1;				
+    	}
+	return 0;
+}
+
+int Init(void)
+{
+	FILE *myDisk,*myFile;
+	char Buffer[512];
+
+	char Path[100]="C:\\home\\student\\rkk\\wwwt\\";
+	char Path2[180]="\0";	
+	char *indexFile="index.txt";
+	int Size=0,i=0,Index=0;
+	long fSize=0;
+	char fileName[80]="\0";
+	Buffer[0]='\0';
+	printf("\n----------------------------------Starting File Transfer------------------------------");	
+
+	strcat(Path,indexFile);
+
+
+
+	myDisk=fopen(Path,"rb");
+
+	if(myDisk==NULL)
+	      {
+		printf("\nError: No Index File in this path %s",Path);
+		return -1;//file in index could not open
+	      }
+
+	//Reading filesnames and calculating their Sizes
+
+
+	while(1)
+		{
+			fscanf(myDisk,"%s",fileName);	
+			//printf("filename:%s",fileName);
+			
+			
+		
+		//strcat(Path2,fileName);    
+		    
+				
+		
+
+		if(fileName[0]=='x' && fileName[1]=='y' && fileName[2]=='z')
+				{
+				    break;  //no more files in index
+				
+				}
+			else
+				{
+					strcpy(Path2,"C:\\home\\student\\rkk\\wwwt\\"); 	
+			    		strcat(Path2,fileName); 
+					myFile = fopen(Path2,"rb");	
+				   	if(myFile==NULL)
+		      			{
+						printf("\nError: Cannot open File: %s",Path2);
+						continue;
+					} 	
+ 					else
+					{
+					strcpy(File[i].fileName,fileName);		//copy file nane in table
+					fclose(myFile);
+					i++;
+					}
+				}	
+		
+		
+					
+		if((strlen(fileName))>=80)
+				{
+				continue; //skip the file
+				}
+			
+		
+		}//end of while			
+	
+	fclose(myDisk);
+	printf("\nTotal Files in Index =%d",i);
+	printf("\nFileNo.\tFileSize\t\tFileName");	
+
+	while(Index<=(i-1))
+		{
+		    
+		    strcpy(Path2,"C:\\home\\student\\rkk\\wwwt\\"); 
+		    
+		    strcat(Path2,File[Index].fileName);
+				
+		myFile = fopen(Path2,"rb");
+
+		if(myFile==NULL)
+	      		{
+			printf("\nError: Cannot open File: %s",Path2);
+			 Index++;
+			continue;
+			} 
+	
+		fseek(myFile,0,SEEK_SET);
+		do
+			{
+    			Size = fread(Buffer,1,512,myFile);
+			fSize=fSize + Size;
+			}while(Size==512);
+		//printf("Fsize=%ld",fSize);
+		File[Index].fileSize=fSize;	
+		printf("\n%d .",Index);	
+		printf("\t%ld",File[Index].fileSize);	
+		printf("\t\t%s",File[Index].fileName);	
+		fSize=0;
+		fclose(myFile);	
+		Index++;
+		
+		}
+	totalFiles=Index;
+	printf("\nIndex Created");
+	printf("\nReady to accept transfer");    
+	
+	
+	return 0;	    
+
+}
+
+int Create102(char *sendBuffer)				//This is an ACK for 101
+{
+//send Ack first 102
+			sendBuffer[0]='1';
+			sendBuffer[1]='0';
+			sendBuffer[2]='2';
+			sendBuffer[3]=0x10;
+			sendBuffer[4]=0x13;
+return 0;
+
+
+}
+
+int Create201(int fileNumber, char *sendBuffer)		//This is Info Packet FileName and FileSize
+{
+	int fileNameSize=0;
+	int padLength=0;
+	int j;
+	char Padding='\0';
+	int padStart=0;
+  	char *fsize;
+	unsigned long *c;
+	//send Data 201
+			//status code 201
+			sendBuffer[0]='2';
+			sendBuffer[1]='0';
+			sendBuffer[2]='1';
+			
+			//line break
+			sendBuffer[3]=0x10;
+			sendBuffer[4]=0x13;
+			
+			//filename
+			strcpy(&sendBuffer[5],File[fileNumber].fileName);
+
+			fileNameSize=strlen(File[fileNumber].fileName);		//file lenght
+			padLength=80-fileNameSize;				//how much padding
+			padStart=6+fileNameSize;					//where to add padding
+			for(j=0;j<=padLength;j++)				
+				{
+				sendBuffer[padStart]=Padding;
+				padStart++;
+				}
+			//line break
+			sendBuffer[85]=0x10;
+			sendBuffer[86]=0x13;
+			
+			//filesize
+			//convert long to char array and copy it in send buffer
+			printf("\nSending.....");
+			printf("%d.",fileNumber);	
+			printf("\t%ld",File[fileNumber].fileSize);	
+			printf("\t\t%s",File[fileNumber].fileName);		
+			
+			
+			fsize=(char*)(&File[fileNumber].fileSize);
+
+			sendBuffer[87]=fsize[0];
+			sendBuffer[88]=fsize[1];	
+			sendBuffer[89]=fsize[2];	
+			sendBuffer[90]=fsize[3];		
+			return 0;
+
+}
+
+int Create301(int fileNumber, char *sendBuffer, int seqNumber)		//This is Info Packet FileName and FileSize
+{
+	int j;
+	
+	
+	//send Data 301
+				//status code 301
+			sendBuffer[0]='3';
+			sendBuffer[1]='0';
+			sendBuffer[2]='1';
+						
+			//line break
+			sendBuffer[3]=0x10;
+			sendBuffer[4]=0x13;
+			
+			
+			
+	
+			return 0;
+
+}
+
+
+
+
+
+
+
+
+
+

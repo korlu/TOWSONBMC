@@ -1,0 +1,677 @@
+DROP TABLE PROJECT;
+
+CREATE TABLE PROJECT
+       (PNAME		VARCHAR(30)	NOT NULL,
+	PNUMBER		INT		NOT NULL,
+	DNUM		INT		NOT NULL,
+	PRIMARY KEY(PNUMBER),
+	UNIQUE(PNAME));
+
+
+INSERT INTO PROJECT VALUES
+      ('Radiology in tumor','05236','3');
+INSERT INTO PROJECT VALUES
+      ('Chemotherapy for tumor','07198','2');
+INSERT INTO PROJECT VALUES
+      ('New medicine for tumor','02836','1');
+
+******************************************************
+DROP TABLE DEPARTMENT;
+
+CREATE TABLE DEPARTMENT
+       (DNAME		VARCHAR(15)	NOT NULL,
+	DNUMBER		INT		NOT NULL,
+	CHAIRMANSSN	CHAR(9)		NOT NULL,
+	CMSTARTDATE	DATE,
+	PRIMARY KEY(DNUMBER),
+	UNIQUE(DNAME));
+
+
+INSERT INTO DEPARTMENT VALUES
+	('Surgery','1','212301123','17-Feb-93');
+INSERT INTO DEPARTMENT VALUES
+	('Chemotherapy','2','313298595','22-Aug-89');
+INSERT INTO DEPARTMENT VALUES
+	('Radiology','3','269383399','01-Dec-92');
+
+*******************************************************
+DROP TABLE DOCTOR;
+
+CREATE TABLE DOCTOR
+       (FNAME		VARCHAR2(15)	NOT NULL,
+	LNAME		VARCHAR2(15)	NOT NULL,
+	DSSN		CHAR(9)		NOT NULL,
+	SEX		CHAR(1)		NOT NULL,
+	PHONE		CHAR(10),
+	DNUM		INT		NOT NULL,
+	PRIMARY KEY(DSSN));
+
+INSERT INTO DOCTOR VALUES
+    ('Jack','Wong','212301123','M','4103139988','1');
+INSERT INTO DOCTOR VALUES
+    ('Robin','Albert','296383311','M','3012473355','1');
+INSERT INTO DOCTOR VALUES
+    ('Stephen','Hardin','202591926','M','4107375588','1');
+INSERT INTO DOCTOR VALUES
+    ('Mary','Smith','313298595','F','4102346634','2');
+INSERT INTO DOCTOR VALUES
+    ('Denis','Mayne','212301127','F','3012564488','2');
+INSERT INTO DOCTOR VALUES
+    ('Arthur','Lewis','217253993','M','4107536688','2');
+INSERT INTO DOCTOR VALUES
+    ('Philips','Cooper','269383399','M','4103437799','3');
+INSERT INTO DOCTOR VALUES
+    ('Richard','Brown','212301130','M','3015328644','1');
+INSERT INTO DOCTOR VALUES
+    ('Jerry','Fruit','395583325','F','3014579869','3');
+INSERT INTO DOCTOR VALUES
+    ('Joel','Zimmerly','737251632','F','4102474423','3');
+INSERT INTO DOCTOR VALUES
+    ('William','Lee','257333167','M','4104185566','2');
+INSERT INTO DOCTOR VALUES
+    ('Kathy','Brown','586351423','F','3013234455','1');
+INSERT INTO DOCTOR VALUES
+    ('Alice','Marris','418223924','F','3015781123','3');
+INSERT INTO DOCTOR VALUES
+    ('Lynne','McDaniel','535353346','M','4105789463','2');
+INSERT INTO DOCTOR VALUES
+    ('Ann','Dafin','418333926','F','4107959926','2');
+
+***********************************************************
+/* this is file will create table of patient */
+
+DROP TABLE PATIENT;
+
+CREATE TABLE PATIENT
+       (FNAME		VARCHAR2(10)	NOT NULL,
+	LNAME		VARCHAR2(10)	NOT NULL,
+	PNUMBER		CHAR(8)     	NOT NULL,
+	PSSN		CHAR(9)		NOT NULL,
+	SEX		CHAR(5)		NOT NULL,
+	BDATE		CHAR(13),
+	ADDRESS		VARCHAR2(30),
+	PHONE		CHAR(10),
+	PRIMARY KEY(PNUMBER,PSSN));
+
+/* this file will insert tuple to the table patient */
+
+INSERT INTO PATIENT VALUES
+	('George', 'Wong','235608','257293164','M','28-May-32',
+	 '916 Alan Dr. Baltimore MD','4107370512');
+INSERT INTO PATIENT VALUES
+	('Jack','Lee','051919','739241923','M','23-Mar-56',
+	 '313 Hooper Ave, Baltimore MD','4102473563');
+INSERT INTO PATIENT VALUES
+	('Paul','Albert','405926','626532986','M','05-Feb-64',
+	 '5594 Cedar ln, Ellicott MD','4102555656');
+INSERT INTO PATIENT VALUES
+	('Carol','Best','445635','395583320','F','12-May-60',
+	 '202 Creenway, Baltimore MD','4102376593');
+INSERT INTO PATIENT VALUES
+	('Kohan','David','051916','586351424','M','18-Sep-45',
+	 '471 Steven Ln, Towson MD','4108280317');
+INSERT INTO PATIENT VALUES
+	('Robert','Brown','245613','212301125','M','25-Mar-41',
+	 '10 Grass Ct Owings Mills MD','4105819524');
+INSERT INTO PATIENT VALUES
+	('Frank','Brown','412129','217253987','M','22-May-35',
+	 '1112 Bay Rd , Annapolis MD','4105781380');
+INSERT INTO PATIENT VALUES
+	('Francis','Lee','992345','202591924','F','01-Feb-34',
+	 '437 N Chas St. Baltimore MD','4103589022');
+INSERT INTO PATIENT VALUES
+	('Harvey','Cohen','013256','471568988','F','11-Oct-58',
+	 '1132 Gypsy Ln. Towson MD','4102963677');
+INSERT INTO PATIENT VALUES
+	('Cullop','Barry','385916','257293167','F','05-Nov-46',
+	 '330 Perry Ln. Owings Mills MD','4106470316');
+INSERT INTO PATIENT VALUES
+	('Hohn','Dafin','771312','739241918','M','11-Feb-32',
+	 '170 Fox Dr. Towson MD','4104362943');
+INSERT INTO PATIENT VALUES
+	('Rose','Hallen','395921','586351420','F','16-Feb-38',
+	 '1953 Little Pkwy Columbia MD','4109979200');
+INSERT INTO PATIENT VALUES
+	('Stephen','David','331362','471568991','M','22-May-53',
+	 '637 Sunspot Ct. Towson MD','4104782344');
+INSERT INTO PATIENT VALUES
+	('William','Amstad','063275','257293166','M','28-Nov-33',
+	 '4331 Roland Ct. Towson MD','4103216527');
+INSERT INTO PATIENT VALUES
+	('Fllorance','Best','245614','626532989','F','21-Aug-55',
+	 '1348 Hilltop Ln. Ellicott MD','4104183312');
+INSERT INTO PATIENT VALUES
+	('Jack','Erdossy','885488','313298586','M','23-Jul-22',
+	 '1818 Shield Rd. Towson MD','4105328644');
+INSERT INTO PATIENT VALUES
+	('Warren','Ershow','323233','296383365','F','28-May-65',
+	 '600 33th St. Baltimore MD','4103139070');
+INSERT INTO PATIENT VALUES
+	('Jerry','Fruit','252627','325385912','F','25_mar-68',
+	 '401 Loop St. Glen Burnie MD','4105539761');
+INSERT INTO PATIENT VALUES
+	('Mark','Gordan','521918','739241920','M','25-May-42',
+	 '2300 Fulton Ave. Baltimor MD','4104865006');
+INSERT INTO PATIENT VALUES
+	('John','Harden','395925','313298597','M','13-Feb-58',
+	 '1501 Natl Rd Baltimore MD','4108664011');
+INSERT INTO PATIENT VALUES
+	('Arthur','Jones','323232','325385920','M','03-Nov-41',
+	 '211 Spring Ct. Baltimore MD','4106853790');
+INSERT INTO PATIENT VALUES
+	('James','Kues','345618','39583324','M','27-Mar-55',
+	 '439 Enfld Rd Ellicott MD','4103139563');
+INSERT INTO PATIENT VALUES
+	('Wayne','Kukila','663938','202581918','F','05-Apr-47',
+	 '2387 Homewood Baltimore MD','4105376862');
+INSERT INTO PATIENT VALUES
+	('Richard','Lewis','555638','217253996','M','05-Sep-33',
+	 '2554 Bright Ln Ellicott MD','4103134548');
+INSERT INTO PATIENT VALUES
+	('Kevin','Lykens','423217','257293166','F','09-Feb-45',
+	 '1190 St. Paul Baltimore MD','4106365427');
+INSERT INTO PATIENT VALUES
+	('Mandir','Malwitz','732632','212301129','M','08-Jul-51',
+	 '313 Charlse St. Baltimore MD','4105783440');
+INSERT INTO PATIENT VALUES
+	('Clara','Mason','032562','296383312','F','14-Apr-32',
+	 '660 Chester St. Baltimore MD','4104836039');
+INSERT INTO PATIENT VALUES
+	('Ann','Marris','293926','535353324','F','22-Nov-62',
+	 '14 Oak St. Catnsvle MD','4106653780');
+INSERT INTO PATIENT VALUES
+	('Alice','Massey','412529','418333927','F','04-May-66',
+	 '3417 Chester St. Baltimore MD','4104723356');
+INSERT INTO PATIENT VALUES
+	('Adana','Masur','235612','212301110','F','06-Nov-57',
+	 '561 Meadow Ln. Baltimore MD','4107370411');
+INSERT INTO PATIENT VALUES
+	('Benjamine','Mathews','331366','395583322','M','22-Oct-33',
+	 '2533 Calvrt St. Baltimore MD','4108753312');
+INSERT INTO PATIENT VALUES
+	('Thomas','Mcdaniel','345622','212301128','M','05-Mar-41',
+	 '2143 Lori Dr. Glen Burnie MD','4107667159');
+INSERT INTO PATIENT VALUES
+	('Kethy','Brown','235610','325385916','F','18-Mar-66',
+	 '410 Cedar Hill Baltimore MD','4106362309');
+INSERT INTO PATIENT VALUES
+	('Michelle','Rhyu','385917','257293165','M','13-Feb-65',
+	 '232 Hooper Ave. Baltimore MD','4107375914');
+INSERT INTO PATIENT VALUES
+	('Anne','Vojtek','771317','586351421','F','19-Apr-35',
+	 '408 Alan Dr. Baltimore MD','4107374327');
+INSERT INTO PATIENT VALUES
+	('Jonathan','Cooper','013257','535353325','M','25-Nov-48',
+	 '1233 West Dr. Towson MD','4107560418');
+INSERT INTO PATIENT VALUES
+	('Robin','Weiss','252628','418333924','M','05-Dec-41',
+	 '518 Sun Rise Rd. Ellicott MD','4104183379');
+INSERT INTO PATIENT VALUES
+	('Hellen','Tailor','395923','257293167','F','02-Oct-38',
+	 '313 Alan Dr. Baltimore MD','4107379070');
+INSERT INTO PATIENT VALUES
+	('Joel','Huberman','521920','586351422','F','03-Apr-35',
+	 '3318 Pear Ln. Baltimore MD','4106873355');
+INSERT INTO PATIENT VALUES
+	('Steven','Zimmerly','771315','739241919','M','02-Nov-45',
+	 '5662 Fox Dr. Ellicott MD','4104189988');
+INSERT INTO PATIENT VALUES
+	('Huatao','Guo','013259','395583321','F','08-Dec-47',
+	 '33 Hooper Ave. Baltimore MD','4107377766');
+INSERT INTO PATIENT VALUES
+	('Philip','Perlman','345620','739241921','M','09-Nov-56',
+	 '692 Hill Dr. Towson MD','4105786633');
+INSERT INTO PATIENT VALUES
+	('Karla','Henning','405928','395583323','F','11-Oct-57',
+	 '563 Ceder Dr. Ellicott MD','4104181122');
+INSERT INTO PATIENT VALUES
+	('Narayan','Lyer','252629','739241922','F','06-Apr-57',
+	 '291 Oak Ct. Ellicott MD','4104189944');
+INSERT INTO PATIENT VALUES
+	('Lisa','McDaniel','992347','626532987','F','11-Oct-48',
+	 '9901 HillTop Ln Ellicott MD','4103139012');
+INSERT INTO PATIENT VALUES
+	('Michael','Reagan','063277','471568989','M','02-Nov-34',
+	 '571 Lori Dr. Towson  MD','4105783323');
+INSERT INTO PATIENT VALUES
+	('Randy','Legerski','445624','626532988','M','05-Apr-38',
+	 '3312 Homewood Baltimore MD','4106613312');
+INSERT INTO PATIENT VALUES
+	('Roger','Schultz','412229','471568992','M','03-May-56',
+	 '538 Bright Ln. Ellicott MD','4103139977');
+INSERT INTO PATIENT VALUES
+	('Miria','Stefenini','663939','418333923','F','05-Jan-58',
+	 '449 Steven Ln Towson MD','4106893344');
+INSERT INTO PATIENT VALUES
+	('Alan','Lehmann','919635','626532990','M','22-Jul-38',
+	 '4233 Homewood Baltimore MD','4105789918');
+INSERT INTO PATIENT VALUES
+	('Lynne','Mayne','331363','535353326','F','03-May-42',
+	 '3346 Roland Ct. Towson MD','4103215588');
+INSERT INTO PATIENT VALUES
+	('Errol','Freidberg','455636','418333925','F','05-Mar-41',
+	 '334 Hooper Ave. Baltimore MD','4107379911');
+INSERT INTO PATIENT VALUES
+	('Stig','Hansen','412429','471568990','F','08-May-47',
+	 '3911 Fulton Ave. Baltimore MD','4105780413');
+INSERT INTO PATIENT VALUES
+	('Robert','Tjian','663941','212301122','M','11-Oct-56',
+	 '939 Chestnut Ln. Baltimore MD','4103136678');
+INSERT INTO PATIENT VALUES
+	('Daniel','Reines','916636','313298587','F','05-Apr-32',
+	 '498 Charlse St. Baltimore MD','4105786688');
+INSERT INTO PATIENT VALUES
+	('Paul','Doetsh','331364','325385913','M','04-Aug-52',
+	 '209 Greenway Baltimore MD','4102376676');
+INSERT INTO PATIENT VALUES
+	('David','Gdula','445637','217253988','M','05-Mar-66',
+	 '3314 St Paul St Baltimore MD','4105786699');
+INSERT INTO PATIENT VALUES
+	('Denis','Gerosmov','555639','296383366','F','08-Apr-45',
+	 '2769 Cavert St. Baltimore MD','4108759911');
+INSERT INTO PATIENT VALUES
+	('Olga','Simonova','423218','202591923','F','11-Dec-56',
+	 '345 Paradise Rd. Baltimore MD','4107379922');
+INSERT INTO PATIENT VALUES
+	('Victor','Corces','732635','296383377','M','10-Nov-58',
+	 '1143 N Chas St. Baltimore MD','4103584478');
+
+******************************************************************
+DROP TABLE OUTPATIENT;
+
+CREATE TABLE OUTPATIENT
+	(PATIENTNUM	CHAR(6)		NOT NULL,
+	 DSSN		CHAR(9)		NOT NULL,
+	 VISITDATE	DATE,
+	 STARTTIME	CHAR(10),
+	 ENDTIME	CHAR(10),
+	 VISITREASON	VARCHAR2(15),
+	 DIAGNOSIS	VARCHAR2(15),
+	 PRIMARY KEY (PATIENTNUM,DSSN));
+
+INSERT INTO OUTPATIENT VALUES
+    ('235608','212301123','26-Nov-97','08:00 AM'
+    ,'09:00 AM','Chest pain','Lung cancer');
+INSERT INTO OUTPATIENT VALUES 
+    ('919635','269383399','26-Nov-97','10:00 AM'
+    ,'11:00 AM','Abdominal pain','Duodenum ulcer');
+INSERT INTO OUTPATIENT VALUES 
+    ('405926','313298595','30-Aug-97','07:30 AM'
+    ,'08:30 AM','Headache','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('445635','212301123','26-Nov-97','09:30 AM'
+    ,'10:30 AM','Dizziness','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('051916','269383399','26-Nov-97','01:00 PM'
+    ,'02:00 PM','Vomiting','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('245613','212301123','23-Sep-97','03:00 PM'
+    ,'04:00 PM','Abdominal pain','Stomach cancer');
+INSERT INTO OUTPATIENT VALUES 
+    ('412129','269383399','14-Sep-97','10:00 AM'
+    ,'11:00 AM','Chest pain','Lung cancer');
+INSERT INTO OUTPATIENT VALUES 
+    ('992345','313298595','02-Nov-97','08:10 AM'
+    ,'09:10 AM','Dizziness','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('013256','212301123','19-Sep-97','03:30 PM'
+    ,'04:30 PM','Headache','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('385916','313298595','22-Sep-97','02:15 PM'
+    ,'03:15 PM','Dizziness','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('771312','269383399','17-Nov-97','09:10 AM'
+    ,'10:10 AM','Abdominal pain','Stomach cancer');
+INSERT INTO OUTPATIENT VALUES 
+    ('395921','269383399','13-Sep-97','11:00 AM'
+    ,'12:00 PM','Vomiting','Common cold');
+INSERT INTO OUTPATIENT VALUES 
+    ('331362','212301123','09-Nov-97','07:30 AM'
+    ,'08:30 AM','Chest pain','Lung cancer');
+INSERT INTO OUTPATIENT VALUES 
+    ('063275','313298595','14-Nov-97','09:30 AM'
+    ,'10:10 AM','Abdominal pain','Stomach cancer');
+INSERT INTO OUTPATIENT VALUES 
+    ('245614','313298595','06-Nov-97','10:30 AM'
+    ,'11:30 AM','Chest pain','Lung cancer');
+INSERT INTO OUTPATIENT VALUES
+    ('345622','212301123','29-Nov-97','9:30 AM'
+    ,'10:30 AM','Dizziness','Common cold');
+INSERT INTO OUTPATIENT VALUES
+    ('235610','269383399','10-Nov-97','1:00 PM'
+    ,'2:00 PM','Vomiting','Common cold');
+INSERT INTO OUTPATIENT VALUES
+    ('385917','313298595','23-Sep-97','3:00 PM'
+    ,'4:00 PM','Abdominal pain','Stomach cancer');
+INSERT INTO OUTPATIENT VALUES
+    ('771317','212301123','14-Sep-97','10:00 AM'
+    ,'11:00 AM','Chest pain','Lung cancer');
+INSERT INTO OUTPATIENT VALUES
+    ('013257','269383399','02-Nov-97','8:10 AM'
+    ,'9:10 AM','Dizziness','Common cold');
+INSERT INTO OUTPATIENT VALUES
+    ('252628','212301123','19-Sep-97','3:30 PM'
+    ,'4:30 PM','Headache','Common cold');
+INSERT INTO OUTPATIENT VALUES
+    ('395923','269383399','22-Sep-97','2:15 PM'
+    ,'3:15 PM','Dizziness','Common cold');
+INSERT INTO OUTPATIENT VALUES
+    ('521920','313298595','17-Nov-97','9:10 AM'
+    ,'10:10 AM','Abdominal pain','Stomach cancer');
+INSERT INTO OUTPATIENT VALUES
+    ('771315','212301123','13_Sep-97','11:00 AM'
+    ,'12:00 PM','Vomiting','Common cold');
+INSERT INTO OUTPATIENT VALUES
+    ('013259','313298595','09-Nov-97','7:30 AM'
+    ,'8:30 AM','Chest pain','Lung cancer');
+
+
+*****************************************************
+DROP TABLE INPATIENT;
+
+CREATE TABLE INPATIENT
+	(PATIENTNUM	CHAR(10)	NOT NULL,
+	 SYMPTOM	VARCHAR2(15),
+	 DIAGNOSIS	VARCHAR2(15),
+	 TREATMENT	VARCHAR2(15),
+	 RESULT		VARCHAR2(6),
+	 DAYNUM		INT,
+	 DSSN		CHAR(9)		NOT NULL,
+	 PRIMARY KEY (PATIENTNUM,DSSN));
+
+
+INSERT INTO INPATIENT VALUES
+    ('885488','Chest pain','Lung cancer',
+    'Operation','Good','20','212301123');
+INSERT INTO INPATIENT VALUES
+    ('323233','Abdominal pain','Stomach cancer',
+    'Operation','Good','27','296383311');
+INSERT INTO INPATIENT VALUES
+    ('252627','Chest pain','Lung cancer',
+    'Chemotherapy','Better','30','313298595');
+INSERT INTO INPATIENT VALUES
+    ('521918','diahrea','Colon cancer',
+    'Chemotherapy','Good','18','313298595');
+INSERT INTO INPATIENT VALUES
+    ('395925','Abdominal pain','Stomach cancer',
+    'Operation','Better','30','212301123');
+INSERT INTO INPATIENT VALUES
+    ('323232','Chest pain','Lung cancer',
+    'Chemotherapy','Worst','41','217253993');
+INSERT INTO INPATIENT VALUES
+    ('345618','Chest pain','Lung cancer',
+    'Radiology','Good','33','269383399');
+INSERT INTO INPATIENT VALUES
+    ('663938','Abdominal pain','Stomach cancer',
+    'Chemotherapy','Better','45','212301127');
+INSERT INTO INPATIENT VALUES
+    ('555638','Checst pain','Lung cancer',
+    'Operation','Good','29','212301123');
+INSERT INTO INPATIENT VALUES
+    ('423217','Abdominal apin','Stomach cancer',
+    'Radiology','Good','50','737251632');
+INSERT INTO INPATIENT VALUES
+    ('732632','Coughing','Lung cancer',
+    'Operation','Worst','31','212301123');
+INSERT INTO INPATIENT VALUES
+    ('032562','Coughing','Lung cancer',
+    'Operation','Better','27','296383311');
+INSERT INTO INPATIENT VALUES
+    ('293926','Chest pain','Lung cancer',
+    'Chemotherapy','Better','43','313298595');
+INSERT INTO INPATIENT VALUES
+    ('412529','	Abdominal pain','Stomach cancer',
+    'Chemotherapy','Good','37','217253993');
+INSERT INTO INPATIENT VALUES
+    ('235612','Diahrea','Colon cancer',
+    'Operation','Good','22','212301123');
+INSERT INTO INPATIENT VALUES
+    ('331366','Diahrea','Colon cancer',
+    'Radiology','better','49','269383399');
+INSERT INTO INPATIENT VALUES
+    ('252629','Chest pain','Lung cancer',
+    'Operation','Good','20','212301123');
+INSERT INTO INPATIENT VALUES
+    ('063277','Chest pain','Lung cancer',
+    'Chemotherapy','Better','30','313298595');
+INSERT INTO INPATIENT VALUES
+    ('445624','diahrea','Colon cancer',
+    'Chemotherapy','Good','18','313298595');
+INSERT INTO INPATIENT VALUES
+    ('412229','Abdominal pain','Stomach cancer',
+    'Operation','Better','30','212301123');
+INSERT INTO INPATIENT VALUES
+    ('663939','Chest pain','Lung cancer',
+    'Chemotherapy','Worst','41','217253993');
+INSERT INTO INPATIENT VALUES
+    ('919635','Chest pain','Lung cancer',
+    'Radiology','Good','33','269383399');
+INSERT INTO INPATIENT VALUES
+    ('331363','Abdominal pain','Stomach cancer',
+    'Chemotherapy','Better','45','212301127');
+INSERT INTO INPATIENT VALUES
+    ('412429','Abdominal apin','Stomach cancer',
+     'Radiology','Good','50','737251632');
+INSERT INTO INPATIENT VALUES
+    ('663941','Coughing','Lung cancer',
+    'Operation','Worst','31','212301123');
+INSERT INTO INPATIENT VALUES
+    ('916636','Coughing','Lung cancer',
+    'Operation','Better','27','296383311');
+INSERT INTO INPATIENT VALUES
+    ('331364','Chest pain','Lung cancer',
+    'Chemotherapy','Better','43','313298595');
+INSERT INTO INPATIENT VALUES
+    ('445637','Abdominal pain','Stomach cancer',
+    'Chemotherapy','Good','37','217253993');
+INSERT INTO INPATIENT VALUES
+    ('555639','Diahrea','Colon cancer',
+    'Operation','Good','22','212301123');
+INSERT INTO INPATIENT VALUES
+    ('423218','Diahrea','Colon cancer',
+    'Radiology','better','49','269383399');
+INSERT INTO INPATIENT VALUES
+    ('732635','Coughing','Lung cancer',
+    'Operation','Better','27','29638331');
+
+
+*********************************************************
+DROP TABLE ALLERGY;
+
+CREATE TABLE ALLERGY
+	(PATIENTNUM		CHAR(6)		NOT NULL,
+	 ANAPHYLACTOGEN		VARCHAR2(15)	NOT NULL,
+	 STARTDATE		DATE,
+	PRIMARY KEY (PATIENTNUM,ANAPHYLACTOGEN));	
+
+INSERT INTO ALLERGY VALUES
+	('663939','Penicillin','26-Nov-97');
+INSERT INTO ALLERGY VALUES
+	('919635','Pollen','22-Nov-97');
+INSERT INTO ALLERGY VALUES
+	('331363','Penicillin','30-Sep-97');
+INSERT INTO ALLERGY VALUES
+	('455636','Polyvalent','29-Nov-97');
+INSERT INTO ALLERGY VALUES
+	('412429','Penicillin','10-Nov-97');
+INSERT INTO ALLERGY VALUES
+	('663941','Pollen','23-Sep-97');
+INSERT INTO ALLERGY VALUES
+	('916636','Penicillin','14-Sep-97');
+INSERT INTO ALLERGY VALUES
+	('331364','Polyvalent','02-Nov-97');
+INSERT INTO ALLERGY VALUES
+	('445637','Penicillin','19-Sep-97');
+INSERT INTO ALLERGY VALUES
+	('032562','Penicillin','11-May-93');
+INSERT INTO ALLERGY VALUES
+	('235612','Pollen','24-Mar-92');
+INSERT INTO ALLERGY VALUES
+	('323233','Penicillin','02-Jun-91');
+INSERT INTO ALLERGY VALUES
+	('423217','Polyvalent','15-Aug-89');
+INSERT INTO ALLERGY VALUES
+	('412529','Penicillin','20-Jul-91');
+
+
+***************************************************
+DROP TABLE FAMILY_HISTORY;
+
+CREATE TABLE FAMILY_HISTORY
+	(PATIENTNUM		CHAR(6)		NOT NULL,
+	 RELATIONSHIP		VARCHAR2(12)	NOT NULL,
+	 CANCERTYPE		VARCHAR2(14)	NOT NULL,
+	PRIMARY KEY (PATIENTNUM,RELATIONSHIP));
+
+INSERT INTO FAMILY_HISTORY VALUES
+        ('555639','Father','Stomach cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+        ('423218','Mother','Lung cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+        ('732635','Grandfather','Colon cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+        ('992347','Father','Stomach cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+        ('063277','Mother','Lung cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+        ('445624','Grandfather','Colon cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+	('423217','Father','Stomach cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+	('293926','Mother','Lung cancer');
+INSERT INTO FAMILY_HISTORY VALUES
+	('331366','Grandfather','Colon cancer');
+
+
+*****************************************************
+DROP TABLE INSURANCE_COMPANY;
+
+CREATE TABLE INSURANCE_COMPANY
+	(ICNAME		VARCHAR2(11)		NOT NULL,
+	 ICNUM		CHAR(6)			NOT NULL,
+	 ADDRESS	VARCHAR2(35),
+	 PHONE		CHAR(10),
+       	 PRIMARY KEY (ICNUM));
+
+INSERT INTO INSURANCE_COMPANY VALUES
+	('NYHL','521921','800 frederik, Washington DC','2024185363');
+INSERT INTO INSURANCE_COMPANY VALUES
+	('Kassier','063280','3362 Hooper Ave. Baltimore MD','4107379028');
+INSERT INTO INSURANCE_COMPANY VALUES
+	('Blue Cross','252631','4322 Plumtree Dr. Ellicott City MD',
+	'4104184411');
+
+
+***********************************************************************
+DROP TABLE CHARGE;
+
+CREATE TABLE CHARGE
+	(CHARGENUM		CHAR(6)		NOT NULL,
+	 ITEMNAME		VARCHAR2(13)	NOT NULL,
+	 CHARGEDATE		DATE,
+	 PATIENTNUM		CHAR(6)		NOT NULL,
+	 ICNUMBER		CHAR(6)		NOT NULL,
+	 CHARGETOPA		DECIMAL(10,2),
+	 CHARGETOIC		DECIMAL(10,2),
+	PRIMARY KEY (CHARGENUM));
+
+INSERT INTO CHARGE VALUES
+        ('385919','injection','26-Nov-97',
+        '919635','521921','32.30','110.00');
+INSERT INTO CHARGE VALUES
+        ('323234','examation','22-Nov-97',
+        '331363','063280','120.00','1150.00');
+INSERT INTO CHARGE VALUES
+        ('885489','blood test','30-Sep-97',
+        '455636','252631','55.00','612.23');
+INSERT INTO CHARGE VALUES
+        ('051917','examination','29-Nov-97',
+        '412429','063280','66.00','513.55');
+INSERT INTO CHARGE VALUES
+        ('395922','injection','10-Nov-97',
+        '663941','063280','32.30','110.00');
+INSERT INTO CHARGE VALUES
+	('521919','operation','10-May-97',
+	'916636','521921','10.00','2450.00');
+INSERT INTO CHARGE VALUES
+	('771313','operation','30-Nov-97',
+	'331364','252631','10.00','3100.00');
+INSERT INTO CHARGE VALUES
+	('013258','chemotherapy','21-Mar-97',
+	'445637','521921','10.00','3150.00');
+INSERT INTO CHARGE VALUES
+	('345621','chemotherapy','29-Apr-97',
+	'555639','252631','10.00','5160.00');
+INSERT INTO CHARGE VALUES
+	('252630','operation','23-Jun-97',
+	'423218','521921','10.00','4250.00');
+INSERT INTO CHARGE VALUES
+	('992348','chemotherapy','15-Mar-98',
+	'732635','063280','10.00','3852.00');
+INSERT INTO CHARGE VALUES
+	('063275','injection','26-Nov-97',
+	'235610','521921','32.30','110.00');
+INSERT INTO CHARGE VALUES
+	('771316','examation','22-Nov-97',
+	'385917','063280','120.00','1150.00');
+INSERT INTO CHARGE VALUES
+        ('013260','blood test','30-Sep-97',
+	'771317','252631','55.00','612.23');
+INSERT INTO CHARGE VALUES
+	('412329','examination','29-Nov-97',
+	'013257','063280','66.00','513.55');
+INSERT INTO CHARGE VALUES
+	('663940','injection','10-Nov-97',
+	'252628','063280','32.30','110.00');
+INSERT INTO CHARGE VALUES
+	('919637','operation','10-May-97',
+	'395923','521921','10.00','2450.00');
+INSERT INTO CHARGE VALUES
+	('331365','operation','30-Nov-97',
+	'521920','252631','10.00','3100.00');
+INSERT INTO CHARGE VALUES
+	('663942','chemotherapy','21-Mar-97',
+	'771315','521921','10.00','3150.00');
+INSERT INTO CHARGE VALUES
+	('992349','chemotherapy','29-Apr-97',
+	'013259','252631','10.00','5160.00');
+INSERT INTO CHARGE VALUES
+	('063278','operation','23-Jun-97',
+	'345620','521921','10.00','4250.00');
+INSERT INTO CHARGE VALUES
+	('032762','chemotherapy','15-Mar-98',
+	'405928','063280','10.00','3852.00');
+INSERT INTO CHARGE VALUES
+	('235611','injection','26-Nov-97',
+	'235608','521921','32.30','110.00');
+INSERT INTO CHARGE VALUES
+	('555640','examation','22-Nov-97',
+	'919635','063280','120.00','1150.00');
+INSERT INTO CHARGE VALUES
+        ('732636','blood test','30-Sep-97',
+	'405926','252631','55.00','612.23');
+INSERT INTO CHARGE VALUES
+	('245615','examination','29-Nov-97',
+	'445635','063280','66.00','513.55');
+INSERT INTO CHARGE VALUES
+	('405929','injection','10-Nov-97',
+	'051916','063280','32.30','110.00');
+INSERT INTO CHARGE VALUES
+	('405930','operation','10-May-97',
+	'885488','521921','10.00','2450.00');
+INSERT INTO CHARGE VALUES
+	('245616','operation','30-Nov-97',
+	'323233','252631','10.00','3100.00');
+INSERT INTO CHARGE VALUES
+	('445623','chemotherapy','21-Mar-97',
+	'252627','521921','10.00','3150.00');
+INSERT INTO CHARGE VALUES
+	('521922','chemotherapy','29-Apr-97',
+	'521918','252631','10.00','5160.00');
+INSERT INTO CHARGE VALUES
+	('395924','operation','23-Jun-97',
+	'395925','521921','10.00','4250.00');
+INSERT INTO CHARGE VALUES
+	('345619','chemotherapy','15-Mar-98',
+	'345618','063280','10.00','3852.00');
+

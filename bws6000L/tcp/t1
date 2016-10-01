@@ -1,0 +1,3 @@
+	        if (TRACE_RECORD_FLAG) 
+               storeTraceDword(0xA0000001, TCBRecordNum, 48); //reset  
+

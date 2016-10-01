@@ -1,0 +1,363 @@
+//****************************************************
+// TCPObj.h 
+// Header file for TCPObj 
+// Coded by Karthick Venkatasamy Jaganathan
+// Dated 10/12/04
+// Towson University, Copyright 2004
+// This tcp is implemented as per RFC 793
+// The RFC is customized to web server transactions
+// ***************************************************
+#ifndef __tcpobj__
+#define __tcpobj__
+
+#include "../INTERFACES/aoaprotected.h"
+#include "../ARP/arpobj.h"
+#include "../IP/ipobj.h"
+#include "../HTTPTable/httplist.h"
+#include "../webserver/wlist.h"
+#include "../webserver/wttrace.h"
+#include "thashindex.h"
+
+// Definition of TCP Protocol
+#define TCP_Protocol 	0x06
+#define MIN_TSLength 	0x14
+#define MAXTCPSEGSIZE 	1500
+#define MAXTCPDATASIZE 	1500
+
+// Define All TCP States 
+// Please see the RFC 793 for more details regarding the flags
+#define CLOSED 		0x01
+#define LISTEN 		0x02
+#define SYNRCVD 	0x03
+#define SYNSENT 	0x04
+#define ESTAB 		0x05
+#define FINWAIT1 	0x06
+#define FINWAIT2 	0x07
+#define TIMEWAIT 	0x08
+#define CLOSING 	0x09
+#define CLOSEWAIT 	0x10
+#define LAST_ACK 	0x11
+#define HTTPPort_H 	0x00
+#define HTTPPort_L 	0x50
+
+#define HTTP_START 	0x00
+#define HTTP_SENDP 	0x01
+#define HTTP_RETRP 	0x02
+#define HTTP_SUSPEND 	0x03
+#define HTTP_EXIT 	0x04
+
+
+// Define All the Flags used
+
+#define TFIN		0x01	/* option flags: no more data	*/
+#define TSYN		0x02	/* sync seqnum 			*/
+#define TRST		0x04	/* reset connection 		*/
+#define TPUSH		0x08	/* push buffered data 		*/
+#define TACK		0x10	/* ack				*/		
+#define TURGE		0x20	/* urgent pointer 		*/
+#define FINACK		0x11	/* urgent pointer 		*/
+
+  //DPD Send Type 
+    //  0 - no type 
+    //  1 - ACK for SYN  
+    //  2 - ACK for GET 
+    //  3 - Send Header after GET  
+    //  4 - Send Data
+    //  5 - ACK for FIN
+    //  6 - Reset 
+    //  7 - ARP sends 
+    //  8 - sliding window is 0
+    // not all are implemented at this point 
+#define SYNACKTYPE	0x01	
+#define GETACKTYPE	0x02	
+#define HDRTYPE		0x03	
+#define DATTYPE		0x04	
+#define FINACKTYPE	0x05	
+#define RESETTYPE	0x06	
+#define ARPTYPE		0x07	
+#define SW0TYPE         0x08
+// TCP Resource Type 
+// HEADER - 0
+// DATA   - 1
+#define HEADER 0
+#define DATA 1
+
+const 	int 	Timer_Count=850;	/* 600 * 55msec if clock period is 55msec*/
+//old value was 1091 when clock period was 55msec 
+// Dedine all source specific parameters
+class TCPObj{
+private:
+	
+	ARPObj arp;
+	IPObj ip;
+	AOAProtected io;			
+	HTTPList h;
+    	TcphashIndex t;	
+
+	typedef struct
+	{
+		unsigned short	sourceport;		// Source Port Number
+
+		unsigned short	destinationport;	// Destination Port Number
+		
+		unsigned long	seqnumber;		// Sequence Number
+		
+		unsigned long	acknumber;		// Acknowledgement Number
+		
+		char		Dataoffset;		// Data Offset
+		
+		char		Flags;			// Flags
+		
+		unsigned short	window;			// window
+		
+		unsigned short	checksum;		// Check Sum
+		
+		unsigned short	urgentpointer;		// Urgent Pointer
+		
+//		char		*options;		// Pointer to Options
+		
+//		char		*data; 			// Pointer to Data
+
+	} TCPHeader;
+
+    //BHARAT
+	typedef struct TCBRecord  
+	{	
+	    // Specifies the availablity of the record
+		// line1
+		unsigned int Avail;
+		// 0 indicates the record is available
+		// 1 indicates the record is Utilized
+		// when a TCB is deleted, this bit will be set to zero 
+		int CURRENTTASK;                //stores the current task id 
+		int CURRENTTCBRNO;              //stores its own tcbrno 
+        char destmac[6];	            // When SYN packet is received, we update TCB table with the 
+						// MAC address, no need to do arp.Resolve() in TCPObj
+						// But, this mac is valid for the tcp connection only
+						// It does not appear in ARP table
+		char PORT[2];	// destination port
+		char IP[4];		// destination ip
+		int  state;			// SYN, SYNRCVD, ESTAB...states  
+		unsigned long SRTT;		// store RTT value here  
+
+        //line2
+		long Rsyn;                      //trace flags to count events 
+		long Rsyna;
+		long Rack;
+		long Rget;
+		long Rgeta;
+		long Rdata;
+		long Rfina;
+		long Rfinaa;
+	
+		//line3
+		int taskExists;                 //task exists in the system   
+		int suspendFlag;                //the task is in suspended state with a delay 
+	    int resumeFlag;                 //the task can be resumed now, let it come out of delay loop 
+		int resetFlag;                  //when HTTP task is suspended, RCV task may run and find that 
+		// it needs to be reset, then this flag is set. When HTTP task comes back from sleep, this 
+		//   flag will help to delete the TCB 
+		unsigned long Sent_Flag;        // all the data is sent and received by the client 
+		//                                no more data transfers after this bit is set 
+		int getackflag;                 //shows that GET ack is sent, debug only
+		int hdrflag;                    //shows that header is sent, debug only
+        int partialFlag;                //partial get flag 
+
+        //line4
+		unsigned long SNDUNA;		// client's packets recevied sequence number 
+		//  client has received packets upto this number 
+		unsigned long SNDNXT;		// next packet's sequence number  
+		//  server sends this sequence number for next packet if client received 
+		//   all previous packets 
+		unsigned long SNDWND;		// Segment Sequence of last window update
+		// this is the actual sliding window size available at the client 
+		unsigned long LST;              //begining time to calculate RTT 		
+		unsigned long RCVNXT;		//packet sequence no to be rcvd next from client 
+		unsigned long LOOPCOUNT;        // used to compute TCP connection time 
+		unsigned long DIFF;             //used to congestion control, not used now  
+		int dummy100;
+        //line5  
+		unsigned long SNDWL1;		// temp variable for seq no  
+		unsigned long SNDWL2;		// temp variable for ack  
+		unsigned long ISS;		// initial seq no  
+		unsigned long RCVWND;		// server rcv window size 1500 bytes   
+		unsigned long IRS;		// first seq no to be rcvd from client  
+		unsigned long SEQ;              // stores starting seq no of header first byte  
+		unsigned long STARTRESSEQ;      // starting seq no of the file  
+		int http_case;                  //local variable  
+	    //line6
+		//example 
+		//  -----> SYN  (store client's seq no rcvd in RCVNXT ) 
+		//  <----  SYNACK  send a random number to client (generate seqno and also store it in SNDNXT)
+		//  -----> SYNACKACK  receive ack, check received sequence bumber with RCVNXT+1
+		//  -----> GET, check incoming sequence number with RCVNXT+1 and update RCVNXT,  
+		//         SYNACKACK and GET have the same sequence number from the client  
+		//  <----- GET ACK Send ack with the sequence number SNDNXT+1, and update SNDNXT 
+		//  <----- SEQ <- SNDNXT, send header, SNDNXT <- SNDNXT + header size (HSIZE)  
+		//
+		unsigned long EXPHEADACK;       //expected header ack sequence number 
+		unsigned long EXPRESACK;        //expected file ack sequence number 
+		unsigned long LASTACK;          //last ack number from client 
+		unsigned long CMPVAL;           //compare last ack with header ack    
+		unsigned long CMPVAL1;          //compare last ack with file ack  
+		unsigned long MSGLEN;           //lenght of the GET packet from client 
+		unsigned long HSIZE;            //header size to be sent to client 
+		unsigned long k;                //local variable to send packets 
+		//line7
+		unsigned long k1;               //local variable to send packets 
+		unsigned long p;                //local variable to send packets 
+		unsigned long resourceType;     //either header or a data 
+		unsigned long rIndex;           //debug only 
+		unsigned long startSeq;         //same as SEQ, redundant  
+		unsigned long noOfPackets;      //no of full packets in a sliding window 
+		unsigned long leftOverBytes;    // left over bytes in one sliding window 
+		unsigned long lastSet;          // flag to indicate that the last byte is sent
+		//line8
+		unsigned long sendtype;         //debug
+		unsigned long temprIndex;       //local variable 
+		unsigned long tempSeqNum;       //local variable 
+		unsigned long tempflags;        //local variable 
+		char *RESPONSEHEADER;           //file header 
+		char *RESOURCE;                 //file 
+		char *MSGPTR;                   //incoming GET packet 
+		unsigned long sendf;            //local flag to update TCB table  
+        //line9
+		long prev;                      //TCB record previous pointer 
+		long next;                      //TCB record next pointer 
+		//TCB list can be traversed in both directions 
+		unsigned long connstarttime;    //statistics 
+		unsigned long FILESIZE;         //file size in bytes 
+		int http_state;                 //five states, start, retransmit, trasmit, suspend, exit  
+		int http_complete;              //flag to indicate the completion  
+		int first_send;                 //flag to indicate first send of data  
+		int count1;                     //local variable  
+	}; 
+	
+	TCBRecord *currentTCB;
+	
+	// Variables used to Addess the Host
+	static char HostIP[4];			// Specifies the host IP Address
+	static char HostSubnetMask[4];		// Specifies the Hosts Subnet Mask
+	static char GateWayIP[4];		// Specifies the GateWays IP Address
+	static char GateWayMAC[6];		// Specifies the Gateways MAC Address	
+	static unsigned short SourcePort;	// Specifies the Source Port of the TCP to Listen For Connection 
+    static  long TCBCount;
+    static  long TCBRecords;
+	// Variables used to Track the TCP Buffer
+	static unsigned long TCBBase;
+	static long FreeList; 
+    static int lcounter; 
+
+	// Statistics
+	static unsigned long averageconntime;	// Average connection time for a connection from the first SYN SENT to
+						// the time the tcb is made available in the free list
+public:
+
+    static int sizeOfTCBRecord; 
+
+	//--------------------------------------------------------
+	// parameters to be saved in memory at the end of program
+	//--------------------------------------------------------
+	static unsigned long HttpCount;  //count no of existing requests 
+	static unsigned long HttpRequests;  //count total no of HTTP requests 
+	static unsigned long GetCount;
+	static unsigned long SynCount;
+	static unsigned long SynAckCount;
+	static unsigned long MaxSynGetTime;
+	static unsigned long TotalSynGetTime;
+	static unsigned long MaxConnectionTime;
+	static unsigned long MaxNoOfTasksUsed;
+	static unsigned long MaxNoOfTCBsUsed;
+	static unsigned long MaxSynGetThreshCount;
+	static unsigned long NoOfRetransmissions;
+	static int NoOfResets;
+	static int UnMatchedRequests;
+	static unsigned long TotalDelCount;
+
+    static long trace1Count;
+    static long trace2Count;
+
+	int storeTraceTCBRecord (int tcbrno); 
+	int storeTraceDword (int dataw); 
+
+	WList wlst; 
+	WTTrace wttr; 
+	static int  SendCountTotal; 
+
+        // Initialize TCP Obj and TCB
+        int initRecord();  
+        int init(char SrcIP[4], char SourceMAC[6],char SubnetMask[4], char GwayIP[4],char GwayMAC[6], 
+	    unsigned short SrcPort, long TCPBuffBase, long TCPBuffSize, long NoTCBRecords, long NoHashRecords);
+
+        // TCP Functions
+        int TCPHandler(char* TCPPack,int size,char* SourceIP, char* TargetIP, int Protocol, 
+	    char *macaddr, long timer, int currenttask);
+
+        // This sends HTTP replies, This is specific to the application. It must be changed for other applications
+        int tcpSendN(int tcbrno, int currenttask);
+
+        void printStatistics(int Line);
+        int getSuspendFlag(int tcbrno); 
+        int getResumeFlag(int tcbrno); 
+        int getResetFlag(int tcbrno); 
+        int resetResumeFlag(int tcbrno); 
+
+        int setTaskID(int currenttcbrno, int currenttask);
+        int getTaskID(int currenttcbrno);
+        char *getMsgPtr(int currenttcbrno, int *length);
+        int setFileParam(int tcbrno, char *responseHeader, long headerSize, unsigned long resourceAddress, 
+		      long fileSize, int currenttask);
+
+        int getHttpCount();
+        int getAvail(int tcbrno);
+	    // This deletes a TCB Record
+	    int DeleteTCB(int TCBRecordNum);
+
+private:
+	
+	int SendN(int TCBRecordNum, int currenttask);	
+	
+        int sendPayload4 (int TCBRecordNum, unsigned long seqnum, int currenttask);
+	int sendPayload3 (int TCBRecordNum, unsigned long seqnum, int currenttask);
+	int sendHeader1(int TCBRecordNum, unsigned long seqnum, unsigned long k3, int currenttask);
+
+	//get the RTT value
+	int getRtt(int TCBRecordNum);	
+        // TCB Management Functions //
+	// This inserts a TCB Record
+	int InsertTCB(TCBRecord *tcb);
+	int PrintTCB(int TCBRecordNum, int Lineno);
+	// Get a TCB Record 
+	int GetTCB(int TCBRecordNum, long *tcb);
+	// Search for a TCB Record
+	int SearchTCB(char IPAdd[4], char SrcPortNum[2]);
+        // MISC FUnctions //
+	// Converts a char array into sequence number 
+	unsigned long charToseqnum(char *TCPPack);
+	// Converts a chare array into window
+	unsigned short charToWindow(char *TCPPack);
+	// Used to compare sequence numbers
+	int greaterEqualto(unsigned long x,unsigned long y);	
+        long getSlidingWindow(int TCBRecordNum);
+
+        // TCP Receive Handlers call depends on the type of the segment which arrives //
+	int OtherHandler(char* TCPPack,int size, int TCBRecordNumber, long timer, int currenttask);
+	void FormatHeader(char * Header, char * TCPPack);
+	int ListenHandler(char* TCPPack,int size, char* sourceip, char* targetip, char *macaddr, 
+			  long timer, int currenttask);	
+
+	// MISC TCP Functions 
+	// Formats a TCP Packet
+        int FormatTCPPacket(char *TCPPack, char *destIP, char * destPort, char Flags, unsigned short Window, 
+		unsigned long seqnum, unsigned long acknum, char *data, int datasize, int rIndex, int currenttask);
+	// TCP Check sum module 
+	unsigned short TCPChecksum(char *tdatagram, long TSLength,char *sourceIP, char*targetIP, unsigned int protocol);        // Modulo 32 Comparision
+	unsigned long mod32cmp(unsigned long seq1, unsigned long seq2);
+	unsigned long CalcRTT(unsigned long LST, unsigned long SRTT);
+	unsigned long CalcDiff(unsigned long LST,unsigned long SRTT, unsigned long DIFF); 
+	int SendMisc(char *destIP, char * destPort, char Flags, char *TargetMAC, int sendtype, int task);	
+	int SendMisc(char *destIP, char * destPort, unsigned long tempseq, char Flags, 
+				char *TargetMAC, int sendtype, int task);	
+};
+#endif
+

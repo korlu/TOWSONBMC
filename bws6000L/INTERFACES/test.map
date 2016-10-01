@@ -1,0 +1,253 @@
+ test
+
+ Timestamp is 53c5541a (Tue Jul 15 12:17:30 2014)
+
+ Preferred load address is 00000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00004f3fH .text                   CODE
+ 0002:00000000 00000194H .data                   DATA
+ 0002:00000194 0000002cH .bss                    DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       _main                      00001000 f   test.obj
+ 0001:00000490       ??0AOAProtected@@QAE@XZ    00001490 f   aoaprotected.obj
+ 0001:000004a7       ?test@AOAProtected@@QAEJJ@Z 000014a7 f   aoaprotected.obj
+ 0001:000004c0       ?AOAcli@AOAProtected@@QAEXXZ 000014c0 f   aoaprotected.obj
+ 0001:000004d0       ?AOAenableIRQCntlr@AOAProtected@@QAEHHG@Z 000014d0 f   aoaprotected.obj
+ 0001:000004ee       ?AOAdisableIRQCntlr@AOAProtected@@QAEHHG@Z 000014ee f   aoaprotected.obj
+ 0001:0000050c       ?AOAackPICCntlr@AOAProtected@@QAEHH@Z 0000150c f   aoaprotected.obj
+ 0001:00000525       ?AOAintTimer@AOAProtected@@QAEXXZ 00001525 f   aoaprotected.obj
+ 0001:00000535       ?AOAsti@AOAProtected@@QAEXXZ 00001535 f   aoaprotected.obj
+ 0001:00000545       ?AOAstiTimer@AOAProtected@@QAEXXZ 00001545 f   aoaprotected.obj
+ 0001:0000055e       ?AOAcliTimer@AOAProtected@@QAEXXZ 0000155e f   aoaprotected.obj
+ 0001:0000056e       ?AOAgetString@AOAProtected@@QAEHPAD@Z 0000156e f   aoaprotected.obj
+ 0001:00000587       ?AOAprintMemory@AOAProtected@@QAEHJHHH@Z 00001587 f   aoaprotected.obj
+ 0001:000006a1       ?AOAprintString@AOAProtected@@QAEHPADHH@Z 000016a1 f   aoaprotected.obj
+ 0001:000006c2       ?AOAprintString@AOAProtected@@QAEHPADH@Z 000016c2 f   aoaprotected.obj
+ 0001:000006f0       ?AOAgetCursor@AOAProtected@@QAEHXZ 000016f0 f   aoaprotected.obj
+ 0001:00000700       ?AOAgetClockTicks@AOAProtected@@QAEHPAI0@Z 00001700 f   aoaprotected.obj
+ 0001:0000073d       ?AOAClockTicksSubtract@AOAProtected@@QAEIIIIIPAI0@Z 0000173d f   aoaprotected.obj
+ 0001:00000bc8       ?AOAClockTicksAdd@AOAProtected@@QAEIIIIIPAI0@Z 00001bc8 f   aoaprotected.obj
+ 0001:00001122       ?AOAgetTimer@AOAProtected@@QAEJXZ 00002122 f   aoaprotected.obj
+ 0001:00001132       ?AOAsetCursor@AOAProtected@@QAEHH@Z 00002132 f   aoaprotected.obj
+ 0001:0000114b       ?AOAcleanScreen@AOAProtected@@QAEHXZ 0000214b f   aoaprotected.obj
+ 0001:0000115b       ?AOAscrollUp@AOAProtected@@QAEHXZ 0000215b f   aoaprotected.obj
+ 0001:0000116b       ?AOAprintCharacter@AOAProtected@@QAEHDHPAH@Z 0000216b f   aoaprotected.obj
+ 0001:000011bd       ?AOAprintCharacter@AOAProtected@@QAEHDH@Z 000021bd f   aoaprotected.obj
+ 0001:000011f6       ?AOAprintCharacter@AOAProtected@@QAEHD@Z 000021f6 f   aoaprotected.obj
+ 0001:00001226       ?AOAprintSpace@AOAProtected@@QAEHHH@Z 00002226 f   aoaprotected.obj
+ 0001:00001276       ?AOAprintSpace@AOAProtected@@QAEHH@Z 00002276 f   aoaprotected.obj
+ 0001:000012cb       ?AOAskipLine@AOAProtected@@QAEHH@Z 000022cb f   aoaprotected.obj
+ 0001:000012fd       ?AOAprintDecimal@AOAProtected@@QAEHHH@Z 000022fd f   aoaprotected.obj
+ 0001:0000131a       ?AOAprintDecimal@AOAProtected@@QAEHH@Z 0000231a f   aoaprotected.obj
+ 0001:00001351       ?AOAprintHex@AOAProtected@@QAEHJH@Z 00002351 f   aoaprotected.obj
+ 0001:00001457       ?AOAprintHex@AOAProtected@@QAEHPADH@Z 00002457 f   aoaprotected.obj
+ 0001:0000156b       ?AOAclearNTFlag@AOAProtected@@QAEHXZ 0000256b f   aoaprotected.obj
+ 0001:0000158a       ?AOAprintFlags@AOAProtected@@QAEHH@Z 0000258a f   aoaprotected.obj
+ 0001:000015b2       ?AOAgetFlags@AOAProtected@@QAEHXZ 000025b2 f   aoaprotected.obj
+ 0001:000015d8       ?AOAgetSharedMemChar@AOAProtected@@QAEDHH@Z 000025d8 f   aoaprotected.obj
+ 0001:000015f5       ?AOAreadRTC@AOAProtected@@QAEHXZ 000025f5 f   aoaprotected.obj
+ 0001:0000166f       ?AOAreadDATE@AOAProtected@@QAEHXZ 0000266f f   aoaprotected.obj
+ 0001:000016e9       ?AOAUnixTime@AOAProtected@@QAEKII@Z 000026e9 f   aoaprotected.obj
+ 0001:0000189a       ?AOAconvertCharToInt@AOAProtected@@QAEIH@Z 0000289a f   aoaprotected.obj
+ 0001:00001937       ?AOAconvertIntToChar@AOAProtected@@QAEHPADI@Z 00002937 f   aoaprotected.obj
+ 0001:000019a3       ?AOApower10@AOAProtected@@QAEIH@Z 000029a3 f   aoaprotected.obj
+ 0001:000019e8       ?AOAresetLock@AOAProtected@@QAEHHJ@Z 000029e8 f   aoaprotected.obj
+ 0001:00001a05       ?AOAtestAndSet@AOAProtected@@QAEHHJ@Z 00002a05 f   aoaprotected.obj
+ 0001:00001a55       ?AOAgetSharedMemTraceString@AOAProtected@@QAEXPAD@Z 00002a55 f   aoaprotected.obj
+ 0001:00001a9b       ?AOAsetSharedMemTraceString@AOAProtected@@QAEXPAD@Z 00002a9b f   aoaprotected.obj
+ 0001:00001ae2       ?AOAsetSharedMemChar@AOAProtected@@QAEXHDH@Z 00002ae2 f   aoaprotected.obj
+ 0001:00001b03       ?AOAgetSharedMem@AOAProtected@@QAEJH@Z 00002b03 f   aoaprotected.obj
+ 0001:00001b1c       ?AOAsetSharedMem@AOAProtected@@QAEXHJ@Z 00002b1c f   aoaprotected.obj
+ 0001:00001b39       ?AOAgetMem@AOAProtected@@QAEJJ@Z 00002b39 f   aoaprotected.obj
+ 0001:00001b52       ?AOAsetMem@AOAProtected@@QAEJJJ@Z 00002b52 f   aoaprotected.obj
+ 0001:00001b6f       ?AOAprintRegs@AOAProtected@@QAEXH@Z 00002b6f f   aoaprotected.obj
+ 0001:00001b88       ?AOAprintStackRegs@AOAProtected@@QAEXH@Z 00002b88 f   aoaprotected.obj
+ 0001:00001ba1       ?AOAgetStackPOP@AOAProtected@@QAEJH@Z 00002ba1 f   aoaprotected.obj
+ 0001:00001bba       ?AOAgetDecimal@AOAProtected@@QAEHXZ 00002bba f   aoaprotected.obj
+ 0001:00001c1a       ?AOAgetHex@AOAProtected@@QAEHXZ 00002c1a f   aoaprotected.obj
+ 0001:00001ce9       ?AOAgetCharacter@AOAProtected@@QAEDXZ 00002ce9 f   aoaprotected.obj
+ 0001:00001d3a       ?AOAgetCharacterInt@AOAProtected@@QAEDXZ 00002d3a f   aoaprotected.obj
+ 0001:00001d4a       ?AOAgetCharacterBuff@AOAProtected@@QAEDXZ 00002d4a f   aoaprotected.obj
+ 0001:00001d66       ?AOAreadFloppy@AOAProtected@@QAEHPADJ@Z 00002d66 f   aoaprotected.obj
+ 0001:00001d83       ?AOAwriteFloppy@AOAProtected@@QAEHPADJ@Z 00002d83 f   aoaprotected.obj
+ 0001:00001da0       ?AOAclearTotalMemory@AOAProtected@@QAEHJPAJ@Z 00002da0 f   aoaprotected.obj
+ 0001:00001de7       ?AOAExit@AOAProtected@@QAEXXZ 00002de7 f   aoaprotected.obj
+ 0001:00001e01       ?AOAISRExit@AOAProtected@@QAEXXZ 00002e01 f   aoaprotected.obj
+ 0001:00001e2c       ?AOAPrintText@AOAProtected@@QAEXPADH@Z 00002e2c f   aoaprotected.obj
+ 0001:00001e9e       ?AOAPrintText@AOAProtected@@QAEXPADHH@Z 00002e9e f   aoaprotected.obj
+ 0001:00001ee7       ?AOAPrintText@AOAProtected@@QAEXPAD@Z 00002ee7 f   aoaprotected.obj
+ 0001:00001f9e       ?AOA2CharTo1CharHex@AOAProtected@@QAEDPAD@Z 00002f9e f   aoaprotected.obj
+ 0001:000020d1       ?AOACharToDecimal@AOAProtected@@QAEHQAD@Z 000030d1 f   aoaprotected.obj
+ 0001:0000217a       ?AOAChartoIP@AOAProtected@@QAEXQAD0@Z 0000317a f   aoaprotected.obj
+ 0001:0000223c       ?AOAcheckValidLinkChar@AOAProtected@@QAEHD@Z 0000323c f   aoaprotected.obj
+ 0001:000022c6       ?AOAStrLenAll@AOAProtected@@QAEHPAD@Z 000032c6 f   aoaprotected.obj
+ 0001:000022f7       ?AOAParseOneLine@AOAProtected@@QAEHPAD@Z 000032f7 f   aoaprotected.obj
+ 0001:00002338       ?AOAStrLen@AOAProtected@@QAEHPAD@Z 00003338 f   aoaprotected.obj
+ 0001:00002385       ?AOAStrRev@AOAProtected@@QAEXPAD@Z 00003385 f   aoaprotected.obj
+ 0001:00002468       ?AOADecimalToChar@AOAProtected@@QAEXHQAD@Z 00003468 f   aoaprotected.obj
+ 0001:000024c8       ?AOAStrCat@AOAProtected@@QAEXPAD00@Z 000034c8 f   aoaprotected.obj
+ 0001:0000254b       ?AOAStrCat@AOAProtected@@QAEXPAD0H@Z 0000354b f   aoaprotected.obj
+ 0001:00002586       ?AOAUpper@AOAProtected@@QAEHD@Z 00003586 f   aoaprotected.obj
+ 0001:000025c7       ?AOALower@AOAProtected@@QAEHD@Z 000035c7 f   aoaprotected.obj
+ 0001:00002608       ?AOAPower@AOAProtected@@QAEKHH@Z 00003608 f   aoaprotected.obj
+ 0001:00002655       ?AOASubStrCopy@AOAProtected@@QAEXPADPBDHHH@Z 00003655 f   aoaprotected.obj
+ 0001:0000269b       ?AOAStrCopy@AOAProtected@@QAEXPADPBDH@Z 0000369b f   aoaprotected.obj
+ 0001:000026dd       ?AOAStrTrim@AOAProtected@@QAEXPADPBDH@Z 000036dd f   aoaprotected.obj
+ 0001:0000273b       ?AOAStrCompare@AOAProtected@@QAEHPAD0HH@Z 0000373b f   aoaprotected.obj
+ 0001:000028fd       ?AOAStrCompare@AOAProtected@@QAEHPAD0HHHHH@Z 000038fd f   aoaprotected.obj
+ 0001:00002b12       ?AOAindexOf@AOAProtected@@QAEHPADD@Z 00003b12 f   aoaprotected.obj
+ 0001:00002b89       ?AOAsubstring@AOAProtected@@QAEPADPAD0H@Z 00003b89 f   aoaprotected.obj
+ 0001:00002bf6       ?AOAGetText@AOAProtected@@QAEXPAD@Z 00003bf6 f   aoaprotected.obj
+ 0001:00002d06       ?AOAStrAppend@AOAProtected@@QAEXPAD0@Z 00003d06 f   aoaprotected.obj
+ 0001:00002d66       ?AOAclearScreen@AOAProtected@@QAEXHH@Z 00003d66 f   aoaprotected.obj
+ 0001:00002d9e       ?AOAMemCopy@AOAProtected@@QAEHPAD0H@Z 00003d9e f   aoaprotected.obj
+ 0001:00002de2       ?AOAMsPrintText@AOAProtected@@QAEXPADH@Z 00003de2 f   aoaprotected.obj
+ 0001:00002f64       ?AOAMsPrintText@AOAProtected@@QAEXPAD@Z 00003f64 f   aoaprotected.obj
+ 0001:000030d6       ?AOAShortDelay@AOAProtected@@QAEHJ@Z 000040d6 f   aoaprotected.obj
+ 0001:000030ef       ?AOAStrMatch@AOAProtected@@QAEHHPAD0@Z 000040ef f   aoaprotected.obj
+ 0001:0000317e       ?AOAgetGDTEntry@AOAProtected@@QAEHPAJ0H@Z 0000417e f   aoaprotected.obj
+ 0001:0000319f       ?AOAsetGDTEntry@AOAProtected@@QAEHPAJ0H@Z 0000419f f   aoaprotected.obj
+ 0001:000031c0       ?AOAgetIDTEntry@AOAProtected@@QAEHPAJ0H@Z 000041c0 f   aoaprotected.obj
+ 0001:000031e1       ?AOAsetIDTEntry@AOAProtected@@QAEHPAJ0H@Z 000041e1 f   aoaprotected.obj
+ 0001:00003202       ?AOAsetTimerPeriod@AOAProtected@@QAEXH@Z 00004202 f   aoaprotected.obj
+ 0001:00003287       ?AOAInitTrace@AOAProtected@@QAEXH@Z 00004287 f   aoaprotected.obj
+ 0001:000032ae       ?AOAClearTrace@AOAProtected@@QAEXXZ 000042ae f   aoaprotected.obj
+ 0001:0000330d       ?AOAPrintCharacterTrace@AOAProtected@@QAEXD@Z 0000430d f   aoaprotected.obj
+ 0001:0000333b       ?AOAsetISR@AOAProtected@@QAEHJJK@Z 0000433b f   aoaprotected.obj
+ 0001:00003492       ?AOAconvertToPositive@AOAProtected@@QAEIH@Z 00004492 f   aoaprotected.obj
+ 0001:000034c3       ?AOAconvertCharToShort@AOAProtected@@QAEGPAD@Z 000044c3 f   aoaprotected.obj
+ 0001:00003536       ?AOAconvertDecimalCharsToInt@AOAProtected@@QAEIPAD@Z 00004536 f   aoaprotected.obj
+ 0001:00003602       ?ValidDecimalDigit@AOAProtected@@QAE_ND@Z 00004602 f   aoaprotected.obj
+ 0001:00003627       ?AOAconvertChar4ToLong@AOAProtected@@QAEKPAD@Z 00004627 f   aoaprotected.obj
+ 0001:000036a9       ?AOAconvertBinaryToDecimal@AOAProtected@@QAEXIPAD@Z 000046a9 f   aoaprotected.obj
+ 0001:00003719       ?AOAconvertDecimalToInt@AOAProtected@@QAEHPAD@Z 00004719 f   aoaprotected.obj
+ 0001:000037c1       ?AOAconvertBinaryToDecimal@AOAProtected@@QAEHPADH@Z 000047c1 f   aoaprotected.obj
+ 0001:00003848       ?AOAconvertIntToHexChars@AOAProtected@@QAEHPADH@Z 00004848 f   aoaprotected.obj
+ 0001:000038a4       ?AOAconvertHexCharsToInt@AOAProtected@@QAEHPAD@Z 000048a4 f   aoaprotected.obj
+ 0001:0000394c       ?AOAconvertShortToChar@AOAProtected@@QAEHPADG@Z 0000494c f   aoaprotected.obj
+ 0001:0000399c       ?AOAMaskRunRegister@AOAProtected@@QAEHHH@Z 0000499c f   aoaprotected.obj
+ 0001:00003aa8       ?AOAisDigit@AOAProtected@@QAEHD@Z 00004aa8 f   aoaprotected.obj
+ 0001:00003ada       ?AOAisAlpha@AOAProtected@@QAEHD@Z 00004ada f   aoaprotected.obj
+ 0001:00003b1a       ?AOAisLower@AOAProtected@@QAEHD@Z 00004b1a f   aoaprotected.obj
+ 0001:00003b4c       ?AOAisUpper@AOAProtected@@QAEHD@Z 00004b4c f   aoaprotected.obj
+ 0001:00003b7e       ?memcpy@AOAProtected@@QAEPAXPAXPBXH@Z 00004b7e f   aoaprotected.obj
+ 0001:00003bc9       ?memset@AOAProtected@@QAEPAXPAXHH@Z 00004bc9 f   aoaprotected.obj
+ 0001:00003c03       ?reverseLongByteOrder@AOAProtected@@QAEKK@Z 00004c03 f   aoaprotected.obj
+ 0001:00003c7b       ?reverseShortByteOrder@AOAProtected@@QAEGG@Z 00004c7b f   aoaprotected.obj
+ 0001:00003cc5       ?CharPairToCharHex@AOAProtected@@QAEDPAD@Z 00004cc5 f   aoaprotected.obj
+ 0001:00003df8       ?isSame@AOAProtected@@QAE_NPAD0H@Z 00004df8 f   aoaprotected.obj
+ 0001:00003e48       _testasm32                 00004e48 f   asmfiles.obj
+ 0001:00003eae       _cliasm32                  00004eae f   asmfiles.obj
+ 0001:00003eb5       _enableIRQCntlrasm32       00004eb5 f   asmfiles.obj
+ 0001:00003efe       _disableIRQCntlrasm32      00004efe f   asmfiles.obj
+ 0001:00003f47       _ackPICCntlrasm32          00004f47 f   asmfiles.obj
+ 0001:00003f8b       _readintstatusregisterasm32 00004f8b f   asmfiles.obj
+ 0001:00003fa1       _readrtcasm32              00004fa1 f   asmfiles.obj
+ 0001:00003fc3       _readdateasm32             00004fc3 f   asmfiles.obj
+ 0001:00003fe5       _readintmaskregisterasm32  00004fe5 f   asmfiles.obj
+ 0001:00003ffb       _inttimerasm32             00004ffb f   asmfiles.obj
+ 0001:0000402b       _stiasm32                  0000502b f   asmfiles.obj
+ 0001:00004049       _cliTimerasm32             00005049 f   asmfiles.obj
+ 0001:00004055       _getstrasm32               00005055 f   asmfiles.obj
+ 0001:000040a3       _getcursorasm32            000050a3 f   asmfiles.obj
+ 0001:000040c8       _gettimerasm32             000050c8 f   asmfiles.obj
+ 0001:0000410c       _setcursorasm32            0000510c f   asmfiles.obj
+ 0001:00004138       _scrollasm32               00005138 f   asmfiles.obj
+ 0001:00004168       _printcharasm32            00005168 f   asmfiles.obj
+ 0001:0000418b       _clearntflagasm32          0000518b f   asmfiles.obj
+ 0001:0000419c       _printflagsasm32           0000519c f   asmfiles.obj
+ 0001:000041d9       _resetlockasm32            000051d9 f   asmfiles.obj
+ 0001:00004224       _testandsetasm32           00005224 f   asmfiles.obj
+ 0001:0000426b       _setsharedmemcharasm32     0000526b f   asmfiles.obj
+ 0001:00004290       _getsharedmemcharasm32     00005290 f   asmfiles.obj
+ 0001:000042b0       _getmemasm32               000052b0 f   asmfiles.obj
+ 0001:000042cf       _setmemasm32               000052cf f   asmfiles.obj
+ 0001:000042f1       _getrealmemory             000052f1 f   asmfiles.obj
+ 0001:00004310       _getstackpopasm32          00005310 f   asmfiles.obj
+ 0001:00004321       _getcharintasm32           00005321 f   asmfiles.obj
+ 0001:00004328       _getcharbuffasm32          00005328 f   asmfiles.obj
+ 0001:00004358       _readfloppyasm32           00005358 f   asmfiles.obj
+ 0001:000043e5       _writefloppyasm32          000053e5 f   asmfiles.obj
+ 0001:0000446c       _setGDTEntryasm32          0000546c f   asmfiles.obj
+ 0001:000044d7       _getGDTEntryasm32          000054d7 f   asmfiles.obj
+ 0001:00004543       _getIDTEntryasm32          00005543 f   asmfiles.obj
+ 0001:000045c2       _setIDTEntryasm32          000055c2 f   asmfiles.obj
+ 0001:0000463d       _ShortDelay                0000563d f   asmfiles.obj
+ 0001:0000468f       _printregsasm32            0000568f f   asmfiles.obj
+ 0001:00004890       _printstackregsasm32       00005890 f   asmfiles.obj
+ 0001:000048b3       _printchar32               000058b3 f   asmfiles.obj
+ 0001:000048cd       _printhex                  000058cd f   asmfiles.obj
+ 0001:000048f2       _getsharedmemasm32         000058f2 f   asmfiles.obj
+ 0001:00004911       _setsharedmemasm32         00005911 f   asmfiles.obj
+ 0001:00004933       _stiTimerasm32             00005933 f   asmfiles.obj
+ 0001:00004946       _cleanscreenasm32          00005946 f   asmfiles.obj
+ 0001:00004976       _getcharasm32              00005976 f   asmfiles.obj
+ 0001:000049f2       _printstrasm32             000059f2 f   asmfiles.obj
+ 0001:00004a30       _CprintStr32               00005a30 f   cfiles.obj
+ 0001:00004a4b       _CreadRTC                  00005a4b f   cfiles.obj
+ 0001:00004a55       _CreadDATE                 00005a55 f   cfiles.obj
+ 0001:00004a5f       _CsetIDTEntry32            00005a5f f   cfiles.obj
+ 0001:00004a78       _CgetIDTEntry32            00005a78 f   cfiles.obj
+ 0001:00004a91       _CsetGDTEntry32            00005a91 f   cfiles.obj
+ 0001:00004aaa       _CgetGDTEntry32            00005aaa f   cfiles.obj
+ 0001:00004ac3       _CShortDelay32             00005ac3 f   cfiles.obj
+ 0001:00004ad4       _CgetChar32                00005ad4 f   cfiles.obj
+ 0001:00004ae5       _CprintRegs32              00005ae5 f   cfiles.obj
+ 0001:00004af6       _CprintStackRegs32         00005af6 f   cfiles.obj
+ 0001:00004b07       _CsetSharedMem32           00005b07 f   cfiles.obj
+ 0001:00004b1c       _CgetSharedMem32           00005b1c f   cfiles.obj
+ 0001:00004b2d       _CprintChar32              00005b2d f   cfiles.obj
+ 0001:00004b44       _CcleanScreen32            00005b44 f   cfiles.obj
+ 0001:00004b50       _Csti32                    00005b50 f   cfiles.obj
+ 0001:00004b5a       _Ctest32                   00005b5a f   cfiles.obj
+ 0001:00004b6b       _Ccli32                    00005b6b f   cfiles.obj
+ 0001:00004b75       _CenableIRQCntlr32         00005b75 f   cfiles.obj
+ 0001:00004bae       _CdisableIRQCntlr32        00005bae f   cfiles.obj
+ 0001:00004be7       _CackPICCntlr32            00005be7 f   cfiles.obj
+ 0001:00004c26       _CreadIntStatusRegister32  00005c26 f   cfiles.obj
+ 0001:00004c6e       _CreadIntMaskRegister32    00005c6e f   cfiles.obj
+ 0001:00004cb6       _CintTimer32               00005cb6 f   cfiles.obj
+ 0001:00004cc0       _CstiTimer32               00005cc0 f   cfiles.obj
+ 0001:00004cca       _CcliTimer32               00005cca f   cfiles.obj
+ 0001:00004cd4       _CgetStr32                 00005cd4 f   cfiles.obj
+ 0001:00004ce5       _CgetCursor32              00005ce5 f   cfiles.obj
+ 0001:00004cef       _CgetTimer32               00005cef f   cfiles.obj
+ 0001:00004cf9       _CsetCursor32              00005cf9 f   cfiles.obj
+ 0001:00004d0c       _CscrollUp32               00005d0c f   cfiles.obj
+ 0001:00004d18       _CnewLine32                00005d18 f   cfiles.obj
+ 0001:00004d8d       _CprintDec32               00005d8d f   cfiles.obj
+ 0001:00004e3e       _CclearNTFlag              00005e3e f   cfiles.obj
+ 0001:00004e4a       _CprintFlags32             00005e4a f   cfiles.obj
+ 0001:00004e5d       _CgetSharedMemChar32       00005e5d f   cfiles.obj
+ 0001:00004e72       _CresetLock32              00005e72 f   cfiles.obj
+ 0001:00004e87       _CtestAndSet32             00005e87 f   cfiles.obj
+ 0001:00004e9c       _CsetSharedMemChar32       00005e9c f   cfiles.obj
+ 0001:00004eb5       _CgetMem32                 00005eb5 f   cfiles.obj
+ 0001:00004ec6       _CsetMem32                 00005ec6 f   cfiles.obj
+ 0001:00004edb       _CgetRealMemory            00005edb f   cfiles.obj
+ 0001:00004eec       _CgetStackPOP32            00005eec f   cfiles.obj
+ 0001:00004efd       _CgetCharInt32             00005efd f   cfiles.obj
+ 0001:00004f07       _CgetCharBuff32            00005f07 f   cfiles.obj
+ 0001:00004f11       _CreadFloppy32             00005f11 f   cfiles.obj
+ 0001:00004f28       _CwriteFloppy32            00005f28 f   cfiles.obj
+ 0002:0000003c       ?AUTHSYN_SPORT@AOAProtected@@2PADA 0000603c     aoaprotected.obj
+ 0002:00000040       ?DomainName@AOAProtected@@2PADA 00006040     aoaprotected.obj
+ 0002:00000194       ?Application_Status@AOAProtected@@2HA 00006194     aoaprotected.obj
+ 0002:00000198       ?phpparseflag@AOAProtected@@2HA 00006198     aoaprotected.obj
+ 0002:0000019c       ?phpparseflagread@AOAProtected@@2HA 0000619c     aoaprotected.obj
+ 0002:000001a0       ?PosCount@AOAProtected@@2HA 000061a0     aoaprotected.obj
+ 0002:000001a4       ?LineNumber@AOAProtected@@2HA 000061a4     aoaprotected.obj
+ 0002:000001a8       ?RunRegister@AOAProtected@@2JA 000061a8     aoaprotected.obj
+ 0002:000001ac       ?RcvCounter@AOAProtected@@2JA 000061ac     aoaprotected.obj
+ 0002:000001b0       ?SndCounter@AOAProtected@@2JA 000061b0     aoaprotected.obj
+ 0002:000001b4       ?HttpCounter@AOAProtected@@2JA 000061b4     aoaprotected.obj
+ 0002:000001b8       ?IntCounter@AOAProtected@@2JA 000061b8     aoaprotected.obj
+ 0002:000001bc       ?tDWCounter@AOAProtected@@2HA 000061bc     aoaprotected.obj
+
+ entry point at        0001:00000000
+
+ Static symbols
+

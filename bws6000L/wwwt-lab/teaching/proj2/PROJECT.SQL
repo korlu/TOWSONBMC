@@ -1,0 +1,17 @@
+DROP TABLE PROJECT;
+
+CREATE TABLE PROJECT
+       (PNAME		VARCHAR(30)	NOT NULL,
+	PNUMBER		INT		NOT NULL,
+	DNUM		INT		NOT NULL,
+	PRIMARY KEY(PNUMBER),
+	UNIQUE(PNAME));
+
+
+INSERT INTO PROJECT VALUES
+      ('Radiology in tumor','05236','3');
+INSERT INTO PROJECT VALUES
+      ('Chemotherapy for tumor','07198','2');
+INSERT INTO PROJECT VALUES
+      ('New medicine for tumor','02836','1');
+

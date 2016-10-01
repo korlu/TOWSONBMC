@@ -1,0 +1,1095 @@
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 1
+except.ASM
+
+
+
+      1					 ;*******************************************************************************
+      2					 ;excep.asm file
+      3					 ; has all exceptions routins
+      4					 ;*******************************************************************************
+      5					 PUBLIC		 Other_Begin0, Other_Begin1, Other_Begin2, Other_Begin3, Other_Begin4,	    +
+      6					 Other_Begin5, Other_Begin6
+      7					 PUBLIC		 Other_Begin7, Other_Begin10, Other_Begin11, Other_Begin12, Other_Begin13,  +
+      8					 Other_Begin219, Other_Begin246
+      9					 PUBLIC		 ExceptionData0, ExceptionData1, ExceptionData2, ExceptionData3,	    +
+     10					 ExceptionData4, ExceptionData5
+     11					 PUBLIC		 ExceptionData6, ExceptionData7, ExceptionData10, ExceptionData11,	    +
+     12					 ExceptionData12, ExceptionData13
+     13					 PUBLIC		 ExceptionData219, ExceptionData246
+     14					 INCLUDE	 386SCD.INC
+1    15
+1    16					 .386P
+1    17					 ;----------------------------------------------------------------------------
+1    18					 ;application structure	for aoa
+1    19
+1    20	00000000			 typeApplication struc
+1    21	00000000  01*(????)			 noOfSectors	 DW	 ?
+1    22	00000002  01*(????)			 startingSector	 DW	 ?
+1    23	00000004  01*(08*(??))			 nameApplication DB	 8 dup(?)
+1    24	0000000C			 typeApplication ends
+1    25
+1    26
+1    27					 ;allApplications	 typeApplication 10 dup(<>)
+1    28					 ; ten application vector
+1    29
+1    30
+1    31					 ; command structure
+1    32	00000000			 typeCommand		 struc
+1    33	00000000  01*(??)			 command	 db	 ?	 ; command
+1    34										 ; 0 - exit
+1    35										 ; 1 - no command
+1    36										 ; 2 - load
+1    37										 ; 3 - run
+1    38	00000001  01*(08*(??))			 appName	 db	 8 dup(?)
+1    39
+1    40	00000009  01*(??)			 appIndex	 db	 ?
+1    41
+1    42	0000000A			 typeCommand		 ends
+1    43
+1    44					 ;appCommand	 typeCommand <>
+1    45					 ;----------------------------------------------------------------------------
+1    46					 ; Setup keyboard LED according	to variable NumLock & CapLock
+1    47					 ;----------------------------------------------------------------------------
+1    48					 KeyboardLED	 MACRO	 NumLock, CapLock	 ; setup keyboard LED
+1    49							 LOCAL @@NoCap,@@Write_LED,@@Wait1,@@Wait2,@@Wait3
+1    50
+1    51							 mov bl, 0
+1    52							 mov al, CapLock
+1    53							 cmp al, 0
+1    54							 jz @@NoCap
+1    55							 or bl,	4
+1    56					 @@NoCap:
+1    57							 mov al, NumLock
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 2
+except.ASM
+
+
+
+1    58							 cmp al, 0
+1    59							 jz @@Write_LED
+1    60							 or bl,	2
+1    61					 @@Write_LED:
+1    62							 mov dx, 64h	 ; set CapLock LED
+1    63					 @@Wait1:
+1    64							 in al,	dx
+1    65							 and al, 2
+1    66							 jnz @@Wait1
+1    67
+1    68							 mov dx, 60h	 ; write LED command
+1    69							 mov al, 0edh
+1    70							 out dx, al
+1    71
+1    72							 mov dx, 64h
+1    73					 @@Wait2:
+1    74							 in al,	dx
+1    75							 and al, 2
+1    76							 jnz @@Wait2
+1    77
+1    78							 mov dx, 60h
+1    79							 mov al, bl
+1    80							 out dx, al
+1    81
+1    82							 mov dx, 64h
+1    83					 @@Wait3:
+1    84							 in al,	dx
+1    85							 and al, 2
+1    86							 jnz @@Wait3
+1    87
+1    88							 ENDM
+1    89					 ;----------------------------------------------------------------------------
+1    90					 ; Write configuration data to FDC
+1    91					 ;----------------------------------------------------------------------------
+1    92					 FDC_out	 MACRO
+1    93							 local @@loop
+1    94							 push	 edx
+1    95							 push	 eax
+1    96
+1    97							 mov	 dx, 3f4h
+1    98					 @@loop:
+1    99							 in	 al, dx
+1   100							 test	 al, 80h
+1   101							 jz	 @@loop
+1   102
+1   103							 inc	 dx
+1   104							 pop	 eax
+1   105							 out	 dx, al
+1   106
+1   107							 pop	 edx
+1   108							 ENDM
+1   109					 ;----------------------------------------------------------------------------
+1   110					 ; Read	a byte from FDC
+1   111					 ; Return data is in AL
+1   112					 ;----------------------------------------------------------------------------
+1   113					 FDC_in		 MACRO
+1   114							 local @@loop
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 3
+except.ASM
+
+
+
+1   115							 push	 edx
+1   116
+1   117							 mov	 dx, 3f4h
+1   118					 @@loop:
+1   119							 in	 al, dx
+1   120							 test	 al, 80h
+1   121							 jz	 @@loop
+1   122
+1   123							 inc	 dx
+1   124							 in	 al, dx
+1   125
+1   126							 pop	 edx
+1   127							 ENDM
+1   128					 ;----------------------------------------------------------------------------
+1   129					 ; Debug purpose
+1   130					 ;----------------------------------------------------------------------------
+1   131					 FDC_al		 MACRO	 ps
+1   132							 push	 ebx
+1   133							 mov	 ebx, ps
+1   134							 int	 0fdh
+1   135							 pop	 ebx
+1   136							 ENDM
+1   137					 ;----------------------------------------------------------------------------
+1   138					 ; Wait	for floppy interrupt
+1   139					 ;----------------------------------------------------------------------------
+1   140					 FDC_wait	 MACRO
+1   141							 local @@loop
+1   142							 push	 eax
+1   143							 push	 fs
+1   144
+1   145							 mov	 ax, RData_Sel
+1   146							 mov	 fs, ax
+1   147
+1   148					 @@loop:
+1   149							 mov	 al, fs:[FloppyReady]
+1   150							 cmp	 al, 0
+1   151							 jz	 @@loop
+1   152							 mov	 al, 0
+1   153							 mov	 fs:[FloppyReady], al
+1   154
+1   155							 pop	 fs
+1   156							 pop	 eax
+1   157							 ENDM
+1   158					 ;----------------------------------------------------------------------------
+1   159					 ; Delay a while to wait for other stuff
+1   160					 ;----------------------------------------------------------------------------
+1   161					 MDelay		 MACRO length
+1   162							 local @@loop
+1   163							 push	 eax
+1   164							 push	 ecx
+1   165
+1   166							 mov	 ecx, length
+1   167					 @@loop:
+1   168							 xor	 ax, ax
+1   169							 loop @@loop
+1   170
+1   171							 pop	 ecx
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 4
+except.ASM
+
+
+
+1   172							 pop	 eax
+1   173							 ENDM
+1   174					 ;----------------------------------------------------------------------------
+1   175					 ; Calculate floppy start sector
+1   176					 ; Return in AL
+1   177					 ;----------------------------------------------------------------------------
+1   178					 FDCSector	 MACRO	 sec
+1   179							 push	 ebx
+1   180							 push	 ecx
+1   181
+1   182							 mov	 ax, sec
+1   183							 mov	 bl, 18
+1   184							 div	 bl
+1   185							 xor	 cx, cx
+1   186							 mov	 cl, ah
+1   187							 add	 cl, 1
+1   188							 xor	 eax, eax
+1   189							 mov	 al, cl
+1   190
+1   191							 pop	 ecx
+1   192							 pop	 ebx
+1   193							 ENDM
+1   194					 ;----------------------------------------------------------------------------
+1   195					 ; Calculate floppy Head
+1   196					 ; Return in AL
+1   197					 ;----------------------------------------------------------------------------
+1   198					 FDCHead MACRO	 sec
+1   199							 push	 ebx
+1   200
+1   201							 xor	 eax, eax
+1   202							 mov	 ax, sec
+1   203							 mov	 bl, 18
+1   204							 div	 bl
+1   205							 and	 ah, 0
+1   206							 mov	 bl, 2
+1   207							 div	 bl
+1   208							 mov	 al, ah
+1   209							 mov	 ah, 0
+1   210
+1   211							 pop	 ebx
+1   212							 ENDM
+1   213					 ;----------------------------------------------------------------------------
+1   214					 ; Calculate floppy cylinder
+1   215					 ; Return in AL
+1   216					 ;----------------------------------------------------------------------------
+1   217					 FDCCyl	 MACRO	 sec
+1   218							 push	 ebx
+1   219
+1   220							 xor	 eax, eax
+1   221							 mov	 ax, sec
+1   222							 mov	 bl, 36
+1   223							 div	 bl
+1   224							 mov	 ah, 0
+1   225
+1   226							 pop	 ebx
+1   227							 ENDM
+1   228					 ;----------------------------------------------------------------------------
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 5
+except.ASM
+
+
+
+1   229					 NewLineM	 MACRO		 ;prints a newline after puthex
+1   230							 push	 eax
+1   231							 mov	 al,0dh
+1   232							 mov	 ah,14
+1   233							 int	 10h
+1   234							 mov	 al,0ah
+1   235							 mov	 ah,14
+1   236							 int	 10h
+1   237							 pop	 eax
+1   238							 ENDM
+1   239
+1   240					 ;----------------------------------------------------------------------------
+1   241					 ;----------------------------------------------------------------------------
+1   242					 EnableA20	 MACRO
+1   243							 push	 ax
+1   244							 in	 al,92h
+1   245							 or	 al,00000010b
+1   246							 out	 92h,al
+1   247							 pop	 ax
+1   248							 ENDM
+1   249					 ;----------------------------------------------------------------------------
+1   250
+1   251					 ;----------------------------------------------------------------------------
+1   252					 DisableA20	 MACRO
+1   253							 push	 ax
+1   254							 in	 al,92h
+1   255							 and	 al,11111101b
+1   256							 out	 92h,al
+1   257							 pop	 ax
+1   258							 ENDM
+1   259					 ;----------------------------------------------------------------------------
+1   260
+1   261					 ;----------------------------------------------------------------------------
+1   262					 JUMP16		 MACRO	 Selector,Offset
+1   263							 DB	 0eah
+1   264							 DW	 Offset
+1   265							 DW	 Selector
+1   266							 ENDM
+1   267					 ;----------------------------------------------------------------------------
+1   268
+1   269					 JUMP32		 MACRO	 Selector,Offset
+1   270							 DB	 0eah
+1   271							 DW	 OFFSET
+1   272							 DW	 0
+1   273							 DW	 Selector
+1   274							 ENDM
+1   275					 ;----------------------------------------------------------------------------
+1   276
+1   277					 ;----------------------------------------------------------------------------
+1   278					 CALL16		 MACRO	 Selector,Offset
+1   279							 DB	 9ah
+1   280							 DW	 Offset
+1   281							 DW	 Selector
+1   282							 ENDM
+1   283					 ;----------------------------------------------------------------------------
+1   284
+1   285					 CALL32		 MACRO	 Selector,Offset
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 6
+except.ASM
+
+
+
+1   286							 DB	 9ah
+1   287							 DW	 Offset
+1   288							 DW	 0
+1   289							 DW	 Selector
+1   290							 ENDM
+1   291					 ;----------------------------------------------------------------------------
+1   292	00000000			 Desc		 STRUC
+1   293	00000000  01*(0000)		 LimitL		 DW	 0
+1   294	00000002  01*(0000)		 BaseL		 DW	 0
+1   295	00000004  01*(00)		 BaseM		 DB	 0
+1   296	00000005  01*(00)		 Attributes	 DB	 0
+1   297	00000006  01*(00)		 LimitH		 DB	 0
+1   298	00000007  01*(00)		 BaseH		 DB	 0
+1   299	00000008			 Desc		 ENDS
+1   300					 ;----------------------------------------------------------------------------
+1   301
+1   302					 ;----------------------------------------------------------------------------
+1   303	00000000			 Gate		 STRUC
+1   304	00000000  01*(0000)		 OffsetL	 DW	 0
+1   305	00000002  01*(0000)		 Selector	 DW	 0
+1   306	00000004  01*(00)		 DCount		 DB	 0
+1   307	00000005  01*(00)		 GType		 DB	 0
+1   308	00000006  01*(0000)		 OffsetH	 DW	 0
+1   309	00000008			 Gate		 ENDS
+1   310					 ;----------------------------------------------------------------------------
+1   311
+1   312					 ;----------------------------------------------------------------------------
+1   313	00000000			 PDesc		 STRUC
+1   314	00000000  01*(0000)		 Limit		 DW	 0
+1   315	00000002  01*(00000000)		 Base		 DD	 0
+1   316	00000006			 PDesc		 ENDS
+1   317					 ;----------------------------------------------------------------------------
+1   318
+1   319					 ;----------------------------------------------------------------------------
+1   320	00000000			 TSS		 STRUC
+1   321	00000000  01*(0000)		 TRLink		 DW	 0
+1   322	00000002  01*(0000)				 DW	 0
+1   323	00000004  01*(00000000)		 TRESP0		 DD	 0
+1   324	00000008  01*(0000)		 TRSS0		 DW	 0
+1   325	0000000A  01*(0000)				 DW	 0
+1   326	0000000C  01*(00000000)		 TRESP1		 DD	 0
+1   327	00000010  01*(0000)		 TRSS1		 DW	 0
+1   328	00000012  01*(0000)				 DW	 0
+1   329	00000014  01*(00000000)		 TRESP2		 DD	 0
+1   330	00000018  01*(0000)		 TRSS2		 DW	 0
+1   331	0000001A  01*(0000)				 DW	 0
+1   332	0000001C  01*(00000000)		 TRCR3		 DD	 0
+1   333	00000020  01*(00000000)		 TREIP		 DD	 0	;EIP
+1   334	00000024  01*(00000000)		 TREFlag	 DD	 0	;EFLAGS
+1   335	00000028  01*(00000000)		 TREAX		 DD	 0	;EAX
+1   336	0000002C  01*(00000000)		 TRECX		 DD	 0	;ECX
+1   337	00000030  01*(00000000)		 TREDX		 DD	 0	;EDX
+1   338	00000034  01*(00000000)		 TREBX		 DD	 0	;EBX
+1   339	00000038  01*(00000000)		 TRESP		 DD	 0	;ESP
+1   340	0000003C  01*(00000000)		 TREBP		 DD	 0	;EBP
+1   341	00000040  01*(00000000)		 TRESI		 DD	 0	;ESI
+1   342	00000044  01*(00000000)		 TREDI		 DD	 0	;EDI
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 7
+except.ASM
+
+
+
+1   343	00000048  01*(0000)		 TRES		 DW	 0	;ES
+1   344	0000004A  01*(0000)				 DW	 0
+1   345	0000004C  01*(0000)		 TRCS		 DW	 0
+1   346	0000004E  01*(0000)				 DW	 0
+1   347	00000050  01*(0000)		 TRSS		 DW	 0	;SS
+1   348	00000052  01*(0000)				 DW	 0
+1   349	00000054  01*(0000)		 TRDS		 DW	 0	;DS
+1   350	00000056  01*(0000)				 DW	 0
+1   351	00000058  01*(0000)		 TRFS		 DW	 0	;FS
+1   352	0000005A  01*(0000)				 DW	 0
+1   353	0000005C  01*(0000)		 TRGS		 DW	 0	;GS
+1   354	0000005E  01*(0000)				 DW	 0
+1   355	00000060  01*(0000)		 TRLDTR		 DW	 0
+1   356	00000062  01*(0000)				 DW	 0
+1   357	00000064  01*(0000)		 TRTrip		 DW	 0
+1   358	00000066  01*(0068)		 TRIOMap	 DW	 $+2
+1   359	00000068			 TSS		 ENDS
+1   360					 ;----------------------------------------------------------------------------
+1   361
+1   362					 ;----------------------------------------------------------------------------
+1   363		  = 0090		 ATDR		 EQU	 90h
+1   364		  = 0092		 ATDW		 EQU	 92h
+1   365		  = 0093		 ATDWA		 EQU	 93h
+1   366		  = 0096		 ATSWA		 EQU	 96h
+1   367		  = 0098		 ATCE		 EQU	 98h
+1   368		  = 009A		 ATCER		 EQU	 9ah
+1   369		  = 009C		 ATCCO		 EQU	 9ch
+1   370		  = 009E		 ATCCOR		 EQU	 9eh
+1   371					 ;----------------------------------------------------------------------------
+1   372
+1   373					 ;----------------------------------------------------------------------------
+1   374		  = 0082		 ATLDT		 EQU	 82h
+1   375		  = 0085		 ATTaskGate	 EQU	 85h
+1   376		  = 0089		 AT386TSS	 EQU	 89h
+1   377		  = 008C		 AT386CGate	 EQU	 8ch
+1   378		  = 008E		 AT386IGate	 EQU	 8eh
+1   379		  = 008F		 AT386TGate	 EQU	 8fh
+1   380					 ;----------------------------------------------------------------------------
+1   381
+1   382					 ;----------------------------------------------------------------------------
+1   383		  = 0000		 DPL0		 EQU	 00h ;DPL=0
+1   384		  = 0020		 DPL1		 EQU	 20h ;DPL=1
+1   385		  = 0040		 DPL2		 EQU	 40h ;DPL=2
+1   386		  = 0060		 DPL3		 EQU	 60h ;DPL=3
+1   387					 ;----------------------------------------------------------------------------
+1   388
+1   389					 ;----------------------------------------------------------------------------
+1   390		  = 0000		 RPL0		 EQU	 00h ;RPL=0
+1   391		  = 0001		 RPL1		 EQU	 01h ;RPL=1
+1   392		  = 0002		 RPL2		 EQU	 02h ;RPL=2
+1   393		  = 0003		 RPL3		 EQU	 03h ;RPL=3
+1   394					 ;----------------------------------------------------------------------------
+1   395
+1   396					 ;----------------------------------------------------------------------------
+1   397		  = 0000		 IOPL0		 EQU	 0000h ;IOPL=0
+1   398		  = 1000		 IOPL1		 EQU	 1000h ;IOPL=1
+1   399		  = 2000		 IOPL2		 EQU	 2000h ;IOPL=2
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 8
+except.ASM
+
+
+
+1   400		  = 3000		 IOPL3		 EQU	 3000h ;IOPL=3
+1   401					 ;----------------------------------------------------------------------------
+1   402
+1   403					 ;----------------------------------------------------------------------------
+1   404		  = 0040		 D32		 EQU	 40h
+1   405		  = 0080		 GL		 EQU	 80h
+1   406		  = 0004		 TIL		 EQU	 04h
+1   407		  = 00020000		 VMFL		 EQU	 00020000h ;VMF=1
+1   408		  = 0002		 VMFLW		 EQU	 0002h
+1   409		  = 0200		 IFL		 EQU	 00000200h ;IF=1
+1   410		  = 00010000		 RFL		 EQU	 00010000h ;
+1   411		  = 0001		 RFLW		 EQU	 0001h
+1   412		  = 4000		 NTL		 EQU	 00004000h ;NT=1
+1   413					 ;----------------------------------------------------------------------------
+1   414
+1   415					 ;----------------------------------------------------------------------------
+1   416		  = 0001		 PL		 EQU	 1
+1   417		  = 0000		 RWR		 EQU	 0
+1   418		  = 0002		 RWW		 EQU	 2
+1   419		  = 0000		 USS		 EQU	 0
+1   420		  = 0004		 USU		 EQU	 4
+1   421					 ;----------------------------------------------------------------------------
+1   422		  = 0064		 HZ		 EQU	 100
+1   423		  = 001234DC		 CLOCK_TICK_RATE EQU	 1193180
+1   424		  = 2E9C		 LATCH		 EQU	 ((CLOCK_TICK_RATE+HZ/2)/HZ)
+1   425					 ;----------------------------------------------------------------------------
+1   426
+    427					 INCLUDE	 DCYCLE.INC
+1   428					 EXTRN		 PUTHEX32R:NEAR
+1   429					 EXTRN		 WriteString:NEAR
+1   430					 EXTRN		 ClearScreen:NEAR
+1   431					 EXTRN		 GETKEYFORMENU:NEAR
+1   432					 EXTRN		 NEWLINE:NEAR
+1   433					 EXTRN		 GET_PARAMETER:NEAR
+1   434					 EXTRN		 ResetPointer:NEAR
+1   435					 EXTRN		 PRINTMEMR:NEAR
+1   436
+1   437
+    438					 INCLUDE	 sharmem.inc
+1   439					 ;Shared Memory	Constants between appilication and aoa
+1   440		  = 0000		 S_Timer		 EQU		 00000000h ; software timer value, incremented by   +
+    441					 timer interrupt
+1   442		  = 0004		 S_SectorNo		 EQU		 00000004h ; 4 byte sector number and another 4	byte+
+    443					 spare
+1   444					 ; after this element, the GetSecBegin in prcycle stores another data value
+1   445					 ;  with +2 location, so keep another 4	bytes as spare here
+1   446		  = 000C		 S_IDTOffset		 EQU		 0000000Ch ; used by Timer interrupt
+1   447		  = 0010		 S_Cycle_Count		 EQU		 00000010h
+1   448					 ; This	is the count used by the Htimer	to calculate the processor clock speed,	which is    +
+    449					 stored	in S_Clock_Hz
+1   450		  = 0014		 S_Clock_Hz		 EQU		 00000014h ; This shared memory	has the	clock speed +
+    451					 in Giga Hertz
+1   452		  = 0018		 S_Error_Flag		 EQU		 00000018h ; error flag	indicating that	error	    +
+    453					 occured in the	machine
+1   454		  = 001C		 S_Error_Code		 EQU		 0000001Ch ; error code	showing	the IDT	value
+1   455		  = 0020		 S_IO_Function_Code	 EQU		 00000020h ; Function Code Indicating the type of   +
+    456					 function 4 bytes
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 9
+except.ASM
+
+
+
+1   457					 ;each assembly	interface call will put	this code in memory
+1   458		  = 0024		 S_APP_String		 EQU		 00000024h ; 40	bytes Used for storing a string
+1   459					 ;all C++ programs and functions can store a string here to be used as a trace
+1   460					 ; the string here indicates the last C++ function trace which can help	identify
+1   461					 ; the trace code ran before an	error
+1   462		  = 004C		 S_Lock1		 EQU		 0000004Ch ; 4 byte lock 0 DISPLAY
+1   463		  = 0050		 S_Lock2		 EQU		 00000050h ; 4 byte lock 1 KBD
+1   464		  = 0054		 S_Lock3		 EQU		 00000054h ; 4 byte lock 2
+1   465		  = 0058		 S_Lock4		 EQU		 00000058h ; 4 byte lock 3
+1   466		  = 005C		 S_TID1			 EQU		 0000005ch ; Task ID 1	   DISPLAY
+1   467		  = 0060		 S_TID2			 EQU		 00000060h ; Task ID 2	   KBD
+1   468		  = 0064		 S_TID3			 EQU		 00000064h ; Task ID 3
+1   469		  = 0068		 S_TID4			 EQU		 00000068h ; Task ID 4
+1   470		  = 0070		 S_InCount		 EQU		 00000070h ; 4 byte the	no of interrupt	pkts	    +
+    471					 received
+1   472		  = 0074		 S_OutCount		 EQU		 00000074h ; 4 byte the	no of pkts processed
+1   473		  = 0078		 S_PID			 EQU		 00000078h ; 4 byte task id of the process running
+1   474		  = 007C		 S_NTFLAG		 EQU		 0000007ch ; 4 byte CPU	NTFLAG
+1   475		  = 0080		 S_CIRLISTSTATE		 EQU		 00000080h ; 4 byte cirlist condition
+1   476		  = 0084		 S_InRecord		 EQU		 00000084h ; 4 byte in record for cirlist
+1   477		  = 0088		 S_OutRecord		 EQU		 00000088h ; 4 byte out	record for cirlist
+1   478		  = 008C		 S_ISRCount		 EQU		 0000008Ch ; 4 byte counter used to communicate	betn+
+    479					 ISR Rtn and Poll Task
+1   480		  = 0090		 S_ISRSTIFlag		 EQU		 00000090h ; 4 byte ISR	STI flag indicating its	    +
+    481					 execution, no sti now...
+1   482		  = 0094		 S_DUMMY		 EQU		 00000094h ; 8 byte dummy data
+1   483		  = 009C		 S_IOBASE		 EQU		 0000009Ch ; 4 byte NIC	device address
+1   484		  = 00A0		 S_EINIT_RET		 EQU		 000000a0h ; 4 byte Ethernet Init Ret code
+1   485		  = 00A4		 S_Total_Tx_Count	 EQU		 000000a4h ; 4 byte counter counts total pkts	    +
+    486					 xmitted
+1   487		  = 00A8		 S_DPD_Count		 EQU		 000000a8h ; 4 byte counter
+1   488		  = 00AC		 S_Suspend_Command	 EQU		 000000ach ; 4 byte value
+1   489		  = 00B0		 S_Suspend_Delay	 EQU		 000000b0h ; 4 byte value
+1   490		  = 00B4		 S_TCP_Tx_Count		 EQU		 000000b4h ; total packets sent	by application
+1   491
+1   492		  = 00B8		 S_TCP_SACK_Count	 EQU		 000000b8h ; total SYN ACK packets sent	by	    +
+    493					 application
+1   494		  = 00BC		 S_TCP_GACK_Count	 EQU		 000000bch ; total GET ACK packets sent	by	    +
+    495					 application
+1   496		  = 00C0		 S_TCP_HDR_Count	 EQU		 000000c0h ; total header packets sent by	    +
+    497					 application
+1   498		  = 00C4		 S_TCP_DAT_Count	 EQU		 000000c4h ; total data	packets	sent by	application
+1   499		  = 00C8		 S_TCP_FACK_Count	 EQU		 000000c8h ; total FIN ACK packets sent	by	    +
+    500					 application
+1   501		  = 00CC		 S_TCP_RESET_Count	 EQU		 000000cch ; total RESET packets sent by application
+1   502		  = 00D0		 S_TCP_ARP_Count	 EQU		 000000d0h ; total ARP packets sent by application
+1   503
+1   504		  = 0100		 S_ITCP_SACK_Count	 EQU		 00000100h ; total interrupts for SYN ACK packets
+1   505		  = 0104		 S_ITCP_GACK_Count	 EQU		 00000104h ; total interrupts for GET ACK packets
+1   506		  = 0108		 S_ITCP_HDR_Count	 EQU		 00000108h ; total interrupts for header packets
+1   507		  = 010C		 S_ITCP_DAT_Count	 EQU		 0000010ch ; total interrrupts for data	packets
+1   508		  = 0110		 S_ITCP_FACK_Count	 EQU		 00000110h ; total interrupts for FIN ACK packets
+1   509		  = 0114		 S_ITCP_RESET_Count	 EQU		 00000114h ; total interrupts for RESET	packets
+1   510		  = 0118		 S_ITCP_ARP_Count	 EQU		 00000118h ; total interrupts for ARP packets
+1   511		  = 011C		 S_ITCP_PRIOR_Count	 EQU		 0000011ch ; interrupt prior count before TCP	    +
+    512					 transmissions
+1   513					 ;--------------------------------------------------------------------------------
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 10
+except.ASM
+
+
+
+1   514		  = 0120		 S_RTC		     EQU	 00000120h ; real time clock
+1   515		  = 0124		 S_DATE		     EQU	 00000124h ; date
+1   516		  = 0128		 S_ERR		     EQU	 00000128h ; error
+1   517		  = 0130		 S_RTCFLAG		 EQU		 00000130h ; flag
+1   518
+1   519		  = 0140		 S_LSError		 EQU		 00000140h ; Sector Error when reading floppy
+1   520					 ;----------------------------------------------------
+1   521		  = 0160		 S_Trace		 EQU		 00000160h ; 128 byte trace data
+1   522
+1   523					 ;----------------------------------------------------
+1   524
+1   525					 ; Base	of Shared memory between aoa and application
+1   526					 ;--------------------------------------------
+1   527		  = 8600		 S_Base			 EQU		 00008600h ; base address of shared memory
+1   528
+1   529					 ;--------------------------------------------
+1   530					 ; Some	other constants
+1   531					 ;change the following value if	loading	the program changes
+1   532					 ;  most significant 2 bytes
+1   533		  = 0011		 D_ADDROFFSET		 EQU		 0011h
+1   534		  = 0010		 Video_Sel_Loc		 EQU		 10h
+1   535
+    536					 ;*******************************************************************************
+    537	    0000			 RDataSeg	 SEGMENT PARA public USE16 'REALDATA'
+    538
+    539	    0000  ????????		 ExceptionData0		 dd	 ?	 ; exception data to be	available to prcycle
+    540	    0004  ????????		 ExceptionData1		 dd	 ?	 ; exception data to be	available to prcycle
+    541	    0008  ????????		 ExceptionData2		 dd	 ?	 ; exception data to be	available to prcycle
+    542	    000C  ????????		 ExceptionData3		 dd	 ?	 ; exception data to be	available to prcycle
+    543	    0010  ????????		 ExceptionData4		 dd	 ?	 ; exception data to be	available to prcycle
+    544	    0014  ????????		 ExceptionData5		 dd	 ?	 ; exception data to be	available to prcycle
+    545	    0018  ????????		 ExceptionData6		 dd	 ?	 ; exception data to be	available to prcycle
+    546	    001C  ????????		 ExceptionData7		 dd	 ?	 ; exception data to be	available to prcycle
+    547	    0020  ????????		 ExceptionData10	 dd	 ?	 ; exception data to be	available to prcycle
+    548	    0024  ????????		 ExceptionData11	 dd	 ?	 ; exception data to be	available to prcycle
+    549	    0028  ????????		 ExceptionData12	 dd	 ?	 ; exception data to be	available to prcycle
+    550	    002C  ????????		 ExceptionData13	 dd	 ?	 ; exception data to be	available to prcycle
+    551	    0030  ????????		 ExceptionData219	 dd	 ?	 ; exception data to be	available to prcycle
+    552	    0034  ????????		 ExceptionData246	 dd	 ?	 ; exception data to be	available to prcycle
+    553
+    554	    0038			 RDataSeg	 Ends
+    555
+    556					 ;*******************************************************************************
+    557
+    558	    0000			 RCodeSeg	 SEGMENT PARA public USE16 'CODE'
+    559							 ASSUME	 DS:RDataSeg, CS:RCodeSeg
+    560					 ;===============================================================================
+    561					 ;===============================================================================
+    562	    0000			 Other_Begin0	     proc
+    563	    0000  B8 0010				 mov	 ax,Video_Sel_Loc
+    564	    0003  8E C0					 mov	 es,ax
+    565	    0005  B0 41					 mov	 al,'A'
+    566	    0007  26: A3 0000				 mov	 WORD PTR es:[0],ax
+    567	    000B  E8 00FC				 call	 PrintReg
+    568	    000E  CD F5					 int 0f5h
+    569	    0010  EB FE					 jmp	 $
+    570	    0012  C3					 ret
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 11
+except.ASM
+
+
+
+    571	    0013			 Other_Begin0 endp
+    572					 ;===============================================================================
+    573
+    574	    0013			 Other_Begin1	     proc
+    575	    0013  B8 0010				 mov	 ax,Video_Sel_Loc
+    576	    0016  8E C0					 mov	 es,ax
+    577	    0018  B0 42					 mov	 al,'B'
+    578	    001A  26: A3 0001				 mov	 WORD PTR es:[1],ax
+    579	    001E  E8 00E9				 call	 PrintReg
+    580	    0021  CD F5					 int 0f5h
+    581	    0023  EB FE					 jmp	 $
+    582	    0025  C3					 ret
+    583	    0026			 Other_Begin1 endp
+    584
+    585					 ;===============================================================================
+    586	    0026			 Other_Begin2	     proc
+    587	    0026  B8 0010				 mov	 ax,Video_Sel_Loc
+    588	    0029  8E C0					 mov	 es,ax
+    589	    002B  B0 43					 mov	 al,'C'
+    590	    002D  26: A3 0002				 mov	 WORD PTR es:[2],ax
+    591	    0031  E8 00D6				 call	 PrintReg
+    592	    0034  CD F5					 int 0f5h
+    593	    0036  EB FE					 jmp	 $
+    594	    0038  C3					 ret
+    595	    0039			 Other_Begin2 endp
+    596					 ;===============================================================================
+    597
+    598	    0039			 Other_Begin3	     proc
+    599	    0039  B8 0010				 mov	 ax,Video_Sel_Loc
+    600	    003C  8E C0					 mov	 es,ax
+    601	    003E  B0 44					 mov	 al,'D'
+    602	    0040  26: A3 0003				 mov	 WORD PTR es:[3],ax
+    603	    0044  E8 00C3				 call	 PrintReg
+    604	    0047  CD F5					 int 0f5h
+    605	    0049  EB FE					 jmp	 $
+    606	    004B  C3					 ret
+    607	    004C			 Other_Begin3 endp
+    608
+    609					 ;===============================================================================
+    610
+    611	    004C			 Other_Begin4	     proc
+    612	    004C  B8 0010				 mov	 ax,Video_Sel_Loc
+    613	    004F  8E C0					 mov	 es,ax
+    614	    0051  B0 45					 mov	 al,'E'
+    615	    0053  26: A3 0004				 mov	 WORD PTR es:[4],ax
+    616	    0057  E8 00B0				 call	 PrintReg
+    617	    005A  CD F5					 int 0f5h
+    618	    005C  EB FE					 jmp	 $
+    619	    005E  C3					 ret
+    620	    005F			 Other_Begin4 endp
+    621
+    622					 ;===============================================================================
+    623
+    624
+    625	    005F			 Other_Begin5	     proc
+    626	    005F  B8 0010				 mov	 ax,Video_Sel_Loc
+    627	    0062  8E C0					 mov	 es,ax
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 12
+except.ASM
+
+
+
+    628	    0064  B0 46					 mov	 al,'F'
+    629	    0066  26: A3 0005				 mov	 WORD PTR es:[5],ax
+    630	    006A  E8 009D				 call	 PrintReg
+    631	    006D  CD F5					 int 0f5h
+    632	    006F  EB FE					 jmp	 $
+    633	    0071  C3					 ret
+    634	    0072			 Other_Begin5 endp
+    635
+    636					 ;===============================================================================
+    637	    0072			 Other_Begin6	     proc
+    638	    0072  B8 0010				 mov	 ax,Video_Sel_Loc
+    639	    0075  8E C0					 mov	 es,ax
+    640	    0077  B0 47					 mov	 al,'G'
+    641	    0079  26: A3 0006				 mov	 WORD PTR es:[6],ax
+    642	    007D  E8 008A				 call	 PrintReg
+    643	    0080  CD F5					 int 0f5h
+    644	    0082  EB FE					 jmp	 $
+    645	    0084  C3					 ret
+    646	    0085			 Other_Begin6 endp
+    647
+    648					 ;===============================================================================
+    649	    0085			 Other_Begin7	     proc
+    650	    0085  B8 0010				 mov	 ax,Video_Sel_Loc
+    651	    0088  8E C0					 mov	 es,ax
+    652	    008A  B0 48					 mov	 al,'H'
+    653	    008C  26: A3 0007				 mov	 WORD PTR es:[7],ax
+    654	    0090  E8 0077				 call	 PrintReg
+    655	    0093  CD F5					 int 0f5h
+    656	    0095  EB FE					 jmp	 $
+    657	    0097  C3					 ret
+    658	    0098			 Other_Begin7 endp
+    659
+    660					 ;===============================================================================
+    661	    0098			 Other_Begin10	      proc
+    662	    0098  B8 0010				 mov	 ax,Video_Sel_Loc
+    663	    009B  8E C0					 mov	 es,ax
+    664	    009D  B0 49					 mov	 al,'I'
+    665	    009F  26: A3 000A				 mov	 WORD PTR es:[10],ax
+    666	    00A3  E8 0064				 call	 PrintReg
+    667	    00A6  CD F5					 int 0f5h
+    668	    00A8  EB FE					 jmp	 $
+    669	    00AA  C3					 ret
+    670	    00AB			 Other_Begin10 endp
+    671
+    672					 ;===============================================================================
+    673	    00AB			 Other_Begin11	      proc
+    674	    00AB  B8 0010				 mov	 ax,Video_Sel_Loc
+    675	    00AE  8E C0					 mov	 es,ax
+    676	    00B0  B0 4A					 mov	 al,'J'
+    677	    00B2  26: A3 000B				 mov	 WORD PTR es:[11],ax
+    678	    00B6  E8 0051				 call	 PrintReg
+    679	    00B9  CD F5					 int 0f5h
+    680	    00BB  EB FE					 jmp	 $
+    681	    00BD  C3					 ret
+    682	    00BE			 Other_Begin11 endp
+    683
+    684					 ;===============================================================================
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 13
+except.ASM
+
+
+
+    685	    00BE			 Other_Begin12	      proc
+    686	    00BE  B8 0010				 mov	 ax,Video_Sel_Loc
+    687	    00C1  8E C0					 mov	 es,ax
+    688	    00C3  B0 4B					 mov	 al,'K'
+    689	    00C5  26: A3 000C				 mov	 WORD PTR es:[12],ax
+    690	    00C9  E8 003E				 call	 PrintReg
+    691	    00CC  CD F5					 int 0f5h
+    692	    00CE  EB FE					 jmp	 $
+    693	    00D0  C3					 ret
+    694	    00D1			 Other_Begin12 endp
+    695
+    696					 ;===============================================================================
+    697	    00D1			 Other_Begin13	      proc
+    698	    00D1  B8 0010				 mov	 ax,Video_Sel_Loc
+    699	    00D4  8E C0					 mov	 es,ax
+    700	    00D6  B0 4C					 mov	 al,'L'
+    701	    00D8  26: A3 000D				 mov	 WORD PTR es:[13],ax
+    702	    00DC  E8 002B				 call	 PrintReg
+    703	    00DF  CD F5					 int 0f5h
+    704	    00E1  EB FE					 jmp	 $
+    705	    00E3  C3					 ret
+    706	    00E4			 Other_Begin13 endp
+    707
+    708					 ;===============================================================================
+    709	    00E4			 Other_Begin219	       proc
+    710	    00E4  B8 0010				 mov	 ax,Video_Sel_Loc
+    711	    00E7  8E C0					 mov	 es,ax
+    712	    00E9  B0 4D					 mov	 al,'M'
+    713	    00EB  26: A3 0010				 mov	 WORD PTR es:[16],ax
+    714	    00EF  E8 0018				 call	 PrintReg
+    715	    00F2  CD F5					 int 0f5h
+    716	    00F4  EB FE					 jmp	 $
+    717	    00F6  C3					 ret
+    718	    00F7			 Other_Begin219	endp
+    719
+    720					 ;===============================================================================
+    721	    00F7			 Other_Begin246	       proc
+    722	    00F7  B8 0010				 mov	 ax,Video_Sel_Loc
+    723	    00FA  8E C0					 mov	 es,ax
+    724	    00FC  B0 4E					 mov	 al,'N'
+    725	    00FE  26: A3 00F6				 mov	 WORD PTR es:[246],ax
+    726	    0102  E8 0005				 call	 PrintReg
+    727	    0105  CD F5					 int 0f5h
+    728	    0107  EB FE					 jmp	 $
+    729	    0109  C3					 ret
+    730	    010A			 Other_Begin246	endp
+    731					 ;===============================================================================
+    732	    010A			 PrintReg	 proc
+    733	    010A  66| BB 00000960			 mov ebx, 2400	; print	eax
+    734	    0110  CD FD					 int 0fdh
+    735	    0112  66| B8 00000000			 mov eax, 0
+    736	    0118  8C C8					 mov ax, cs
+    737	    011A  66| BB 00000A14			 mov ebx, 2580	; print	cs
+    738	    0120  CD FD					 int 0fdh
+    739	    0122  8C D8					 mov ax, ds
+    740	    0124  66| BB 00000A28			 mov ebx, 2600	; print	ds
+    741	    012A  CD FD					 int 0fdh
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 14
+except.ASM
+
+
+
+    742	    012C  8C D0					 mov ax, ss
+    743	    012E  66| BB 00000A3C			 mov ebx, 2620	; print	ss
+    744	    0134  CD FD					 int 0fdh
+    745	    0136  8C C0					 mov ax, es
+    746	    0138  66| BB 00000A50			 mov ebx, 2640	; print	es
+    747	    013E  CD FD					 int 0fdh
+    748	    0140  8C E0					 mov ax, fs
+    749	    0142  66| BB 00000A64			 mov ebx, 2660	; print	fs
+    750	    0148  CD FD					 int 0fdh
+    751	    014A  8C E8					 mov ax, gs
+    752	    014C  66| BB 00000A78			 mov ebx, 2680	; print	gs
+    753	    0152  CD FD					 int 0fdh
+    754	    0154  66| 8B C4				 mov eax, esp
+    755	    0157  66| BB 00000AA0			 mov ebx, 2720	; print	esp
+    756	    015D  CD FD					 int 0fdh
+    757	    015F  66| 8B C5				 mov eax, ebp
+    758	    0162  66| BB 00000AB4			 mov ebx, 2740	; print	ebp
+    759	    0168  CD FD					 int 0fdh
+    760	    016A  26: 0F 01 06 0014			 sgdt es:[20]	; store	SGDT
+    761	    0170  66| 26: A1 0016			 mov eax, es:[22]
+    762	    0175  66| BB 00000AC8			 mov ebx, 2760	; print	GDT
+    763	    017B  CD FD					 int 0fdh
+    764	    017D			 PrintReg endp
+    765
+    766					 ;===============================================================================
+    767	    017D			 RCodeSeg	 ENDS
+    768					 ;===============================================================================
+    769							 END
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 15
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??DATE			Text   "08/29/16"
+??FILENAME		Text   "except	"
+??TIME			Text   "14:48:15"
+??VERSION		Number 0205
+@CPU			Text   0D8FH			   #16
+@CURSEG			Text   RCODESEG			   #537	 #558
+@FILENAME		Text   EXCEPT
+@WORDSIZE		Text   2			   #16	#537  #558
+AT386CGATE		Number 008C			   #377
+AT386IGATE		Number 008E			   #378
+AT386TGATE		Number 008F			   #379
+AT386TSS		Number 0089			   #376
+ATCCO			Number 009C			   #369
+ATCCOR			Number 009E			   #370
+ATCE			Number 0098			   #367
+ATCER			Number 009A			   #368
+ATDR			Number 0090			   #363
+ATDW			Number 0092			   #364
+ATDWA			Number 0093			   #365
+ATLDT			Number 0082			   #374
+ATSWA			Number 0096			   #366
+ATTASKGATE		Number 0085			   #375
+CLEARSCREEN		Near   ----:---- Extern		   #430
+CLOCK_TICK_RATE		Number 001234DC			   #423	 424
+D32			Number 0040			   #404
+DPL0			Number 0000			   #383
+DPL1			Number 0020			   #384
+DPL2			Number 0040			   #385
+DPL3			Number 0060			   #386
+D_ADDROFFSET		Number 0011			   #533
+EXCEPTIONDATA0		Dword  RDATASEG:0000		   9  #539
+EXCEPTIONDATA1		Dword  RDATASEG:0004		   9  #540
+EXCEPTIONDATA10		Dword  RDATASEG:0020		   11  #547
+EXCEPTIONDATA11		Dword  RDATASEG:0024		   11  #548
+EXCEPTIONDATA12		Dword  RDATASEG:0028		   11  #549
+EXCEPTIONDATA13		Dword  RDATASEG:002C		   11  #550
+EXCEPTIONDATA2		Dword  RDATASEG:0008		   9  #541
+EXCEPTIONDATA219	Dword  RDATASEG:0030		   13  #551
+EXCEPTIONDATA246	Dword  RDATASEG:0034		   13  #552
+EXCEPTIONDATA3		Dword  RDATASEG:000C		   9  #542
+EXCEPTIONDATA4		Dword  RDATASEG:0010		   9  #543
+EXCEPTIONDATA5		Dword  RDATASEG:0014		   9  #544
+EXCEPTIONDATA6		Dword  RDATASEG:0018		   11  #545
+EXCEPTIONDATA7		Dword  RDATASEG:001C		   11  #546
+GETKEYFORMENU		Near   ----:---- Extern		   #431
+GET_PARAMETER		Near   ----:---- Extern		   #433
+GL			Number 0080			   #405
+HZ			Number 0064			   #422	 424  424
+IFL			Number 0200			   #409
+IOPL0			Number 0000			   #397
+IOPL1			Number 1000			   #398
+IOPL2			Number 2000			   #399
+IOPL3			Number 3000			   #400
+LATCH			Number 2E9C			   #424
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 16
+Symbol Table
+
+
+
+NEWLINE			Near   ----:---- Extern		   #432
+NTL			Number 4000			   #412
+OTHER_BEGIN0		Near   RCODESEG:0000		   5  #562
+OTHER_BEGIN1		Near   RCODESEG:0013		   5  #574
+OTHER_BEGIN10		Near   RCODESEG:0098		   7  #661
+OTHER_BEGIN11		Near   RCODESEG:00AB		   7  #673
+OTHER_BEGIN12		Near   RCODESEG:00BE		   7  #685
+OTHER_BEGIN13		Near   RCODESEG:00D1		   7  #697
+OTHER_BEGIN2		Near   RCODESEG:0026		   5  #586
+OTHER_BEGIN219		Near   RCODESEG:00E4		   7  #709
+OTHER_BEGIN246		Near   RCODESEG:00F7		   7  #721
+OTHER_BEGIN3		Near   RCODESEG:0039		   5  #598
+OTHER_BEGIN4		Near   RCODESEG:004C		   5  #611
+OTHER_BEGIN5		Near   RCODESEG:005F		   5  #625
+OTHER_BEGIN6		Near   RCODESEG:0072		   5  #637
+OTHER_BEGIN7		Near   RCODESEG:0085		   7  #649
+PL			Number 0001			   #416
+PRINTMEMR		Near   ----:---- Extern		   #435
+PRINTREG		Near   RCODESEG:010A		   567	579  591  603  616  630	 642  654  666	678  690  702  714  726	  +
+							   #732
+PUTHEX32R		Near   ----:---- Extern		   #428
+RESETPOINTER		Near   ----:---- Extern		   #434
+RFL			Number 00010000			   #410
+RFLW			Number 0001			   #411
+RPL0			Number 0000			   #390
+RPL1			Number 0001			   #391
+RPL2			Number 0002			   #392
+RPL3			Number 0003			   #393
+RWR			Number 0000			   #417
+RWW			Number 0002			   #418
+S_APP_STRING		Number 0024			   #458
+S_BASE			Number 8600			   #527
+S_CIRLISTSTATE		Number 0080			   #475
+S_CLOCK_HZ		Number 0014			   #450
+S_CYCLE_COUNT		Number 0010			   #447
+S_DATE			Number 0124			   #515
+S_DPD_COUNT		Number 00A8			   #487
+S_DUMMY			Number 0094			   #482
+S_EINIT_RET		Number 00A0			   #484
+S_ERR			Number 0128			   #516
+S_ERROR_CODE		Number 001C			   #454
+S_ERROR_FLAG		Number 0018			   #452
+S_IDTOFFSET		Number 000C			   #446
+S_INCOUNT		Number 0070			   #470
+S_INRECORD		Number 0084			   #476
+S_IOBASE		Number 009C			   #483
+S_IO_FUNCTION_CODE	Number 0020			   #455
+S_ISRCOUNT		Number 008C			   #478
+S_ISRSTIFLAG		Number 0090			   #480
+S_ITCP_ARP_COUNT	Number 0118			   #510
+S_ITCP_DAT_COUNT	Number 010C			   #507
+S_ITCP_FACK_COUNT	Number 0110			   #508
+S_ITCP_GACK_COUNT	Number 0104			   #505
+S_ITCP_HDR_COUNT	Number 0108			   #506
+S_ITCP_PRIOR_COUNT	Number 011C			   #511
+S_ITCP_RESET_COUNT	Number 0114			   #509
+S_ITCP_SACK_COUNT	Number 0100			   #504
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 17
+Symbol Table
+
+
+
+S_LOCK1			Number 004C			   #462
+S_LOCK2			Number 0050			   #463
+S_LOCK3			Number 0054			   #464
+S_LOCK4			Number 0058			   #465
+S_LSERROR		Number 0140			   #519
+S_NTFLAG		Number 007C			   #474
+S_OUTCOUNT		Number 0074			   #472
+S_OUTRECORD		Number 0088			   #477
+S_PID			Number 0078			   #473
+S_RTC			Number 0120			   #514
+S_RTCFLAG		Number 0130			   #517
+S_SECTORNO		Number 0004			   #442
+S_SUSPEND_COMMAND	Number 00AC			   #488
+S_SUSPEND_DELAY		Number 00B0			   #489
+S_TCP_ARP_COUNT		Number 00D0			   #502
+S_TCP_DAT_COUNT		Number 00C4			   #498
+S_TCP_FACK_COUNT	Number 00C8			   #499
+S_TCP_GACK_COUNT	Number 00BC			   #494
+S_TCP_HDR_COUNT		Number 00C0			   #496
+S_TCP_RESET_COUNT	Number 00CC			   #501
+S_TCP_SACK_COUNT	Number 00B8			   #492
+S_TCP_TX_COUNT		Number 00B4			   #490
+S_TID1			Number 005C			   #466
+S_TID2			Number 0060			   #467
+S_TID3			Number 0064			   #468
+S_TID4			Number 0068			   #469
+S_TIMER			Number 0000			   #440
+S_TOTAL_TX_COUNT	Number 00A4			   #485
+S_TRACE			Number 0160			   #521
+TIL			Number 0004			   #406
+USS			Number 0000			   #419
+USU			Number 0004			   #420
+VIDEO_SEL_LOC		Number 0010			   #534	 563  575  587	599  612  626  638  650	 662  674  686	698  710  +
+							   722
+VMFL			Number 00020000			   #407
+VMFLW			Number 0002			   #408
+WRITESTRING		Near   ----:---- Extern		   #429
+
+Macro Name						   Cref	(defined at #)
+
+CALL16							   #278
+CALL32							   #285
+DISABLEA20						   #252
+ENABLEA20						   #242
+FDCCYL							   #217
+FDCHEAD							   #198
+FDCSECTOR						   #178
+FDC_AL							   #131
+FDC_IN							   #113
+FDC_OUT							   #92
+FDC_WAIT						   #140
+JUMP16							   #262
+JUMP32							   #269
+KEYBOARDLED						   #48
+MDELAY							   #161
+NEWLINEM						   #229
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 18
+Symbol Table
+
+
+
+
+Structure Name		Type  Offset			   Cref	(defined at #)
+
+DESC							   #292
+ LIMITL			Word   0000
+ BASEL			Word   0002
+ BASEM			Byte   0004
+ ATTRIBUTES		Byte   0005
+ LIMITH			Byte   0006
+ BASEH			Byte   0007
+GATE							   #303
+ OFFSETL		Word   0000
+ SELECTOR		Word   0002
+ DCOUNT			Byte   0004
+ GTYPE			Byte   0005
+ OFFSETH		Word   0006
+PDESC							   #313
+ LIMIT			Word   0000
+ BASE			Dword  0002
+TSS							   #320
+ TRLINK			Word   0000
+ TRESP0			Dword  0004
+ TRSS0			Word   0008
+ TRESP1			Dword  000C
+ TRSS1			Word   0010
+ TRESP2			Dword  0014
+ TRSS2			Word   0018
+ TRCR3			Dword  001C
+ TREIP			Dword  0020
+ TREFLAG		Dword  0024
+ TREAX			Dword  0028
+ TRECX			Dword  002C
+ TREDX			Dword  0030
+ TREBX			Dword  0034
+ TRESP			Dword  0038
+ TREBP			Dword  003C
+ TRESI			Dword  0040
+ TREDI			Dword  0044
+ TRES			Word   0048
+ TRCS			Word   004C
+ TRSS			Word   0050
+ TRDS			Word   0054
+ TRFS			Word   0058
+ TRGS			Word   005C
+ TRLDTR			Word   0060
+ TRTRIP			Word   0064
+ TRIOMAP		Word   0066
+TYPEAPPLICATION						   #20
+ NOOFSECTORS		Word   0000
+ STARTINGSECTOR		Word   0002
+ NAMEAPPLICATION	Byte   0004
+TYPECOMMAND						   #32
+ COMMAND		Byte   0000
+ APPNAME		Byte   0001
+ APPINDEX		Byte   0009
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 19
+Symbol Table
+
+
+
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+RCODESEG		16  017D Para	Public	CODE	   #558	 559
+RDATASEG		16  0038 Para	Public	REALDATA   #537	 559
+

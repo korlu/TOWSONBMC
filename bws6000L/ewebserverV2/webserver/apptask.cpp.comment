@@ -1,0 +1,832 @@
+//----------------------------------------------
+//apptask.cpp
+// implementation for tasks 
+//  there are also some non-task members in this file 
+//----------------------------------------------
+#include "apptask.h"
+#include "aoatask.h"
+#include "../HTTPPARSER/parserobj.h"
+#include "../TCP/tcpobj.h"
+#include "../FTP/FTPObj.h"
+
+long apptask::Function_Address_Array1[100]; 
+long apptask::avalue = 0; //static variable initialization 
+long apptask::bvalue = 0; //static variable initialization 
+long apptask::cvalue = 0; //static variable initialization 
+long apptask::svalue = 0; //static variable initialization 
+long apptask::gvalue = 0; //static variable initialization
+long apptask::f1value = 0; //static variable initialization 
+long apptask::t1value = 0; //static variable initialization 
+long apptask::f2value = 0; //static variable initialization 
+long apptask::tvalue = 0; //static variable initialization 
+long apptask::Scheduler_Flag = 0; //static variable initialization
+long apptask::t4timer = 0; // timer for task 4
+long apptask::t5timer = 0; // timer for task 5
+long apptask::t6timer = 0; // timer for task 6
+long apptask::t7timer = 0; // timer for task 7
+long apptask::t8timer = 0; // timer for task 8
+int  apptask::Task_Status[NO_OF_TASKS];
+int  apptask::Task_Delay[NO_OF_TASKS];
+int  apptask::Current_Task=3;
+int  apptask::ftpFlag=0;
+
+// Web server Management Variables
+int apptask::WSStartTaskNo =0;
+int apptask::WSEndTaskNo =0; 
+int apptask::TaskNextPtr[NO_OF_TASKS];
+int apptask::WSFreeTask=0;
+//Temporary Counter Variables
+long apptask::packts = 0; 
+long apptask::ippackcount = 0 ;
+long apptask::arppackcount = 0 ;
+long apptask::otherpackcount = 0;	
+long apptask::upCompleteNotSetCount = 0 ;
+long apptask::notForThisNodeCount = 0 ;
+long apptask::notArpOrIpCount = 0;
+long apptask::schedulerCount = 0;
+//----------------------------------------
+unsigned long apptask::noethpacksp = 0 ;
+unsigned long apptask::noetherrors = 0;
+//----------------------------------------
+//----------------------------------------
+// default constructor
+apptask::apptask()
+{
+
+};
+//----------------------------------------
+//this constructor will take the initial Task_ID
+//----------------------------------------
+
+apptask::apptask(int x)
+{
+ Current_Task =3;
+ for(int i =0;i < NO_OF_TASKS; i++)
+	{
+	 Task_Status[i] = 0 ;
+	 TaskNextPtr[i]=0;
+	}
+ 	t4timer = 0;
+	t5timer = 0;
+	t6timer = 0;
+	t7timer = 0;
+	t8timer = 0;
+	bvalue = 0x53545556;
+	packts = 0; 
+	t1value =0; 
+	svalue = 0;
+	f1value = 0;
+	t1value = 0; 
+	WSStartTaskNo =0;
+	WSEndTaskNo =0; 
+	WSFreeTask=0;
+	io.Application_Status = 1;
+};
+
+//--------------------------------------------------------------------------
+// Fault Taularance Protocol Time Out 
+void apptask::FTOPTimeOut(long v1)
+{
+    int time = 150;
+    char* TraceString = " FTOPTimeOut       "; //trace string limited 40 characters 
+    int i=0;
+    //while(1)
+    io.AOAsetSharedMemTraceString(TraceString); //store the trace string 
+    while(io.Application_Status != 2)
+    {
+    ftop.SendFTOP(Current_Task);
+    //TaskSleep(time); 
+    }
+    io.AOAExit();
+}
+//--------------------------------------------------------------------------
+// HttpTask 
+//-----------------------------------------
+void apptask::HttpTask(long v1)
+{
+	AOATask task;
+   	parserObj p; 
+   	int Socket_ID = 0;
+   	int Size;
+   	char Data[2048];
+   	Size = sizeof(Data);
+   	char ip[4];
+   	char port[2];
+   	int i=0; 
+	int retcode=0;
+	
+     	io.AOAPrintText("HttpTask:",Line11);
+     
+   	while(io.Application_Status!=2)
+	{
+	    if(http.empty() == 0) 
+	    {
+   	    	if((retcode = http.get(&Socket_ID,&Size, Data, ip, port)) ==0)
+	    	{
+	   		retcode = p.processRequest(Data, Socket_ID, ip, port, 0);
+			if(retcode == 0)
+			{
+			   // http request is complete
+			   // put this task in idle list
+			   // task.AOAsuspendTask(1, 0);
+			   // continue;
+			}
+			switch(retcode)
+			{
+		         case -1: 
+			      io.AOAPrintText("Message is empty ParserObj: -1", Line23); 
+			      break; 
+		         case -2: 
+			      io.AOAPrintText("Method not supported (POST, HEAD) ParserObj: -2", Line23); 
+			      break;  
+		         case -3: 
+			      io.AOAPrintText("Response header does not start with '/' ParserObj: -3", Line23); 
+			      break; 
+		         case -4: 
+			      io.AOAPrintText("Version number does not start with ' ' ParserObj: -4", Line23); 
+			      break;  			
+		         case -5: 
+			      io.AOAPrintText("No line break after version number ParserObj: -5", Line23); 
+			      break; 
+		         case -6: 
+			      io.AOAPrintText("Version number is not 1.0 or 1.1 ParserObj: -6", Line23); 
+			      break;  		
+		         case -7: 
+			      io.AOAPrintText("Send flag cannot be set TCPObj: -7", Line23); 
+			      break; 
+		         case -8: 
+			      io.AOAPrintText("Connection timeout TCPObj: -8", Line23); 
+			      break;  		
+	   case -9: 
+	    io.AOAPrintText("TCB Segment size is greater than the maximum acceptable send size TCPObj: -9", Line23);		    break;  			
+		         case -10: 
+			      io.AOAPrintText("Connection closed because no connection exists TCPObj: -10", Line23); 
+			      break; 
+		         case -11: 
+			      io.AOAPrintText("State is not established or finwait TCPObj: -11", Line23); 
+			      break;  		
+		         case -12: 
+			      io.AOAPrintText("Dpd pointer is out of range TCPObj: -12", Line23); 
+			      break; 
+		         case -13: 
+			      io.AOAPrintText("Data buffer is out of range TCPObj: -13", Line23); 
+			      break;  					      
+		   	case -24: 
+			      io.AOAPrintText("Length of data to send is less than 1 byte IP: -24", Line23); 
+			      break;  	
+		   	case -25: 
+			      io.AOAPrintText("Length of data to send is greater than max send size IP: -25", Line23); 
+			      break;  						
+		   	case -26: 
+			      io.AOAPrintText("Dpd pointer is out of range EO: -26", Line23); 
+			      break;  				
+		   	case -27: 
+			      io.AOAPrintText("Data buffer is out of range EO: -27", Line23); 
+			      break;  	
+		   	case -28: 
+			      io.AOAPrintText("TCB is not available TCP: -28", Line23); 
+			      break;  				      
+			}
+			
+	    	}
+	    	else
+	    	{
+			switch(retcode)
+			{
+		         case -1: 
+			      io.AOAPrintText("Packet size is less than 0 HTTPList: -1", Line23); 
+			      break; 
+		         case -2: 
+			      io.AOAPrintText("Valid bit not set HTTPList: -2", Line23); 
+			      break;  
+			}
+			// not a get request
+			task.AOAsuspendTask();
+		}
+	    }
+	    else
+	    {
+		// no http request to process
+		task.AOAsuspendTask();	
+	    }
+	}
+	 
+}
+//-----------------------------------------
+// FileTransferTask
+//-----------------------------------------
+void apptask::FileTransferTask(long v1)
+{	
+    	AOAProtected io;
+	FTPObj ftp;
+	AOATask task; 
+	int i =0;
+	int retcode=0;
+
+
+        io.AOAPrintText("FileTransferTask:", Line12); 
+   
+        // start file transfer
+        ftop.setMode(0x01); //make it active  
+        retcode = ftp.StartTransfer(ftp.IP, ftp.port, 0);
+        	
+	while(io.Application_Status !=2)
+	{
+	    //io.AOAprintHex(i++, Line12+120);
+	    task.AOAsuspendTask();
+	}
+	
+        io.AOAPrintText("Left while loop FileTransferTask", Line20+60); 
+	
+	io.AOAExit();
+};
+
+//-----------------------------------------
+// InterfaceTask 
+//-----------------------------------------
+void apptask::InterfaceTask(long v1)
+{	
+    	AOAProtected io;
+	AOATask task; 
+	int i =0;
+	int retcode=0;
+	char a = 'N';	
+
+	io.AOAPrintText("InterfaceTask:", Line13);
+	
+	while(io.Application_Status !=2)
+	{
+	    //io.AOAprintHex(i++, Line13+120);
+    	    a = io.AOAgetCharacterBuff();
+	    if(a=='e')
+	    {
+		   io.Application_Status = 2;
+	           io.AOAPrintText("GUIT Done",Line20+100);		
+		   io.AOAExit();
+	    }
+	    if (i > 1000) 
+	      {
+	       i = 0; 
+	       task.AOAsuspendTask(); 
+	      } 
+	}
+	
+        io.AOAPrintText("Left while loop InterfaceTask", Line20+60); 
+	io.Application_Status = 2;
+	
+	io.AOAExit();
+};
+
+//-----------------------------------------
+// This is an API 
+//-----------------------------------------
+void apptask::StoreFunAddress(long address, int index)
+{
+  AOAProtected io;
+  Function_Address_Array1[index]= address;
+};
+
+//---------------------------------------------------------------------------------------------------------
+// This is a main task invoked from test.cpp 
+//  When everything is done, it should return to test.cpp 
+//  This task also invokes scheduler and runs a given task 
+//  When a given task is suspended, it returns to this main task 
+//  When a given task is finihed, it should also return to this main task 
+//  When a given task is delayed, it should also return to this main task 
+//  MainTask
+//---------------------------------------------------------------------------------------------------------
+void apptask::MainTask(long v1)
+{		
+	AOAProtected io;
+	AOATask task; //task object
+	FTPObj ftp;
+	int retcode; 
+	int n = 0; 
+	int i = 0; 
+	t4timer = 0;
+	t5timer = 0;
+	t6timer = 0;
+	t7timer = 0;
+	t8timer = 0;
+	avalue = 0; 
+	bvalue = 0; 
+	cvalue = 0; 
+	int disfavor = 0; 
+	int temp=0;
+
+   io.AOAPrintText("MainTask:", Line14); 
+   /* task id 4 = receive task
+    * task id 5 = send task
+    * task id 6 = interface task
+    * task id 7 = file transfer task
+    * task id 8 = http task
+    */
+
+   temp = 5;
+   t1value = io.AOAgetTimer();
+
+   while (io.Application_Status != 2) 
+	{
+	  i++; 
+	  n = Scheduler_Algorithm_1(temp);
+	  temp = n;
+	  
+	  avalue = io.AOAgetTimer(); 
+          
+	  task.AOArunTask(n); 
+
+          bvalue = io.AOAgetTimer(); 
+	  if (n==4)
+	      t4timer = t4timer + (bvalue - avalue); 
+	  else if (n==5)
+	      t5timer = t5timer + (bvalue - avalue); 
+	  else if (n==6)
+	      t6timer = t6timer + (bvalue - avalue); 
+	  else if (n==7)
+	      t7timer = t7timer + (bvalue - avalue); 
+	  else if (n==8)
+	      t8timer = t8timer + (bvalue - avalue); 
+	  
+	  if (i == 100000)
+	   {
+	    //io.AOAprintHex(t4timer, Line4+40); 
+	    //io.AOAprintHex(t5timer, Line4+60); 
+	    //io.AOAprintHex(t6timer, Line4+80); 
+	    //io.AOAprintHex(t7timer, Line4+100); 
+	    //io.AOAprintHex(t8timer, Line4+120); 
+	    i = 0; 
+	   }
+	  
+	}
+
+  io.AOAExit(); 
+};
+
+//********************************************************
+// Recevie task to check  if any ethernet msgs arrived and 
+//  porcess them 
+//  RcvTask
+//********************************************************
+void apptask::RcvTask(long v1)
+{
+    AOAProtected io;
+    ARPObj 	ar;
+    IPObj 	ip;
+    AOATask task;  
+    
+    char *Data;
+    char abc; 
+    Data = &abc; 
+  
+    int i=0, j=0;
+    int retcode = 0;     
+    int empty = 0; 
+    int RXSize = 0; 
+    long lcount = 0, vcount=0;
+    int PacketType = 0;
+    
+    ippackcount = 0; 
+    arppackcount = 0; 
+    upCompleteNotSetCount = 0 ;
+    notForThisNodeCount = 0 ;
+    notArpOrIpCount = 0;
+    
+    io.AOAPrintText("RcvTask:",Line16); 
+
+    while(io.Application_Status!=2)
+    {
+       EO.ReceiveInPtr = EO.getCurrentReceivePtr();  //rcv InPtr 
+
+       // check if circular list is empty
+       if (EO.ReceiveInPtr == EO.ReceiveOutPtr)
+       {
+	 // empty
+	 task.AOAsuspendTask();
+	 continue;
+       }
+       else 
+       { 
+	 // not empty
+	 RXSize =   EO.ReadData(&Data, &PacketType, ip.msourceIP);
+	 if (RXSize == -1) 
+	   {
+	   //packet is not ready to receive 
+	   // UpComplete Bit is not set
+           upCompleteNotSetCount++;
+	   task.AOAsuspendTask(); 
+           //io.AOAprintHex(upCompleteNotSetCount, Line17+100);
+	   continue; 
+           }
+	 if (RXSize == -2) 
+	   {
+	   //packet arrived is not destined to this node
+	   notForThisNodeCount++;
+	   task.AOAsuspendTask();
+           //io.AOAprintHex(notForThisNodeCount, Line17+120);
+	   continue; 
+           }
+	 if (RXSize == -3) 
+	   {
+	   //packet arrived is not arp or ip type packet
+	   // we do not handle packets other than arp or ip
+	   notArpOrIpCount++; 
+	   task.AOAsuspendTask(); 
+           //io.AOAprintHex(notArpOrIpCount, Line17+140);
+	   continue; 
+           }
+	 
+	 //io.AOAprintHex(EO.ReceiveInPtr, Line16 + 20); 
+	 //io.AOAprintHex(EO.ReceiveOutPtr, Line16 + 40); 
+	 //io.AOAprintHex(RXSize, Line16 + 60); 
+
+	 while (EO.DPDFull()) //test for send list full 
+			      // if this is full, need more entries in the list 
+			      // list size is small! 
+	    {
+	     //the list is full wait
+	     io.AOAprintHex(EO.SendInPtr, Line10 + 60); 
+	     io.AOAprintHex(EO.SendOutPtr, Line10 + 80); 
+  	     io.AOAPrintText("DPD LIST IS FULL!",Line10); 
+	     task.AOAsuspendTask(); 
+	    }
+
+	 if(RXSize >= 0)
+	 {
+	  if(PacketType == ARP_TYPE)  //ARP Packets 
+	    {	
+	       arppackcount++;
+	       //io.AOAprintHex(arppackcount, Line17+80); 
+	       retcode  = ar.ARPHandler((char*) Data, RXSize, 0);		
+               switch (retcode)	          
+		 {
+		   case -1: 
+			io.AOAPrintText("Hardware Type Mismatch in ARP: -1", Line23); 
+			break; 
+		   case -2: 
+			io.AOAPrintText("Protocol Mismatch in ARP: -2", Line23); 
+			break;  
+		   case -3: 
+			io.AOAPrintText("Length of Hardware Address Mismatch in ARP: -3", Line23); 
+			break;  
+		   case -4: 
+			io.AOAPrintText("Protocol Address Length Mismatch in ARP: -4", Line23); 
+			break;  
+		   case -5: 
+			io.AOAPrintText("Not a Request or Reply, can't handle it!: -5", Line23); 
+			break;  
+		   case -6: 
+			io.AOAPrintText("Should never happen in ARP, Catastrophic: -6", Line23); 
+			break;  
+		   case -7: 
+			io.AOAPrintText("IP No Match!Not An Error: It is a broadcast : -7", Line23); 
+			j++; 
+			io.AOAprintHex(j, Line23+100); 
+			break;  
+		   case -8: 
+			io.AOAPrintText("DPD Slot or Memory Error Catastrophic - 8!", Line23); 
+			break;  
+		   case -9: 
+			io.AOAPrintText("DPD Slot or Memory Error Catastrophic! - 9", Line23); 
+			break;  
+		 }
+
+	       retcode = EO.discardPacket(); //packet is removed 
+	       task.AOAsuspendTask(); 
+
+            }
+	  else if(PacketType == IP_TYPE)  //IP Packets 
+	    {	
+
+	       ippackcount++;
+	       //io.AOAprintHex(ippackcount, Line16+100);  
+	       retcode = ip.IPHandler((char*) Data, RXSize, 0);  
+               switch (retcode)	          
+		 {
+		   case -1: 
+			io.AOAPrintText("Packet Size is less than the header IP: -1", Line23); 
+			break; 					 
+		   case -2: 
+			io.AOAPrintText("Packet Size is large! IP: -2", Line23); 
+			break; 
+		   case -3: 
+			io.AOAPrintText("Not our packet, Throw it out! IP: -3", Line23); 
+			break;  
+		   case -4: 
+			io.AOAPrintText("Fragmented Data IP: -4", Line23); 
+			break;  
+		   case -5: 
+			io.AOAPrintText("No Data in the Datagram! IP: -5", Line23); 
+			break;  
+		   case -6: 
+			io.AOAPrintText("IP Destination do not Match! IP: -6", Line23); 
+			break;  
+		   case -7: 
+			io.AOAPrintText("Other Packets IP: -7", Line23); 
+			break;  
+		   case -8: 
+			io.AOAPrintText("Checksum Error! IP: -8", Line23); 
+			break;  
+		   case -9: 
+			io.AOAPrintText("Discard the packet! IP: -9", Line23); 
+			break;  
+		   case -10: 
+			io.AOAPrintText("Length of data to send is less than 1 byte IP: -10", Line23); 
+			break;  	
+		   case -11: 
+			io.AOAPrintText("Length of data to send is greater than max send size IP: -11", Line23); 
+			break;  			
+		   case -12: 
+			io.AOAPrintText("Dpd pointer is out of range EO: -12", Line23); 
+			break;  				
+		   case -13: 
+			io.AOAPrintText("Data buffer is out of range EO: -13", Line23); 
+			break;  
+		   case -14: 
+			io.AOAPrintText("Packet size is less header size UDP: -14", Line23); 
+			break;  				
+		   case -15: 
+			io.AOAPrintText("Packet is not for our port UDP: -15", Line23); 
+			break;  			
+		   case -16: 
+			io.AOAPrintText("Packet size is less than 3 FTP: -16", Line23); 
+			break;  			
+		   case -17: 
+			io.AOAPrintText("Packet is less than minimum length TCP: -17", Line23); 
+			break;  
+		   case -18: 
+			io.AOAPrintText("Packet is not for HTTP Port TCP: -18", Line23); 
+			break;  				
+		   case -19: 
+			io.AOAPrintText("Packet does not have correct checksum TCP: -19", Line23); 
+			break;  			
+		   case -20: 
+			io.AOAPrintText("Retrieving TCB Record Failed TCP: -20", Line23); 
+			break;  	
+		   case -21: 
+			io.AOAPrintText("First packet sent by client is RST, do nothing TCP: -21", Line23); 
+			break;  
+		   case -22: 
+			io.AOAPrintText("Dpd pointer is out of range TCP: -22", Line23); 
+			break;  				
+		   case -23: 
+			io.AOAPrintText("Data buffer is out of range TCP: -23", Line23); 
+			break;  			
+		   case -24: 
+			io.AOAPrintText("Length of data to send is less than 1 byte IP: -24", Line23); 
+			break;  	
+		   case -25: 
+			io.AOAPrintText("Length of data to send is greater than max send size IP: -25", Line23); 
+			break;  						
+		   case -26: 
+			io.AOAPrintText("Dpd pointer is out of range EO: -26", Line23); 
+			break;  				
+		   case -27: 
+			io.AOAPrintText("Data buffer is out of range EO: -27", Line23); 
+			break;  	
+		   case -28: 
+			io.AOAPrintText("packet size is larger than record size HTTPList: -28", Line23); 
+			break;  						
+		   case -29: 
+			io.AOAPrintText("http buffer is full HTTPList: -29", Line23); 
+			break;  				
+		   case -30: 
+			io.AOAPrintText("valid bit is not set HTTPList: -30", Line23); 
+			break;  			
+
+		 }
+
+	       retcode = EO.discardPacket(); //packet is removed 
+	       task.AOAsuspendTask(); 
+	    }
+
+	}  //RXSize if 
+
+       } //end of else 
+
+    } //end of while loop
+    
+    io.AOAPrintText("RcvTask is Ending", Line22); 
+    io.AOAExit();
+}; //end of rcv task 
+
+//---------------------------------------------------------------------------------
+// get current running task 
+//---------------------------------------------------------------------------------
+int apptask::getCurrentTask()
+  {
+    return Current_Task; 
+  }; 
+//---------------------------------------------------------------------------------
+// Scheduler Algorithm 1 Call 
+//---------------------------------------------------------------------------------
+int apptask::Scheduler_Algorithm_1(int temp)
+  {
+    ARPObj arp;
+    int n=0;
+    n = temp;
+    long delay=0;
+   
+    delay = (io.AOAgetTimer() - t1value);
+    if(delay*55 >= (60 * 1000 * TIMER_PERIOD)) // 60 seconds delay
+    {
+       n = 6;
+       t1value = io.AOAgetTimer();
+    }
+    else if (n == 6)
+       n = 8;
+    else if(n == 5 && arp.resolveFlagForFileTransfer == 0)
+       n = 7;
+    else if(n == 5 && arp.resolveFlagForFileTransfer == 1 && (io.AOAgetSharedMem(0x58) != 1))
+            n = 8;
+    else if(n == 5 && arp.resolveFlagForFileTransfer == 1 && (io.AOAgetSharedMem(0x58) == 1))
+	   n = 4;
+    else if(n == 7 )
+            n = 8;
+    else if(n == 8 )
+            n = 4;    
+    else if(n == 4)
+            n = 5;
+
+    return n; 
+  }; 
+//-----------------------------------------
+//  SndTask 
+//-----------------------------------------
+void apptask::SndTask(long v1)
+			
+{	
+    AOAProtected io;
+    AOATask task; 
+    EtherObj EO;
+
+    int retcode = 0;
+    int i = 0; 
+    int sendcount = 0; 
+    int dpdcount = 0; 
+    int dpdstatus = 0; 
+    int txfirstflag = 0; 
+  
+    io.AOAPrintText("SndTask:",Line15);
+    while(io.Application_Status!=2)
+	 {
+	    dpdcount = io.AOAgetSharedMem(0xa8);  //get the latest DPD count 
+	    dpdstatus = EO.getDPDStatus(dpdcount); //get the latest DPD transmit status  
+
+	    if (dpdstatus != 0xc0 && txfirstflag != 0) 
+	      {
+	       txfirstflag = 1;//first packet trasmit happend automatically in the Xmitter! 
+	       io.AOAprintHex(dpdstatus, Line12); 
+	       io.AOAprintHex(dpdcount-1, Line12+20); 
+	       io.AOAprintHex(EO.SendOutPtr, Line12+40); 
+	       io.AOAPrintText("TxStatus Error!", Line24); 
+	       task.AOAsuspendTask();
+	       continue;
+	      }
+            
+	    // send flag is set
+	    if (EO.CheckSendFlag() == 1)
+	     {
+	      retcode = EO.SendPacket(0, 0); //delay is implemented here now... 
+	      
+	      while (EO.CheckDownComplete() == 0) 
+		{
+		 //RKK suspend does not help in performance improvement 
+		 //  downcomplete may be happening soon 
+	         //task.AOAsuspendTask();
+		}
+	      
+              retcode = EO.IncSendPtr(0);  //increment SendOutPtr 
+	      sendcount++;
+	      task.AOAsuspendTask();
+	     }
+	    else
+	    {
+	     // send flag is not set
+	    task.AOAsuspendTask();
+	    }
+	    //io.AOAprintHex(EO.SendInPtr,  Line15+20); 
+	    //io.AOAprintHex(EO.SendOutPtr, Line15+40); 
+	    //io.AOAprintHex(sendcount, Line15+60); 
+		
+	 } //never ending loop 
+
+        io.AOAPrintText("Send Task Done",Line15+80);		
+	io.AOAExit();
+};
+//-----------------------------------------
+// createTask 
+// This is an API 
+//-----------------------------------------
+int apptask::createTask(long Function_Address, int flag)
+{
+AOATask task;
+int Task_ID = 4;
+long Task_Stack; 
+
+while(Task_Status[Task_ID] != 0 && ((Task_ID) < NO_OF_TASKS))
+			Task_ID++;
+if(Task_ID == NO_OF_TASKS)
+{
+		return -1;
+}
+//Change the Stack Size Here	
+Task_Stack = task.StackBase - (STACK_SIZE * Task_ID);
+
+task.AOAcreateTask(Function_Address, Task_Stack, Task_ID, flag);
+if (flag == 1)  //error handler task 
+ Task_Status[Task_ID] = 0;
+else Task_Status[Task_ID] = 1; //all other tasks   
+//long Function_Address, long StackMEM_Ptr, int Task_ID
+return Task_ID;
+};
+//-----------------------------------------
+// Error Handling Call  
+// When ever an error interrupt exception occurs (IDT)
+//  it jumps into IDT entry, and invokes code in prcycle. 
+//  The code in prcycle, will store a flag and interrupt code 
+//  in shared memory S_Error_Flag and S_Error_Code. Then it 
+//  will invoke int 08h. 
+//  Thus, in Timer Interrupt task in apptask.cpp, the timer 
+//  task will continuously check for the global error flag 
+//  and if set, then it will call this routine. 
+//  The error control and debugging now is controlled by 
+//  the AO programmer!
+//-----------------------------------------
+void apptask::ErrorHandler(long s)
+{
+  AOAProtected io;	
+  EtherObj EO;
+  int k = 0; 
+  long data1 = 0; 
+  long startAddr = 0; 
+  char a; 
+  long errorFlag = 0; 
+  char* TraceStr = "                "; 
+  AOATask      task;
+
+  	   io.AOAsti();
+
+	   io.AOAPrintText ("ERROR!", Line1); 
+
+	   a = io.AOAgetCharacter();  //wait to read screen 
+	   io.AOAclearScreen (0,4000);
+
+	   errorFlag = io.AOAgetSharedMem(28);  //Interrupt Code 1Ch  
+	   io.AOAPrintText ("Interrupt Code:", Line1+20); 
+	   io.AOAprintHex (errorFlag, Line1+50); 
+	   io.AOAPrintText ("Current Task: ", Line1+72); 
+	   io.AOAprintHex (Current_Task, Line1+98); 
+	   errorFlag = io.AOAgetSharedMem(0x20);  //20 S_IO_Function_Code 
+	   io.AOAPrintText ("Fn_Code:", Line1+120); 
+	   io.AOAprintHex (errorFlag, Line1+138); 
+	   io.AOAPrintText ("CalledMethod: ", Line2); 
+
+
+	   io.AOAgetSharedMemTraceString(TraceStr);
+	   io.AOAPrintText (TraceStr, Line2+30); 
+	   errorFlag = io.AOAgetSharedMem(0x4C);  //Lock 1  
+	   io.AOAprintHex (errorFlag, Line3+100); 
+	   errorFlag = io.AOAgetSharedMem(0x60);  //TID 1  
+	   io.AOAprintHex (errorFlag, Line3+120); 
+
+	   io.AOAPrintText ("STACK: ", Line3); 
+
+
+	   for (k = 0; k < 48; k++) //24 entries of stack are printed  
+				   
+		{
+		  //currently it is using the App1Stack_SEL, App1Code_SEL and so on 
+		  // we need to change this to a stack where the a task generated error 
+		  data1 = io.AOAgetStackPOP(k*4); 
+		  io.AOAprintHex (data1, Line4 + k*20); 
+		}
+
+
+	  a = io.AOAgetCharacter();  //wait to read screen 
+
+	  io.AOAPrintText ("Registers: " , Line7); 
+	  //printing registers has some problem !!!needs fixing RKK 06-22-2005 
+	  //io.AOAprintRegs (Line8); 
+
+ 	task.AOAprintTSS(Current_Task, Line17); 
+
+	  a = io.AOAgetCharacter();  //wait to read screen 
+	  
+          a = 0x00;
+	  while (a != 0x1B)  //escape character to exit loop
+	  {
+	  io.AOAPrintText("Enter Starting Address of Location: ",Line24); 
+	  startAddr = io.AOAgetHex(); 
+	   io.AOAclearScreen (0,4000);
+
+	  for (k = 0; k < 128; k++)
+	  {
+	      data1 = io.AOAgetMem(startAddr + k*4); 
+	      io.AOAprintHex (data1, Line2 +k * 20);
+	  }
+	   a = io.AOAgetCharacterInt(); 
+          } //end of while
+
+ 	task.AOAapplink32(); //link to the main application app1tss
+	io.AOAExit();        //return from timer task to application 
+}; //end of error handling call 

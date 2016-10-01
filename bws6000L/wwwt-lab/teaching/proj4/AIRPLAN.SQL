@@ -1,0 +1,8410 @@
+INSERT INTO AIRPLANE VALUES
+(98486,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52313,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(19049,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67559,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(61425,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(23107,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(42724,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12823,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(85339,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9405,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(92639,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(9167,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(30456,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54949,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33306,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5303,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53753,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18786,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(74066,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22637,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98645,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33764,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(46179,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(1361,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59918,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40008,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55389,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(21362,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(23577,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(93786,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9112,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98535,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81567,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50891,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(18902,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55688,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21826,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(25262,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(77703,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(68853,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92889,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22644,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(12164,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(88165,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43945,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49114,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(10162,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(34075,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39526,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94805,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22906,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(68420,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(49475,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92309,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42523,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40478,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(13665,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50366,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54156,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8160,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81939,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62487,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63494,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(34008,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28918,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(90551,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(99084,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56262,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(43847,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(23303,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(99206,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(6109,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(58026,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(43426,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92126,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63531,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55541,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88739,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62451,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80780,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81384,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(45874,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(99139,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(93701,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98675,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(44757,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94091,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(79260,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(67022,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21697,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(47772,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(54699,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(85302,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55957,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49493,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(51818,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9692,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81616,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(20739,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82141,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(73706,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(5657,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58709,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48352,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67425,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(41784,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(52038,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(64831,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(53625,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49151,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14123,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65423,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(41491,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8947,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95837,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4095,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(66326,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(45379,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6591,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94750,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98236,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53228,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(10522,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(26104,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25598,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(73,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97460,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51403,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13751,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(3601,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29119,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(53454,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38586,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(84136,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(60156,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(84344,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(95019,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91772,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(34265,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80285,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(80767,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(8831,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(55273,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(51519,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54821,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81835,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35339,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(2661,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(41503,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38964,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28021,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(79748,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(20373,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(12994,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95916,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54370,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(98083,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95458,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(54882,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(15844,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(95507,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(2770,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7379,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(8264,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(57684,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59777,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79071,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44378,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44079,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8978,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4711,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(31982,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(28430,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59692,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52239,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(32971,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(17620,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(52148,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58813,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14166,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38189,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(62634,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(93499,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(5871,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52008,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(79357,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16656,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(71392,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(60968,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(54705,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(1806,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(42492,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18530,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(87902,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(87591,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(45635,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(787,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14520,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36547,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65045,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(4718,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(9936,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9942,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(24389,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(2001,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(88305,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(96105,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43878,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78808,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(86614,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84832,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76373,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(77978,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(11761,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(68762,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(47387,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50213,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65008,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26336,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(6256,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(43048,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(12390,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(6140,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38873,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29803,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(82971,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(85034,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32440,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66339,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(4754,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(95489,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(45196,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81072,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52801,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(52929,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(2606,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(89611,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33190,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58166,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(68328,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(26135,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79376,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59783,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(34838,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98034,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54864,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(10266,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32409,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(15179,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(18109,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(31500,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(99359,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85766,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50549,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(20135,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(98046,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(68511,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(78594,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16467,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5419,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83374,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8520,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(842,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(68621,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(56817,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(63146,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(73083,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81201,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83575,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(74005,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(35858,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79174,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21704,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(73693,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(12811,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84197,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(17993,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(86810,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(72076,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59326,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81018,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(36285,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27923,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(86804,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33441,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55432,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(83972,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(628,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(78515,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(41973,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(29718,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69030,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63323,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56311,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49163,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(68218,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(58325,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(2484,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29443,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40423,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40795,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76318,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20703,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20080,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40472,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66381,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(33544,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(24603,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84533,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(3021,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(31933,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(40917,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(28222,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(82702,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(44049,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(93054,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(34069,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76354,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(7977,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(44946,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40039,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5627,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29150,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16259,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(41296,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(83605,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(98883,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(77587,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53601,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73388,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(4791,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96130,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(91839,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88842,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(35247,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(19976,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(10430,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33233,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(45599,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(20520,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5084,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36572,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53680,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(2227,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52429,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(58135,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91607,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(28948,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(16900,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(52172,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5609,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(15570,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(83825,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19146,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(1947,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(68792,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21319,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81097,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18170,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(71148,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(79229,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(31372,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32562,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(177,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(96197,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(80261,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67938,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(15814,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98937,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(75244,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21636,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(47515,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25714,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96307,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92254,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(47094,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(71533,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(23602,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(64111,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13092,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(75360,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(49230,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(21282,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11053,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(86151,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29254,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66705,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(35113,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21624,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27471,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(51727,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50518,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(68096,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(37860,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86108,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(50952,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7385,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(84704,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65112,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(92059,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(82611,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65765,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(37506,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(47332,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62725,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98571,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(77569,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(6933,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33874,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22192,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94726,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(5828,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62023,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(81250,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50909,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53320,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(63543,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55023,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50750,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(40625,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(15075,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(76403,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(64624,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94476,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(59295,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(37133,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33074,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89038,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(11425,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94305,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(30999,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81701,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63513,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63830,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(81640,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59100,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21478,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(1483,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(2746,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(80920,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(67852,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7788,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76672,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(24444,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92144,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(5267,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(56469,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(79766,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4418,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(61621,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(71246,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48822,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(7165,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32525,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50878,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92102,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(87768,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(2343,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21765,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(55853,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65631,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81573,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(26269,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(97119,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80743,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(69738,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9460,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17675,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43750,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(2667,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(24969,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(26348,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(30273,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(22222,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42584,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14874,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28424,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(27111,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(72955,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(28967,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(42248,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53649,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(53198,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(87640,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(23809,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(9570,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55169,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11407,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(65380,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(95623,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(93414,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(12945,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(71221,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(90490,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85162,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(70855,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(75201,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27575,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(73461,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(53460,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(92041,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(83349,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(51098,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(57049,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(5731,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87634,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48114,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(13598,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21081,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(7196,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32556,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33801,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95062,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(41198,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(68908,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(13940,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(1977,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(93487,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(54809,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(87237,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35705,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91900,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22747,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52227,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63061,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28851,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32580,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(61999,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59436,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(43554,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63037,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29992,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91162,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38494,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(12115,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(26373,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(22271,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(71960,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43493,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(4052,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(98553,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96887,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17742,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6768,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20422,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(43408,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(96936,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63269,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50061,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(22839,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(31304,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16705,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(75054,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64031,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(43414,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(90545,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(47924,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91149,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(36138,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(83441,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98052,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64123,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(60290,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92120,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19488,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54254,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8752,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(23229,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94226,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91027,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(28826,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58374,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8453,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28106,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67620,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(46166,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(77764,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(7635,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7019,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33111,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(70648,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94525,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(75518,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49926,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(74542,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55450,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49957,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52001,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32574,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(17523,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(69732,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(19335,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(61944,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(86859,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82745,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(73474,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(95367,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(85607,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32568,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53906,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(71612,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(72912,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(54,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92864,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(67346,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(31848,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18218,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26922,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(66717,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(1751,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82159,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84393,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(61450,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17254,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(6604,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(34869,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85943,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(13208,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(25354,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(57843,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(31420,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(79760,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70050,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85321,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(93145,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(62677,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12365,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(2288,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(52691,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87646,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(41442,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(35034,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(35278,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(1287,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(99713,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(75048,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(31549,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89715,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6030,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(2783,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88720,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95855,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73913,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40960,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(35137,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76568,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(24963,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(64794,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(49621,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17114,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20104,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(8898,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59118,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56207,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(96533,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44171,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(3387,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44714,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(85961,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(44647,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(35656,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(90002,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11676,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(28881,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86297,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65759,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81146,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(99841,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97290,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69244,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(93695,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58221,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97082,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20123,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27838,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(1190,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76892,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(66876,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83831,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66064,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(80657,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60211,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(93078,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(66015,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(57519,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(32696,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62347,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72363,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65435,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(18450,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(37622,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91339,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59509,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(42407,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60400,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46606,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55780,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(1251,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65649,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(610,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(52758,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40173,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70349,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(71081,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92749,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(34240,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(7891,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46679,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11364,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40185,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(48126,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(73394,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(73126,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(85052,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83593,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(69433,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(66540,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(61376,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91381,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(16198,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(5511,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59973,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14343,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58264,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52569,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95428,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(81951,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74993,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48046,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(23565,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94134,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32336,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(22015,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51452,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7830,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(75750,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(71624,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(54187,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33648,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(96759,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58795,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(30474,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(96154,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59729,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(55371,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50067,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64105,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69342,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(97973,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(18365,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(55920,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(69116,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(78735,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(67846,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73681,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(10180,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88098,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(16943,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26129,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82092,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(93878,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(81597,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39868,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7220,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81359,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(50866,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42730,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58062,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8184,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94775,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32501,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(5816,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4260,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8093,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(47198,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72436,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87390,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94647,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22180,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(61022,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36065,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97546,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7049,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(49859,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7202,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(44610,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14361,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64569,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(75195,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91717,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(79241,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(86206,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(25970,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(3570,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(1293,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(10766,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(75744,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21197,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(463,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(31127,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32592,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46063,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16540,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74047,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(2539,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(96594,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70916,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(714,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66070,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(99273,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52374,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70733,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(88220,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(65667,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(63317,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76940,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(18115,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(38159,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86621,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(20910,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98175,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(92645,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46875,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(2911,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(81158,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(39617,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96826,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20379,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(84472,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(53491,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74438,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22027,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(6726,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79882,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94915,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(37298,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22979,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(46600,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(48266,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(19396,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8862,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(24322,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(61370,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(64178,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25866,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84613,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(16412,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35852,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(31335,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32177,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(54595,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(45410,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(97418,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(47357,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69830,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(85485,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(86315,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8422,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44909,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72082,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38043,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64746,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(39654,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97802,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86364,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32092,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(10900,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(61431,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82073,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12841,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(7330,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(15124,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62591,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(24182,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85412,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(73004,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(13916,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(61248,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(75341,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(31329,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(28369,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26702,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33551,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(85919,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(16772,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26538,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(62152,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(4412,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28479,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8172,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(46099,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63507,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17138,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72692,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(24987,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(56256,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32391,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94995,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(29882,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51538,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(927,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(47143,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(30847,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(90057,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55462,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(231,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(68182,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32287,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33795,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(11236,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(46148,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(72009,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(6494,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74365,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(23840,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(38903,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(68395,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(99822,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(92742,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(9259,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60095,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26275,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4107,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(738,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59796,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14923,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(1226,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(89947,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(68658,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26019,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72442,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(82336,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(93743,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(67462,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(54376,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(42388,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26867,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(26196,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(25415,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14196,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20849,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(71929,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(3680,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48199,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(95050,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(68572,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95733,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4370,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(39807,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91375,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97705,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33288,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65991,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(85601,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(25189,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(24224,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6805,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(9844,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43194,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(45184,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28405,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86743,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48968,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(70373,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(10144,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81213,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(19830,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6945,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(76141,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(38537,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74230,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26385,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(57586,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(93731,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55883,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76428,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50567,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(24090,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(84051,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73699,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80047,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(35882,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(57574,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19793,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(34191,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(1477,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(45812,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(24243,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(53106,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78063,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(34857,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16760,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79168,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(24285,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(49365,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(53967,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(35040,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22625,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(52636,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(45440,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(28613,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43957,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(18750,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60955,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46838,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(4565,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(4168,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(75280,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(23681,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38659,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(52343,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46826,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86346,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(23016,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17132,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(23651,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(13647,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97015,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(12902,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59985,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(58496,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91223,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29724,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(67749,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(8728,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19482,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(598,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(80389,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85571,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(9704,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36236,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(817,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50842,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(13354,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(99749,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(47863,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87310,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91522,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(41204,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(10235,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4937,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42529,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(60858,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74481,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(86145,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63378,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(70593,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65850,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66247,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76812,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(5993,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(77777,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(62115,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(63586,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(1055,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(34967,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(347,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(41772,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(7818,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(27038,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95159,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(20642,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70544,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78405,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(49206,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(61102,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36187,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(91998,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52514,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8685,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(66821,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95147,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(61041,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(60345,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98199,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21179,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20257,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(3247,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4742,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5181,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(16754,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(1531,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91040,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(77758,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(57550,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(28558,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(40319,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66149,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52655,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(57775,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13775,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11456,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46307,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98773,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8038,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(74407,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14636,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36322,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73522,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67413,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78234,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48138,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81878,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(39422,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78332,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(47265,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40649,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(46575,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80969,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74395,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(13519,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56433,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(10894,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88519,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(62274,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(9240,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(2874,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(61340,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(43695,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22033,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65960,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(4632,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(66809,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8569,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(96160,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(61157,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(59271,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(26440,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(99938,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(30468,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95709,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(5090,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95977,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(11462,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69909,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91467,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(77441,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(65673,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(47497,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(47534,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(23193,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40850,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(75915,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(53430,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4534,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22955,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(10803,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83135,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(30841,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(67199,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(51342,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(11468,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(22039,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33129,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72900,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(16241,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32476,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42700,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(29705,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51959,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69195,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91741,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(13067,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(28149,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(15521,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(67468,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(70550,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(68603,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43298,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(23236,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33483,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(6072,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(97723,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(61352,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(79656,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96496,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92584,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(79406,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(93493,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70977,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(15533,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86572,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(72052,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94927,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(81231,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(90148,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44195,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(46484,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43609,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(12481,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(72460,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(39709,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8367,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(37017,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44134,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(71697,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(59881,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(88299,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(89874,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(95397,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79528,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(64221,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(12445,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(48883,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55987,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95104,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(48614,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(56097,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12908,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(63635,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6219,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(54040,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12573,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(18524,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39190,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(683,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98028,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69500,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(24865,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(67730,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(57922,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72235,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(99926,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(28833,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87304,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18585,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60675,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(44360,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(30377,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27960,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21356,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(33404,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(53033,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(52832,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11163,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14746,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(37597,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(73193,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49060,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(5371,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(836,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40557,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(98889,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(42095,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(34082,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83666,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(95678,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(72949,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(3051,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(11187,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(62127,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70935,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(44146,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(68371,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25311,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95922,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(27532,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51867,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(62188,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18145,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49682,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(10443,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67291,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35833,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(23437,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78497,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(56909,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87475,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19702,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9051,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28265,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55255,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(53009,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50042,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(30035,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42016,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(7067,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(29382,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69567,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(33813,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(38012,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(19592,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(55938,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96166,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(170,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(35931,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21307,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(72515,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94494,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55200,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(55767,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(44628,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(29577,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22137,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(97656,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(18994,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95983,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(77136,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(47467,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95440,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11517,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64294,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7940,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(54125,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(77490,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56036,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(12255,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(89447,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(48687,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59924,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4626,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87438,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12603,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35076,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(11511,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(19610,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39971,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(21032,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59405,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(37854,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(11145,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(46234,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(64727,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52740,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39135,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94055,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94488,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(15905,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9155,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(1074,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(74298,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(54211,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(40112,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(74163,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(8917,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(77825,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38427,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(28533,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(91204,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83538,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98339,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(9503,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(39147,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(88159,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12121,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32855,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(71258,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56488,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17565,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(70623,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(51293,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6005,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(80603,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(26660,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(85504,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(63848,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(31347,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(73529,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(56072,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(69873,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(31188,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(69305,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(95886,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67077,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(781,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14819,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(50317,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82550,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(15808,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(98217,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(26416,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80694,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52111,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5346,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(46020,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(44213,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(238,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98223,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(84521,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(32727,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(7971,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(15911,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92236,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(37817,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36486,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(6170,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(57379,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(88470,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(29565,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(31964,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86987,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32891,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60839,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(22692,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(3710,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(70147,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(12896,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22821,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(31286,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87536,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(92687,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(60223,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(29516,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(77087,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(63000,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89385,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(74896,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(32183,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(43322,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80230,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(69512,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38067,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78259,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(92156,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(80834,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(24011,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69641,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(90527,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(90234,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(3936,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94891,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94171,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(92193,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(45031,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(71423,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40985,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94958,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(57928,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(41125,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(67547,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(53729,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27044,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(52777,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39337,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(55426,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63763,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28619,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(82788,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(17803,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(37115,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(31805,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(46496,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(64855,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(13769,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32745,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81317,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(42706,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20190,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82873,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94592,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(54138,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(20434,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(60101,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(47351,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(25067,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(35510,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(31030,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(5187,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64562,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89379,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56018,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(96356,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(97448,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(72308,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63574,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(21008,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80566,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(76330,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80157,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(11035,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35375,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25805,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(94781,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(20831,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59686,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(66625,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56152,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(63500,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(11553,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(12213,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(39904,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(80310,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(72271,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(42883,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(37640,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(53552,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44476,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(79541,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8282,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(6115,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(35461,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(13256,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25140,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(72320,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(71649,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(89086,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(35736,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(49188,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(77081,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(91168,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(60449,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13159,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87512,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(56048,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(59899,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(86010,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(44268,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86175,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(86688,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(44097,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(2947,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4064,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(84252,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94061,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(33557,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(43359,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13677,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(51904,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(84796,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46783,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(90930,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48358,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(78900,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89813,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84155,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(63885,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(19873,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(74615,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(50054,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(22515,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(49298,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(55865,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92919,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(76593,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(66558,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(52270,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(8697,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(11395,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(64215,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(4821,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(15893,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(64416,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25195,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(31536,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(31134,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(17309,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(90075,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(81488,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(87622,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72735,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20812,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(78021,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(28741,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(42858,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(60479,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(41461,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(37908,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(12426,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(97351,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(74456,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(305,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(93640,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(92431,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9057,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80181,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(46728,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(37139,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(37652,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13226,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69903,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6359,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73596,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(37329,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(90765,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(66815,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(76885,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(16717,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(32373,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(26403,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(62158,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(3546,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(70513,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(40277,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73468,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(26043,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(93865,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(71228,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(37579,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(27239,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(22698,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(3509,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(73864,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(34954,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(6439,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(5358,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(71008,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(10308,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(38293,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89703,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(98474,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51623,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(24328,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(61169,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(45373,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(20068,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(9478,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(82312,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(92785,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(71832,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48309,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(28161,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(14642,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(22070,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(38916,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88330,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(48944,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(51171,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(72326,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(73974,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(99890,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(29772,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(25042,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(91564,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19061,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84033,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(94671,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(18322,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(40655,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(13995,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(95166,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65722,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20391,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(91949,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(25561,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(70617,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88372,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(57324,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(65063,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(69384,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(43591,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(42559,
+ 'Fuker100',
+ 'Fuker');
+
+INSERT INTO AIRPLANE VALUES
+(11376,
+ 'Boeing767',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(21911,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(80383,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(36846,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(65710,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(43670,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(51422,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(18139,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(19683,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(17480,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(83856,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(88012,
+ 'MD80',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(85449,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(7995,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(37237,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(60791,
+ 'MD84',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(50872,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(57067,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(17498,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(30914,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(74499,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(46124,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(20098,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(69042,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(84057,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(89068,
+ 'Boeing747',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(9350,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(78802,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(17199,
+ 'MD82',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(30902,
+ 'Airbus400',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(6304,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(18127,
+ 'Airbus355',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(68280,
+ 'Boeing737',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14434,
+ 'MD88',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(20574,
+ 'MD90',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(30981,
+ 'Airbus373',
+ 'EU Airbus');
+
+INSERT INTO AIRPLANE VALUES
+(94195,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(20782,
+ 'MD89',
+ 'McDonald-Douglas');
+
+INSERT INTO AIRPLANE VALUES
+(93920,
+ 'Boeing727',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(14257,
+ 'Boeing707',
+ 'Boeing');
+
+INSERT INTO AIRPLANE VALUES
+(39624,
+ 'Boeing737',
+ 'Boeing');
+

@@ -1,0 +1,261 @@
+//****************************************************
+// TCPObj.h 
+// Header file for TCPObj 
+// Coded by Karthick Venkatasamy Jaganathan
+// Dated 10/12/04
+// Towson University, Copyright 2004
+// This tcp is implemented as per RFC 793
+// The RFC is customized to web server transactions
+// ***************************************************
+#ifndef __tcpobj__
+#define __tcpobj__
+
+#include "../INTERFACES/aoaprotected.h"
+#include "../ARP/arpobj.h"
+#include "../IP/ipobj.h"
+#include "../HTTPTable/httplist.h"
+#include "thashindex.h"
+
+// Definition of TCP Protocol
+#define TCP_Protocol 	0x06
+#define MIN_TSLength 	0x14
+#define HTTPPort_L   	0x50
+#define HTTPPort_H   	0x00
+#define MAXTCPSEGSIZE 	1500
+#define MAXTCPDATASIZE 	1400
+
+// Define All TCP States 
+// Please see the RFC 793 for more details regarding the flags
+#define CLOSED 		0x01
+#define LISTEN 		0x02
+#define SYNRCVD 	0x03
+#define SYNSENT 	0x04
+#define ESTAB 		0x05
+#define FINWAIT1 	0x06
+#define FINWAIT2 	0x07
+#define TIMEWAIT 	0x08
+#define CLOSING 	0x09
+#define CLOSEWAIT 	0x10
+#define LASTACK 	0x11
+
+
+// Define All the Flags used
+
+#define TFIN		0x01	/* option flags: no more data	*/
+#define TSYN		0x02	/* sync seqnum 			*/
+#define TRST		0x04	/* reset connection 		*/
+#define TPUSH		0x08	/* push buffered data 		*/
+#define TACK		0x10	/* ack				*/		
+#define TURGE		0x20	/* urgent pointer 		*/
+
+// Dedine all source specific parameters
+class TCPObj{
+private:
+	
+	ARPObj arp;
+	IPObj ip;
+	AOAProtected io;			
+	HTTPList h;
+    	TcphashIndex t;	
+
+	typedef struct
+	{
+		unsigned short	sourceport;		// Source Port Number
+
+		unsigned short	destinationport;	// Destination Port Number
+		
+		unsigned long	seqnumber;		// Sequence Number
+		
+		unsigned long	acknumber;		// Acknowledgement Number
+		
+		char		Dataoffset;		// Data Offset
+		
+		char		Flags;			// Flags
+		
+		unsigned short	window;			// window
+		
+		unsigned short	checksum;		// Check Sum
+		
+		unsigned short	urgentpointer;		// Urgent Pointer
+		
+		char		*options;		// Pointer to Options
+		
+		char		*data; 			// Pointer to Data
+
+	} TCPHeader;
+
+	typedef struct TCBRecord  
+	{	
+	    	// Specifies the availablity of the record
+		unsigned char Avail;
+		// 0 indicates the record is available
+		// 1 indicates the record is Utilized
+	    	// Destinsiton Port Number
+
+		char destport[2];		// Destination IP Address
+		
+		char destip[4];			// The State of the connection
+
+		int  state;			// Last Unacknowledged Sequence number
+
+		unsigned long SNDUNA;		// Next Send Sequence number
+		
+		unsigned long SNDNXT;		// Sender Window size available
+
+		unsigned long SNDWND;		// Segment Sequence of last window update
+
+		unsigned long SNDWL1;		// Segment sequence of last acknowledged segment
+		
+		unsigned long SNDWL2;		// Initial Send Sequence Number
+
+		unsigned long ISS;		// Next Sequence number to acceot by the receiver
+
+		unsigned long RCVNXT;		// Window size of the receiver
+
+		unsigned long RCVWND;		// Initial receive Sequence number
+
+		unsigned long IRS;		// Sender Round Trip Time
+
+		unsigned long SRTT;		// Last packet sent time 
+
+		unsigned long LST; 		// Last Packet Sent Timer or in case of a connection establishment its the SYNC Received Time
+		unsigned long CURRENTRTT;	// Pointer to the buffer for storing the requests
+
+		int SendFlag;
+		long prev;
+		long next;
+		unsigned long connstarttime;
+	
+	}; 
+	
+	TCBRecord *currentTCB;
+	
+	// Variables used to Addess the Host
+	static char HostIP[4];			// Specifies the host IP Address
+	static char HostSubnetMask[4];		// Specifies the Hosts Subnet Mask
+	static char GateWayIP[6];		// Specifies the GateWays IP Address
+	static char GateWayMAC[6];		// Specifies the Gateways MAC Address	
+	static unsigned short SourcePort;	// Specifies the Source Port of the TCP to Listen For Connection 
+
+	// Variables used to Track the TCP Buffer
+	static unsigned long TCBBase;
+	static long FreeList; 
+	static long TimeWaitList; 	
+	static long LastTimeWaitList; 		
+	static long TCBRecords;
+
+	// Statistics
+	static unsigned long noHttpR;	// number of incomming HTTP Requests
+	static unsigned long noHttpRs;	// number of HTTP Requests Served
+	static unsigned long noconnreq;	// number of connection requested
+	static unsigned long noconnestab;	// number of connection established 
+	static unsigned long noconncurr;	// Number of open connections at present 
+	static unsigned long averageconntime;	// Average connection time for a connection from the first SYN SENT to
+						// the time the tcb is made available in the free list 
+public:
+
+// Initialize TCP Obj and TCB
+int init(char SrcIP[4], char SourceMAC[6],char SubnetMask[4], char GwayIP[4],char GwayMAC[6], unsigned short SrcPort, long TCPBuffBase, long TCPBuffSize, long NoTCBRecords);
+
+// TCP Functions
+int TCPHandler(char* TCPPack,int size,char* SourceIP, char* TargetIP, int Protocol, int currenttask);
+
+// Close the TCP connection using this function
+int Close(int TCBRecordNum, int currenttask);
+
+
+
+// This sends HTTP replies, This is specific to the application. It must be changed for other applications
+int tcpSend(int TCBRecord, char *responseHeader, long headerSize, unsigned long resourceAddress, long fileSize, char *ip, char *port, int currenttask);
+
+int UserTimeOut();
+int TimeWaitTimeOut();
+void printStatistics(int Line);
+
+private:
+	
+	
+	// This send function is used for TCP Retransm,issiond
+	int Send(int TCBRecordNum, char *sendbuffer,unsigned long *sendsize, unsigned long SeqNum, char flags, char *ip, char *port, int currenttask);	
+
+	// Send data using this function
+	int Send(int TCBRecordNum, char *sendbuffer,unsigned long *sendsize, int currenttask);		
+
+	//sets the send flag
+	int SetSendFlag(int TCBRecordNum);
+
+	//clears the send flag
+	int ClearSendFlag(int TCBRecordNum);
+
+	//get the RTT value
+	int getRtt(int TCBRecordNum);	
+	
+	// Gets the Status of the TCP Connection
+	int getTCPStatus(int TCBRecordNum);	
+
+	//get the sequence number in the application to ensure reliable data delievery
+	unsigned long getSeqNum(int TCBRecordNum);
+
+	//get the seq num that was last ack
+	unsigned long getLastAck(int TCBRecordNum, char *ip, char *port);	
+	
+	
+// TCB Management Functions //
+	
+	// This inserts a TCB Record
+	int InsertTCB(TCBRecord *tcb);
+	// Update the time wait list
+	int UpdateTimeWaitList(int TCBRecordNum);	
+	
+	// This deletes a TCB Record
+	int DeleteTCB(int TCBRecordNum);
+
+	// Get a TCB Record 
+	int GetTCB(int TCBRecordNum, long *tcb);
+
+	// Search for a TCB Record
+	int SearchTCB(char IPAdd[4], char SrcPortNum[2]);
+
+	
+// MISC FUnctions //
+	// Converts a char array into sequence number 
+	unsigned long charToseqnum(char *TCPPack);
+
+	// Converts a chare array into window
+	unsigned long charToWindow(char *TCPPack);
+	
+	// Converts a long value into char array
+	int longToChar(unsigned long num, char *TCPPack);
+
+	// Converts a short value into char array 
+	int shortToChar(unsigned short num, char *TCPPack);	
+	
+	// Used to compare sequence numbers
+	int greaterEqualto(unsigned long x,unsigned long y,unsigned long z);	
+
+	int updateSNDNxt(int TCBRecordNum,unsigned long seqnum);	
+	
+
+// TCP Receive Handlers call depends on the type of the segment which arrives //
+	
+	int RCVSYNSENTHandler(char* TCPPack,TCBRecord *tcb, TCPHeader *tcp, char* SourceIP, char* TargetIP,int TCBRecordNumber, int currenttask);
+	
+	int OtherHandler(char* TCPPack,int size,TCBRecord *tcb, TCPHeader *tcp, char* SourceIP, char* TargetIP,int TCBRecordNumber, int currenttask);
+	
+	void FormatHeader(char * Header, char * TCPPack);
+	
+	int ListenHandler(char* TCPPack,int size, TCPHeader *tcp, char* sourceip, 
+			char* targetip,int tcbrecordnumber, int currenttask);	
+
+	// MISC TCP Functions 
+	// Formats a TCP Packet
+	int FormatTCPPacket(char *TCPPack, char *sourceIP, char *destIP, char *sourcePort, char * destPort, char Flags,unsigned short Window,unsigned long seqnum, unsigned long acknum, char *options, int numbytesoptions, char *data, int datasize);	
+
+	// TCP Check sum module 
+	unsigned short TCPChecksum(char *tdatagram, long TSLength,char *sourceIP, char*targetIP, unsigned int protocol);	     // Modulo 32 Comparision
+	unsigned long mod32cmp(unsigned long seq1, unsigned long seq2);
+	unsigned long CalcRTT(unsigned long LST, unsigned long SRTT);
+	int longtoHex(char *out, unsigned int in);	
+};
+#endif
+

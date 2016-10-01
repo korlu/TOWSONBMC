@@ -1,0 +1,12 @@
+@customer;
+@custexit;
+@plan;
+@planrate;
+@calls;
+@callpls;
+@schedule;
+@credit;
+@lnfixchr;
+@speser;
+@serfee;
+@taxrate;

@@ -1,0 +1,15 @@
+Welcome.htm
+index.htm
+images\tulogo.gif
+images\karne2.jpg
+images\yr7800.jpg
+images\Mail1b.gif
+pagenotfound.html
+favicon.ico
+barerocks10k.gif
+debugxx.html
+barerocks100k.gif
+barerocks320k.gif
+xyz 
+barerocks530k.gif
+rc.jpg

@@ -1,0 +1,2 @@
+copy test.exe a:
+

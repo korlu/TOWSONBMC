@@ -1,0 +1,3303 @@
+
+#include "tcpobj.h"
+#include "..\ip\rand.h"
+#include "..\webserver\apptask.h"
+#include "..\Ethernet\EtherObj.h"
+//***********************************************************************************************
+// Static Variable Definitions
+
+// Variables used to Addess the Host
+char TCPObj::HostIP[4];					// Specifies the host IP Address
+char TCPObj::HostSubnetMask[4];				// Specifies the Hosts Subnet Mask
+char TCPObj::GateWayIP[6];				// Specifies the GateWays IP Address
+char TCPObj::GateWayMAC[6];				// Specifies the Gateways MAC Address
+unsigned short TCPObj::SourcePort = 80;			// Port Number of the HTTP TO listen u can change the port 
+
+// Variables used to Track the TCP Buffer
+unsigned long TCPObj::TCBBase = 0;			// Base of TCB Table
+long TCPObj::FreeList =0;				// pointer to the Free TCB Linked List 
+long TCPObj::TimeWaitList =0;				// Pointer to the List of TCB's in the Time Wait State 
+long TCPObj::LastTimeWaitList=0;			// Pointer to the Last Record in the Time Wait List 
+long TCPObj::TCBRecords=0;				// Denotes the total number of TCB Records both used and free 
+int TCPObj::SendCountPtr=0;				// Send Count Ptr for debug  
+							// and in time wait list  
+//RKK change the following value to change the pkt size 
+const int TCPSegSize = 1460-1;				// The Maximum amount of Data that could be accomodated in a 
+							// single 
+//----------------------
+// eth   ip   tcp   data
+// ---------------------
+// 14    20    20   1460 
+//      <--------------->
+//            1500 
+unsigned long TCPObj::noHttpR = 0;			// number of incomming HTTP Requests
+unsigned long TCPObj::noHttpRs = 0;			// number of HTTP Requests Served
+unsigned long TCPObj::noconnreq = 0;			// number of connection requested
+unsigned long TCPObj::noconnestab = 0;			// number of connection established 
+unsigned long TCPObj::noconncurr = 0;			// Number of open connections at present 
+unsigned long TCPObj::averageconntime = 0;		// Average time of a connection from the starting to end
+							// untill the TCB is made free
+
+// Function Definitions begins here
+//*******************************************************************************************
+// This is the init function this function must be called only once in a Application
+// The input parameters: are the IP Address of the HOST, Port number of the HOST Application, GateWay IP, GatewayMac of the Host, 
+// Base address of the TCP Buffer, Size of the TCP Buffer, Count of number of Entries in the Connection Request Queue, 
+// Count of Number of entries in the connection Established Queue, Count of number of entries in the Connection close queue
+// Return Values:
+//  0 - if initialized successfully
+// -1 if the TCP Buffer Space is not sufficient 
+int TCPObj::init(char SrcIP[4], char SourceMAC[6],char SubnetMask[4], char GwayIP[4],char GwayMAC[6], unsigned short SrcPort, long TCPBuffBase, long TCBBufferSize, long NoTCBRecords)
+{
+	long hashSize=0;
+	TCPBuffBase = TCPBuffBase - 0x00110000;
+	hashSize = t.init(1000, TCPBuffBase);		
+
+	// Check for the size of availablable memory space for the table and return error if it is not enough
+	TCBRecords = NoTCBRecords;
+	if(TCBBufferSize < (hashSize+(NoTCBRecords*sizeof(TCBRecord))))
+	{
+	    return -1;
+	}
+	
+    	for(int i=0;i<4;i++)
+	{
+	    	HostIP[i] = SrcIP[i];			// Assign the Source IP
+		GateWayIP[i] = GwayIP[i]; 		// Assign the Gateway IP
+		HostSubnetMask[i] = SubnetMask[i]; 	// Assign the Host Subnet Mask
+	}
+	
+	
+	for(i =0; i< 6 ;i++)
+	{
+	 	GateWayMAC[i] = GwayMAC[i];
+	}
+	
+	
+	// Initialize the source port	
+	SourcePort = SrcPort;			
+
+
+
+	// Initialize the base address of the TCP Memory Space 
+	TCBBase = TCPBuffBase + hashSize;	
+	
+	
+	// Initialise the TCB Table
+	TCBRecord *TCBPointer = (TCBRecord*)TCBBase;
+		
+	for(i =0; i<NoTCBRecords;i++)
+	{
+	    	if(i==0)
+		{
+		    	TCBPointer[i].Avail =0;
+			TCBPointer[i].prev = -1;
+			TCBPointer[i].next = i+1;
+			FreeList = 0;
+		}
+		else if(i==(NoTCBRecords-1))
+		{
+			TCBPointer[i].Avail =0;
+			TCBPointer[i].prev = i-1;
+			TCBPointer[i].next = -1;
+		}
+		else
+		{
+			TCBPointer[i].Avail =0;
+			TCBPointer[i].prev = i-1;
+			TCBPointer[i].next = i+1;
+		}
+		TCBPointer[i].state = CLOSED;
+		TCBPointer[i].noAckSent = 0;
+		TCBPointer[i].noFinSent = 0;
+		TCBPointer[i].noDataSent = 0;
+		TCBPointer[i].noSynSent = 0;
+		TCBPointer[i].noHttpHeaderSent = 0;
+	}
+
+	TimeWaitList =-1;
+	LastTimeWaitList = -1;
+	random r = random(io.AOAgetTimer());	
+	return 0;
+}
+//************************************************************************************************
+// These are functions to manipulate the TCB Data Structure
+// Insert a row in TCB
+// It returns the Record Number if Successful
+// It Returns -1 if the The TCB Table is full
+ 	
+int TCPObj::InsertTCB(TCBRecord *tcb)
+{
+   TCBRecord *TCBPointer, *FreeTCB;
+   TCBPointer = (TCBRecord*)TCBBase;
+   long FreeTCBIndex=0; 
+   int hashvalue=0;
+   long hashIndexVal=0;
+
+   // if TCB table is full
+   if(FreeList == -1)
+   {
+       return -1;
+   }
+
+   // Get the address of the free tcb record at the head of the FreeList
+   FreeTCB = &TCBPointer[FreeList];
+   // Assign the index of the free TCB to return the 
+   FreeTCBIndex = FreeList;
+   //Update the head of free list to the next free record
+   FreeList = FreeTCB->next;
+   // Update teh Avail bit to 1
+   FreeTCB->Avail = 1; 
+   // Update the previous pointer of the free list to -1
+   if(FreeList != -1)
+   {
+   TCBPointer[FreeList].prev = -1;
+   }
+
+   // Destinsiton Port Number
+   FreeTCB->destport[0] = tcb->destport[0];
+   FreeTCB->destport[1] = tcb->destport[1];	
+   // Destination IP Address
+   for(int j=0;j<4;j++)
+   {
+      FreeTCB->destip[j] = tcb->destip[j];
+   }
+
+   // The State of the connection
+   FreeTCB->state = tcb->state;
+   // Last Unacknowledged Sequence number
+   FreeTCB->SNDUNA = tcb->SNDUNA;
+   // Next Send Sequence number
+   FreeTCB->SNDNXT = tcb->SNDNXT;	
+   // Sender Window size available
+   FreeTCB->SNDWND =tcb->SNDWND;	
+   // Segment Sequence of last window update
+   FreeTCB->SNDWL1 = tcb->SNDWL1;
+   // Segment sequence of last acknowledged segment
+   FreeTCB->SNDWL2 = tcb->SNDWL2;
+   // Initial Send Sequence Number
+   FreeTCB->ISS = tcb->ISS;
+   // Next Sequence number to acceot by the receiver
+   FreeTCB->RCVNXT=tcb->RCVNXT;
+   // Window size of the receiver
+   FreeTCB->RCVWND=tcb->RCVWND;
+   // Initial receive Sequence number
+   FreeTCB->IRS = tcb->IRS;
+   // Sender Round Trip Time
+   FreeTCB->SRTT = tcb->SRTT;
+   // Last packet sent time 
+   FreeTCB->LST = tcb->LST; 
+   // Last Packet Sent Timer or in case of a connection establishment its the SYNC Received Time
+   FreeTCB->CURRENTRTT = tcb->CURRENTRTT;
+   
+   hashvalue = t.hashfun(FreeTCB->destip, FreeTCB->destport);
+   hashIndexVal = t.getIndex(hashvalue);  
+   if(hashIndexVal == -1)
+   {
+       FreeTCB->next = -1;
+       FreeTCB->prev = -1; 
+       t.setIndex(hashvalue,FreeTCBIndex);
+   }
+   else
+   {
+       FreeTCB->prev=-1;
+       FreeTCB->next = hashIndexVal;
+       TCBPointer[hashIndexVal].prev = FreeTCBIndex;
+       t.setIndex(hashvalue,FreeTCBIndex);
+   }
+   
+   return FreeTCBIndex;
+}
+//****************************************************************************
+// Delete a Row in TCB
+int TCPObj::DeleteTCB(int TCBRecordNum)
+{
+   TCBRecord *TCBPointer;
+   TCBPointer = (TCBRecord*)TCBBase;   
+   long prev;
+   long next;
+   long hashValue =0;
+   
+   if(TCBPointer[TCBRecordNum].state == CLOSED)
+   {
+       return 0;
+   }
+   if(TCBPointer[TCBRecordNum].state == TIMEWAIT)
+   {
+       return 0;
+   }
+   averageconntime = ((averageconntime + ((unsigned long)io.AOAgetTimer() - TCBPointer[TCBRecordNum].connstarttime)));  
+   noconncurr--; 
+   TCBPointer[TCBRecordNum].state = CLOSED; 	
+   TCBPointer[TCBRecordNum].Avail = 0;
+   TCBPointer[TCBRecordNum].SendFlag = 0; 
+   prev = TCBPointer[TCBRecordNum].prev;
+   next = TCBPointer[TCBRecordNum].next;
+   hashValue = t.hashfun(TCBPointer[TCBRecordNum].destip,TCBPointer[TCBRecordNum].destport); 	
+
+   if(next == -1 && prev ==-1)
+   {
+       // update the hash ndex to -1
+       t.setIndex(hashValue, -1);
+   }
+   if(next == -1 && prev >-1)
+   {
+      // Update the free list
+      TCBPointer[prev].next =-1;
+   } 
+   if(next > -1 && prev == -1)
+   {
+       // update the free list
+       t.setIndex(hashValue, next);	
+       TCBPointer[next].prev=-1;
+       
+   }  
+   if(next > -1 && prev > -1)
+   {
+       TCBPointer[next].prev=prev;
+       TCBPointer[prev].next=next; 
+   } 
+   if(FreeList != -1)
+   {
+   TCBPointer[FreeList].prev = TCBRecordNum;
+   TCBPointer[TCBRecordNum].next = FreeList; 
+   }
+   else
+   {
+   TCBPointer[TCBRecordNum].next = -1;  
+   }
+   TCBPointer[TCBRecordNum].prev =-1;
+   FreeList = TCBRecordNum;
+  
+   return 0;
+}
+//**********************************************************************************
+int TCPObj::UpdateTimeWaitList(int TCBRecordNum)
+{
+   TCBRecord *TCBPointer;
+   TCBPointer = (TCBRecord*)TCBBase;
+   long prev;
+   long next;
+   long hashValue =0;
+   
+   TCBPointer[TCBRecordNum].SendFlag = 0; 
+   prev = TCBPointer[TCBRecordNum].prev;
+   next = TCBPointer[TCBRecordNum].next;
+   hashValue = t.hashfun(TCBPointer[TCBRecordNum].destip,TCBPointer[TCBRecordNum].destport); 	
+
+    if(TCBPointer[TCBRecordNum].state == TIMEWAIT)
+    {
+	return 0;
+    }
+    else
+    {
+	TCBPointer[TCBRecordNum].state = TIMEWAIT;	
+        TCBPointer[TCBRecordNum].LST = io.AOAgetTimer();		
+    }
+   if(next == -1 && prev ==-1)
+   {
+       // update the hash ndex to -1
+       t.setIndex(hashValue, -1);
+   }
+   if(next == -1 && prev >-1)
+   {
+   	TCBPointer[prev].next =-1;
+     	// Update the free list
+   } 
+   
+   if(next > -1 && prev == -1)
+   {
+       t.setIndex(hashValue, next);	
+       TCBPointer[next].prev=-1;
+       // update the free list
+   }  
+   if(next > -1 && prev > -1)
+   {
+       TCBPointer[next].prev=prev;
+       TCBPointer[prev].next=next; 
+   } 
+   if(TimeWaitList == -1)
+   {
+       TimeWaitList = TCBRecordNum;
+       LastTimeWaitList = TCBRecordNum;
+       TCBPointer[TCBRecordNum].prev = -1;
+       TCBPointer[TCBRecordNum].next=-1;
+   }
+   else
+   {
+       TCBPointer[TimeWaitList].prev=TCBRecordNum;
+       TCBPointer[TCBRecordNum].next = TimeWaitList;
+       TCBPointer[TCBRecordNum].prev=-1;
+       TimeWaitList = TCBRecordNum;
+   }
+   
+  return 0;
+}
+
+//***************************************************************************************************************************
+// Get a Row in TCB
+int TCPObj::GetTCB(int TCBRecordNum, long *tcb)
+{
+   TCBRecord *TCBPointer, tcbrecord;
+   TCBPointer = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) ));
+	
+   if(TCBPointer->Avail == 1) 
+   {
+       *tcb = (long)TCBPointer;	
+       return 0;
+   }
+   return -1;
+}
+//**********************************************************************************************************
+// This function does a modulo 32 comparision
+// z Totaal Receive Window Size
+// x is the value which is assumed to be greater
+// y is the value whic is assumed to be small 
+// Returns 0 if the values are equal
+// Returns > 0 if x is > y i.e. x-y
+// Returns a value -1 if y is less than x
+int TCPObj::greaterEqualto(unsigned long x,unsigned long y,unsigned long z)
+{
+	// Denotes the lower bound of long
+	unsigned long Start = 0;
+
+	// Denotes the upper bound of long 
+	unsigned long End = 0xFFFFFFFF;
+	
+	if(x == y)
+	{
+		return 0;
+	}
+	else if(x > y)
+	{
+		if((x - y) > z)
+		{
+			return -1;
+		}
+		else if((x-y) <= z)
+		{
+			return (x-y);
+		}
+	}
+	else if(x < y)
+	{
+	        
+		if( ( (x-Start) + (End-y) ) > z)
+		{
+			return -1;
+		}
+		else
+		{
+			return (x-Start) + (End-y) + 1;
+		}
+	}
+	return -1;
+
+}
+//*************************************************************************************************
+// TCPHandler
+//*************************************************************************************************
+// Returns -17 if the packet is less than minimum length
+// Returns -18 if the packet is not for HTTP Port
+// Returns -19 if the packet does not have correct checksum
+// Returns -20 if Retrieving TCB Record Failed
+int TCPObj::TCPHandler(char* TCPPack,int size,char* SourceIP, char* TargetIP, int Protocol, int currenttask)
+{
+char chsum1[2];
+char chsum2[2];
+int checksum=0;
+char SrcPortNum[2];
+long TCBRecordNum;
+char Header[sizeof(TCPHeader)];
+int retcode=0;
+
+TCPHeader *tcp;
+tcp = (TCPHeader*)Header;
+
+// check the size if the size is less than the minimum header size return error
+if(size < MIN_TSLength)
+{
+    return -17;
+}
+
+// Check the destination port of the packet to be the HTTP Port if so accept it or discard it
+if(TCPPack[2] != HTTPPort_H || TCPPack[3] != HTTPPort_L)
+{
+    return -18;
+}
+
+// get the checksum from the packet
+chsum1[0] = TCPPack[16];
+chsum1[1] = TCPPack[17];
+
+//calculate the checksum of the packet
+checksum = TCPChecksum(TCPPack, size, SourceIP, TargetIP, Protocol);
+
+chsum2[0] =(char)((checksum>>8) & 0xFF);
+chsum2[1] =(char)(checksum & 0xFF);	
+
+//compare checksum in packet and calculated checksum
+if(chsum1[0] != chsum2[0] || chsum1[1] != chsum2[1])
+{
+    return -19;
+}
+
+// Check if a TCB Record is already available
+SrcPortNum[0]= TCPPack[0];
+SrcPortNum[1]= TCPPack[1];
+
+// format tcp header
+FormatHeader(Header, TCPPack);
+
+// search tcb
+TCBRecordNum = SearchTCB(SourceIP,SrcPortNum);
+
+TCBRecord *tcb;
+tcb=(TCBRecord*)(TCBBase + (TCBRecordNum * sizeof(TCBRecord) ));
+
+//  io.AOAprintHex(tcb->noSynSent, Line22);
+//  io.AOAprintHex(tcb->noHttpHeaderSent, Line22+20);
+//  io.AOAprintHex(tcb->noAckSent, Line22+40);
+//  io.AOAprintHex(tcb->noFinSent, Line22+60);
+//  io.AOAprintHex(tcb->noDataSent, Line22+80);
+
+// Check if TCB Record is available
+if(TCBRecordNum == -1)
+{
+  tcb->noSynSent = 0;
+  tcb->noHttpHeaderSent = 0;
+  tcb->noAckSent = 0;
+  tcb->noFinSent = 0;
+  tcb->noDataSent = 0;
+	////io.AOAprintCharacter('!', Line19);
+   	// IF the TCB dosent Exist It is assumed to be in Listen State or it is in closed state 
+	retcode = ListenHandler(TCPPack, size, tcp, SourceIP, TargetIP, TCBRecordNum, currenttask);
+	return retcode;			
+}
+else
+{
+	////io.AOAprintCharacter('@', Line19+4);
+	// Get the TCB record if available
+	if(GetTCB(TCBRecordNum,(long*)&tcb)!=0)
+	{
+	 	return -20;   
+	}
+
+	retcode = OtherHandler(TCPPack, size, tcb, tcp, SourceIP, TargetIP, TCBRecordNum, currenttask);
+	return retcode;
+}
+
+return 0;	
+}
+
+//************************************************************************************************
+int TCPObj::ListenHandler(char* TCPPack,int size, TCPHeader *tcp, char* SourceIP, char* TargetIP,
+			int TCBRecordNumber, int currenttask)
+{
+	//RKK Buffer Definitions 
+	AOATask task;
+	EtherObj EO;
+
+	char SrcPortNum[2];
+	unsigned long seqnum; 
+	char options[10];
+	char data[10];
+	char TargetMAC[6];
+	int status;
+	TCBRecord temptcb;
+	int retcode = 0;
+	
+      	// In this case the TCB Dosenot Exist so assume the state of that connection is in LISTEN State
+
+      	// 1. Check for RST any RST must be ignored	
+      	if( (TCPPack[13] & TRST) == TRST)
+	{
+	return -21;
+  	}
+        // 2. Check for TSYN.
+        if( (TCPPack[13] & TSYN) == TSYN)
+        {
+		////io.AOAprintCharacter('a', Line20);
+
+		// IF the packet is a syn packet
+		temptcb.Avail = 1;
+
+		// Error Check these things Here
+		temptcb.destport[0] = TCPPack[0];
+		temptcb.destport[1] = TCPPack[1]; 
+		temptcb.destip[0] = SourceIP[0]; 	
+		temptcb.destip[1] = SourceIP[1]; 		
+		temptcb.destip[2] = SourceIP[2]; 		
+		temptcb.destip[3] = SourceIP[3]; 			
+		temptcb.state	= SYNRCVD;
+		temptcb.connstarttime = io.AOAgetTimer();
+		noconnreq++;
+		random r = random(io.AOAgetTimer());	
+		temptcb.ISS	= r.getRandomAoA(io.AOAgetTimer());	  
+		temptcb.SNDUNA	= temptcb.ISS;
+		temptcb.SNDNXT  = temptcb.SNDUNA + 1;   
+		temptcb.SNDWND 	= charToWindow(&TCPPack[14]); 
+
+		// Error: Check These Two Statements
+		temptcb.SNDWL1	= 0;
+		temptcb.SNDWL2 	= 0xFFFFFFFF;
+	
+		temptcb.IRS	= charToseqnum(&TCPPack[4]); 
+	
+		temptcb.RCVNXT  = temptcb.IRS + 1;
+		temptcb.RCVWND  = MAXTCPDATASIZE; 
+		temptcb.SRTT 	= 0;
+		temptcb.LST 	= io.AOAgetTimer();
+		temptcb.SendFlag=0;		
+
+		// Insert Record into TCB
+		status = InsertTCB(&temptcb);
+
+		// IF TCB table is full
+		if(status == -1)
+		{
+			////io.AOAprintCharacter('b', Line20+4);
+			SrcPortNum[0]= HTTPPort_H;
+	 		SrcPortNum[1]= HTTPPort_L; 
+	 	 	seqnum = 0x00;
+			seqnum = charToseqnum(&TCPPack[4]);
+			
+		        do
+          		{
+             		  retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+             		  if(retcode == -1)
+                	     task.AOAsuspendTask();
+          		}while(retcode == -1);	
+	  		retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,MAXTCPSEGSIZE,
+					    seqnum,0, options, 0, data, 0, TargetMAC, currenttask);
+             	    	return retcode;
+		}		
+		else
+		{
+			////io.AOAprintCharacter('c', Line20+8);
+	 	
+			//Send SYN ACK Back
+			SrcPortNum[0]= HTTPPort_H;
+			SrcPortNum[1]= HTTPPort_L; 	
+
+	        	do
+       			{
+       		  	   retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+       		  	   if(retcode == -1)
+               	     	      task.AOAsuspendTask();
+       			}while(retcode == -1);		  	
+			retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TSYN|TACK, MAXTCPSEGSIZE,
+				            temptcb.ISS,temptcb.RCVNXT, options, 0, data, 0, TargetMAC, currenttask);
+
+			return retcode;
+	        }
+	  }// End of SYN 
+
+        // 3. Check for TACK
+      	if((TCPPack[13] & TACK) == TACK) 
+      	{
+	  ////io.AOAprintCharacter('d', Line20+12);
+	  // Why TRST Here   
+	  // check if it is an acknowledgement if so send a reset	
+	  SrcPortNum[0]= HTTPPort_H;
+	  SrcPortNum[1]= HTTPPort_L; 
+	  seqnum = 0x00;
+	  seqnum = charToseqnum(&TCPPack[8]);
+	
+          //resolve ARP 
+          do
+          {
+             retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+             if(retcode == -1)
+                task.AOAsuspendTask();
+          }while(retcode == -1);		
+
+	  retcode = SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST, MAXTCPSEGSIZE, 
+			     seqnum,0, options, 0, data, 0, TargetMAC, currenttask);
+
+          return retcode;
+        }
+	
+      return 0; // should never come here
+}
+//********************************************************************************************************
+// OtherHandler 
+//********************************************************************************************************
+int TCPObj::OtherHandler(char* TCPPack,int size, TCBRecord *tcb, TCPHeader *tcp, 
+			char* SourceIP, char* TargetIP,int TCBRecordNumber, int currenttask)
+{
+    //RKK Buffer Definitions 
+    AOATask task;
+    EtherObj EO; 
+    int retcode=0;
+    char SrcPortNum[2];
+    char options[10];
+    char data[10];
+    char TargetMAC[6]; 	
+    int Acceptable_Flag = 0;
+    int tempretcode=0;
+    long timer;
+
+    // 1. Check if the sequence number is acceptable or not 
+    // Acceptability Test Case1
+    if(((size - (tcp->Dataoffset*4)) == 0) && (tcb->RCVWND == 0))
+    {
+        if(tcp->seqnumber == tcb->RCVNXT)
+        {
+     	   Acceptable_Flag =1;
+	}
+    }
+
+    // Acceptability Test Case 2
+    if((((tcp->Dataoffset*4)- size) == 0) && (tcb->RCVWND > 0))
+    {
+        if((greaterEqualto(tcp->seqnumber, tcb->RCVNXT, MAXTCPDATASIZE) >= 0) && 
+           (greaterEqualto((tcb->RCVNXT+tcb->RCVWND),tcp->seqnumber, MAXTCPDATASIZE) > 0))
+        {
+    	   Acceptable_Flag =1;
+	}
+    }
+
+    // Acceptability Test Case 3	
+    if(((size - (tcp->Dataoffset*4)) > 0 )&& (tcb->RCVWND == 0))	
+    {
+        Acceptable_Flag = 0;
+    }
+		
+    // Acceptability Test Case 4
+    if(((size - (tcp->Dataoffset*4))) > 0 && (tcb->RCVWND > 0))
+    {
+        if(((greaterEqualto(tcp->seqnumber, tcb->RCVNXT, MAXTCPDATASIZE) >= 0) && 
+	    (greaterEqualto((tcb->RCVNXT + tcb->RCVWND), tcp->seqnumber, MAXTCPDATASIZE) > 0)) || 
+	    ((greaterEqualto(( tcp->seqnumber + ( size - ( tcp->Dataoffset * 4 ) - 1) ), 
+	     tcb->RCVNXT, MAXTCPDATASIZE) >= 0) && (greaterEqualto((tcb->RCVNXT + tcb->RCVWND), 
+	     ( tcp->seqnumber + ( size - ( tcp->Dataoffset * 4 ) - 1) ), MAXTCPDATASIZE) > 0)))
+	{
+	   Acceptable_Flag =1;	
+        }
+    }
+	
+    // If the Incomming segment is not acceptable 
+    if(Acceptable_Flag == 0)
+    {	
+	    ////io.AOAprintCharacter('e', Line20+16);
+	    if((tcp->Flags & TRST) == TRST)
+	    {
+		////io.AOAprintCharacter('f', Line20+20);
+		// If the segment has a RST flag on. Drop the segment, delete tcb and return
+		DeleteTCB(TCBRecordNumber); 
+		return 0;	
+	    }
+	    else
+	    {
+			////io.AOAprintCharacter('g', Line20+24);
+               		// Error is here check it
+			// send an Acknowledgement drop the segment and return 
+			// Form an ACK and Send it 
+			SrcPortNum[0]= HTTPPort_H;
+			SrcPortNum[1]= HTTPPort_L;
+			
+		        do
+          		{
+             		  retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+             		  if(retcode == -1)
+                	     task.AOAsuspendTask();
+          		}while(retcode == -1);	
+	  		retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK|TRST, tcb->RCVWND,
+					    tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC, currenttask);
+			DeleteTCB(TCBRecordNumber); 	
+			
+			return retcode;
+	    }
+    }  
+    else //If the Incomming segment is acceptable
+    {
+	////io.AOAprintCharacter('h', Line20+28);
+	// 2. Check if the RST bit is set 
+        if((tcp->Flags & TRST) == TRST)
+	{
+	    ////io.AOAprintCharacter('i', Line20+32);
+	    DeleteTCB(TCBRecordNumber);
+	    return 0;
+	}
+
+	// 3. Check the SYN bit
+	if((tcp->Flags & TSYN) == TSYN)
+	{
+	    ////io.AOAprintCharacter('j', Line20+36);
+   	    // Form an ACK and Send it 
+	    SrcPortNum[0]= HTTPPort_H;
+	    SrcPortNum[1]= HTTPPort_L;
+			
+	    // Format a TCP Packet
+	    // Error: The reset Sequence number might change
+	    // Why TRST Here
+	
+            do
+            {
+            	  retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  if(retcode == -1)
+             	     task.AOAsuspendTask();
+            }while(retcode == -1);		
+	    retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,tcb->RCVWND,
+				tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC, currenttask);
+
+   	    DeleteTCB(TCBRecordNumber);
+	    return retcode;	
+	}
+
+	// 4. Check the ACK Field
+	if((tcp->Flags & TACK) == TACK)
+	{
+
+	    ////io.AOAprintCharacter('k', Line20+40);
+	    
+	    if(tcb->state == SYNRCVD)
+	    {
+		tcb->noSynSent++;
+		tcb->noAckSent++;
+		////io.AOAprintCharacter('l', Line20+44);
+	        // if we get correct ack for syn/ack, change state to established
+		if((greaterEqualto(tcp->acknumber, tcb->SNDUNA, MAXTCPDATASIZE) >= 0) && 
+		   (greaterEqualto(tcb->SNDNXT, tcp->acknumber, MAXTCPDATASIZE) >= 0) )
+		{
+		    ////io.AOAprintCharacter('m', Line20+48);
+		    // The Ack is acceptable 
+		    // Our SYN has been ACKED 
+		    // Enter Established State
+		    tcb->state= ESTAB;
+		    noconnestab++;
+		    noconncurr++;
+		  //sdp  tcb->SNDUNA = tcp->acknumber;
+		  //sdp  tcb->SNDWND = tcp->window; 
+		  //sdp  tcb->LST = io.AOAgetTimer();
+		    //tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);
+		    timer=io.AOAgetTimer();
+		    tcb->SRTT = timer-tcb->LST;
+		    tcb->LST = timer;
+		    return 0;
+		}
+		else
+		{
+			////io.AOAprintCharacter('n', Line20+52);
+			// Error : Might Have Error Check it 
+		    	// The Ack is not acceptable so send a RST and send it
+			SrcPortNum[0]= HTTPPort_H;
+			SrcPortNum[1]= HTTPPort_L;
+			
+			// Format a TCP Packet
+			// Why TRST Here
+            		do
+            		{
+            	  	   retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  	   if(retcode == -1)
+             	     	      task.AOAsuspendTask();
+            		}while(retcode == -1);	
+	  		retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,
+					    0, tcp->acknumber,0 , options, 0, data, 0, TargetMAC, currenttask);
+			DeleteTCB(TCBRecordNumber);
+			return retcode;
+		}
+	    } // end of if SYNRCVD
+
+	    // Start of ESTAB State checking 
+	    if(tcb->state == ESTAB)
+	    {
+		////io.AOAprintCharacter('o', Line20+56);
+		// Case 1:		    
+		//  |----------|-------|-------|-----------|
+		//  0	      UNA     ack    SNDNXT     MAXTCPDATASIZE
+		if((greaterEqualto(tcp->acknumber, tcb->SNDUNA, MAXTCPDATASIZE) > 0) && 
+		   (greaterEqualto(tcb->SNDNXT, tcp->acknumber, MAXTCPDATASIZE) >= 0))	
+		{
+			////io.AOAprintCharacter('p', Line20+60);
+			if((greaterEqualto(tcp->seqnumber, tcb->SNDWL1, MAXTCPDATASIZE) > 0) ||
+			  ((tcb->SNDWL1 == tcp->seqnumber) && (greaterEqualto(tcp->acknumber, 
+			    tcb->SNDWL2, MAXTCPDATASIZE) >= 0)))
+			{
+			    ////io.AOAprintCharacter('q', Line20+64);
+			    tcb->SNDWL1 = tcp->seqnumber;
+			    tcb->SNDWL2 = tcp->acknumber;
+			}
+		
+		        tcb->SNDUNA = tcp->acknumber;
+                        tcb->SNDWND = tcp->window; 
+			tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);
+                        tcb->LST = io.AOAgetTimer();
+			
+			if((tcp->Flags & TFIN) == TFIN)
+			{
+			    ////io.AOAprintCharacter('r', Line20+68);
+			     tcb->state = CLOSEWAIT;
+			     SrcPortNum[0]= HTTPPort_H;
+		            SrcPortNum[1]= HTTPPort_L;
+     		    	    do
+            	            {	
+            	  	     	    retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  	     	    if(retcode == -1)
+             	     	               task.AOAsuspendTask();
+            		    }while(retcode == -1);	
+	  	 	    retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,tcb->RCVWND,
+					tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC,currenttask);
+			    DeleteTCB(TCBRecordNumber);
+                            return 0;
+			}
+
+			// payload
+			int len = size - (tcp->Dataoffset*4);
+			// in future
+			if(len !=0)
+			{
+			    ////io.AOAprintCharacter('s', Line20+72);
+	 		    tcb->RCVNXT = tcb->RCVNXT + len;
+			    tcb->RCVWND = tcb->RCVWND - len;
+			    retcode = h.insert(&(TCPPack[(tcp->Dataoffset*4)]), len,TCBRecordNumber,
+						tcb->destip, tcb->destport);
+			    tempretcode = retcode;
+			    
+			    // if insert fails
+			    if(retcode != 0)
+			    {
+				////io.AOAprintCharacter('t', Line20+76);
+				SrcPortNum[0]= HTTPPort_H;
+		        	SrcPortNum[1]= HTTPPort_L;
+     		    		do
+            	        	{	
+            	  	     	    retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  	     	    if(retcode == -1)
+             	     	               task.AOAsuspendTask();
+            			}while(retcode == -1);	
+	  	 		retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,tcb->RCVWND,
+					tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC,currenttask);
+				DeleteTCB(TCBRecordNumber);
+
+				return tempretcode; 
+			    }
+			    noHttpR++;	
+			}
+			
+  		        // We may have to set up the send window here	
+		        // Send an Acknowledgement 
+	    	        SrcPortNum[0]= HTTPPort_H;
+		        SrcPortNum[1]= HTTPPort_L;
+     		    	do
+            	        {	
+            	  	     retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  	     if(retcode == -1)
+             	     	          task.AOAsuspendTask();
+            		}while(retcode == -1);	
+	  	 	retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK,tcb->RCVWND,
+					tcb->SNDNXT,tcb->RCVNXT+1, options, 0, data, 0, TargetMAC,currenttask);
+			tcb->noAckSent++;
+			return retcode;
+		}
+
+		
+		// Case 2:		    
+		//  |----------|-------|-------|-----------|
+		//  0	      ack     UNA    SNDNXT     MAXTCPDATASIZE
+		if(greaterEqualto(tcb->SNDUNA, tcp->acknumber, MAXTCPDATASIZE) >= 0)
+		{
+			////io.AOAprintCharacter('u', Line20+80);
+	                // ignore it  
+			tcb->SNDWND = tcp->window; 
+			//
+			tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);
+			tcb->LST = io.AOAgetTimer();
+			return 0;
+		}
+
+		// Case 3:		    
+		//  |----------|-------|-------|-----------|
+		//  0	      UNA     SNDNXT  ack     MAXTCPDATASIZE
+		if(greaterEqualto(tcp->acknumber,tcb->SNDNXT, MAXTCPDATASIZE) > 0)
+		{
+			////io.AOAprintCharacter('v', Line20+84);
+					
+		    	SrcPortNum[0]= HTTPPort_H;
+			SrcPortNum[1]= HTTPPort_L;
+
+            		do
+            		{
+            	  	   retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  	   if(retcode == -1)
+             	     	      task.AOAsuspendTask();
+            		}while(retcode == -1);
+		
+	  		retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,tcb->RCVWND,
+					tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC,currenttask);
+			
+			DeleteTCB(TCBRecordNumber);
+			
+			return retcode;	
+		}
+
+		
+	    }// End of ESTAB State Checking
+
+	    if(tcb->state == FINWAIT1)
+	    {
+
+		////io.AOAprintCharacter('w', Line20+88);
+                //io.AOAprintHex(tcp->acknumber,Line24);
+	        //io.AOAprintHex(tcb->SNDNXT,Line24+20);	
+		if(tcp->acknumber == (tcb->SNDNXT))
+		{
+			////io.AOAprintCharacter('x', Line20+92);
+			tcb->SNDUNA = tcp->acknumber;
+			//
+			tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);
+                        tcb->LST = io.AOAgetTimer();
+			
+                    	if((tcp->Flags & TFIN) == TFIN)
+			{
+			    SrcPortNum[0]= HTTPPort_H;
+		            SrcPortNum[1]= HTTPPort_L;
+     	        	    do
+                	    {	
+            	                retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	                if(retcode == -1)
+             	                   task.AOAsuspendTask();
+                            }while(retcode == -1);	
+	         	    retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK,tcb->RCVWND,
+		        	            tcb->SNDNXT,tcb->RCVNXT + 1, options, 0, data, 0, TargetMAC,currenttask);                      	    tcb->noAckSent++; 
+		            tcb->state = CLOSING; 
+			    DeleteTCB(TCBRecordNumber); 
+
+			    return 0;
+			}
+			else
+			{
+			    tcb->state = FINWAIT2;
+			    return 0;
+			}
+		}
+		else if(tcp->acknumber > tcb->SNDUNA && tcp->acknumber <( tcb->SNDNXT + 1 ))
+		{
+			////io.AOAprintCharacter('y', Line20+96);
+			tcb->SNDUNA = tcp->acknumber;
+			tcb->SNDWND = tcp->window; 
+			//
+			tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);
+			tcb->LST = io.AOAgetTimer();
+			
+                	if((tcp->Flags & TFIN) == TFIN)
+			{
+			    SrcPortNum[0]= HTTPPort_H;
+		            SrcPortNum[1]= HTTPPort_L;
+     	        	    do
+                	    {	
+            	                retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	                if(retcode == -1)
+             	                   task.AOAsuspendTask();
+                            }while(retcode == -1);	
+	         	    retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK|TRST,tcb->RCVWND,
+		        	            tcb->SNDNXT,tcb->RCVNXT + 1, options, 0, data, 0, TargetMAC,currenttask); 
+			    DeleteTCB(TCBRecordNumber); 
+
+		            //tcb->state = CLOSING; 
+			    return 0;
+			}
+		}
+	    if(io.AOAgetSharedMem(0x58) == 1)
+	    {
+		io.AOAPrintText("Ack received", Line8);
+		io.AOAsetSharedMem(0x58, 0);
+	    }		
+		return 0;
+	    }
+
+	   if(tcb->state == CLOSING)
+	   {	
+		////io.AOAprintCharacter('z', Line20+100);
+		if(tcp->acknumber == tcb->SNDNXT/* sdp + 1 */)
+		{
+		   ////io.AOAprintCharacter('A', Line20+104);
+		   tcb->state = TIMEWAIT;
+		   tcb->SNDUNA = tcp->acknumber;
+		   tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);
+		   tcb->LST = io.AOAgetTimer(); 
+		   UpdateTimeWaitList(TCBRecordNumber); 
+		   DeleteTCB(TCBRecordNumber); 
+
+		}
+		return 0;
+	   }
+
+	   if(tcb->state == LASTACK)
+	   {
+		////io.AOAprintCharacter('B', Line20+108);
+		if(tcp->acknumber == tcb->SNDNXT)
+		{
+			////io.AOAprintCharacter('C', Line20+112);
+			DeleteTCB(TCBRecordNumber);
+			tcb->state = CLOSED;
+		}
+	        return 0;	
+	   }
+
+	} // end of ACK
+
+	// 5. Check the FIN Field
+	if((tcp->Flags & TFIN) == TFIN)
+	{
+	   ////io.AOAprintCharacter('D', Line20+116);
+	   if(tcb->state == ESTAB)
+	   {
+		////io.AOAprintCharacter('E', Line20+120);
+		SrcPortNum[0]= HTTPPort_H;
+		SrcPortNum[1]= HTTPPort_L;
+     		do
+            	{	
+            	    retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	    if(retcode == -1)
+             	       task.AOAsuspendTask();
+            	}while(retcode == -1);	
+	  	retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK,tcb->RCVWND,
+				tcb->SNDNXT,tcb->RCVNXT + 1, options, 0, data, 0, TargetMAC,currenttask);
+		tcb->noAckSent++;	
+		tcb->state = CLOSEWAIT;
+		return retcode;
+	   }
+
+	   if(tcb->state == FINWAIT1)
+	   {
+		////io.AOAprintCharacter('F', Line20+124);
+	        SrcPortNum[0]= HTTPPort_H;
+		SrcPortNum[1]= HTTPPort_L;
+     		do
+            	{	
+            	    retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	    if(retcode == -1)
+             	       task.AOAsuspendTask();
+            	}while(retcode == -1);	
+	  	retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK,tcb->RCVWND,
+				tcb->SNDNXT,tcb->RCVNXT + 1, options, 0, data, 0, TargetMAC,currenttask);
+		tcb->noAckSent++;	
+		tcb->state = CLOSING;
+		DeleteTCB(TCBRecordNumber); 
+
+		return 0;
+	   }
+
+	   if(tcb->state == FINWAIT2)
+	   {
+		////io.AOAprintCharacter('G', Line20+128);
+		SrcPortNum[0]= HTTPPort_H;
+		SrcPortNum[1]= HTTPPort_L;
+     		do
+            	{	
+            	    retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	    if(retcode == -1)
+             	       task.AOAsuspendTask();
+            	}while(retcode == -1);	
+	  	retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TACK,tcb->RCVWND,
+				tcb->SNDNXT,tcb->RCVNXT+1, options, 0, data, 0, TargetMAC,currenttask);
+		tcb->noAckSent++;	
+		tcb->state = TIMEWAIT; 
+  	        //tcb->LST = io.AOAgetTimer(); 
+		DeleteTCB(TCBRecordNumber); 
+	
+		return retcode;
+	   }
+        } // end of if FIN
+
+	
+	//5. Process the Incomming segment text
+	if((tcb->state == ESTAB) || (tcb->state == FINWAIT1) || (tcb->state == FINWAIT2))
+	{
+		////io.AOAprintCharacter('H', Line20+132);
+		if( tcp->acknumber > tcb->SNDUNA )
+		   tcb->SNDUNA = tcp->acknumber;		
+		tcb->SRTT = CalcRTT(tcb->LST,tcb->SRTT);	
+
+		int len = size - (tcp->Dataoffset*4);					
+		// payload
+		if(len !=0)
+		{
+			    ////io.AOAprintCharacter('I', Line20+136);
+	 		    tcb->RCVNXT = tcb->RCVNXT + len;
+			    tcb->RCVWND = tcb->RCVWND - len;
+			    retcode = h.insert(&(TCPPack[(tcp->Dataoffset*4)]), len,TCBRecordNumber,
+						tcb->destip, tcb->destport);
+			    tempretcode = retcode;
+			    
+			    // if insert fails
+			    if(retcode != 0)
+			    {
+				////io.AOAprintCharacter('J', Line20+140);
+				SrcPortNum[0]= HTTPPort_H;
+		        	SrcPortNum[1]= HTTPPort_L;
+     		    		do
+            	        	{	
+            	  	     	    retcode = arp.Resolve(SourceIP, TargetMAC, currenttask);
+            	  	     	    if(retcode == -1)
+             	     	               task.AOAsuspendTask();
+            			}while(retcode == -1);	
+	  	 		retcode =  SendMisc(HostIP, SourceIP, SrcPortNum, &TCPPack[0],TRST,tcb->RCVWND,
+					tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC,currenttask);
+				DeleteTCB(TCBRecordNumber);
+
+				return tempretcode; 
+			    }
+		}
+		return 0;
+	} // end of if
+    } // end of else
+    return 0;	
+}
+
+//**************************************************************************************************
+// This Function assembles the TCP Packet in the Form of TCP Header Structure
+// It takes pointer to the buffer, which the Structure pointer will point to 
+// and the TCP Packet buffer 
+void TCPObj::FormatHeader(char * Header, char * TCPPack)
+{
+	Header[0] = TCPPack[1];
+	Header[1] = TCPPack[0];
+	Header[2] = TCPPack[3];
+	Header[3] = TCPPack[2];
+
+	Header[4] = TCPPack[7];		
+	Header[5] = TCPPack[6];
+	Header[6] = TCPPack[5];
+	Header[7] = TCPPack[4];
+
+	Header[8] = TCPPack[11];		
+	Header[9] = TCPPack[10];
+	Header[10] = TCPPack[9];
+	Header[11] = TCPPack[8];
+
+	Header[12] = TCPPack[12];
+	Header[12] = Header[12] >> 4;
+	Header[13] = TCPPack[13];
+
+	Header[14] = TCPPack[15];
+	Header[15] = TCPPack[14];
+
+	Header[16] = TCPPack[17];
+	Header[17] = TCPPack[16];
+	
+	Header[18] = TCPPack[19];
+	Header[19] = TCPPack[18];
+	
+	int dataoffset;
+	dataoffset = (int)&TCPPack[Header[12]*4];
+	char *temp = (char*)&dataoffset;
+
+	
+	long Options = (long)&TCPPack[20];
+	char *temp1 = (char*)&Options;
+
+	Header[20] = temp[0];
+	Header[21] = temp[1];
+	Header[22] = temp[2];
+	Header[23] = temp[3];
+
+	Header[24] = temp1[0];
+	Header[25] = temp1[1];
+	Header[26] = temp1[2];
+	Header[27] = temp1[3];
+}
+//***************************************************************************************************************************
+// This function places long value in a char array
+int TCPObj::longToChar(unsigned long num, char *TCPPack)
+{
+	char *temp=(char*)&num;
+	TCPPack[0] = temp[3];
+	TCPPack[1] = temp[2];
+	TCPPack[2] = temp[1];
+	TCPPack[3] = temp[0];
+	return 0;
+}
+//******************************************************************************************************************
+//This function places a short value in a char array
+int TCPObj::shortToChar(unsigned short num, char *TCPPack)	
+{
+	char *temp=(char*)&num;
+	 TCPPack[0] = temp[1];
+	TCPPack[1] = temp[0];
+	return 0;
+}
+//*****************************************************************************************************************
+//This function Format's a TCP Packet
+int TCPObj::FormatTCPPacket(char *TCPPack, char *sourceIP, char *destIP, 
+    char *sourcePort, char * destPort, char Flags,unsigned short Window,unsigned long seqnum, 
+    unsigned long acknum, char *options, int numbytesoptions, char *data, int datasize, int currenttask)
+{
+	int retcode = 0; 
+	int checksum = 0;
+
+	// Assign the source and destination port 
+    	TCPPack[0] = sourcePort[0];
+	TCPPack[1] = sourcePort[1];	
+	TCPPack[2] = destPort[0];
+	TCPPack[3] = destPort[1];		
+
+	// Assign the sequence numbers	
+	TCPPack[4] = (seqnum>>24)&0x000000FF;
+	TCPPack[5] = (seqnum>>16)&0x000000FF; 
+	TCPPack[6] = (seqnum>>8)&0x000000FF; 
+	TCPPack[7] = (seqnum)&0x000000FF; 
+
+	// Assign the acknowledgement numbers
+	TCPPack[8] = (acknum>>24)&0x000000FF;
+	TCPPack[9] = (acknum>>16)&0x000000FF; 
+	TCPPack[10] = (acknum>>8)&0x000000FF; 
+	TCPPack[11] = (acknum)&0x000000FF; 
+	
+	// Calculate the Header Length including Options and assign it to the Header
+	// 5 - Minimun TCP Header
+	char HeaderLength = 5 + (int)(numbytesoptions /4);
+	if((numbytesoptions%4) > 0)
+	    HeaderLength = HeaderLength +1;
+	TCPPack[12] = ((HeaderLength<<4) & 0xF0);
+
+	// Assign the Flags and window to the packet
+	TCPPack[13] = (Flags & 0x3F);	
+	TCPPack[14] = (Window>>8)&0x00FF;
+	TCPPack[15] = Window & 0x00FF;
+
+	// Initialize the urgent pointer to zero not supported
+	TCPPack[18] = 0x00;
+	TCPPack[19] = 0x00;	
+	
+	//numbytesoptions is 0 
+	int i=0;
+	for(i = 0 ; i < numbytesoptions ; i++)
+	{
+		TCPPack[20+i] = options[i];
+	}
+	
+	for(int k=0; k < (4-(numbytesoptions%4)) ; k++)
+	{
+		TCPPack[20+i] = 0x00;
+		i++;
+	}	
+	int StartofData	= HeaderLength * 4;  //5*4 = 20 bytes 
+	
+
+	//RKK only one copy of data from HTTP memory to ETHERNET linked list memory 
+	for(i=0; i < datasize; i++)
+	{
+		TCPPack[StartofData+i] = data[i];
+	}
+/*
+	SendCountPtr++; 
+	if (SendCountPtr < 200) 
+	  {
+	   //store the counter value in memory 
+	   io.AOAsetMem (0x0b000000 + SendCountPtr*4, (long)&TCPPack[0]+0x00110000); 
+	  }
+	else 
+	   {
+	   SendCountPtr = 0;  //restart the debug pointer 
+	   }
+*/
+	checksum = TCPChecksum(TCPPack, (StartofData+datasize), sourceIP, destIP, TCP_Protocol);	
+
+	TCPPack[16] = (char)((checksum>>8) & 0xFF);
+	TCPPack[17] = (char)(checksum & 0xFF);	
+	
+	return StartofData+datasize;	
+}
+//************************************************************************************************************
+// Calculate the TCP header checksum
+unsigned short TCPObj::TCPChecksum(char *tdatagram, long TSLength,char *sourceIP, char*targetIP,unsigned int protocol)
+{
+ 
+	//Compute the Checksum
+    	 unsigned short padd=0;
+  	 unsigned int   word16=0;
+	 unsigned long sum=0;	
+	 unsigned int temp1=0;
+	 unsigned int temp2=0;
+	 unsigned short checksum=0;
+	 tdatagram[16]=0x00;
+	 tdatagram[17]=0x00;
+	 
+	// Find out if the length of data is even or odd number. If odd,
+	// add a padding byte = 0 at the end of packet
+	// here 'len' is the TCP packet len TCP(header + data)
+	
+	if (TSLength&1==1)
+	{
+	    	padd=1;
+		tdatagram[TSLength]=0x00;
+	} //end of IF
+	
+	// make 16 bit words out of every two adjacent 8 bit words and 
+	// calculate the sum of all 16 bit words
+	
+	//TCP data 
+	for (int i=0;i<TSLength+padd;i=i+2)
+	{
+		temp1 = tdatagram[i]; 
+		temp2 = tdatagram[i+1];		
+		word16 =((temp1<<8)&0xFF00)+(temp2&0xFF);
+		sum += word16 & 0xffff;
+	} //end of for
+	
+	// add  the TCP pseudo header which contains:
+	// the IP source and destinationn addresses,
+	for (i=0;i<4;i=i+2)
+	{
+	 	temp1 = sourceIP[i];
+		temp2 = sourceIP[i+1];		
+		word16 =((temp1<<8)&0xFF00)+(temp2&0xFF);
+		sum += word16 & 0xffff;
+	} //end of for
+	
+	for (i=0;i<4;i=i+2)
+	{
+		temp1 = targetIP[i];
+		temp2 = targetIP[i+1];		
+		word16 =((temp1<<8)&0xFF00)+(temp2&0xFF);
+		sum += word16 & 0xffff;		
+	} //end of for
+
+	word16 =((protocol)&0x00FF);
+	sum += word16 & 0xffff;
+
+	word16 =((TSLength)&0xFFFF);
+	sum += word16 & 0xffff;
+		
+	// keep only the last 16 bits of the 32 bit calculated sum and add the carries
+    	while (sum>>16)
+		sum = (sum & 0xFFFF)+(sum >> 16);
+		
+	// Take the one's complement of sum
+	sum = ~sum;
+
+        checksum = (unsigned short) sum;
+
+	return checksum; 
+ } 
+// End of TCPChecksum
+
+//***********************************************************************************************************
+// Search for a record in TCB
+// This function takes an source ip address an source port and checks if there is already a TCB
+// in the TCB table for that connection if so it returns the TCB Value or else it returns -1 
+int TCPObj::SearchTCB(char IPAdd[4], char SrcPortNum[2])
+{	
+   TCBRecord *TCBPointer;
+   TCBPointer = (TCBRecord*)TCBBase;
+   long hashval;
+   long next;
+   
+   // check if the entry is already present in the TCB is so return Error
+   hashval = t.hashfun(IPAdd,SrcPortNum);
+   next = t.getIndex(hashval);
+   
+   while(next !=-1)
+   {       
+   if(TCBPointer[next].Avail == 1 && 
+      TCBPointer[next].destip[0] == IPAdd[0] && TCBPointer[next].destip[1] == IPAdd[1] &&
+      TCBPointer[next].destip[2] == IPAdd[2] && TCBPointer[next].destip[3] == IPAdd[3] && 
+      TCBPointer[next].destport[0] == SrcPortNum[0] && TCBPointer[next].destport[1] == SrcPortNum[1]) 
+     {
+	 return next;
+     }
+     //-------------------------------------
+     //Temporary solution must find out the problem 
+     if(next == TCBPointer[next].next)
+     {
+	 TCBPointer[next].next = -1;
+     }
+     //-------------------------------------
+     next = TCBPointer[next].next;
+   }
+   return -1;
+    
+}
+//**********************************************************************************************
+// general utility function for implementing TCP 
+// This converts a char[] seqnum to unsigned long 
+unsigned long TCPObj::charToseqnum(char *TCPPack)
+{
+	char  seqnum[4];
+	seqnum[0] = TCPPack[3];
+	seqnum[1] = TCPPack[2];
+	seqnum[2] = TCPPack[1];
+	seqnum[3] = TCPPack[0];	
+	return (*(long*)seqnum);
+}
+// This function converts char[] window to unsigned short window 
+unsigned long TCPObj::charToWindow(char *TCPPack)
+{
+	char seqnum[2];
+	seqnum[0] = TCPPack[1];
+	seqnum[1] = TCPPack[0];	
+	
+	return (*(unsigned short*)seqnum);
+}
+//*******************************************************************************************************
+// This function returns the status of the TCP Connection
+int TCPObj::getTCPStatus(int TCBRecordNum)
+{
+   TCBRecord *TCBPointer;
+   // Assign the address of the record to the TCB Pointer
+   TCBPointer = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) ));
+	if(TCBPointer->Avail == 0)
+	    return CLOSED;
+	else
+	    return TCBPointer->state;
+   // io.AOAstiTimer();
+  return 0;	
+}
+//******************************************************************************************************
+// update the SNDNXT
+int TCPObj::updateSNDNxt(int TCBRecordNum,unsigned long seqnum)
+{
+   TCBRecord *TCBPointer;
+   // Assign the address of the record to the TCB Pointer
+   TCBPointer = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) ));
+   TCBPointer->SNDNXT = seqnum;
+   return 0;	
+}
+
+//*****************************************************************************************************************
+//This function is used to send listener and other handler packets
+int TCPObj::SendMisc(char *sourceIP, char *destIP, char *sourcePort, char * destPort, char Flags,
+		unsigned short Window,unsigned long seqnum, unsigned long acknum, char *options, 
+		int numbytesoptions, char *data, int datasize, char *TargetMAC, int currenttask)
+{
+
+   //RKK Buffer Definitions 
+	EtherObj EO; 
+	char *send_buffer; 
+	long *p1; 
+	long c3; 
+	char c4; 
+	long x = 0; 
+	int i; 
+	int retcode = 0;
+
+   	int TCPPack_size=0;
+  	long InPtr=0;
+
+   	p1 = &c3; //dummy address 
+   	send_buffer = &c4;  //dummy address 
+
+	
+        //RKK Buffer Initialization 
+	x = EO.DownListPointer + EO.SendInPtr * 32 + 8 - ADDR_OFFSET; 
+
+        //check if the DPD pointer in the range 
+          if ((x-8+ADDR_OFFSET) > (EO.DownListPointer + (SndLstSize-1) * 32))
+            {
+             return -22; 
+            }    
+
+	p1 = (long*)x; 
+	
+        //now check if this data buffer is within the limits of DPD data buffers 
+        if ((*p1) >= (EO.DownListDataPointer + SndLstSize * EO.PacketSize)) 
+          {
+           return -23;
+          }    
+	
+	send_buffer = (char*)*p1; //address from DPD pointing to next available slot 
+
+	InPtr = EO.SendInPtr;
+
+        EO.SendInPtr++;    //this is like an InPtr which inserts packets 
+
+         if (EO.SendInPtr == EO.SndLstSize) 
+           {
+	    EO.SendInPtr = 0; //circular list 
+           }
+	 
+	//add TCP header in front of the packet 
+	send_buffer = send_buffer  - 20 - ADDR_OFFSET;//add header before data  
+
+	TCPPack_size = FormatTCPPacket(send_buffer, sourceIP, destIP, sourcePort, destPort, Flags,
+				Window, seqnum, acknum, options, numbytesoptions, data, datasize, currenttask); 
+	// this is to format IP packet 
+	// ip and EO object instantiations can be avoided by placing the code in this object
+
+	send_buffer = send_buffer - 20; //20 byte IP header  
+
+	//pass by reference do not work in DOSC 
+	// you have to use return value to get the value from call 
+	// double indexing need to be done to pass by reference 
+	retcode = ip.FormatIPPacket(send_buffer, TCPPack_size, destIP, TargetMAC, TCP_Protocol, currenttask);
+	if(retcode != 0)
+	   return retcode;
+	
+	send_buffer = send_buffer - 14; //14  byte ethernet header  
+
+	retcode = EO.FormatEthPacket(send_buffer, TCPPack_size+20, IP_TYPE , TargetMAC, InPtr, currenttask);
+	if(retcode != 0)
+	   return retcode;
+
+        return 0; 
+}
+
+//****************************************************************************************************
+//RKKUSED......................
+//SEND USED
+// This is the only send used by TCP to send packets 
+//This function is used to send TCP Data one segment at a time 
+// to send ftp files in blocks RKK Send 1  Used  
+// return code
+// -9  TCB Segment size is greater than the maximum acceptable send size
+// -10 Connection closed because no connection exists
+// -11 State is not established or finwait1
+// -12 Dpd pointer is out of range
+// -13 Data buffer is out of range
+//****************************************************************************************************
+int TCPObj::Send(int TCBRecordNum, char *sendbuffer,unsigned long *sendsize, unsigned long SeqNum,char flags, char *tip, char *port, int currenttask)
+{
+   AOATask task;
+   EtherObj EO; 
+   char *send_buffer; 
+   long *p1; 
+   long c3; 
+   char c4; 
+   long x = 0; 
+   int i; 
+   int retcode = 0;
+   
+   char SrcPortNum[2];
+   int TCPPack_size=0;
+   char *options = "";
+   char TargetMAC[6];
+   long InPtr=0;
+
+   p1 = &c3; //dummy address 
+   send_buffer = &c4;  //dummy address 
+
+   // Check for send Size 
+   if(*sendsize>MAXTCPDATASIZE)
+   {
+       return -9;
+   }
+   
+   TCBRecord *tcb; 
+   tcb = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) )); 
+   if(tcb->Avail ==0)
+   {
+       // Error the connection is closed because no connection exist
+       return -10;
+   }
+   /*
+   if(tcb->state == SYNSENT || tcb->state==SYNRCVD ||  tcb->state == FINWAIT2 || tcb->state == CLOSING || 
+      tcb->state == CLOSEWAIT || tcb->state == LASTACK || tcb->state == TIMEWAIT)
+   {
+       return -11;
+   }
+   */
+   
+   if(tcb->state == ESTAB || tcb->state == FINWAIT1)
+   {
+        // Assign the source Port number to HTTP Port 
+	SrcPortNum[0]= HTTPPort_H;
+	SrcPortNum[1]= HTTPPort_L;
+  
+  // not used in sliding window 
+  /*	if(tcb->SNDWND < *sendsize)
+	  {
+	      *sendsize = tcb->SNDWND;
+	  }
+*/
+        //resolve ARP 
+        do
+        {
+           retcode = arp.Resolve(tcb->destip, TargetMAC, currenttask);
+           if(retcode == -1)
+             task.AOAsuspendTask();
+        }while(retcode == -1);		
+	
+	x = EO.DownListPointer + EO.SendInPtr * 32 + 8 - ADDR_OFFSET; 
+
+        //check if the DPD pointer in the range 
+          if ((x-8+ADDR_OFFSET) > (EO.DownListPointer + (SndLstSize-1) * 32))
+            {
+                return -12; 
+            }    
+
+	p1 = (long*)x; 
+	
+        //now check if this data buffer is within the limits of DPD data buffers 
+        if ((*p1) >= (EO.DownListDataPointer + SndLstSize * EO.PacketSize))
+          {
+              return -13;
+          }    
+	
+	send_buffer = (char*)*p1; //address from DPD pointing to next available slot 
+
+	InPtr = EO.SendInPtr;
+
+        EO.SendInPtr++;    //this is like an InPtr which inserts packets 
+
+         if (EO.SendInPtr == EO.SndLstSize) 
+           {
+	    EO.SendInPtr = 0; //circular list 
+           }
+	 
+	//add TCP header in front of the packet 
+	send_buffer = send_buffer  - 20 - ADDR_OFFSET;//add header before data  
+
+	TCPPack_size = FormatTCPPacket(send_buffer, HostIP, tcb->destip, SrcPortNum, tcb->destport,
+		       flags,tcb->RCVWND,SeqNum,tcb->RCVNXT, options, 0, sendbuffer, *sendsize, currenttask); 
+	// this is to format IP packet 
+	// ip and EO object instantiations can be avoided by placing the code in this object
+
+	send_buffer = send_buffer - 20; //20 byte IP header  
+
+	//pass by reference do not work in DOSC 
+	// you have to use return value to get the value from call 
+	// double indexing need to be done to pass by reference 
+	retcode = ip.FormatIPPacket(send_buffer, TCPPack_size, tcb->destip, TargetMAC, TCP_Protocol, currenttask);
+	if(retcode != 0)
+	   return retcode;
+	
+	send_buffer = send_buffer - 14; //14  byte ethernet header  
+
+	retcode = EO.FormatEthPacket(send_buffer, TCPPack_size+20, IP_TYPE , TargetMAC, InPtr, currenttask);
+	if(retcode != 0)
+	   return retcode;
+	
+	// If it is FIN Update the sequence and state
+	if(tcb->state == ESTAB)
+	{
+	    if((flags & TFIN) == TFIN)
+	    {
+	   	tcb->state = FINWAIT1;
+	    }
+	}
+	return 0; 
+       
+   }
+  return 0; 
+}
+/* NOT USED
+ *
+//******************************************************************************************************
+// This function initiates the TCP connection closure 
+// If no sunch connection exist return error
+// This just sends the FIN packet of the four way connection close handshake 
+// refer to the TCP RFC for functional specification
+// Some states are not applicable to AOA so it is not co\nsdered in implementation
+//******************************************************************************************************
+int TCPObj::Close(int TCBRecordNum, int currenttask)
+{
+   char SrcPortNum[2];
+   int TCPPack_size=0;
+   char *options = "";
+   char TargetMAC[6];
+   EtherObj EO;
+   int i; 
+   int retcode=0;
+   char data[10];
+
+   TCBRecord *tcb; 
+
+   SrcPortNum[0]= HTTPPort_H;
+   SrcPortNum[1]= HTTPPort_L; 
+   
+   tcb = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) )); 	
+   if(tcb->Avail ==0)
+   {
+       // Error the connection is closed
+       return -1;
+   } 
+
+   if(tcb->state == SYNSENT)
+   {
+       tcb->Avail = 0;
+       return 0;
+   }
+   if(tcb->state == SYNRCVD)
+   {
+
+	// Resolve Target MAC
+	arp.Resolve(tcb->destip, TargetMAC, currenttask );		
+	retcode =  SendMisc(HostIP, tcb->destip, SrcPortNum, tcb->destport, TACK|TFIN,tcb->RCVWND, 
+			tcb->RCVNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC, currenttask);
+	if (retcode < 0)
+	   io.AOAPrintText("TCP:Close:1 SendMisc() failed!", Line24);			   
+	
+	tcb->state = FINWAIT1;
+	tcb->SNDNXT = tcb->SNDUNA+1;
+	return 0;
+   }
+   if(tcb->state == ESTAB)
+   {
+
+	// Resolve Target MAC
+	arp.Resolve(tcb->destip, TargetMAC, currenttask );		
+	retcode =  SendMisc(HostIP, tcb->destip, SrcPortNum, tcb->destport,TACK|TFIN,tcb->RCVWND, 
+			tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC, currenttask);
+	if (retcode < 0)
+	   io.AOAPrintText("TCP:Close:2 SendMisc() failed!", Line24);	
+	
+	tcb->state = FINWAIT1;
+	tcb->SNDNXT = tcb->SNDNXT+1;	
+	return 0;
+   }
+   if(tcb->state == FINWAIT1 || tcb->state== FINWAIT2)
+   {
+       return 0;
+   }
+   if(tcb->state== CLOSEWAIT)
+   {
+
+	// Resolve Target MAC
+	arp.Resolve(tcb->destip, TargetMAC, currenttask );		
+	retcode =  SendMisc(HostIP, tcb->destip, SrcPortNum, tcb->destport,TACK|TFIN,tcb->RCVWND,
+			tcb->SNDNXT,tcb->RCVNXT, options, 0, data, 0, TargetMAC, currenttask);
+	if (retcode < 0)
+	   io.AOAPrintText("TCP:Close:3 SendMisc() failed!", Line24);	
+	
+	tcb->state = CLOSING; 
+	tcb->SNDNXT = tcb->SNDNXT+1;	
+	return 0;
+    }
+   if(tcb->state == CLOSING || tcb->state == LASTACK || tcb->state == TIMEWAIT) 
+   {
+       return 0;
+   }
+   else
+   {
+	return -1;
+   }
+   return -1;
+}
+*/
+//****************************************************************************************************
+//gets the sequence number
+// returns the current sequence number of the connection instance 
+//****************************************************************************************************
+unsigned long TCPObj::getSeqNum(int TCBRecordNum)
+{
+ TCBRecord *tcb; 
+ tcb = (TCBRecord*)(TCBBase); 
+ return tcb[TCBRecordNum].SNDNXT;
+}
+//****************************************************************************************************
+//get the seq num that was last ack
+//This runs only in multitasking environment 
+//return code
+//-28 TCB is not available
+//****************************************************************************************************
+unsigned long  TCPObj::getLastAck(int TCBRecordNum)
+{
+ TCBRecord *tcb;
+ tcb = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) )); 
+ 
+ if(tcb->Avail == 0)
+     return -28;
+/* if(tcb->state == CLOSED)
+     return -6; 
+*/ 
+ return tcb->SNDUNA;
+}
+//*************************************************************************************************
+// get the RTT value
+// Just returns the RTT value of the connection instance 
+int TCPObj::getRtt(int TCBRecordNum)
+{
+ TCBRecord *tcb; 
+ tcb = (TCBRecord*)(TCBBase + ( TCBRecordNum * sizeof(TCBRecord) )); 
+ return tcb->SRTT; 
+}    
+//********************************************************************************************
+// sets the send flag
+// This clears the lock in TCB for that connection instance to send the data 
+// This prevents from two messages sent simultaneously for the same connection there by avoiding 
+// interleaving sequence number problem specific to AOA web server environment
+// The logic is self explanatory  
+//********************************************************************************************
+//sets the send flag
+/*
+int TCPObj::SetSendFlag(int TCBRecordNum)
+{
+ TCBRecord *tcb;
+ long RTT = 0;
+ int j=0;
+ tcb = (TCBRecord*)TCBBase;
+  RTT = getRtt(TCBRecordNum);
+  
+  while(tcb[TCBRecordNum].SendFlag==1)
+ {
+    //task.TaskSleep(RTT);
+    j++;
+    if(j>10)
+    {
+	return -1;
+    }
+ }
+
+ if(tcb[TCBRecordNum].SendFlag != 1)
+ {
+ tcb[TCBRecordNum].SendFlag = 1;
+ return 0;
+ }
+ else
+ {
+     return -1;
+ }
+
+ return 0;
+}
+*/
+//********************************************************************************************
+// clears the send flag
+// This clears the lock in TCB for that connection instance to send the data 
+// This prevents from two messages sent simultaneously for the same connection there by avoiding 
+// interleaving sequence number problem specific to AOA web server environment
+// The logic is self explanatory  
+//*********************************************************************************************
+/*
+int TCPObj::ClearSendFlag(int TCBRecordNum)
+{
+ TCBRecord *tcb; 
+
+ tcb = (TCBRecord*)TCBBase;
+ tcb[TCBRecordNum].SendFlag =0;
+ return 0;
+}
+*/
+//*************************************************************************************************
+// This function is used to do a modulo 32 comparision for the sesuence numbers 
+// This function assumes that the seq1 is greater than seq 2 if not it will return 0xFFFFFFFF
+// Else if seq1 is greater than seq 2 it will return the difference between seq1 ans seq2
+// The logic is self explanatory 
+// In a very fast connection there is a possibility the sequence numbers might wrap around causing an error in the program. Not in the current environment  
+//  If the packets acknowledgement number is not in the acceptable range in the other handler it is advisable to verify the return values from this function and ckeck the sequence numbers u r self 
+//  This error is a very rare case 
+//********************************************************************************************
+unsigned long TCPObj::mod32cmp(unsigned long seq1, unsigned long seq2)
+{
+	unsigned long MAXVal = 0xFFFFFFFF;
+	unsigned long MIDVal = (0xFFFFFFFF / 2);
+    	unsigned long LeastVal = 0x00;
+	
+	// if both the sesuence numbers are equal return 0 
+    	if(seq1 == seq2)
+		return 0x00;
+    	
+	if(seq1 <= MIDVal && seq1 >= LeastVal && seq2 <=MIDVal && seq2 >= LeastVal)
+	{
+		if( seq1 < seq2)
+		{
+		return 0xFFFFFFFF;
+		}
+		return (seq1-seq2);
+    	}
+	else if(seq1 > MIDVal && seq1 <= MAXVal && seq2 > MIDVal && seq2 <= MAXVal)
+    	{
+		if( seq1 < seq2)
+		{
+			return 0xFFFFFFFF;
+		}
+		return (seq1-seq2);
+     	}
+	else if(seq2 >= (MIDVal/2) && seq2 <=MIDVal && seq1 >=MIDVal && seq1<=(MIDVal*3/2))
+    	{
+		return (seq1 - seq2);
+    	}
+	else if(seq1 >= LeastVal && seq1 <=(MIDVal/2) && seq2 <=MAXVal && seq2 >=(MIDVal*3/2))
+    	{
+		return ((MAXVal-seq2) + (seq1-LeastVal));
+    	}
+    	return 0xFFFFFFFF;
+}
+
+
+
+//get LST
+int TCPObj::getLST(int TCBRecordNum)
+{
+    TCBRecord *tcb;
+    tcb=(TCBRecord*)(TCBBase + (TCBRecordNum * sizeof(TCBRecord )));
+    return tcb->LST;
+}
+//***************************************************************
+
+//get sliding window size
+long TCPObj::getSlidingWindow(int TCBRecordNum)
+{
+    TCBRecord *tcb;
+    tcb=(TCBRecord*)(TCBBase + (TCBRecordNum * sizeof(TCBRecord) ));
+    return tcb->SNDWND;
+}
+
+
+
+//***********************************************************************************************
+// This function calculates the RTT for the transmission 
+// This is based on formula 0.3* RTTPrev + 0.7 * RTTCurrent
+// Where RTT is the time from LST to Time the ACK is obtained  	
+unsigned long TCPObj::CalcRTT(unsigned long LST, unsigned long SRTT)
+{
+    unsigned long RTT;
+    //io.AOAprintHex(LST, Line24+60);
+    //io.AOAprintHex(SRTT, Line24+80);
+    //RTT = ((long)(SRTT*(3/10))) + ((long)( (7/10) * (io.AOAgetTimer() - LST ))) +1;
+    RTT = (long)(io.AOAgetTimer() - LST);
+    return RTT;
+}
+
+
+//****************************************************************************************************
+// This function is used to send the TCP Data for a http response 
+// It get the TCPRecordNo to identify the connection
+// The HTTP Response Header
+// The HTTP Header Size
+// The HTTP Resource Address
+// The HTTP Resource/File Size 
+// Then Sends the TCP Data 
+// In HTTP Headers the content size must be specified for this function to be successful 
+// return code
+// -7 Send flag cannot be set
+// -8 Connection timeout
+//****************************************************************************************************
+int TCPObj::tcpSend(int TCBRecordNum, char *responseHeader, long hSize, unsigned long resourceAddress,
+		    long fileSize, char *ip, char *port, int fileNotFound, int currenttask)
+{
+	AOATask task;
+	
+	unsigned long startHeaderSeq=0;		// Denotes starting sequence number
+	unsigned long startResourceSeq=0;	// starting resource sequence number
+	unsigned long expectedHeaderAck=0;	// expected ack num for header
+      	unsigned long expectedResourceAck=0; 	// expected ack num for resource 
+	
+	unsigned long lastAck=0;		// Denotes the last ack number that 
+						// corresponds to the last sequence number
+	unsigned long cmpVal= 0; 		// This is the value returned by the mod32 cmp 
+        unsigned long cmpVal1= 0; 		// This is the value returned by the mod32 cmp 
+	unsigned long lst=0;
+	int RTT=0;				// Round trip time
+	int RTT1=0;
+ 	int retcode=0;
+
+	int sendSize=0;				// The TCP sendSize; 
+	
+	char *resource=(char*)resourceAddress;	// Assign the resource pointer 
+	
+	int Sent_Flag =0;			// This flag is set to 1 if the send 
+						// was successful
+	
+	unsigned long loopcount= io.AOAgetTimer();// if the loop count is time out for 
+						  // the send then send failed return failure to the user 
+	//int i;
+	long k = 0;				// Count Variable  
+	long k1= 0;
+	unsigned long j;			// Count Variable 
+	int HSize = hSize;			// Header Size 
+
+	// temp variables used to specify the sequence number
+	unsigned long seqnum = 0;  
+
+	char buffer[TCPSegSize];
+
+        TCBRecord *tcb;
+        tcb=(TCBRecord*)(TCBBase + (TCBRecordNum * sizeof(TCBRecord) ));
+	
+	long sw = 0;  //sliding window
+
+	// Set the send flag and lock the TCP connection for this send 
+	// so no other thread can send data on this connection  
+	int sendf = 0;
+	char tip[4];
+	char tport[2];
+	int m = 0; 	
+	int temptimer=0;
+	tip[0]='\0';
+	tport[0]='\0';
+	noHttpRs++;
+/*	if(SetSendFlag(TCBRecordNum) == -1)
+	{
+	    return -7;
+	}  */
+	sendf = 1;
+
+	RTT=getRtt(TCBRecordNum);		// get the RTT of the connection instance 
+	
+	startHeaderSeq= getSeqNum(TCBRecordNum);	// Assign the starting seq number of the header
+        //io.AOAprintHex(startHeaderSeq, Line9);	
+	startResourceSeq = startHeaderSeq + hSize ;// Self explanatory  	
+	//io.AOAprintHex(startResourceSeq, Line9 + 20);
+	expectedHeaderAck=startHeaderSeq+ hSize; // Assign the expected ack number for header 
+        //io.AOAprintHex(expectedHeaderAck, Line9 + 40);
+	expectedResourceAck=startResourceSeq+ fileSize;// assign the expected ack for resource
+        //io.AOAprintHex(expectedResourceAck, Line9 + 60);
+	sw = getSlidingWindow(TCBRecordNum); 
+	// First send the HTTP data 
+	// Send the header
+	//
+	if(sw >= (hSize + fileSize) )
+	{
+	////io.AOAprintCharacter('a', Line6);
+	k = 0; 
+	seqnum = startHeaderSeq + k;	
+	for(j=0; k < hSize ; k++,j++ )
+	{
+		////io.AOAprintCharacter('b', Line6+4);
+		buffer[j] = responseHeader[k];
+		if(j >= TCPSegSize)
+		{
+			////io.AOAprintCharacter('c', Line6+8);
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);
+			if(retcode != 0)
+			{
+			   return retcode;
+			}
+			tcb->noHttpHeaderSent++;	
+			seqnum = seqnum + j +1;
+			j = -1; 
+		}			
+	}
+	if( j != 0)
+	{
+		////io.AOAprintCharacter('d', Line6+12);
+		retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		if(retcode != 0)
+		{
+		   return retcode;
+		}
+		tcb->noHttpHeaderSent++;	
+		seqnum = seqnum + j;
+		//j = -1 ;
+	}		
+	// Send the Resource
+	k = 0; 
+	seqnum = startResourceSeq;
+	
+	m = 0 ; 
+	for(j=0; k < fileSize ; k++,j++ )
+	{
+		////io.AOAprintCharacter('e', Line6+16);
+		buffer[j] = resource[k];
+		if(j>=TCPSegSize)
+		{
+			////io.AOAprintCharacter('f', Line6+20);
+			j = j + 1; 	
+			if( (m * TCPSegSize) > 5000)
+			{
+			////io.AOAprintCharacter('g', Line6+24);
+   			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK| TPUSH, ip, port, currenttask);	  
+		        if(retcode != 0)
+		        {
+		            return retcode;
+		        }
+			tcb->noDataSent++;
+			m = 0; 
+			}
+			else
+			{
+			////io.AOAprintCharacter('h', Line6+28);	
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		        if(retcode != 0)
+		        {
+		           return retcode;
+		        }
+			tcb->noDataSent++;
+			}
+			seqnum = seqnum + j;
+			m = m + 1; 
+			j = -1; 
+		}			
+	}
+	if( j != 0)
+	{
+		////io.AOAprintCharacter('i', Line6+32);
+		retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port, currenttask);
+		if(retcode != 0)
+		{
+		   return retcode;
+		}
+		tcb->noFinSent++;
+		tcb->noDataSent++;
+		tcb->state = FINWAIT1;
+		
+		seqnum = seqnum + j;
+		//j = -1 ;
+	 	if(sendf == 1)
+		{
+		    ////io.AOAprintCharacter('j', Line6+36);
+		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));
+		    //ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		}	
+	}
+	else
+	{
+		////io.AOAprintCharacter('k', Line6+40);
+	    	buffer[0] = '\0';
+		j = 0; 
+	   	retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port, currenttask);
+		if(retcode != 0)
+		{
+		   return retcode;
+		}
+		tcb->noFinSent++;
+		tcb->noDataSent++;
+		tcb->state = FINWAIT1;
+		
+		seqnum = seqnum + j;
+		//j = -1;
+		if(sendf == 1)
+		{
+		    ////io.AOAprintCharacter('l', Line6+44);
+   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+		    //ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		}	
+	}
+	} // end of if (sw >= (hSize + fileSize) ) 
+
+	else if (sw < hSize )
+	{
+	////io.AOAprintCharacter('m', Line6+48);
+	k = 0; 
+	seqnum = startHeaderSeq + k;	
+	for(j=0; k < sw ; k++,j++ )
+	{
+		////io.AOAprintCharacter('n', Line6+52);
+		buffer[j] = responseHeader[k];
+		if(j >= TCPSegSize)
+		{
+			////io.AOAprintCharacter('o', Line6+56);
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		        if(retcode != 0)
+		        {
+		            return retcode;
+		        } 
+			tcb->noHttpHeaderSent++;
+			seqnum = seqnum + j +1;
+			j = -1; 
+		}			
+	}
+	if( j != 0)
+	{
+		////io.AOAprintCharacter('p', Line6+60);
+		retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		if(retcode != 0)
+		{
+		   return retcode;
+		}
+		tcb->noHttpHeaderSent++;
+		seqnum = seqnum + j;
+		//j = -1 ;
+	}
+		if(sendf == 1)
+		{
+		    ////io.AOAprintCharacter('q', Line6+64);
+   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + sw + 1)); 
+		    //ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		} 
+	} // end of if (sw < hSize )
+	else
+	{   // sw > hSize && sw < filesize
+
+		////io.AOAprintCharacter('r', Line6+68);
+          	k = 0; 
+        	seqnum = startHeaderSeq + k;	
+	        for(j=0; k < hSize ; k++,j++ )
+	        {
+		   ////io.AOAprintCharacter('s', Line6+72);
+		   buffer[j] = responseHeader[k];
+		   if(j >= TCPSegSize)
+		   {
+			////io.AOAprintCharacter('t', Line6+76);
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		        if(retcode != 0)
+		        {
+		            return retcode;
+		        } 
+			tcb->noHttpHeaderSent++;
+			seqnum = seqnum + j +1;
+			j = -1; 
+		   }			
+	        }
+	        if( j != 0)
+	        {
+		   ////io.AOAprintCharacter('u', Line6+80);
+		   retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		   if(retcode != 0)
+		   {
+		       return retcode;
+		   } 
+		   tcb->noHttpHeaderSent++;
+		   seqnum = seqnum + j;
+		   //j = -1 ;
+	        }		
+	// Send the Resource
+	        k = 0; 
+	        seqnum = startResourceSeq;
+	
+	        m = 0 ; 
+	        for(j=0; k < (sw - hSize) ; k++,j++ )
+	        {
+		   ////io.AOAprintCharacter('v', Line6+84);
+		   buffer[j] = resource[k];
+		   if(j>=TCPSegSize)
+		   {
+			////io.AOAprintCharacter('w', Line6+88);
+			j = j + 1; 	
+			if( (m * TCPSegSize) > 5000)
+			{
+			////io.AOAprintCharacter('x', Line6+92);
+   			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK| TPUSH, ip, port, currenttask);	  
+		        if(retcode != 0)
+		        {
+		            return retcode;
+		        } 
+		        tcb->noDataSent++;
+			m = 0; 
+			}
+			else
+			{
+			////io.AOAprintCharacter('y', Line6+96);
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		        if(retcode != 0)
+		        {
+		            return retcode;
+		        } 
+		        tcb->noDataSent++;
+			}
+			seqnum = seqnum + j;
+			m = m + 1; 
+			j = -1; 
+		   }			
+	        }
+	        if( j != 0)
+        	{
+		    ////io.AOAprintCharacter('z', Line6+100);
+		    retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    if(retcode != 0)
+		    {
+		        return retcode;
+		    } 
+		    tcb->noDataSent++;
+		    seqnum = seqnum + j;
+		    //j = -1 ;
+	 		
+	        }
+                if(sendf == 1)
+		{
+		    ////io.AOAprintCharacter('A', Line6+104);
+		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + sw + 1));
+		    //ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		} 
+	}
+	//task.TaskSleep(TIMER_PERIOD*RTT);		 //HELONG
+	//io.AOAprintHex(RTT, Line14+60);
+ 	temptimer = io.AOAgetTimer();
+	//io.AOAprintHex(temptimer, Line14+80);
+ 	do
+ 	{
+ 	   	task.AOAsuspendTask();
+		retcode = io.AOAgetTimer();
+		//io.AOAprintHex(retcode, Line14+100);
+		//io.AOAprintHex(retcode-temptimer, Line14+120);
+	}while((retcode - temptimer) <= 5);
+         if( tcb->Avail == 0)
+	   return 0;
+//	task.AOAsuspendTask();
+
+	Sent_Flag = 0; 
+        
+	lastAck=getLastAck(TCBRecordNum); 
+
+		//io.AOAprintHex(lastAck, Line17+40);
+		//io.AOAprintHex(expectedHeaderAck, Line17+60);
+		//io.AOAprintHex(expectedResourceAck, Line17+80);
+	
+	if(lastAck < 0 )
+		{
+		    ////io.AOAprintCharacter('B', Line6+108);
+		    if(sendf == 1)
+		    {
+		    ////io.AOAprintCharacter('C', Line6+112);
+		   // updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	
+		    //ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		    }
+		    return lastAck;
+		} 
+        cmpVal = mod32cmp(lastAck, expectedHeaderAck); 
+        cmpVal1 = mod32cmp(lastAck, (expectedResourceAck+1));
+	if(cmpVal1 != 0xFFFFFFFF)
+	{
+	    ////io.AOAprintCharacter('D', Line6+116);
+	    Sent_Flag = 1; 
+	}
+
+	while(Sent_Flag != 1)
+	{
+		////io.AOAprintCharacter('E', Line6+120);
+		if(mod32cmp(io.AOAgetTimer(), loopcount) > TIMER_PERIOD*1091 )
+		{
+		        ////io.AOAprintCharacter('F', Line6+124);
+		    // close the TCP connection 
+		    //Close(TCBRecordNum);
+		    // return Error to the user 	
+		    	if(sendf == 1)
+			{
+			////io.AOAprintCharacter('G', Line6+128);
+		        //updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	
+		    	//ClearSendFlag(TCBRecordNum);   
+		 	sendf = 0; 
+			}	
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TRST, ip, port, currenttask); 
+		    	if(retcode != 0)
+		    	{
+		            return retcode;
+		    	} 
+			DeleteTCB(TCBRecordNum);			
+			return -8;
+		}
+
+		sw=getSlidingWindow(TCBRecordNum);
+		sendf=1;
+		
+		if(cmpVal == 0xFFFFFFFF)
+		{
+			////io.AOAprintCharacter('H', Line6+132);
+		        k = (((unsigned long)hSize) - mod32cmp(expectedHeaderAck, lastAck));
+			
+			if(k < 0 )
+			{
+			    ////io.AOAprintCharacter('I', Line6+136);
+			    k = 0; 
+			}
+		        k1 = k ; 
+                        
+			if( (k1 + sw)< hSize )
+			{
+			   ////io.AOAprintCharacter('J', Line6+140);
+			   seqnum = startHeaderSeq + k; 
+			    
+			   for(j=0; k <(k1+sw) ; k++,j++ )
+			   {
+				////io.AOAprintCharacter('K', Line6+144);
+				buffer[j] = responseHeader[k];
+
+				if(j >= TCPSegSize)
+				{
+					////io.AOAprintCharacter('L', Line6+148);
+				    	j = j + 1; 
+					retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask); 
+		    			if(retcode != 0)
+		    			{
+		        		    return retcode;
+		    			} 
+					tcb->noHttpHeaderSent++;
+					seqnum = seqnum + j;
+					j = -1; 
+				}			
+			
+		 	   }
+			   if( j != 0)
+			   {
+				////io.AOAprintCharacter('M', Line6+152);
+				retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    		if(retcode != 0)
+		    		{
+		        	    return retcode;
+		    		} 
+				tcb->noHttpHeaderSent++;
+				seqnum = seqnum + j;
+				//j = 0 ;
+			        if(sendf == 1)
+		    		{
+				    //io.AOAprintCharacter('N', Line6+156);
+		   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + k1 + sw + 1)); 
+				    //ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				} 
+			   }
+			}
+
+			else if( ( k1 +sw ) >= (hSize + fileSize) )
+			{
+			    //io.AOAprintCharacter('O', Line6+160);
+			    seqnum = startHeaderSeq + k;
+			
+			// Send the HTTP Header
+			   for(j=0; k < hSize ; k++,j++ )
+			   {
+				//io.AOAprintCharacter('P', Line6+164);
+				buffer[j] = responseHeader[k];
+
+				if(j >= TCPSegSize)
+				{
+					//io.AOAprintCharacter('Q', Line6+168);
+				    	j = j + 1; 
+					retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask); 
+		    			if(retcode != 0)
+		    			{
+		        		    return retcode;
+		    			} 
+					tcb->noHttpHeaderSent++;
+					seqnum = seqnum + j;
+					j = -1; 
+				}			
+			
+			   }
+			   if( j != 0)
+			   {
+				//io.AOAprintCharacter('R', Line6+172);
+				retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    		if(retcode != 0)
+		    		{
+		        	    return retcode;
+		    		} 
+				tcb->noHttpHeaderSent++;
+				seqnum = seqnum + j;
+				//j = 0 ;
+			   } 
+                        	k = 0; 
+	                        seqnum = startResourceSeq;
+	
+                           	m = 0 ; 
+                              	for(j=0; k < fileSize ; k++,j++ )
+                              	{
+					//io.AOAprintCharacter('S', Line6+176);
+                          		buffer[j] = resource[k];
+                        		if(j>=TCPSegSize)
+                               		{
+						//io.AOAprintCharacter('T', Line6+180);
+		                        	j = j + 1; 	
+		                        	if( (m * TCPSegSize) > 5000)
+			                         {
+						 //io.AOAprintCharacter('U', Line6+184);
+   			                         retcode=Send(TCBRecordNum, buffer, &j, seqnum, TACK| TPUSH, ip, port,
+							      currenttask); 
+		    				if(retcode != 0)
+		    				{
+		        			    return retcode;
+		    				}	 
+					        tcb->noDataSent++;
+			                         m = 0; 
+			                         }
+			                        else
+			                        {
+						  //io.AOAprintCharacter('V', Line6+188);
+			                          retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port,
+								 currenttask); 
+		    				  if(retcode != 0)
+		    				  {
+		        			      return retcode;
+		    				  } 
+						  tcb->noDataSent++;
+			                        }
+			                        seqnum = seqnum + j;
+			                        m = m + 1; 
+			                        j = -1; 
+		                          }			
+	                        }
+	                        if( j != 0)
+                                {
+				  //io.AOAprintCharacter('W', Line6+192);
+	 	                  retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port,
+						 currenttask);	
+		    		  if(retcode != 0)
+		    		  {
+		        	      return retcode;
+		    		  } 
+				  tcb->noFinSent++;
+				  tcb->noDataSent++;
+				  tcb->state = FINWAIT1;
+
+		                  seqnum = seqnum + j;
+		                  //j = -1 ;
+	 	                  if(sendf == 1)
+		                  {
+				     //io.AOAprintCharacter('X', Line6+196);
+		                     updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));
+		                     //ClearSendFlag(TCBRecordNum);   
+		                     sendf = 0; 
+		                  }	
+	                       }
+	                       else
+                               {
+				 //io.AOAprintCharacter('Y', Line6+200);
+	    	                 buffer[0] = '\0';
+		                 j = 0; 
+	   	                 retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port,
+						currenttask);
+				 if(retcode != 0)
+		    		 {
+		        	     return retcode;
+		    		 } 
+				  tcb->noFinSent++;
+				  tcb->noDataSent++;
+				 tcb->state = FINWAIT1;
+		                 
+				  //j = -1;
+		                 if(sendf == 1)
+		                 {
+				   //io.AOAprintCharacter('Z', Line6+204);
+   		                   updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+		                   //ClearSendFlag(TCBRecordNum);   
+		                    sendf = 0; 
+		                 }	
+	                       } 
+			}
+
+			else 
+			{
+			//io.AOAprintCharacter('a', Line7);
+	               	seqnum = startHeaderSeq + k;
+			
+			// Send the HTTP Header
+			for(j=0; k < hSize ; k++,j++ )
+			{
+				buffer[j] = responseHeader[k];
+
+				if(j >= TCPSegSize)
+				{
+				    	j = j + 1; 
+					retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask); 
+		    		  	if(retcode != 0)
+		    			{
+		        		    return retcode;
+		    			} 
+				        tcb->noHttpHeaderSent++;
+					seqnum = seqnum + j;
+					j = -1; 
+				}			
+			
+			}
+			if( j != 0)
+			{
+		        	//io.AOAprintCharacter('b', Line7+4);		
+				retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    		if(retcode != 0)
+		    		{
+		        	    return retcode;
+		    		} 
+				tcb->noHttpHeaderSent++;
+				seqnum = seqnum + j;
+				//j = 0 ;
+			}
+	
+			k = 0; 
+	                seqnum = startResourceSeq;
+	
+                        m = 0 ; 
+                        for(j=0; k < (sw + k1 - hSize) ; k++,j++ )
+                        {
+                        	buffer[j] = resource[k];
+                        	if(j>=TCPSegSize)
+                        	{
+					//io.AOAprintCharacter('c', Line7+8);
+		                       	j = j + 1; 	
+		                       	if( (m * TCPSegSize) > 5000)
+			                {
+   			                retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK| TPUSH, ip, port,
+						       currenttask);  
+		    			if(retcode != 0)
+		    			{
+		        	    	    return retcode;
+		    			}  
+				        tcb->noDataSent++;
+			                m = 0; 
+			                }
+			                else
+			                {
+					//io.AOAprintCharacter('d', Line7 + 12);
+			                retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask); 
+		    			if(retcode != 0)
+		    			{
+		        	    	    return retcode;
+		    			} 
+				        tcb->noDataSent++;
+			                }
+			                seqnum = seqnum + j;
+			                m = m + 1; 
+			                j = -1; 
+	                	}			
+	               }
+	               if( j != 0)
+	               {
+		         //io.AOAprintCharacter('e', Line7 + 16);
+			 retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    	 if(retcode != 0)
+		    	 {
+		       	     return retcode;
+		    	 } 
+		         tcb->noDataSent++;
+		         seqnum = seqnum + j;
+		         //j = -1 ;
+	 	         if(sendf == 1)
+		         {
+		           //io.AOAprintCharacter('f', Line7 + 20);
+			   updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));
+		           //ClearSendFlag(TCBRecordNum);   
+		           sendf = 0; 
+	         	 }	
+	                }
+	                else
+	                {
+				//io.AOAprintCharacter('g', Line7+24);
+	    	                buffer[0] = '\0';
+		                j = 0; 
+	   	                retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	  
+		    		if(retcode != 0)
+		    		{
+		            	    return retcode;
+		    		} 
+		                tcb->noDataSent++;
+		                //j = -1;
+	                	if(sendf == 1)
+		                {
+   		                   //io.AOAprintCharacter('h', Line7+24);
+				   updateSNDNxt(TCBRecordNum, (startHeaderSeq + k1 + sw + 1)); 
+		                   //ClearSendFlag(TCBRecordNum);   
+		                   sendf = 0; 
+		                }	
+	                 } 	
+			}
+			
+			
+		}
+		else if ( cmpVal != 0xFFFFFFFF && cmpVal1 == 0xFFFFFFFF )
+		{
+		    //io.AOAprintCharacter('i', Line7+28);
+		    k = (((unsigned long)fileSize) - mod32cmp(expectedResourceAck, lastAck));
+			
+		    seqnum = startResourceSeq + k;
+		    k1=k;
+
+		    if ( ( k1 + sw) >= fileSize)
+		    {
+			//io.AOAprintCharacter('j', Line7+32);
+			// Send the HTTP Resource/File
+			m = 0; 
+			for(j=0; k < fileSize ; k++,j++ )
+			{
+			
+			buffer[j] = resource[k];
+			if(j>=TCPSegSize)
+			{
+			j = j + 1; 	
+			if ((m * TCPSegSize) > 5000)
+			{
+   			    //io.AOAprintCharacter('k', Line7+36);
+			    retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH, ip, port, currenttask);  
+		    	    if(retcode != 0)
+		    	    {
+		                return retcode;
+		    	    } 
+		            tcb->noDataSent++;
+			    m = 0; 
+			}
+			else
+			{
+			//io.AOAprintCharacter('l', Line7+40);
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    	if(retcode != 0)
+		    	{
+		            return retcode;
+		    	}  
+		        tcb->noDataSent++;
+			}
+			m = m + 1; 
+			seqnum = seqnum + j;
+			j = -1; 
+			}			
+			
+			}
+			if( j != 0)
+			{
+				//io.AOAprintCharacter('m', Line7+44);
+				retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port,
+					       currenttask);
+		    	        if(retcode != 0)
+		    	        {
+		                    return retcode;
+		    	        } 
+		                tcb->noFinSent++;
+		                tcb->noDataSent++;
+				tcb->state = FINWAIT1;
+				
+				seqnum = seqnum + j;
+				//j = -1 ;
+			 	if(sendf == 1)
+		    		{
+		   		    //io.AOAprintCharacter('n', Line7+48);
+				    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+				    //ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				}	
+			}
+			else
+			{
+			    	//io.AOAprintCharacter('o', Line7+52);
+				buffer[0] = '\0';
+				j = 0; 
+			   	retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port,
+					       currenttask);
+		    	        if(retcode != 0)
+		    	        {
+		                    return retcode;
+		    	        } 
+		                tcb->noFinSent++;
+		                tcb->noDataSent++;
+				tcb->state = FINWAIT1;
+				
+				//j = -1;
+				if(sendf == 1)
+		    		{
+				    //io.AOAprintCharacter('p', Line7+56);
+		   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+				    //ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				}	
+			} 
+		    }
+		    else
+		    {
+			//io.AOAprintCharacter('q', Line7+60);
+			// Send the HTTP Resource/File
+			m = 0; 
+			for(j=0; k < ( k1 + sw) ; k++,j++ )
+			{
+			
+			buffer[j] = resource[k];
+			if(j>=TCPSegSize)
+			{
+			j = j + 1; 	
+			if ((m * TCPSegSize) > 5000)
+			{
+			    //io.AOAprintCharacter('r', Line7+64);
+   			    retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH, ip, port, currenttask);  
+		    	    if(retcode != 0)
+		    	    {
+		                return retcode;
+		    	    } 
+		            tcb->noDataSent++;
+			    m = 0; 
+			}
+			else
+			{
+			//io.AOAprintCharacter('s', Line7+68);
+			retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    	if(retcode != 0)
+		    	{
+		            return retcode;
+		    	} 
+		        tcb->noDataSent++;
+			}
+			m = m + 1; 
+			seqnum = seqnum + j;
+			j = -1; 
+			}			
+			
+			}
+			if( j != 0)
+			{
+				//io.AOAprintCharacter('t', Line7+72);
+				retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		    	        if(retcode != 0)
+		    	        {
+		                    return retcode;
+		    	        } 
+		                tcb->noDataSent++;
+				seqnum = seqnum + j;
+				//j = -1 ;
+			 	if(sendf == 1)
+		    		{
+				    //io.AOAprintCharacter('u', Line7+76);
+		   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + k1 + sw + 1)); 
+				    //ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				}	
+			}
+			else
+			{
+				//io.AOAprintCharacter('v', Line7+80);
+			    	buffer[0] = '\0';
+				j = 0; 
+			   	retcode = Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	  
+		    	        if(retcode != 0)
+		    	        {
+		                    return retcode;
+		    	        } 
+		                tcb->noDataSent++;
+				//j = -1;
+				if(sendf == 1)
+		    		{
+				    //io.AOAprintCharacter('w', Line7+84);
+		   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + k1 + sw + 1)); 
+				    //ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				}	
+			}
+		    }
+		}
+	
+	        lst=getLST(TCBRecordNum);
+		RTT1=RTT;
+                RTT = CalcRTT(lst,RTT1);
+		//task.TaskSleep(TIMER_PERIOD*RTT);	 //HELONG
+		//io.AOAprintHex(RTT, Line15+60);
+		temptimer = io.AOAgetTimer();
+		//io.AOAprintHex(temptimer, Line15+80);
+		//io.AOAsetSharedMem(0x58, 1);
+ 	do
+ 	{
+ 	   	task.AOAsuspendTask();
+ 	   	retcode = io.AOAgetTimer();
+		//io.AOAprintHex(retcode, Line15+100);
+		//io.AOAprintHex(retcode-temptimer, Line15+120);
+	}while((retcode - temptimer) <= 5);
+         if( tcb->Avail == 0)
+	   return 0;
+//		task.AOAsuspendTask();
+
+		Sent_Flag = 0;
+
+		lastAck=getLastAck(TCBRecordNum); 
+		//io.AOAprintHex(lastAck, Line18+40);
+		//io.AOAprintHex(expectedHeaderAck, Line18+60);
+		//io.AOAprintHex(expectedResourceAck, Line18+80);
+
+	        if(lastAck < 0 )
+		{
+		    if(sendf == 1)
+		    {
+		    //updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	
+		   // ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		    }
+		    return lastAck;
+		} 
+                cmpVal = mod32cmp(lastAck, expectedHeaderAck); 
+                cmpVal1 = mod32cmp(lastAck,(expectedResourceAck+1));
+                //io.AOAprintHex(lastAck, Line24+100);
+		//io.AOAprintHex(expectedResourceAck,Line24+120);
+	        if(cmpVal1 != 0xFFFFFFFF)	
+	            Sent_Flag = 1;  
+
+		if(j > 1400)
+		{
+		  //io.AOAPrintText("j > 1400", Line3);
+		  //io.AOAprintHex(j, Line3+40);
+		}
+		if(Sent_Flag == 1)
+		{
+		  //io.AOAPrintText("sent flag == 1", Line3+60);
+		}
+		
+	} // end of while
+	
+	// clear the send flag
+	if(sendf == 1)
+	{
+	    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	 
+	    //ClearSendFlag(TCBRecordNum);   
+	    sendf = 0; 
+	}	
+	// Return 0 to the user 
+	return 0;
+}
+
+
+
+
+
+//**********************************************************************************************
+// This function is used to send the TCP Data for a http response 
+// It get the TCPRecordNo to identify the connection
+// The HTTP Response Header
+// The HTTP Header Size
+// The HTTP Resource Address
+// The HTTP Resource/File Size 
+// Then Sends the TCP Data 
+// In HTTP Headers the content size must be specified for this function to be successful 
+//   HTTP GET COMES HERE 
+//**********************************************************************************************
+/*int TCPObj::tcpSend(int TCBRecordNum, char *responseHeader, 
+	long hSize, unsigned long resourceAddress, long fileSize, char *ip, char *port, int currenttask)
+{
+	apptask task;				// Task Object to put the thread in to sleep ;
+	
+	unsigned long startHeaderSeq=0;		// Denotes starting sequence number
+	unsigned long startResourceSeq=0;	// starting resource sequence number
+	unsigned long expectedHeaderAck=0;	// expected ack num for header
+      	unsigned long expectedResourceAck=0; 	// expected ack num for resource 
+	
+	unsigned long lastAck=0;		// Denotes the last ack number that 
+						// corresponds to the last sequence number
+	unsigned long cmpVal= 0; 		// This is the value returned by the mod32 cmp 
+	int RTT=0;				// Round trip time
+	
+	int sendSize=0;				// The TCP sendSize; 
+	
+	char *resource=(char*)resourceAddress;	// Assign the resource pointer 
+	
+	int Sent_Flag =0;			// This flag is set to 1 if the send 
+						// was successful
+	
+	unsigned long loopcount= io.AOAgetTimer();// if the loop count is time out for 
+						  // the send then send failed return failure to the user 
+	//int i;
+	long k = 0;				// Count Variable  
+	unsigned long j;			// Count Variable 
+	int HSize = hSize;			// Header Size 
+
+	// temp variables used to specify the sequence number
+	unsigned long seqnum = 0;  
+
+	char buffer[TCPSegSize];
+
+	// Set the send flag and lock the TCP connection for this send 
+	// so no other thread can send data on this connection  
+	int sendf = 0;
+	char tip[4];
+	char tport[2];
+	int m = 0; 	
+	tip[0]='\0';
+	tport[0]='\0';
+	noHttpRs++;
+
+	if(SetSendFlag(TCBRecordNum) == -1)
+	{
+	    return -1;
+	}
+	sendf = 1;
+
+	RTT=getRtt(TCBRecordNum);		// get the RTT of the connection instance 
+	
+	startHeaderSeq= getSeqNum(TCBRecordNum);	// Assign the starting seq number of the header
+	
+	startResourceSeq = startHeaderSeq + hSize ;// Self explanatory  	
+	
+	expectedHeaderAck=startHeaderSeq+ hSize; // Assign the expected ack number for header 
+
+	expectedResourceAck=startResourceSeq+ fileSize;// assign the expected ack for resource
+
+	
+	// First send the HTTP data 
+	// io.AOAcliTimer();
+	// Send the header
+	k = 0; 
+	seqnum = startHeaderSeq + k;	
+	for(j=0; k < hSize ; k++,j++ )
+	{
+		buffer[j] = responseHeader[k];
+		if(j >= TCPSegSize)
+		{
+		        io.AOAPrintCharacterTrace('H');
+			Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+			seqnum = seqnum + j;
+			j = 0; 
+		}			
+	}
+	if( j != 0)
+	{
+		io.AOAPrintCharacterTrace('H');
+		Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+		seqnum = seqnum + j;
+		j = 0 ;
+	}		
+	// Send the Resource
+	k = 0; 
+	seqnum = startResourceSeq;
+	
+	m = 0 ; 
+	for(j=0; k < fileSize ; k++,j++ )
+	{
+		buffer[j] = resource[k];
+		if(j>=TCPSegSize)
+		{
+			j = j + 1; 	
+			if( (m * TCPSegSize) > 5000)
+			{
+		        io.AOAPrintCharacterTrace('D');
+   			Send(TCBRecordNum, buffer, &j, seqnum, TACK| TPUSH, ip, port, currenttask);	  
+			m = 0; 
+			}
+			else
+			{
+		        io.AOAPrintCharacterTrace('D');
+			Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+			}
+			seqnum = seqnum + j;
+			m = m + 1; 
+			j = -1; 
+		}			
+	}
+	if( j != 0)
+	{
+		io.AOAPrintCharacterTrace('F');
+		Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port, currenttask);	 
+		seqnum = seqnum + j;
+		j = -1 ;
+	 	if(sendf == 1)
+		{
+		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));
+		    ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		}	
+	}
+	else
+	{
+	    	buffer[0] = '\0';
+		j = 0; 
+		io.AOAPrintCharacterTrace('F');
+	   	Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port, currenttask);	  
+		j = -1;
+		if(sendf == 1)
+		{
+   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+		    ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		}	
+	}	
+	//io.AOAstiTimer();
+	task.TaskSleep(RTT);		
+	Sent_Flag = 0;
+	while(Sent_Flag != 1)
+	{
+		if(mod32cmp(io.AOAgetTimer(), loopcount) > Timer_Count )
+		{
+		    // close the TCP connection 
+		    //Close(TCBRecordNum);
+		    // return Error to the user 	
+		    	if(sendf == 1)
+			{
+		        updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	
+		    	ClearSendFlag(TCBRecordNum);   
+		 	sendf = 0; 
+			}	
+			
+			return -1;
+		}
+		lastAck=getLastAck(TCBRecordNum);
+		if(lastAck < 0 )
+		{
+		    if(sendf == 1)
+		    {
+		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	
+		    ClearSendFlag(TCBRecordNum);   
+		    sendf = 0; 
+		    }
+		    return 0;
+		}
+		//io.AOAcliTimer();
+		cmpVal = mod32cmp(lastAck, expectedHeaderAck);
+		if(cmpVal == 0xFFFFFFFF)
+		{
+			k = (((unsigned long)hSize) - mod32cmp(expectedHeaderAck, lastAck));
+			if(k < 0 )
+			{
+			    k = 0; 
+			}
+			
+			seqnum = startHeaderSeq + k;
+			
+			// Send the HTTP Header
+			for(j=0; k < hSize ; k++,j++ )
+			{
+				buffer[j] = responseHeader[k];
+
+				if(j >= TCPSegSize)
+				{
+				    	j = j + 1; 
+					Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+					seqnum = seqnum + j;
+					j = -1; 
+				}			
+			
+			}
+			if( j != 0)
+			{
+				Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+				seqnum = seqnum + j;
+				j = 0 ;
+			}
+
+		}
+
+		lastAck=getLastAck(TCBRecordNum); 
+		
+		if(lastAck < 0 )
+		{
+			if(sendf == 1)
+		    	{
+		    	updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	
+		    	ClearSendFlag(TCBRecordNum);   
+		    	sendf = 0; 
+		    	}
+			//io.AOAstiTimer();
+		    	return 0;
+		}	
+		cmpVal = mod32cmp(lastAck, (expectedResourceAck + 1));
+		if(cmpVal == 0xFFFFFFFF)
+		{
+		    
+		    if(cmpVal = mod32cmp(lastAck, expectedHeaderAck) == 0xFFFFFFFF)
+		    {
+			k = 0; 
+			seqnum = startResourceSeq;	
+		    }
+		    else
+		    {
+			k = (((unsigned long)fileSize) - mod32cmp(expectedResourceAck, lastAck));
+
+			if(k < 0 )
+			{
+			    k = 0; 
+			}	
+			seqnum = startResourceSeq + k;
+		
+		    }
+			// Send the HTTP Resource/File
+			m = 0; 
+			for(j=0; k < fileSize ; k++,j++ )
+			{
+			
+			buffer[j] = resource[k];
+			if(j>=TCPSegSize)
+			{
+			j = j + 1; 	
+			if ((m * TCPSegSize) > 5000)
+			{
+   			    Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH, ip, port, currenttask);	  
+			    m = 0; 
+			}
+			else
+			{
+			Send(TCBRecordNum, buffer, &j, seqnum, TACK, ip, port, currenttask);	 
+			}
+			m = m + 1; 
+			seqnum = seqnum + j;
+			j = -1; 
+			}			
+			
+			}
+			if( j != 0)
+			{
+				Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port, currenttask);	 
+				seqnum = seqnum + j;
+				j = -1 ;
+			 	if(sendf == 1)
+		    		{
+		   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+				    ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				}	
+			}
+			else
+			{
+			    	buffer[0] = '\0';
+				j = 0; 
+			   	Send(TCBRecordNum, buffer, &j, seqnum, TACK|TPUSH|TFIN, ip, port, currenttask);	  
+				j = -1;
+				if(sendf == 1)
+		    		{
+		   		    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1)); 
+				    ClearSendFlag(TCBRecordNum);   
+				    sendf = 0; 
+				}	
+			}
+		}
+		else
+		{
+			// Send is completed 
+			Sent_Flag = 1; 
+		}
+		//io.AOAstiTimer();
+		task.TaskSleep(RTT);	
+	}
+	
+	// clear the send flag
+	if(sendf == 1)
+	{
+	    updateSNDNxt(TCBRecordNum, (startHeaderSeq + hSize + fileSize + 1));	 
+	    ClearSendFlag(TCBRecordNum);   
+	    sendf = 0; 
+	}	
+	// Return 0 to the user 
+	return 0;
+}
+*/
+int TCPObj::longtoHex(char *out, unsigned int in)
+{
+	char p;    
+	int i =0;
+
+	p = (char)((in>>12) & 0x000F);
+	if(p != 0x00)
+	{
+		if(p > 0x09)
+		{
+		 out[0] = 'A' + (p-0x0A); 
+		}
+		else
+		{
+		    out[0] = 0x30 + p;
+		}
+		i++;
+	}
+	
+	p = (char)((in>>8) & 0x000F);
+	if(p > 0x09)
+	{
+	    out[i] = 'A' + (p-0x0A); 
+	}
+	else
+	{
+	    out[i] = 0x30+ p;
+	}
+	i++;
+	p = (char)((in>>4) & 0x000F);
+	if(p > 0x09)
+	{
+	    out[i] = 'A' + (p-0x0A); 
+	}
+	else
+	{
+	    out[i] = 0x30 + p;
+	}
+	i++;
+	p = (char)((in) & 0x000F);
+
+	if(p > 0x09)
+	{
+	    out[i] = 'A' + (p-0x0A); 
+	}
+	else
+	{
+	    out[i] = 0x30 + p;
+	}
+	i++;
+	out[i] = '\0';
+	return 0;
+}
+
+//*************************************
+// This function prints IP statistics 
+void TCPObj::printStatistics(int Line)
+{
+AOAProtected io;
+io.AOAPrintText("TCP Statistics",Line);
+io.AOAPrintText("Total Number of TCP Connections Requested  :",Line + 160);
+io.AOAprintHex(noconnreq,Line+ 244 + 4); 
+io.AOAPrintText("Total Number of TCP Connections Established:",Line + 320 );
+io.AOAprintHex(noconnestab,Line+ 404 + 4);
+io.AOAPrintText("Total Number of HTTP Requests              :",Line+ 480 );
+io.AOAprintHex(noHttpR,Line+ 564 + 4);
+io.AOAPrintText("Total Number of HTTP Requests Processed    :",Line+ 480 + 160 );
+io.AOAprintHex(noHttpR,Line+ 564 + 4 + 160);
+io.AOAPrintText("Total Number of Active TCP Connections     :",Line+ 480 + 320);
+io.AOAprintHex(noconncurr,Line+ 564 + 4 + 320);
+io.AOAPrintText("Average Connection Time                    :",Line+ 480 + 320 + 160);
+io.AOAprintHex(averageconntime,Line+ 564 + 4 + 320 + 160);
+}
+//*************************************
+
+
+

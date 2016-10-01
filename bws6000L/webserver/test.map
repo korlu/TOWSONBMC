@@ -1,0 +1,1004 @@
+ test
+
+ Timestamp is 56f5597d (Fri Mar 25 11:30:05 2016)
+
+ Preferred load address is 00000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 0002171fH .text                   CODE
+ 0002:00000000 0000000fH .rdata                  DATA
+ 0002:0000000f 00000000H .edata                  DATA
+ 0003:00000000 00003e90H .data                   DATA
+ 0003:00003e90 0001c0acH .bss                    DATA
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       _main                      00001000 f   test.obj
+ 0001:00000183       ?getFunctionPtr@@YAPAJP8apptask@@AEXJ@Z@Z 00001183 f   test.obj
+ 0001:000001e0       ??0AOATask@@QAE@XZ         000011e0 f   aoatask.obj
+ 0001:00000255       ?AOAswapTSS@AOATask@@QAEHXZ 00001255 f   aoatask.obj
+ 0001:000003c4       ?reinitializeTimer@AOATask@@QAEXXZ 000013c4 f   aoatask.obj
+ 0001:0000047b       ?reinitializeScheduler@AOATask@@QAEXXZ 0000147b f   aoatask.obj
+ 0001:00000532       ?createTSSDescriptor@AOATask@@AAEHHH@Z 00001532 f   aoatask.obj
+ 0001:00000656       ?AOArunTask@AOATask@@QAEHH@Z 00001656 f   aoatask.obj
+ 0001:00000721       ?AOAsuspendTask@AOATask@@QAEXXZ 00001721 f   aoatask.obj
+ 0001:00000731       ?AOAsuspendHTask@AOATask@@QAEXKJHH@Z 00001731 f   aoatask.obj
+ 0001:000007b9       ?AOAcompleteTask@AOATask@@QAEXHH@Z 000017b9 f   aoatask.obj
+ 0001:00000800       ?AOAinitTasks@AOATask@@QAEHPAJJJ@Z 00001800 f   aoatask.obj
+ 0001:000008b4       ?AOArunTasks@AOATask@@QAEXXZ 000018b4 f   aoatask.obj
+ 0001:00000911       ?AOAapplink32@AOATask@@QAEHXZ 00001911 f   aoatask.obj
+ 0001:000009c3       ?AOArunTimer@AOATask@@QAEHJJ@Z 000019c3 f   aoatask.obj
+ 0001:00000ab0       ?AOAcreateTask@AOATask@@QAEHJJHH@Z 00001ab0 f   aoatask.obj
+ 0001:00000b79       ?AOAprintTSS@AOATask@@QAEXHH@Z 00001b79 f   aoatask.obj
+ 0001:00000c70       ??0TcphashIndex@@QAE@XZ    00001c70 f i aoatask.obj
+ 0001:00000c70       ??0WTTrace@@QAE@XZ         00001c70 f i aoatask.obj
+ 0001:00000c70       ??0WStack@@QAE@XZ          00001c70 f i aoatask.obj
+ 0001:00000c70       ??0HTTPList@@QAE@XZ        00001c70 f i aoatask.obj
+ 0001:00000c70       ??0WCirList@@QAE@XZ        00001c70 f i aoatask.obj
+ 0001:00000c90       ??0WList@@QAE@XZ           00001c90 f i aoatask.obj
+ 0001:00000cb0       ??0apptask@@QAE@XZ         00001cb0 f   apptask.obj
+ 0001:00000d14       ??0apptask@@QAE@H@Z        00001d14 f   apptask.obj
+ 0001:00000eaf       ?FTOPTimeOut@apptask@@QAEXJ@Z 00001eaf f   apptask.obj
+ 0001:00000f07       ?HttpTask@apptask@@QAEXJ@Z 00001f07 f   apptask.obj
+ 0001:00001577       ?FileTransferTask@apptask@@QAEXJ@Z 00002577 f   apptask.obj
+ 0001:0000165e       ?InterfaceTask@apptask@@QAEXJ@Z 0000265e f   apptask.obj
+ 0001:0000173a       ?MainTask@apptask@@QAEXJ@Z 0000273a f   apptask.obj
+ 0001:000023e6       ?RcvTask@apptask@@QAEXJ@Z  000033e6 f   apptask.obj
+ 0001:00002d20       ?getCurrentTask@apptask@@QAEHXZ 00003d20 f   apptask.obj
+ 0001:00002d30       ?Scheduler_Algorithm_1@apptask@@QAEHXZ 00003d30 f   apptask.obj
+ 0001:00002d63       ?createTask@apptask@@QAEHJH@Z 00003d63 f   apptask.obj
+ 0001:00002dff       ?insertHttpTask@apptask@@QAEHHJ@Z 00003dff f   apptask.obj
+ 0001:00002f3a       ?ErrorHandler@apptask@@QAEXJ@Z 00003f3a f   apptask.obj
+ 0001:000031c7       ?printStatistics@apptask@@QAEXXZ 000041c7 f   apptask.obj
+ 0001:0000345a       ?checkErrors@apptask@@QAEXXZ 0000445a f   apptask.obj
+ 0001:00003515       ?createOtherTasks@apptask@@QAEXXZ 00004515 f   apptask.obj
+ 0001:00003aa1       ?getFunctionPtrOthers@@YAPAJP8apptask@@AEXJ@Z@Z 00004aa1 f   apptask.obj
+ 0001:00003ae5       ?printScreenLayout@apptask@@QAEXXZ 00004ae5 f   apptask.obj
+ 0001:00003d54       ?printScreenTags@apptask@@QAEXXZ 00004d54 f   apptask.obj
+ 0001:00003f69       ?clearScreen@apptask@@QAEXXZ 00004f69 f   apptask.obj
+ 0001:00003fb0       ??0TCPObj@@QAE@XZ          00004fb0 f i apptask.obj
+ 0001:00004020       ??0FTOPObj@@QAE@XZ         00005020 f i apptask.obj
+ 0001:00004050       ??0parserObj@@QAE@XZ       00005050 f i apptask.obj
+ 0001:00004080       ??0FTPObj@@QAE@XZ          00005080 f i apptask.obj
+ 0001:000040b0       ??0UDPObj@@QAE@XZ          000050b0 f i apptask.obj
+ 0001:000040e0       ??0AOAProtected@@QAE@XZ    000050e0 f   aoaprotected.obj
+ 0001:000040f7       ?test@AOAProtected@@QAEJJ@Z 000050f7 f   aoaprotected.obj
+ 0001:00004110       ?AOAcli@AOAProtected@@QAEXXZ 00005110 f   aoaprotected.obj
+ 0001:00004120       ?AOAenableIRQCntlr@AOAProtected@@QAEHHG@Z 00005120 f   aoaprotected.obj
+ 0001:0000413e       ?AOAdisableIRQCntlr@AOAProtected@@QAEHHG@Z 0000513e f   aoaprotected.obj
+ 0001:0000415c       ?AOAackPICCntlr@AOAProtected@@QAEHH@Z 0000515c f   aoaprotected.obj
+ 0001:00004175       ?AOAintTimer@AOAProtected@@QAEXXZ 00005175 f   aoaprotected.obj
+ 0001:00004185       ?AOAsti@AOAProtected@@QAEXXZ 00005185 f   aoaprotected.obj
+ 0001:00004195       ?AOAstiTimer@AOAProtected@@QAEXXZ 00005195 f   aoaprotected.obj
+ 0001:000041ae       ?AOAcliTimer@AOAProtected@@QAEXXZ 000051ae f   aoaprotected.obj
+ 0001:000041be       ?AOAgetString@AOAProtected@@QAEHPAD@Z 000051be f   aoaprotected.obj
+ 0001:000041d7       ?AOAprintMemory@AOAProtected@@QAEHJHHH@Z 000051d7 f   aoaprotected.obj
+ 0001:000042f1       ?AOAprintString@AOAProtected@@QAEHPADHH@Z 000052f1 f   aoaprotected.obj
+ 0001:00004312       ?AOAprintString@AOAProtected@@QAEHPADH@Z 00005312 f   aoaprotected.obj
+ 0001:00004340       ?AOAgetCursor@AOAProtected@@QAEHXZ 00005340 f   aoaprotected.obj
+ 0001:00004350       ?AOAgetClockTicks@AOAProtected@@QAEHPAI0@Z 00005350 f   aoaprotected.obj
+ 0001:0000438d       ?AOAClockTicksSubtract@AOAProtected@@QAEIIIIIPAI0@Z 0000538d f   aoaprotected.obj
+ 0001:00004818       ?AOAClockTicksAdd@AOAProtected@@QAEIIIIIPAI0@Z 00005818 f   aoaprotected.obj
+ 0001:00004d72       ?AOAgetTimer@AOAProtected@@QAEJXZ 00005d72 f   aoaprotected.obj
+ 0001:00004d82       ?AOAsetCursor@AOAProtected@@QAEHH@Z 00005d82 f   aoaprotected.obj
+ 0001:00004d9b       ?AOAcleanScreen@AOAProtected@@QAEHXZ 00005d9b f   aoaprotected.obj
+ 0001:00004dab       ?AOAscrollUp@AOAProtected@@QAEHXZ 00005dab f   aoaprotected.obj
+ 0001:00004dbb       ?AOAprintCharacter@AOAProtected@@QAEHDHPAH@Z 00005dbb f   aoaprotected.obj
+ 0001:00004e0d       ?AOAprintCharacter@AOAProtected@@QAEHDH@Z 00005e0d f   aoaprotected.obj
+ 0001:00004e46       ?AOAprintCharacter@AOAProtected@@QAEHD@Z 00005e46 f   aoaprotected.obj
+ 0001:00004e76       ?AOAprintSpace@AOAProtected@@QAEHHH@Z 00005e76 f   aoaprotected.obj
+ 0001:00004ec6       ?AOAprintSpace@AOAProtected@@QAEHH@Z 00005ec6 f   aoaprotected.obj
+ 0001:00004f1b       ?AOAskipLine@AOAProtected@@QAEHH@Z 00005f1b f   aoaprotected.obj
+ 0001:00004f4d       ?AOAprintDecimal@AOAProtected@@QAEHHH@Z 00005f4d f   aoaprotected.obj
+ 0001:00004f6a       ?AOAprintDecimal@AOAProtected@@QAEHH@Z 00005f6a f   aoaprotected.obj
+ 0001:00004fa1       ?AOAprintHex@AOAProtected@@QAEHJH@Z 00005fa1 f   aoaprotected.obj
+ 0001:000050a7       ?AOAprintHex@AOAProtected@@QAEHPADH@Z 000060a7 f   aoaprotected.obj
+ 0001:000051bb       ?AOAclearNTFlag@AOAProtected@@QAEHXZ 000061bb f   aoaprotected.obj
+ 0001:000051da       ?AOAprintFlags@AOAProtected@@QAEHH@Z 000061da f   aoaprotected.obj
+ 0001:00005202       ?AOAgetFlags@AOAProtected@@QAEHXZ 00006202 f   aoaprotected.obj
+ 0001:00005228       ?AOAgetSharedMemChar@AOAProtected@@QAEDHH@Z 00006228 f   aoaprotected.obj
+ 0001:00005245       ?AOAreadRTC@AOAProtected@@QAEHXZ 00006245 f   aoaprotected.obj
+ 0001:000052bf       ?AOAreadDATE@AOAProtected@@QAEHXZ 000062bf f   aoaprotected.obj
+ 0001:00005339       ?AOAUnixTime@AOAProtected@@QAEKII@Z 00006339 f   aoaprotected.obj
+ 0001:000054ea       ?AOAconvertCharToInt@AOAProtected@@QAEIH@Z 000064ea f   aoaprotected.obj
+ 0001:00005587       ?AOAconvertIntToChar@AOAProtected@@QAEHPADI@Z 00006587 f   aoaprotected.obj
+ 0001:000055f3       ?AOApower10@AOAProtected@@QAEIH@Z 000065f3 f   aoaprotected.obj
+ 0001:00005638       ?AOAresetLock@AOAProtected@@QAEHHJ@Z 00006638 f   aoaprotected.obj
+ 0001:00005655       ?AOAtestAndSet@AOAProtected@@QAEHHJ@Z 00006655 f   aoaprotected.obj
+ 0001:000056a5       ?AOAgetSharedMemTraceString@AOAProtected@@QAEXPAD@Z 000066a5 f   aoaprotected.obj
+ 0001:000056eb       ?AOAsetSharedMemTraceString@AOAProtected@@QAEXPAD@Z 000066eb f   aoaprotected.obj
+ 0001:00005732       ?AOAsetSharedMemChar@AOAProtected@@QAEXHDH@Z 00006732 f   aoaprotected.obj
+ 0001:00005753       ?AOAgetSharedMem@AOAProtected@@QAEJH@Z 00006753 f   aoaprotected.obj
+ 0001:0000576c       ?AOAsetSharedMem@AOAProtected@@QAEXHJ@Z 0000676c f   aoaprotected.obj
+ 0001:00005789       ?AOAgetMem@AOAProtected@@QAEJJ@Z 00006789 f   aoaprotected.obj
+ 0001:000057a2       ?AOAsetMem@AOAProtected@@QAEJJJ@Z 000067a2 f   aoaprotected.obj
+ 0001:000057bf       ?AOAprintRegs@AOAProtected@@QAEXH@Z 000067bf f   aoaprotected.obj
+ 0001:000057d8       ?AOAprintStackRegs@AOAProtected@@QAEXH@Z 000067d8 f   aoaprotected.obj
+ 0001:000057f1       ?AOAgetStackPOP@AOAProtected@@QAEJH@Z 000067f1 f   aoaprotected.obj
+ 0001:0000580a       ?AOAgetDecimal@AOAProtected@@QAEHXZ 0000680a f   aoaprotected.obj
+ 0001:0000586a       ?AOAgetHex@AOAProtected@@QAEHXZ 0000686a f   aoaprotected.obj
+ 0001:00005939       ?AOAgetCharacter@AOAProtected@@QAEDXZ 00006939 f   aoaprotected.obj
+ 0001:0000598a       ?AOAgetCharacterInt@AOAProtected@@QAEDXZ 0000698a f   aoaprotected.obj
+ 0001:0000599a       ?AOAgetCharacterBuff@AOAProtected@@QAEDXZ 0000699a f   aoaprotected.obj
+ 0001:000059b6       ?AOAreadFloppy@AOAProtected@@QAEHPADJ@Z 000069b6 f   aoaprotected.obj
+ 0001:000059d3       ?AOAwriteFloppy@AOAProtected@@QAEHPADJ@Z 000069d3 f   aoaprotected.obj
+ 0001:000059f0       ?AOAclearTotalMemory@AOAProtected@@QAEHJPAJ@Z 000069f0 f   aoaprotected.obj
+ 0001:00005a37       ?AOAExit@AOAProtected@@QAEXXZ 00006a37 f   aoaprotected.obj
+ 0001:00005a51       ?AOAISRExit@AOAProtected@@QAEXXZ 00006a51 f   aoaprotected.obj
+ 0001:00005a7c       ?AOAPrintText@AOAProtected@@QAEXPADH@Z 00006a7c f   aoaprotected.obj
+ 0001:00005aee       ?AOAPrintText@AOAProtected@@QAEXPADHH@Z 00006aee f   aoaprotected.obj
+ 0001:00005b37       ?AOAPrintText@AOAProtected@@QAEXPAD@Z 00006b37 f   aoaprotected.obj
+ 0001:00005bee       ?AOA2CharTo1CharHex@AOAProtected@@QAEDPAD@Z 00006bee f   aoaprotected.obj
+ 0001:00005d21       ?AOACharToDecimal@AOAProtected@@QAEHQAD@Z 00006d21 f   aoaprotected.obj
+ 0001:00005dca       ?AOAChartoIP@AOAProtected@@QAEXQAD0@Z 00006dca f   aoaprotected.obj
+ 0001:00005e8c       ?AOAcheckValidLinkChar@AOAProtected@@QAEHD@Z 00006e8c f   aoaprotected.obj
+ 0001:00005f16       ?AOAStrLenAll@AOAProtected@@QAEHPAD@Z 00006f16 f   aoaprotected.obj
+ 0001:00005f47       ?AOAParseOneLine@AOAProtected@@QAEHPAD@Z 00006f47 f   aoaprotected.obj
+ 0001:00005f88       ?AOAStrLen@AOAProtected@@QAEHPAD@Z 00006f88 f   aoaprotected.obj
+ 0001:00005fd5       ?AOAStrRev@AOAProtected@@QAEXPAD@Z 00006fd5 f   aoaprotected.obj
+ 0001:000060b8       ?AOADecimalToChar@AOAProtected@@QAEXHQAD@Z 000070b8 f   aoaprotected.obj
+ 0001:00006118       ?AOAStrCat@AOAProtected@@QAEXPAD00@Z 00007118 f   aoaprotected.obj
+ 0001:0000619b       ?AOAStrCat@AOAProtected@@QAEXPAD0H@Z 0000719b f   aoaprotected.obj
+ 0001:000061d6       ?AOAUpper@AOAProtected@@QAEHD@Z 000071d6 f   aoaprotected.obj
+ 0001:00006217       ?AOALower@AOAProtected@@QAEHD@Z 00007217 f   aoaprotected.obj
+ 0001:00006258       ?AOAPower@AOAProtected@@QAEKHH@Z 00007258 f   aoaprotected.obj
+ 0001:000062a5       ?AOASubStrCopy@AOAProtected@@QAEXPADPBDHHH@Z 000072a5 f   aoaprotected.obj
+ 0001:000062eb       ?AOAStrCopy@AOAProtected@@QAEXPADPBDH@Z 000072eb f   aoaprotected.obj
+ 0001:0000632d       ?AOAStrTrim@AOAProtected@@QAEXPADPBDH@Z 0000732d f   aoaprotected.obj
+ 0001:0000638b       ?AOAStrCompare@AOAProtected@@QAEHPAD0HH@Z 0000738b f   aoaprotected.obj
+ 0001:0000654d       ?AOAStrCompare@AOAProtected@@QAEHPAD0HHHHH@Z 0000754d f   aoaprotected.obj
+ 0001:00006762       ?AOAindexOf@AOAProtected@@QAEHPADD@Z 00007762 f   aoaprotected.obj
+ 0001:000067d9       ?AOAsubstring@AOAProtected@@QAEPADPAD0H@Z 000077d9 f   aoaprotected.obj
+ 0001:00006846       ?AOAGetText@AOAProtected@@QAEXPAD@Z 00007846 f   aoaprotected.obj
+ 0001:00006956       ?AOAStrAppend@AOAProtected@@QAEXPAD0@Z 00007956 f   aoaprotected.obj
+ 0001:000069b6       ?AOAclearScreen@AOAProtected@@QAEXHH@Z 000079b6 f   aoaprotected.obj
+ 0001:000069ee       ?AOAMemCopy@AOAProtected@@QAEHPAD0H@Z 000079ee f   aoaprotected.obj
+ 0001:00006a32       ?AOAMsPrintText@AOAProtected@@QAEXPADH@Z 00007a32 f   aoaprotected.obj
+ 0001:00006bb4       ?AOAMsPrintText@AOAProtected@@QAEXPAD@Z 00007bb4 f   aoaprotected.obj
+ 0001:00006d26       ?AOAShortDelay@AOAProtected@@QAEHJ@Z 00007d26 f   aoaprotected.obj
+ 0001:00006d3f       ?AOAStrMatch@AOAProtected@@QAEHHPAD0@Z 00007d3f f   aoaprotected.obj
+ 0001:00006dce       ?AOAgetGDTEntry@AOAProtected@@QAEHPAJ0H@Z 00007dce f   aoaprotected.obj
+ 0001:00006def       ?AOAsetGDTEntry@AOAProtected@@QAEHPAJ0H@Z 00007def f   aoaprotected.obj
+ 0001:00006e10       ?AOAgetIDTEntry@AOAProtected@@QAEHPAJ0H@Z 00007e10 f   aoaprotected.obj
+ 0001:00006e31       ?AOAsetIDTEntry@AOAProtected@@QAEHPAJ0H@Z 00007e31 f   aoaprotected.obj
+ 0001:00006e52       ?AOAsetTimerPeriod@AOAProtected@@QAEXH@Z 00007e52 f   aoaprotected.obj
+ 0001:00006ed7       ?AOAInitTrace@AOAProtected@@QAEXH@Z 00007ed7 f   aoaprotected.obj
+ 0001:00006efe       ?AOAClearTrace@AOAProtected@@QAEXXZ 00007efe f   aoaprotected.obj
+ 0001:00006f5d       ?AOAPrintCharacterTrace@AOAProtected@@QAEXD@Z 00007f5d f   aoaprotected.obj
+ 0001:00006f8b       ?AOAsetISR@AOAProtected@@QAEHJJK@Z 00007f8b f   aoaprotected.obj
+ 0001:000070e2       ?AOAconvertToPositive@AOAProtected@@QAEIH@Z 000080e2 f   aoaprotected.obj
+ 0001:00007113       ?AOAconvertCharToShort@AOAProtected@@QAEGPAD@Z 00008113 f   aoaprotected.obj
+ 0001:00007186       ?AOAconvertDecimalCharsToInt@AOAProtected@@QAEIPAD@Z 00008186 f   aoaprotected.obj
+ 0001:00007252       ?ValidDecimalDigit@AOAProtected@@QAE_ND@Z 00008252 f   aoaprotected.obj
+ 0001:00007277       ?AOAconvertLongTo8HexChars@AOAProtected@@QAEXKPAD@Z 00008277 f   aoaprotected.obj
+ 0001:00007316       ?AOAconvertChar4ToLong@AOAProtected@@QAEKPAD@Z 00008316 f   aoaprotected.obj
+ 0001:00007391       ?AOAconvertBinaryToDecimal@AOAProtected@@QAEXIPAD@Z 00008391 f   aoaprotected.obj
+ 0001:00007401       ?AOAconvertDecimalToInt@AOAProtected@@QAEHPAD@Z 00008401 f   aoaprotected.obj
+ 0001:000074a9       ?AOAconvertBinaryToDecimal@AOAProtected@@QAEHPADH@Z 000084a9 f   aoaprotected.obj
+ 0001:00007530       ?AOAconvertIntToHexChars@AOAProtected@@QAEHPADH@Z 00008530 f   aoaprotected.obj
+ 0001:0000758c       ?AOAconvertHexCharsToInt@AOAProtected@@QAEHPAD@Z 0000858c f   aoaprotected.obj
+ 0001:00007634       ?AOAconvertShortToChar@AOAProtected@@QAEHPADG@Z 00008634 f   aoaprotected.obj
+ 0001:00007684       ?AOAMaskRunRegister@AOAProtected@@QAEHHH@Z 00008684 f   aoaprotected.obj
+ 0001:00007790       ?AOAisDigit@AOAProtected@@QAEHD@Z 00008790 f   aoaprotected.obj
+ 0001:000077c2       ?AOAisAlpha@AOAProtected@@QAEHD@Z 000087c2 f   aoaprotected.obj
+ 0001:00007802       ?AOAisLower@AOAProtected@@QAEHD@Z 00008802 f   aoaprotected.obj
+ 0001:00007834       ?AOAisUpper@AOAProtected@@QAEHD@Z 00008834 f   aoaprotected.obj
+ 0001:00007866       ?memcpy@AOAProtected@@QAEPAXPAXPBXH@Z 00008866 f   aoaprotected.obj
+ 0001:000078b1       ?memset@AOAProtected@@QAEPAXPAXHH@Z 000088b1 f   aoaprotected.obj
+ 0001:000078eb       ?reverseLongByteOrder@AOAProtected@@QAEKK@Z 000088eb f   aoaprotected.obj
+ 0001:00007963       ?reverseShortByteOrder@AOAProtected@@QAEGG@Z 00008963 f   aoaprotected.obj
+ 0001:000079ad       ?CharPairToCharHex@AOAProtected@@QAEDPAD@Z 000089ad f   aoaprotected.obj
+ 0001:00007ae0       ?isSame@AOAProtected@@QAE_NPAD0H@Z 00008ae0 f   aoaprotected.obj
+ 0001:00007b30       _runTask                   00008b30 f   runTask.obj
+ 0001:00007b41       _runTaskMain               00008b41 f   runTask.obj
+ 0001:00007b4c       _runTaskasm32              00008b4c f   runTaskasm32.obj
+ 0001:00007b62       _runTaskMainasm32          00008b62 f   runTaskasm32.obj
+ 0001:00007b80       ??0EtherObj@@QAE@XZ        00008b80 f   etherobj.obj
+ 0001:00007b96       ?inittest@EtherObj@@QAEHJJJJPAD@Z 00008b96 f   etherobj.obj
+ 0001:00007c8f       ?initTDL@EtherObj@@QAEHHHH@Z 00008c8f f   etherobj.obj
+ 0001:00007cf3       ?initRDL@EtherObj@@QAEHHHH@Z 00008cf3 f   etherobj.obj
+ 0001:00007d57       ?createTDL@EtherObj@@QAEHXZ 00008d57 f   etherobj.obj
+ 0001:00007ded       ?createRDL@EtherObj@@QAEHXZ 00008ded f   etherobj.obj
+ 0001:00007e80       ?getBaseAddress@EtherObj@@QAEHXZ 00008e80 f   etherobj.obj
+ 0001:00007e92       ?setBaseAddress@EtherObj@@QAEXH@Z 00008e92 f   etherobj.obj
+ 0001:00007ec1       ?printRegisters@EtherObj@@QAEHH@Z 00008ec1 f   etherobj.obj
+ 0001:000081f5       ?getMAC@EtherObj@@QAEXPAD@Z 000091f5 f   etherobj.obj
+ 0001:0000822f       ?getMACEPROM@EtherObj@@QAEXPAD@Z 0000922f f   etherobj.obj
+ 0001:00008495       ?getRegister32@EtherObj@@QAEHK@Z 00009495 f   etherobj.obj
+ 0001:000084ae       ?setRegister32@EtherObj@@QAEXHK@Z 000094ae f   etherobj.obj
+ 0001:000084cb       ?getECompatibility@EtherObj@@QAEHXZ 000094cb f   etherobj.obj
+ 0001:00008549       ?getEDeviceId@EtherObj@@QAEHXZ 00009549 f   etherobj.obj
+ 0001:000085c7       ?getEVendorId@EtherObj@@QAEHXZ 000095c7 f   etherobj.obj
+ 0001:00008645       ?getEInitCtrl1@EtherObj@@QAEHXZ 00009645 f   etherobj.obj
+ 0001:000086c3       ?getEInitCtrl2@EtherObj@@QAEHXZ 000096c3 f   etherobj.obj
+ 0001:00008741       ?getEMgmtCtrl@EtherObj@@QAEHXZ 00009741 f   etherobj.obj
+ 0001:000087bf       ?getEInitCtrl3@EtherObj@@QAEHXZ 000097bf f   etherobj.obj
+ 0001:0000883d       ?getEIPv4Byte01@EtherObj@@QAEHXZ 0000983d f   etherobj.obj
+ 0001:000088bb       ?getEIPv4Byte23@EtherObj@@QAEHXZ 000098bb f   etherobj.obj
+ 0001:00008939       ?getControl@EtherObj@@QAEHXZ 00009939 f   etherobj.obj
+ 0001:00008972       ?getStatus@EtherObj@@QAEHXZ 00009972 f   etherobj.obj
+ 0001:000089ab       ?getMdicPhyCtrl@EtherObj@@QAEHXZ 000099ab f   etherobj.obj
+ 0001:00008a22       ?getMdicPhyStat@EtherObj@@QAEHXZ 00009a22 f   etherobj.obj
+ 0001:00008a99       ?getInterruptMaskSet@EtherObj@@QAEHXZ 00009a99 f   etherobj.obj
+ 0001:00008ad5       ?getInterruptMaskClear@EtherObj@@QAEHXZ 00009ad5 f   etherobj.obj
+ 0001:00008b11       ?getTDBALow@EtherObj@@QAEHXZ 00009b11 f   etherobj.obj
+ 0001:00008b4d       ?getRDBALow@EtherObj@@QAEHXZ 00009b4d f   etherobj.obj
+ 0001:00008b89       ?setTDBALow@EtherObj@@QAEHH@Z 00009b89 f   etherobj.obj
+ 0001:00008bdd       ?setRDBALow@EtherObj@@QAEHH@Z 00009bdd f   etherobj.obj
+ 0001:00008c31       ?getTDBAHigh@EtherObj@@QAEHXZ 00009c31 f   etherobj.obj
+ 0001:00008c6d       ?getRDBAHigh@EtherObj@@QAEHXZ 00009c6d f   etherobj.obj
+ 0001:00008ca9       ?setTDBAHigh@EtherObj@@QAEHH@Z 00009ca9 f   etherobj.obj
+ 0001:00008ce8       ?setRDBAHigh@EtherObj@@QAEHH@Z 00009ce8 f   etherobj.obj
+ 0001:00008d27       ?getTDLen@EtherObj@@QAEHXZ 00009d27 f   etherobj.obj
+ 0001:00008d63       ?getRDLen@EtherObj@@QAEHXZ 00009d63 f   etherobj.obj
+ 0001:00008d9f       ?setTDLen@EtherObj@@QAEHH@Z 00009d9f f   etherobj.obj
+ 0001:00008e00       ?setRDLen@EtherObj@@QAEHH@Z 00009e00 f   etherobj.obj
+ 0001:00008e61       ?getTDHead@EtherObj@@QAEHXZ 00009e61 f   etherobj.obj
+ 0001:00008e9d       ?getRDHead@EtherObj@@QAEHXZ 00009e9d f   etherobj.obj
+ 0001:00008ed9       ?setTDHead@EtherObj@@QAEHH@Z 00009ed9 f   etherobj.obj
+ 0001:00008f30       ?setRDHead@EtherObj@@QAEHH@Z 00009f30 f   etherobj.obj
+ 0001:00008f87       ?getTDTail@EtherObj@@QAEHXZ 00009f87 f   etherobj.obj
+ 0001:00008fc3       ?getRDTail@EtherObj@@QAEHXZ 00009fc3 f   etherobj.obj
+ 0001:00008fff       ?setTDTail@EtherObj@@QAEHH@Z 00009fff f   etherobj.obj
+ 0001:00009056       ?setRDTail@EtherObj@@QAEHH@Z 0000a056 f   etherobj.obj
+ 0001:000090ad       ?getTCtrl@EtherObj@@QAEHXZ 0000a0ad f   etherobj.obj
+ 0001:000090e9       ?getRCtrl@EtherObj@@QAEHXZ 0000a0e9 f   etherobj.obj
+ 0001:00009125       ?setTCtrl@EtherObj@@QAEHH@Z 0000a125 f   etherobj.obj
+ 0001:00009164       ?setRCtrl@EtherObj@@QAEHH@Z 0000a164 f   etherobj.obj
+ 0001:000091a3       ?TEnable@EtherObj@@QAEHXZ  0000a1a3 f   etherobj.obj
+ 0001:000091ca       ?REnable@EtherObj@@QAEHXZ  0000a1ca f   etherobj.obj
+ 0001:000091f1       ?ColdReset@EtherObj@@QAEHXZ 0000a1f1 f   etherobj.obj
+ 0001:00009281       ?HotReset@EtherObj@@QAEHXZ 0000a281 f   etherobj.obj
+ 0001:000092ef       ?TDisable@EtherObj@@QAEHXZ 0000a2ef f   etherobj.obj
+ 0001:00009313       ?RDisable@EtherObj@@QAEHXZ 0000a313 f   etherobj.obj
+ 0001:00009337       ?setTData@EtherObj@@QAEHHHH@Z 0000a337 f   etherobj.obj
+ 0001:000093db       ?printRReadData@EtherObj@@QAEHHHH@Z 0000a3db f   etherobj.obj
+ 0001:000094c1       ?printTReadData@EtherObj@@QAEHHHH@Z 0000a4c1 f   etherobj.obj
+ 0001:000095aa       ?isTDescDone@EtherObj@@QAEHH@Z 0000a5aa f   etherobj.obj
+ 0001:0000962f       ?isRDescDone@EtherObj@@QAEHH@Z 0000a62f f   etherobj.obj
+ 0001:000096b4       ?resetTDescDone@EtherObj@@QAEHH@Z 0000a6b4 f   etherobj.obj
+ 0001:0000972a       ?resetRDescDone@EtherObj@@QAEHH@Z 0000a72a f   etherobj.obj
+ 0001:000097a0       ?getRAL0@EtherObj@@QAEHXZ  0000a7a0 f   etherobj.obj
+ 0001:000097dc       ?setRAL0@EtherObj@@QAEHH@Z 0000a7dc f   etherobj.obj
+ 0001:0000981b       ?getRAH0@EtherObj@@QAEHXZ  0000a81b f   etherobj.obj
+ 0001:00009857       ?setRAH0@EtherObj@@QAEHH@Z 0000a857 f   etherobj.obj
+ 0001:000098b4       ?getRAL1@EtherObj@@QAEHXZ  0000a8b4 f   etherobj.obj
+ 0001:000098f0       ?setRAL1@EtherObj@@QAEHH@Z 0000a8f0 f   etherobj.obj
+ 0001:0000992f       ?getRAH1@EtherObj@@QAEHXZ  0000a92f f   etherobj.obj
+ 0001:0000996b       ?setRAH1@EtherObj@@QAEHH@Z 0000a96b f   etherobj.obj
+ 0001:000099c8       ?printTDL@EtherObj@@QAEHHH@Z 0000a9c8 f   etherobj.obj
+ 0001:00009aac       ?printRDL@EtherObj@@QAEHHH@Z 0000aaac f   etherobj.obj
+ 0001:00009b90       ?getPRC64@EtherObj@@QAEHXZ 0000ab90 f   etherobj.obj
+ 0001:00009bcc       ?getPRC127@EtherObj@@QAEHXZ 0000abcc f   etherobj.obj
+ 0001:00009c08       ?getPRC255@EtherObj@@QAEHXZ 0000ac08 f   etherobj.obj
+ 0001:00009c44       ?getPRC511@EtherObj@@QAEHXZ 0000ac44 f   etherobj.obj
+ 0001:00009c80       ?getPRC1023@EtherObj@@QAEHXZ 0000ac80 f   etherobj.obj
+ 0001:00009cbc       ?getPRC1522@EtherObj@@QAEHXZ 0000acbc f   etherobj.obj
+ 0001:00009cf8       ?getGPRC@EtherObj@@QAEHXZ  0000acf8 f   etherobj.obj
+ 0001:00009d34       ?getICR@EtherObj@@QAEHXZ   0000ad34 f   etherobj.obj
+ 0001:00009d70       ?getBPRC@EtherObj@@QAEHXZ  0000ad70 f   etherobj.obj
+ 0001:00009dac       ?getMPRC@EtherObj@@QAEHXZ  0000adac f   etherobj.obj
+ 0001:00009de8       ?getGPTC@EtherObj@@QAEHXZ  0000ade8 f   etherobj.obj
+ 0001:00009e24       ?getRNBC@EtherObj@@QAEHXZ  0000ae24 f   etherobj.obj
+ 0001:00009e60       ?getTPR@EtherObj@@QAEHXZ   0000ae60 f   etherobj.obj
+ 0001:00009e9c       ?getTPT@EtherObj@@QAEHXZ   0000ae9c f   etherobj.obj
+ 0001:00009ed8       ?getPTC64@EtherObj@@QAEHXZ 0000aed8 f   etherobj.obj
+ 0001:00009f14       ?getPTC127@EtherObj@@QAEHXZ 0000af14 f   etherobj.obj
+ 0001:00009f50       ?getPTC255@EtherObj@@QAEHXZ 0000af50 f   etherobj.obj
+ 0001:00009f8c       ?getPTC511@EtherObj@@QAEHXZ 0000af8c f   etherobj.obj
+ 0001:00009fc8       ?getPTC1023@EtherObj@@QAEHXZ 0000afc8 f   etherobj.obj
+ 0001:0000a004       ?getPTC1522@EtherObj@@QAEHXZ 0000b004 f   etherobj.obj
+ 0001:0000a040       ?getMPTC@EtherObj@@QAEHXZ  0000b040 f   etherobj.obj
+ 0001:0000a07c       ?getBPTC@EtherObj@@QAEHXZ  0000b07c f   etherobj.obj
+ 0001:0000a0b8       ?getSCC@EtherObj@@QAEHXZ   0000b0b8 f   etherobj.obj
+ 0001:0000a0f4       ?getECOL@EtherObj@@QAEHXZ  0000b0f4 f   etherobj.obj
+ 0001:0000a130       ?getMCC@EtherObj@@QAEHXZ   0000b130 f   etherobj.obj
+ 0001:0000a16c       ?getLATECOL@EtherObj@@QAEHXZ 0000b16c f   etherobj.obj
+ 0001:0000a1a8       ?getCOLC@EtherObj@@QAEHXZ  0000b1a8 f   etherobj.obj
+ 0001:0000a1e4       ?getDC@EtherObj@@QAEHXZ    0000b1e4 f   etherobj.obj
+ 0001:0000a220       ?getTNCRS@EtherObj@@QAEHXZ 0000b220 f   etherobj.obj
+ 0001:0000a25c       ?getSEC@EtherObj@@QAEHXZ   0000b25c f   etherobj.obj
+ 0001:0000a298       ?getGOTCL@EtherObj@@QAEHXZ 0000b298 f   etherobj.obj
+ 0001:0000a2d4       ?getGOTCH@EtherObj@@QAEHXZ 0000b2d4 f   etherobj.obj
+ 0001:0000a310       ?getMGTPTC@EtherObj@@QAEHXZ 0000b310 f   etherobj.obj
+ 0001:0000a34c       ?getTOTL@EtherObj@@QAEHXZ  0000b34c f   etherobj.obj
+ 0001:0000a388       ?getTOTH@EtherObj@@QAEHXZ  0000b388 f   etherobj.obj
+ 0001:0000a3c4       ?getTXDCTL@EtherObj@@QAEHXZ 0000b3c4 f   etherobj.obj
+ 0001:0000a400       ?getRXDCTL@EtherObj@@QAEHXZ 0000b400 f   etherobj.obj
+ 0001:0000a43c       ?getTIPG@EtherObj@@QAEHXZ  0000b43c f   etherobj.obj
+ 0001:0000a478       ?printDiag@EtherObj@@QAEHH@Z 0000b478 f   etherobj.obj
+ 0001:0000a6e8       ?printTStat@EtherObj@@QAEHH@Z 0000b6e8 f   etherobj.obj
+ 0001:0000a894       ?getCurrentReceivePtr@EtherObj@@QAEHXZ 0000b894 f   etherobj.obj
+ 0001:0000a8b6       ?getCount@EtherObj@@QAEHXZ 0000b8b6 f   etherobj.obj
+ 0001:0000a8e4       ?RDLfull@EtherObj@@QAEHXZ  0000b8e4 f   etherobj.obj
+ 0001:0000a94b       ?ReadData@EtherObj@@QAEHPAPADPAHPAD2@Z 0000b94b f   etherobj.obj
+ 0001:0000abe1       ?discardPacket@EtherObj@@QAEHXZ 0000bbe1 f   etherobj.obj
+ 0001:0000acaa       ?TDLFull@EtherObj@@QAEHXZ  0000bcaa f   etherobj.obj
+ 0001:0000ad3b       ?IPInsertPkt@EtherObj@@QAEHPADHH0H@Z 0000bd3b f   etherobj.obj
+ 0001:0000aee3       ?sndCall@EtherObj@@QAEHXZ  0000bee3 f   etherobj.obj
+ 0001:0000af3c       ?IncSendOutPtr@EtherObj@@QAEHXZ 0000bf3c f   etherobj.obj
+ 0001:0000afa7       ?ARPInsertPkt@EtherObj@@QAEHPADHH00HH@Z 0000bfa7 f   etherobj.obj
+ 0001:0000b196       ?FormatEthPacket@EtherObj@@QAEHPADHH0JHH@Z 0000c196 f   etherobj.obj
+ 0001:0000b32c       ?FormatEthPacketN@EtherObj@@QAEHPADHH0JHHH@Z 0000c32c f   etherobj.obj
+ 0001:0000b4da       ?sndCallN@EtherObj@@QAEHH@Z 0000c4da f   etherobj.obj
+ 0001:0000b540       _cigetRegister32           0000c540 f   cisupport.obj
+ 0001:0000b551       _cisetRegister32           0000c551 f   cisupport.obj
+ 0001:0000b568       _igetRegister32            0000c568 f   isupport.obj
+ 0001:0000b587       _isetRegister32            0000c587 f   isupport.obj
+ 0001:0000b5a4       __chkstk                   0000c5a4 f   chkstk.obj
+ 0001:0000b5c0       ?init@WCirList@@QAEHJJ@Z   0000c5c0 f   wcirlist.obj
+ 0001:0000b677       ?insert@WCirList@@QAEHJJJHJ@Z 0000c677 f   wcirlist.obj
+ 0001:0000b775       ?get@WCirList@@QAEHPAJPAI0PAH0@Z 0000c775 f   wcirlist.obj
+ 0001:0000b87f       ?empty@WCirList@@QAEHXZ    0000c87f f   wcirlist.obj
+ 0001:0000b8b3       ?full@WCirList@@QAEHXZ     0000c8b3 f   wcirlist.obj
+ 0001:0000b8f1       ?getCount@WCirList@@QAEHXZ 0000c8f1 f   wcirlist.obj
+ 0001:0000b929       ?printlist@WCirList@@QAEHH@Z 0000c929 f   wcirlist.obj
+ 0001:0000ba80       ?init@WStack@@QAEHJH@Z     0000ca80 f   wstack.obj
+ 0001:0000baee       ?push@WStack@@QAEHH@Z      0000caee f   wstack.obj
+ 0001:0000bb2b       ?pop@WStack@@QAEHPAH@Z     0000cb2b f   wstack.obj
+ 0001:0000bb69       ?empty@WStack@@QAEHXZ      0000cb69 f   wstack.obj
+ 0001:0000bba9       ?full@WStack@@QAEHXZ       0000cba9 f   wstack.obj
+ 0001:0000bbf2       ?printstack@WStack@@QAEHHH@Z 0000cbf2 f   wstack.obj
+ 0001:0000bca0       ?init@WTTrace@@QAEHHH@Z    0000cca0 f   wttrace.obj
+ 0001:0000bcf8       ?insert@WTTrace@@QAEHHG@Z  0000ccf8 f   wttrace.obj
+ 0001:0000bd5e       ?reset@WTTrace@@QAEHHG@Z   0000cd5e f   wttrace.obj
+ 0001:0000bdc4       ?get@WTTrace@@QAEGH@Z      0000cdc4 f   wttrace.obj
+ 0001:0000bdf0       ?init@WList@@QAEHJJ@Z      0000cdf0 f   wlist.obj
+ 0001:0000be87       ?reset@WList@@QAEHJ@Z      0000ce87 f   wlist.obj
+ 0001:0000befc       ?insert@WList@@QAEHJHHH@Z  0000cefc f   wlist.obj
+ 0001:0000c04a       ?insert@WList@@QAEHJH@Z    0000d04a f   wlist.obj
+ 0001:0000c0c8       ?get@WList@@QAEHPAJ0PAH@Z  0000d0c8 f   wlist.obj
+ 0001:0000c116       ?printlist@WList@@QAEHH@Z  0000d116 f   wlist.obj
+ 0001:0000c2c0       ??0ARPObj@@QAE@XZ          0000d2c0 f   ARPObj.obj
+ 0001:0000c31a       ?init@ARPObj@@QAEXPAD000@Z 0000d31a f   ARPObj.obj
+ 0001:0000c4cb       ?Resolve@ARPObj@@QAEHPAD0H@Z 0000d4cb f   ARPObj.obj
+ 0001:0000c8d8       ?ARPBroadcast@ARPObj@@QAEHPAD00@Z 0000d8d8 f   ARPObj.obj
+ 0001:0000ca04       ?ARPHandler@ARPObj@@QAEHPADHH@Z 0000da04 f   ARPObj.obj
+ 0001:0000cb88       ?ProcessRequest@ARPObj@@QAEHPADHH@Z 0000db88 f   ARPObj.obj
+ 0001:0000cf89       ?ProcessReplies@ARPObj@@QAEHPADH@Z 0000df89 f   ARPObj.obj
+ 0001:0000d16e       ?hashFun@ARPObj@@AAEHPAD@Z 0000e16e f   ARPObj.obj
+ 0001:0000d1c3       ?close@ARPObj@@QAEXXZ      0000e1c3 f   ARPObj.obj
+ 0001:0000d1ce       ?Response@ARPObj@@QAEHPADH@Z 0000e1ce f   ARPObj.obj
+ 0001:0000d358       ?printStatistics@ARPObj@@QAEXH@Z 0000e358 f   ARPObj.obj
+ 0001:0000d43c       ?printARPTable@ARPObj@@QAEXH@Z 0000e43c f   ARPObj.obj
+ 0001:0000d610       ??0IPObj@@QAE@XZ           0000e610 f   IPObj.obj
+ 0001:0000d643       ?init@IPObj@@QAEXPAD@Z     0000e643 f   IPObj.obj
+ 0001:0000d6d2       ?sendData@IPObj@@QAEHPADHQAD1HH@Z 0000e6d2 f   IPObj.obj
+ 0001:0000d8d0       ?FormatIPPacket@IPObj@@QAEHPADHQAD1HH@Z 0000e8d0 f   IPObj.obj
+ 0001:0000da62       ?checksum@IPObj@@AAEGPAD@Z 0000ea62 f   IPObj.obj
+ 0001:0000daff       ?IPHandler@IPObj@@QAEHPADH0JH@Z 0000eaff f   IPObj.obj
+ 0001:0000dfe7       ?printStatistics@IPObj@@QAEXH@Z 0000efe7 f   IPObj.obj
+ 0001:0000e0a0       ??0random@@QAE@XZ          0000f0a0 f   rand.obj
+ 0001:0000e0c1       ??0random@@QAE@H@Z         0000f0c1 f   rand.obj
+ 0001:0000e0e4       ?getRandomAoA@random@@QAEHH@Z 0000f0e4 f   rand.obj
+ 0001:0000e140       ?initRecord@TCPObj@@QAEHXZ 0000f140 f   tcpobj.obj
+ 0001:0000e15a       ?init@TCPObj@@QAEHQAD0000GJJJJ@Z 0000f15a f   tcpobj.obj
+ 0001:0000e5a8       ?InsertTCB@TCPObj@@AAEHPAUTCBRecord@1@@Z 0000f5a8 f   tcpobj.obj
+ 0001:0000eab4       ?DeleteTCB@TCPObj@@QAEHHH@Z 0000fab4 f   tcpobj.obj
+ 0001:0000eec9       ?GetTCB@TCPObj@@AAEHHPAJ@Z 0000fec9 f   tcpobj.obj
+ 0001:0000ef09       ?greaterEqualto@TCPObj@@AAEHKK@Z 0000ff09 f   tcpobj.obj
+ 0001:0000ef42       ?TCPHandler@TCPObj@@QAEHPADH00H0JH@Z 0000ff42 f   tcpobj.obj
+ 0001:0000f1f8       ?ListenHandler@TCPObj@@AAEHPADH000JH@Z 000101f8 f   tcpobj.obj
+ 0001:0000f8e0       ?OtherHandler@TCPObj@@AAEHPADHHJH@Z 000108e0 f   tcpobj.obj
+ 0001:000116f3       ?FormatHeader@TCPObj@@AAEXPAD0@Z 000126f3 f   tcpobj.obj
+ 0001:00011883       ?TCPChecksum@TCPObj@@AAEGPADJ00I@Z 00012883 f   tcpobj.obj
+ 0001:00011a71       ?SearchTCB@TCPObj@@AAEHQAD0@Z 00012a71 f   tcpobj.obj
+ 0001:00011bd2       ?charToseqnum@TCPObj@@AAEKPAD@Z 00012bd2 f   tcpobj.obj
+ 0001:00011c07       ?charToWindow@TCPObj@@AAEGPAD@Z 00012c07 f   tcpobj.obj
+ 0001:00011c2b       ?SendMisc@TCPObj@@AAEHPAD0KD0HH@Z 00012c2b f   tcpobj.obj
+ 0001:00011e4d       ?SendMisc@TCPObj@@AAEHPAD00H@Z 00012e4d f   tcpobj.obj
+ 0001:000121f5       ?SendMisc@TCPObj@@AAEHPAD0D0HH@Z 000131f5 f   tcpobj.obj
+ 0001:00012414       ?SendMiscKA@TCPObj@@AAEHPAD0D0HKH@Z 00013414 f   tcpobj.obj
+ 0001:0001262e       ?FormatTCPPacket@TCPObj@@AAEHPAD00DGKK0HHH@Z 0001362e f   tcpobj.obj
+ 0001:0001289c       ?SendN@TCPObj@@AAEHHH@Z    0001389c f   tcpobj.obj
+ 0001:0001315d       ?getRtt@TCPObj@@AAEHH@Z    0001415d f   tcpobj.obj
+ 0001:00013186       ?mod32cmp@TCPObj@@AAEKKK@Z 00014186 f   tcpobj.obj
+ 0001:0001328c       ?getSlidingWindow@TCPObj@@AAEJH@Z 0001428c f   tcpobj.obj
+ 0001:000132b5       ?CalcRTT@TCPObj@@AAEKKK@Z  000142b5 f   tcpobj.obj
+ 0001:000132db       ?CalcDiff@TCPObj@@AAEKKKK@Z 000142db f   tcpobj.obj
+ 0001:0001331e       ?tcpSendN@TCPObj@@QAEHHH@Z 0001431e f   tcpobj.obj
+ 0001:00015339       ?printStatistics@TCPObj@@QAEXH@Z 00016339 f   tcpobj.obj
+ 0001:00015346       ?sendHeader1@TCPObj@@AAEHHKKH@Z 00016346 f   tcpobj.obj
+ 0001:0001547d       ?sendPayload3@TCPObj@@AAEHHKH@Z 0001647d f   tcpobj.obj
+ 0001:000155d2       ?sendPayload4@TCPObj@@AAEHHKH@Z 000165d2 f   tcpobj.obj
+ 0001:000157e9       ?getSuspendFlag@TCPObj@@QAEHH@Z 000167e9 f   tcpobj.obj
+ 0001:00015829       ?getResumeFlag@TCPObj@@QAEHH@Z 00016829 f   tcpobj.obj
+ 0001:00015869       ?getResetFlag@TCPObj@@QAEHH@Z 00016869 f   tcpobj.obj
+ 0001:000158a9       ?resetResumeFlag@TCPObj@@QAEHH@Z 000168a9 f   tcpobj.obj
+ 0001:000158d8       ?setTaskID@TCPObj@@QAEHHH@Z 000168d8 f   tcpobj.obj
+ 0001:0001591f       ?getTaskID@TCPObj@@QAEHH@Z 0001691f f   tcpobj.obj
+ 0001:00015961       ?getMsgPtr@TCPObj@@QAEPADHPAH@Z 00016961 f   tcpobj.obj
+ 0001:000159b9       ?setFileParam@TCPObj@@QAEHHPADJKJH@Z 000169b9 f   tcpobj.obj
+ 0001:00015ade       ?getHttpCount@TCPObj@@QAEHXZ 00016ade f   tcpobj.obj
+ 0001:00015aee       ?PrintTCB@TCPObj@@AAEHHH@Z 00016aee f   tcpobj.obj
+ 0001:00015bdb       ?getAvail@TCPObj@@QAEHH@Z  00016bdb f   tcpobj.obj
+ 0001:00015c03       ?StoreTrace3@TCPObj@@AAEXPADH@Z 00016c03 f   tcpobj.obj
+ 0001:00015cad       ?storeTraceTCBRecord@TCPObj@@QAEHH@Z 00016cad f   tcpobj.obj
+ 0001:00015d6f       ?storeTraceDword@TCPObj@@QAEHHHH@Z 00016d6f f   tcpobj.obj
+ 0001:00015e40       ?processRequest@parserObj@@QAEHHH@Z 00016e40 f   parserobj.obj
+ 0001:00015fc8       ?methodGET@parserObj@@AAEHPADHH@Z 00016fc8 f   parserobj.obj
+ 0001:000162fe       ?checkVersion@parserObj@@AAEHPAD@Z 000172fe f   parserobj.obj
+ 0001:000163c1       ?checkLineBreak@parserObj@@AAEHPAD@Z 000173c1 f   parserobj.obj
+ 0001:000163ec       ?createResponse@parserObj@@AAEHPAD00PAJPAK2@Z 000173ec f   parserobj.obj
+ 0001:00017508       ?sstrcmp@parserObj@@AAEHPAD0@Z 00018508 f   parserobj.obj
+ 0001:0001760d       ?sstrcpy@parserObj@@AAEHPADH0H@Z 0001860d f   parserobj.obj
+ 0001:000176d7       ?sstrlen@parserObj@@AAEHPAD@Z 000186d7 f   parserobj.obj
+ 0001:00017708       ?strcpy@parserObj@@AAEPADPAD0@Z 00018708 f   parserobj.obj
+ 0001:00017752       ?strcat@parserObj@@AAEXPAD0@Z 00018752 f   parserobj.obj
+ 0001:000177c8       ?longToStr@parserObj@@AAEHPAKPAD@Z 000187c8 f   parserobj.obj
+ 0001:0001788c       ?copyTraceHtml@parserObj@@AAEHKKK@Z 0001888c f   parserobj.obj
+ 0001:00017950       ?init@HttpIndex@@QAEHKKHH@Z 00018950 f   httpindex.obj
+ 0001:000179f9       ?readFloppy@HttpIndex@@QAEHXZ 000189f9 f   httpindex.obj
+ 0001:00018113       ?getFile@HttpIndex@@QAEHPADPAK1@Z 00019113 f   httpindex.obj
+ 0001:000181a4       ?sstrcmp@HttpIndex@@AAEHPAD0@Z 000191a4 f   httpindex.obj
+ 0001:000182a9       ?sstrcpy@HttpIndex@@AAEHPADH0H@Z 000192a9 f   httpindex.obj
+ 0001:00018373       ?sstrlen@HttpIndex@@AAEHPAD@Z 00019373 f   httpindex.obj
+ 0001:000183b0       ?init@HttphashIndex@@QAEHJK@Z 000193b0 f   hashindex.obj
+ 0001:000183d4       ?hashfun@HttphashIndex@@QAEJPADH@Z 000193d4 f   hashindex.obj
+ 0001:0001844c       ?get@HttphashIndex@@QAEPADPADH@Z 0001944c f   hashindex.obj
+ 0001:00018480       ?setIndex@HttphashIndex@@QAEHJK@Z 00019480 f   hashindex.obj
+ 0001:000184b6       ?getIndex@HttphashIndex@@QAEKJ@Z 000194b6 f   hashindex.obj
+ 0001:000184e0       ?init@UDPObj@@QAEXPADG@Z   000194e0 f   udpobj.obj
+ 0001:00018525       ?sendData@UDPObj@@QAEHPADG0H0H@Z 00019525 f   udpobj.obj
+ 0001:00018636       ?UDPHandler@UDPObj@@QAEHPADH00HH@Z 00019636 f   udpobj.obj
+ 0001:00018770       ?init@FTPObj@@QAEHKKHHPADG@Z 00019770 f   ftpobj.obj
+ 0001:00018903       ?getFile@FTPObj@@QAEHPADPAK1@Z 00019903 f   ftpobj.obj
+ 0001:00018992       ?sstrcmp@FTPObj@@AAEHPAD0@Z 00019992 f   ftpobj.obj
+ 0001:00018a7e       ?sstrcpy@FTPObj@@AAEHPADH0H@Z 00019a7e f   ftpobj.obj
+ 0001:00018b90       ?sstrlen@FTPObj@@AAEHPAD@Z 00019b90 f   ftpobj.obj
+ 0001:00018bc1       ?StartTransfer@FTPObj@@QAEHPADGH@Z 00019bc1 f   ftpobj.obj
+ 0001:00018d2b       ?FtpHandler@FTPObj@@QAEHPADJ0GH@Z 00019d2b f   ftpobj.obj
+ 0001:000199a0       ?init@FTOPObj@@QAEHXZ      0001a9a0 f   ftopobj.obj
+ 0001:000199c7       ?setMode@FTOPObj@@QAEXH@Z  0001a9c7 f   ftopobj.obj
+ 0001:000199dc       ?getMode@FTOPObj@@QAEHXZ   0001a9dc f   ftopobj.obj
+ 0001:000199f9       ?HandleFTOP@FTOPObj@@QAEHPADHH@Z 0001a9f9 f   ftopobj.obj
+ 0001:00019b5c       ?SendFTOP@FTOPObj@@QAEHH@Z 0001ab5c f   ftopobj.obj
+ 0001:00019c20       ??0IntException@@QAE@XZ    0001ac20 f   intexception.obj
+ 0001:00019c36       ?IntExceptionInit@IntException@@QAEXXZ 0001ac36 f   intexception.obj
+ 0001:0001b902       ?getFunctionPtr@IntException@@QAEPAJP81@AEXJ@Z@Z 0001c902 f   intexception.obj
+ 0001:0001b941       ?IntException000@IntException@@QAEXJ@Z 0001c941 f   intexception.obj
+ 0001:0001b995       ?IntException001@IntException@@QAEXJ@Z 0001c995 f   intexception.obj
+ 0001:0001b9f3       ?IntException002@IntException@@QAEXJ@Z 0001c9f3 f   intexception.obj
+ 0001:0001ba47       ?IntException003@IntException@@QAEXJ@Z 0001ca47 f   intexception.obj
+ 0001:0001ba9b       ?IntException004@IntException@@QAEXJ@Z 0001ca9b f   intexception.obj
+ 0001:0001baef       ?IntException005@IntException@@QAEXJ@Z 0001caef f   intexception.obj
+ 0001:0001bb43       ?IntException006@IntException@@QAEXJ@Z 0001cb43 f   intexception.obj
+ 0001:0001bb9a       ?IntException007@IntException@@QAEXJ@Z 0001cb9a f   intexception.obj
+ 0001:0001bbee       ?IntException010@IntException@@QAEXJ@Z 0001cbee f   intexception.obj
+ 0001:0001bc2c       ?IntException011@IntException@@QAEXJ@Z 0001cc2c f   intexception.obj
+ 0001:0001bc80       ?IntException012@IntException@@QAEXJ@Z 0001cc80 f   intexception.obj
+ 0001:0001bcd4       ?IntException013@IntException@@QAEXJ@Z 0001ccd4 f   intexception.obj
+ 0001:0001bd18       ?IntException016@IntException@@QAEXJ@Z 0001cd18 f   intexception.obj
+ 0001:0001bd6c       ?IntException017@IntException@@QAEXJ@Z 0001cd6c f   intexception.obj
+ 0001:0001bdc0       ?IntException018@IntException@@QAEXJ@Z 0001cdc0 f   intexception.obj
+ 0001:0001be14       ?IntException019@IntException@@QAEXJ@Z 0001ce14 f   intexception.obj
+ 0001:0001be68       ?IntException020@IntException@@QAEXJ@Z 0001ce68 f   intexception.obj
+ 0001:0001bebc       ?IntException021@IntException@@QAEXJ@Z 0001cebc f   intexception.obj
+ 0001:0001bf10       ?IntException022@IntException@@QAEXJ@Z 0001cf10 f   intexception.obj
+ 0001:0001bf64       ?IntException023@IntException@@QAEXJ@Z 0001cf64 f   intexception.obj
+ 0001:0001bfb8       ?IntException024@IntException@@QAEXJ@Z 0001cfb8 f   intexception.obj
+ 0001:0001c00c       ?IntException025@IntException@@QAEXJ@Z 0001d00c f   intexception.obj
+ 0001:0001c060       ?IntException026@IntException@@QAEXJ@Z 0001d060 f   intexception.obj
+ 0001:0001c0b4       ?IntException027@IntException@@QAEXJ@Z 0001d0b4 f   intexception.obj
+ 0001:0001c108       ?IntException028@IntException@@QAEXJ@Z 0001d108 f   intexception.obj
+ 0001:0001c15c       ?IntException029@IntException@@QAEXJ@Z 0001d15c f   intexception.obj
+ 0001:0001c1b0       ?IntException030@IntException@@QAEXJ@Z 0001d1b0 f   intexception.obj
+ 0001:0001c204       ?IntException031@IntException@@QAEXJ@Z 0001d204 f   intexception.obj
+ 0001:0001c258       ?IntException032@IntException@@QAEXJ@Z 0001d258 f   intexception.obj
+ 0001:0001c2ac       ?IntException033@IntException@@QAEXJ@Z 0001d2ac f   intexception.obj
+ 0001:0001c300       ?IntException034@IntException@@QAEXJ@Z 0001d300 f   intexception.obj
+ 0001:0001c354       ?IntException035@IntException@@QAEXJ@Z 0001d354 f   intexception.obj
+ 0001:0001c3a8       ?IntException036@IntException@@QAEXJ@Z 0001d3a8 f   intexception.obj
+ 0001:0001c3fc       ?IntException037@IntException@@QAEXJ@Z 0001d3fc f   intexception.obj
+ 0001:0001c450       ?IntException038@IntException@@QAEXJ@Z 0001d450 f   intexception.obj
+ 0001:0001c4a4       ?IntException039@IntException@@QAEXJ@Z 0001d4a4 f   intexception.obj
+ 0001:0001c4f8       ?IntException040@IntException@@QAEXJ@Z 0001d4f8 f   intexception.obj
+ 0001:0001c54c       ?IntException041@IntException@@QAEXJ@Z 0001d54c f   intexception.obj
+ 0001:0001c5a0       ?IntException042@IntException@@QAEXJ@Z 0001d5a0 f   intexception.obj
+ 0001:0001c5f4       ?IntException043@IntException@@QAEXJ@Z 0001d5f4 f   intexception.obj
+ 0001:0001c648       ?IntException044@IntException@@QAEXJ@Z 0001d648 f   intexception.obj
+ 0001:0001c69c       ?IntException045@IntException@@QAEXJ@Z 0001d69c f   intexception.obj
+ 0001:0001c6f0       ?IntException046@IntException@@QAEXJ@Z 0001d6f0 f   intexception.obj
+ 0001:0001c744       ?IntException047@IntException@@QAEXJ@Z 0001d744 f   intexception.obj
+ 0001:0001c798       ?IntException048@IntException@@QAEXJ@Z 0001d798 f   intexception.obj
+ 0001:0001c7ec       ?IntException049@IntException@@QAEXJ@Z 0001d7ec f   intexception.obj
+ 0001:0001c840       ?IntException050@IntException@@QAEXJ@Z 0001d840 f   intexception.obj
+ 0001:0001c894       ?IntException051@IntException@@QAEXJ@Z 0001d894 f   intexception.obj
+ 0001:0001c8e8       ?IntException052@IntException@@QAEXJ@Z 0001d8e8 f   intexception.obj
+ 0001:0001c93c       ?IntException053@IntException@@QAEXJ@Z 0001d93c f   intexception.obj
+ 0001:0001c990       ?IntException054@IntException@@QAEXJ@Z 0001d990 f   intexception.obj
+ 0001:0001c9e4       ?IntException055@IntException@@QAEXJ@Z 0001d9e4 f   intexception.obj
+ 0001:0001ca38       ?IntException056@IntException@@QAEXJ@Z 0001da38 f   intexception.obj
+ 0001:0001ca8c       ?IntException057@IntException@@QAEXJ@Z 0001da8c f   intexception.obj
+ 0001:0001cae0       ?IntException058@IntException@@QAEXJ@Z 0001dae0 f   intexception.obj
+ 0001:0001cb34       ?IntException059@IntException@@QAEXJ@Z 0001db34 f   intexception.obj
+ 0001:0001cb88       ?IntException060@IntException@@QAEXJ@Z 0001db88 f   intexception.obj
+ 0001:0001cbdc       ?IntException061@IntException@@QAEXJ@Z 0001dbdc f   intexception.obj
+ 0001:0001cc30       ?IntException062@IntException@@QAEXJ@Z 0001dc30 f   intexception.obj
+ 0001:0001cc84       ?IntException063@IntException@@QAEXJ@Z 0001dc84 f   intexception.obj
+ 0001:0001ccd8       ?IntException064@IntException@@QAEXJ@Z 0001dcd8 f   intexception.obj
+ 0001:0001cd2c       ?IntException065@IntException@@QAEXJ@Z 0001dd2c f   intexception.obj
+ 0001:0001cd80       ?IntException066@IntException@@QAEXJ@Z 0001dd80 f   intexception.obj
+ 0001:0001cdd4       ?IntException067@IntException@@QAEXJ@Z 0001ddd4 f   intexception.obj
+ 0001:0001ce28       ?IntException068@IntException@@QAEXJ@Z 0001de28 f   intexception.obj
+ 0001:0001ce7c       ?IntException069@IntException@@QAEXJ@Z 0001de7c f   intexception.obj
+ 0001:0001ced0       ?IntException070@IntException@@QAEXJ@Z 0001ded0 f   intexception.obj
+ 0001:0001cf24       ?IntException071@IntException@@QAEXJ@Z 0001df24 f   intexception.obj
+ 0001:0001cf78       ?IntException072@IntException@@QAEXJ@Z 0001df78 f   intexception.obj
+ 0001:0001cfcc       ?IntException073@IntException@@QAEXJ@Z 0001dfcc f   intexception.obj
+ 0001:0001d020       ?IntException074@IntException@@QAEXJ@Z 0001e020 f   intexception.obj
+ 0001:0001d074       ?IntException075@IntException@@QAEXJ@Z 0001e074 f   intexception.obj
+ 0001:0001d0c8       ?IntException076@IntException@@QAEXJ@Z 0001e0c8 f   intexception.obj
+ 0001:0001d11c       ?IntException077@IntException@@QAEXJ@Z 0001e11c f   intexception.obj
+ 0001:0001d170       ?IntException078@IntException@@QAEXJ@Z 0001e170 f   intexception.obj
+ 0001:0001d1c4       ?IntException079@IntException@@QAEXJ@Z 0001e1c4 f   intexception.obj
+ 0001:0001d218       ?IntException080@IntException@@QAEXJ@Z 0001e218 f   intexception.obj
+ 0001:0001d26c       ?IntException081@IntException@@QAEXJ@Z 0001e26c f   intexception.obj
+ 0001:0001d2c0       ?IntException082@IntException@@QAEXJ@Z 0001e2c0 f   intexception.obj
+ 0001:0001d314       ?IntException083@IntException@@QAEXJ@Z 0001e314 f   intexception.obj
+ 0001:0001d368       ?IntException084@IntException@@QAEXJ@Z 0001e368 f   intexception.obj
+ 0001:0001d3bc       ?IntException085@IntException@@QAEXJ@Z 0001e3bc f   intexception.obj
+ 0001:0001d410       ?IntException086@IntException@@QAEXJ@Z 0001e410 f   intexception.obj
+ 0001:0001d464       ?IntException087@IntException@@QAEXJ@Z 0001e464 f   intexception.obj
+ 0001:0001d4b8       ?IntException088@IntException@@QAEXJ@Z 0001e4b8 f   intexception.obj
+ 0001:0001d50c       ?IntException089@IntException@@QAEXJ@Z 0001e50c f   intexception.obj
+ 0001:0001d560       ?IntException090@IntException@@QAEXJ@Z 0001e560 f   intexception.obj
+ 0001:0001d5b4       ?IntException091@IntException@@QAEXJ@Z 0001e5b4 f   intexception.obj
+ 0001:0001d608       ?IntException092@IntException@@QAEXJ@Z 0001e608 f   intexception.obj
+ 0001:0001d65c       ?IntException093@IntException@@QAEXJ@Z 0001e65c f   intexception.obj
+ 0001:0001d6b0       ?IntException094@IntException@@QAEXJ@Z 0001e6b0 f   intexception.obj
+ 0001:0001d704       ?IntException095@IntException@@QAEXJ@Z 0001e704 f   intexception.obj
+ 0001:0001d758       ?IntException096@IntException@@QAEXJ@Z 0001e758 f   intexception.obj
+ 0001:0001d7ac       ?IntException097@IntException@@QAEXJ@Z 0001e7ac f   intexception.obj
+ 0001:0001d800       ?IntException098@IntException@@QAEXJ@Z 0001e800 f   intexception.obj
+ 0001:0001d854       ?IntException099@IntException@@QAEXJ@Z 0001e854 f   intexception.obj
+ 0001:0001d8a8       ?IntException100@IntException@@QAEXJ@Z 0001e8a8 f   intexception.obj
+ 0001:0001d8fc       ?IntException101@IntException@@QAEXJ@Z 0001e8fc f   intexception.obj
+ 0001:0001d950       ?IntException102@IntException@@QAEXJ@Z 0001e950 f   intexception.obj
+ 0001:0001d9a4       ?IntException103@IntException@@QAEXJ@Z 0001e9a4 f   intexception.obj
+ 0001:0001d9f8       ?IntException104@IntException@@QAEXJ@Z 0001e9f8 f   intexception.obj
+ 0001:0001da4c       ?IntException105@IntException@@QAEXJ@Z 0001ea4c f   intexception.obj
+ 0001:0001daa0       ?IntException106@IntException@@QAEXJ@Z 0001eaa0 f   intexception.obj
+ 0001:0001daf4       ?IntException107@IntException@@QAEXJ@Z 0001eaf4 f   intexception.obj
+ 0001:0001db48       ?IntException108@IntException@@QAEXJ@Z 0001eb48 f   intexception.obj
+ 0001:0001db9c       ?IntException109@IntException@@QAEXJ@Z 0001eb9c f   intexception.obj
+ 0001:0001dbf0       ?IntException110@IntException@@QAEXJ@Z 0001ebf0 f   intexception.obj
+ 0001:0001dc44       ?IntException111@IntException@@QAEXJ@Z 0001ec44 f   intexception.obj
+ 0001:0001dc98       ?IntException112@IntException@@QAEXJ@Z 0001ec98 f   intexception.obj
+ 0001:0001dd00       ?IntException113@IntException@@QAEXJ@Z 0001ed00 f   intexception.obj
+ 0001:0001dd54       ?IntException114@IntException@@QAEXJ@Z 0001ed54 f   intexception.obj
+ 0001:0001dda8       ?IntException115@IntException@@QAEXJ@Z 0001eda8 f   intexception.obj
+ 0001:0001ddfc       ?IntException116@IntException@@QAEXJ@Z 0001edfc f   intexception.obj
+ 0001:0001de50       ?IntException117@IntException@@QAEXJ@Z 0001ee50 f   intexception.obj
+ 0001:0001dea4       ?IntException118@IntException@@QAEXJ@Z 0001eea4 f   intexception.obj
+ 0001:0001def8       ?IntException120@IntException@@QAEXJ@Z 0001eef8 f   intexception.obj
+ 0001:0001df4c       ?IntException121@IntException@@QAEXJ@Z 0001ef4c f   intexception.obj
+ 0001:0001dfa0       ?IntException122@IntException@@QAEXJ@Z 0001efa0 f   intexception.obj
+ 0001:0001dff4       ?IntException123@IntException@@QAEXJ@Z 0001eff4 f   intexception.obj
+ 0001:0001e048       ?IntException124@IntException@@QAEXJ@Z 0001f048 f   intexception.obj
+ 0001:0001e09c       ?IntException125@IntException@@QAEXJ@Z 0001f09c f   intexception.obj
+ 0001:0001e0f0       ?IntException126@IntException@@QAEXJ@Z 0001f0f0 f   intexception.obj
+ 0001:0001e144       ?IntException127@IntException@@QAEXJ@Z 0001f144 f   intexception.obj
+ 0001:0001e198       ?IntException128@IntException@@QAEXJ@Z 0001f198 f   intexception.obj
+ 0001:0001e1ec       ?IntException129@IntException@@QAEXJ@Z 0001f1ec f   intexception.obj
+ 0001:0001e240       ?IntException130@IntException@@QAEXJ@Z 0001f240 f   intexception.obj
+ 0001:0001e294       ?IntException131@IntException@@QAEXJ@Z 0001f294 f   intexception.obj
+ 0001:0001e2e8       ?IntException132@IntException@@QAEXJ@Z 0001f2e8 f   intexception.obj
+ 0001:0001e33c       ?IntException133@IntException@@QAEXJ@Z 0001f33c f   intexception.obj
+ 0001:0001e390       ?IntException134@IntException@@QAEXJ@Z 0001f390 f   intexception.obj
+ 0001:0001e3e4       ?IntException135@IntException@@QAEXJ@Z 0001f3e4 f   intexception.obj
+ 0001:0001e438       ?IntException136@IntException@@QAEXJ@Z 0001f438 f   intexception.obj
+ 0001:0001e48c       ?IntException137@IntException@@QAEXJ@Z 0001f48c f   intexception.obj
+ 0001:0001e4e0       ?IntException138@IntException@@QAEXJ@Z 0001f4e0 f   intexception.obj
+ 0001:0001e534       ?IntException139@IntException@@QAEXJ@Z 0001f534 f   intexception.obj
+ 0001:0001e588       ?IntException140@IntException@@QAEXJ@Z 0001f588 f   intexception.obj
+ 0001:0001e5dc       ?IntException141@IntException@@QAEXJ@Z 0001f5dc f   intexception.obj
+ 0001:0001e630       ?IntException142@IntException@@QAEXJ@Z 0001f630 f   intexception.obj
+ 0001:0001e684       ?IntException143@IntException@@QAEXJ@Z 0001f684 f   intexception.obj
+ 0001:0001e6d8       ?IntException144@IntException@@QAEXJ@Z 0001f6d8 f   intexception.obj
+ 0001:0001e72c       ?IntException145@IntException@@QAEXJ@Z 0001f72c f   intexception.obj
+ 0001:0001e780       ?IntException146@IntException@@QAEXJ@Z 0001f780 f   intexception.obj
+ 0001:0001e7d4       ?IntException147@IntException@@QAEXJ@Z 0001f7d4 f   intexception.obj
+ 0001:0001e828       ?IntException148@IntException@@QAEXJ@Z 0001f828 f   intexception.obj
+ 0001:0001e87c       ?IntException149@IntException@@QAEXJ@Z 0001f87c f   intexception.obj
+ 0001:0001e8d0       ?IntException150@IntException@@QAEXJ@Z 0001f8d0 f   intexception.obj
+ 0001:0001e924       ?IntException151@IntException@@QAEXJ@Z 0001f924 f   intexception.obj
+ 0001:0001e978       ?IntException152@IntException@@QAEXJ@Z 0001f978 f   intexception.obj
+ 0001:0001e9cc       ?IntException153@IntException@@QAEXJ@Z 0001f9cc f   intexception.obj
+ 0001:0001ea20       ?IntException154@IntException@@QAEXJ@Z 0001fa20 f   intexception.obj
+ 0001:0001ea74       ?IntException155@IntException@@QAEXJ@Z 0001fa74 f   intexception.obj
+ 0001:0001eac8       ?IntException156@IntException@@QAEXJ@Z 0001fac8 f   intexception.obj
+ 0001:0001eb1c       ?IntException157@IntException@@QAEXJ@Z 0001fb1c f   intexception.obj
+ 0001:0001eb70       ?IntException158@IntException@@QAEXJ@Z 0001fb70 f   intexception.obj
+ 0001:0001ebc4       ?IntException159@IntException@@QAEXJ@Z 0001fbc4 f   intexception.obj
+ 0001:0001ec18       ?IntException160@IntException@@QAEXJ@Z 0001fc18 f   intexception.obj
+ 0001:0001ec6c       ?IntException161@IntException@@QAEXJ@Z 0001fc6c f   intexception.obj
+ 0001:0001ecc0       ?IntException162@IntException@@QAEXJ@Z 0001fcc0 f   intexception.obj
+ 0001:0001ed14       ?IntException163@IntException@@QAEXJ@Z 0001fd14 f   intexception.obj
+ 0001:0001ed68       ?IntException164@IntException@@QAEXJ@Z 0001fd68 f   intexception.obj
+ 0001:0001edbc       ?IntException165@IntException@@QAEXJ@Z 0001fdbc f   intexception.obj
+ 0001:0001ee10       ?IntException166@IntException@@QAEXJ@Z 0001fe10 f   intexception.obj
+ 0001:0001ee64       ?IntException167@IntException@@QAEXJ@Z 0001fe64 f   intexception.obj
+ 0001:0001eeb8       ?IntException168@IntException@@QAEXJ@Z 0001feb8 f   intexception.obj
+ 0001:0001ef0c       ?IntException169@IntException@@QAEXJ@Z 0001ff0c f   intexception.obj
+ 0001:0001ef60       ?IntException170@IntException@@QAEXJ@Z 0001ff60 f   intexception.obj
+ 0001:0001efb4       ?IntException171@IntException@@QAEXJ@Z 0001ffb4 f   intexception.obj
+ 0001:0001f008       ?IntException172@IntException@@QAEXJ@Z 00020008 f   intexception.obj
+ 0001:0001f05c       ?IntException173@IntException@@QAEXJ@Z 0002005c f   intexception.obj
+ 0001:0001f0b0       ?IntException174@IntException@@QAEXJ@Z 000200b0 f   intexception.obj
+ 0001:0001f104       ?IntException175@IntException@@QAEXJ@Z 00020104 f   intexception.obj
+ 0001:0001f158       ?IntException176@IntException@@QAEXJ@Z 00020158 f   intexception.obj
+ 0001:0001f1ac       ?IntException177@IntException@@QAEXJ@Z 000201ac f   intexception.obj
+ 0001:0001f200       ?IntException178@IntException@@QAEXJ@Z 00020200 f   intexception.obj
+ 0001:0001f254       ?IntException179@IntException@@QAEXJ@Z 00020254 f   intexception.obj
+ 0001:0001f2a8       ?IntException180@IntException@@QAEXJ@Z 000202a8 f   intexception.obj
+ 0001:0001f2fc       ?IntException181@IntException@@QAEXJ@Z 000202fc f   intexception.obj
+ 0001:0001f350       ?IntException182@IntException@@QAEXJ@Z 00020350 f   intexception.obj
+ 0001:0001f3a4       ?IntException183@IntException@@QAEXJ@Z 000203a4 f   intexception.obj
+ 0001:0001f3f8       ?IntException184@IntException@@QAEXJ@Z 000203f8 f   intexception.obj
+ 0001:0001f44c       ?IntException185@IntException@@QAEXJ@Z 0002044c f   intexception.obj
+ 0001:0001f4a0       ?IntException186@IntException@@QAEXJ@Z 000204a0 f   intexception.obj
+ 0001:0001f4f4       ?IntException187@IntException@@QAEXJ@Z 000204f4 f   intexception.obj
+ 0001:0001f548       ?IntException188@IntException@@QAEXJ@Z 00020548 f   intexception.obj
+ 0001:0001f59c       ?IntException189@IntException@@QAEXJ@Z 0002059c f   intexception.obj
+ 0001:0001f5f0       ?IntException190@IntException@@QAEXJ@Z 000205f0 f   intexception.obj
+ 0001:0001f644       ?IntException191@IntException@@QAEXJ@Z 00020644 f   intexception.obj
+ 0001:0001f698       ?IntException192@IntException@@QAEXJ@Z 00020698 f   intexception.obj
+ 0001:0001f6ec       ?IntException193@IntException@@QAEXJ@Z 000206ec f   intexception.obj
+ 0001:0001f740       ?IntException194@IntException@@QAEXJ@Z 00020740 f   intexception.obj
+ 0001:0001f794       ?IntException195@IntException@@QAEXJ@Z 00020794 f   intexception.obj
+ 0001:0001f7e8       ?IntException196@IntException@@QAEXJ@Z 000207e8 f   intexception.obj
+ 0001:0001f83c       ?IntException197@IntException@@QAEXJ@Z 0002083c f   intexception.obj
+ 0001:0001f890       ?IntException198@IntException@@QAEXJ@Z 00020890 f   intexception.obj
+ 0001:0001f8e4       ?IntException199@IntException@@QAEXJ@Z 000208e4 f   intexception.obj
+ 0001:0001f938       ?IntException200@IntException@@QAEXJ@Z 00020938 f   intexception.obj
+ 0001:0001f98c       ?IntException201@IntException@@QAEXJ@Z 0002098c f   intexception.obj
+ 0001:0001f9e0       ?IntException202@IntException@@QAEXJ@Z 000209e0 f   intexception.obj
+ 0001:0001fa34       ?IntException203@IntException@@QAEXJ@Z 00020a34 f   intexception.obj
+ 0001:0001fa88       ?IntException204@IntException@@QAEXJ@Z 00020a88 f   intexception.obj
+ 0001:0001fadc       ?IntException205@IntException@@QAEXJ@Z 00020adc f   intexception.obj
+ 0001:0001fb30       ?IntException206@IntException@@QAEXJ@Z 00020b30 f   intexception.obj
+ 0001:0001fb84       ?IntException207@IntException@@QAEXJ@Z 00020b84 f   intexception.obj
+ 0001:0001fbd8       ?IntException208@IntException@@QAEXJ@Z 00020bd8 f   intexception.obj
+ 0001:0001fc2c       ?IntException209@IntException@@QAEXJ@Z 00020c2c f   intexception.obj
+ 0001:0001fc80       ?IntException210@IntException@@QAEXJ@Z 00020c80 f   intexception.obj
+ 0001:0001fcd4       ?IntException211@IntException@@QAEXJ@Z 00020cd4 f   intexception.obj
+ 0001:0001fd28       ?IntException212@IntException@@QAEXJ@Z 00020d28 f   intexception.obj
+ 0001:0001fd7c       ?IntException213@IntException@@QAEXJ@Z 00020d7c f   intexception.obj
+ 0001:0001fdd0       ?IntException214@IntException@@QAEXJ@Z 00020dd0 f   intexception.obj
+ 0001:0001fe24       ?IntException215@IntException@@QAEXJ@Z 00020e24 f   intexception.obj
+ 0001:0001fe78       ?IntException216@IntException@@QAEXJ@Z 00020e78 f   intexception.obj
+ 0001:0001fecc       ?IntException217@IntException@@QAEXJ@Z 00020ecc f   intexception.obj
+ 0001:0001ff20       ?IntException218@IntException@@QAEXJ@Z 00020f20 f   intexception.obj
+ 0001:0001ff74       ?IntException219@IntException@@QAEXJ@Z 00020f74 f   intexception.obj
+ 0001:0001ffc8       ?IntException220@IntException@@QAEXJ@Z 00020fc8 f   intexception.obj
+ 0001:0002001c       ?IntException221@IntException@@QAEXJ@Z 0002101c f   intexception.obj
+ 0001:00020070       ?IntException222@IntException@@QAEXJ@Z 00021070 f   intexception.obj
+ 0001:000200c4       ?IntException223@IntException@@QAEXJ@Z 000210c4 f   intexception.obj
+ 0001:00020118       ?IntException224@IntException@@QAEXJ@Z 00021118 f   intexception.obj
+ 0001:0002016c       ?IntException225@IntException@@QAEXJ@Z 0002116c f   intexception.obj
+ 0001:000201c0       ?IntException226@IntException@@QAEXJ@Z 000211c0 f   intexception.obj
+ 0001:00020214       ?IntException227@IntException@@QAEXJ@Z 00021214 f   intexception.obj
+ 0001:00020268       ?IntException228@IntException@@QAEXJ@Z 00021268 f   intexception.obj
+ 0001:000202bc       ?IntException229@IntException@@QAEXJ@Z 000212bc f   intexception.obj
+ 0001:00020310       ?IntException230@IntException@@QAEXJ@Z 00021310 f   intexception.obj
+ 0001:00020364       ?IntException231@IntException@@QAEXJ@Z 00021364 f   intexception.obj
+ 0001:000203b8       ?IntException232@IntException@@QAEXJ@Z 000213b8 f   intexception.obj
+ 0001:0002040c       ?IntException233@IntException@@QAEXJ@Z 0002140c f   intexception.obj
+ 0001:00020460       ?IntException234@IntException@@QAEXJ@Z 00021460 f   intexception.obj
+ 0001:000204c0       _CprintStr32               000214c0 f   cfiles.obj
+ 0001:000204db       _CreadRTC                  000214db f   cfiles.obj
+ 0001:000204e5       _CreadDATE                 000214e5 f   cfiles.obj
+ 0001:000204ef       _CsetIDTEntry32            000214ef f   cfiles.obj
+ 0001:00020508       _CgetIDTEntry32            00021508 f   cfiles.obj
+ 0001:00020521       _CsetGDTEntry32            00021521 f   cfiles.obj
+ 0001:0002053a       _CgetGDTEntry32            0002153a f   cfiles.obj
+ 0001:00020553       _CShortDelay32             00021553 f   cfiles.obj
+ 0001:00020564       _CgetChar32                00021564 f   cfiles.obj
+ 0001:00020575       _CprintRegs32              00021575 f   cfiles.obj
+ 0001:00020586       _CprintStackRegs32         00021586 f   cfiles.obj
+ 0001:00020597       _CsetSharedMem32           00021597 f   cfiles.obj
+ 0001:000205ac       _CgetSharedMem32           000215ac f   cfiles.obj
+ 0001:000205bd       _CprintChar32              000215bd f   cfiles.obj
+ 0001:000205d4       _CcleanScreen32            000215d4 f   cfiles.obj
+ 0001:000205e0       _Csti32                    000215e0 f   cfiles.obj
+ 0001:000205ea       _Ctest32                   000215ea f   cfiles.obj
+ 0001:000205fb       _Ccli32                    000215fb f   cfiles.obj
+ 0001:00020605       _CenableIRQCntlr32         00021605 f   cfiles.obj
+ 0001:0002063e       _CdisableIRQCntlr32        0002163e f   cfiles.obj
+ 0001:00020677       _CackPICCntlr32            00021677 f   cfiles.obj
+ 0001:000206b6       _CreadIntStatusRegister32  000216b6 f   cfiles.obj
+ 0001:000206fe       _CreadIntMaskRegister32    000216fe f   cfiles.obj
+ 0001:00020746       _CintTimer32               00021746 f   cfiles.obj
+ 0001:00020750       _CstiTimer32               00021750 f   cfiles.obj
+ 0001:0002075a       _CcliTimer32               0002175a f   cfiles.obj
+ 0001:00020764       _CgetStr32                 00021764 f   cfiles.obj
+ 0001:00020775       _CgetCursor32              00021775 f   cfiles.obj
+ 0001:0002077f       _CgetTimer32               0002177f f   cfiles.obj
+ 0001:00020789       _CsetCursor32              00021789 f   cfiles.obj
+ 0001:0002079c       _CscrollUp32               0002179c f   cfiles.obj
+ 0001:000207a8       _CnewLine32                000217a8 f   cfiles.obj
+ 0001:0002081d       _CprintDec32               0002181d f   cfiles.obj
+ 0001:000208ce       _CclearNTFlag              000218ce f   cfiles.obj
+ 0001:000208da       _CprintFlags32             000218da f   cfiles.obj
+ 0001:000208ed       _CgetSharedMemChar32       000218ed f   cfiles.obj
+ 0001:00020902       _CresetLock32              00021902 f   cfiles.obj
+ 0001:00020917       _CtestAndSet32             00021917 f   cfiles.obj
+ 0001:0002092c       _CsetSharedMemChar32       0002192c f   cfiles.obj
+ 0001:00020945       _CgetMem32                 00021945 f   cfiles.obj
+ 0001:00020956       _CsetMem32                 00021956 f   cfiles.obj
+ 0001:0002096b       _CgetRealMemory            0002196b f   cfiles.obj
+ 0001:0002097c       _CgetStackPOP32            0002197c f   cfiles.obj
+ 0001:0002098d       _CgetCharInt32             0002198d f   cfiles.obj
+ 0001:00020997       _CgetCharBuff32            00021997 f   cfiles.obj
+ 0001:000209a1       _CreadFloppy32             000219a1 f   cfiles.obj
+ 0001:000209b8       _CwriteFloppy32            000219b8 f   cfiles.obj
+ 0001:000209d0       _testasm32                 000219d0 f   asmfiles.obj
+ 0001:00020a36       _cliasm32                  00021a36 f   asmfiles.obj
+ 0001:00020a3d       _enableIRQCntlrasm32       00021a3d f   asmfiles.obj
+ 0001:00020a86       _disableIRQCntlrasm32      00021a86 f   asmfiles.obj
+ 0001:00020acf       _ackPICCntlrasm32          00021acf f   asmfiles.obj
+ 0001:00020b13       _readintstatusregisterasm32 00021b13 f   asmfiles.obj
+ 0001:00020b29       _readrtcasm32              00021b29 f   asmfiles.obj
+ 0001:00020b4b       _readdateasm32             00021b4b f   asmfiles.obj
+ 0001:00020b6d       _readintmaskregisterasm32  00021b6d f   asmfiles.obj
+ 0001:00020b83       _inttimerasm32             00021b83 f   asmfiles.obj
+ 0001:00020bb3       _stiasm32                  00021bb3 f   asmfiles.obj
+ 0001:00020bd1       _cliTimerasm32             00021bd1 f   asmfiles.obj
+ 0001:00020bdd       _getstrasm32               00021bdd f   asmfiles.obj
+ 0001:00020c2b       _getcursorasm32            00021c2b f   asmfiles.obj
+ 0001:00020c50       _gettimerasm32             00021c50 f   asmfiles.obj
+ 0001:00020c94       _setcursorasm32            00021c94 f   asmfiles.obj
+ 0001:00020cc0       _scrollasm32               00021cc0 f   asmfiles.obj
+ 0001:00020cf0       _printcharasm32            00021cf0 f   asmfiles.obj
+ 0001:00020d13       _clearntflagasm32          00021d13 f   asmfiles.obj
+ 0001:00020d24       _printflagsasm32           00021d24 f   asmfiles.obj
+ 0001:00020d61       _resetlockasm32            00021d61 f   asmfiles.obj
+ 0001:00020dac       _testandsetasm32           00021dac f   asmfiles.obj
+ 0001:00020df3       _setsharedmemcharasm32     00021df3 f   asmfiles.obj
+ 0001:00020e18       _getsharedmemcharasm32     00021e18 f   asmfiles.obj
+ 0001:00020e38       _getmemasm32               00021e38 f   asmfiles.obj
+ 0001:00020e57       _setmemasm32               00021e57 f   asmfiles.obj
+ 0001:00020e79       _getrealmemory             00021e79 f   asmfiles.obj
+ 0001:00020e98       _getstackpopasm32          00021e98 f   asmfiles.obj
+ 0001:00020ea9       _getcharintasm32           00021ea9 f   asmfiles.obj
+ 0001:00020eb0       _getcharbuffasm32          00021eb0 f   asmfiles.obj
+ 0001:00020ee0       _readfloppyasm32           00021ee0 f   asmfiles.obj
+ 0001:00020f6d       _writefloppyasm32          00021f6d f   asmfiles.obj
+ 0001:00020ff4       _setGDTEntryasm32          00021ff4 f   asmfiles.obj
+ 0001:0002105f       _getGDTEntryasm32          0002205f f   asmfiles.obj
+ 0001:000210cb       _getIDTEntryasm32          000220cb f   asmfiles.obj
+ 0001:0002114a       _setIDTEntryasm32          0002214a f   asmfiles.obj
+ 0001:000211c5       _ShortDelay                000221c5 f   asmfiles.obj
+ 0001:00021217       _printregsasm32            00022217 f   asmfiles.obj
+ 0001:00021418       _printstackregsasm32       00022418 f   asmfiles.obj
+ 0001:0002143b       _printchar32               0002243b f   asmfiles.obj
+ 0001:00021455       _printhex                  00022455 f   asmfiles.obj
+ 0001:0002147a       _getsharedmemasm32         0002247a f   asmfiles.obj
+ 0001:00021499       _setsharedmemasm32         00022499 f   asmfiles.obj
+ 0001:000214bb       _stiTimerasm32             000224bb f   asmfiles.obj
+ 0001:000214ce       _cleanscreenasm32          000224ce f   asmfiles.obj
+ 0001:000214fe       _getcharasm32              000224fe f   asmfiles.obj
+ 0001:0002157a       _printstrasm32             0002257a f   asmfiles.obj
+ 0001:000215b0       ?init@TcphashIndex@@QAEHJK@Z 000225b0 f   thashindex.obj
+ 0001:00021608       ?hashfun@TcphashIndex@@QAEJPAD0@Z 00022608 f   thashindex.obj
+ 0001:000216a6       ?get@TcphashIndex@@QAEJPAD0@Z 000226a6 f   thashindex.obj
+ 0001:000216da       ?setIndex@TcphashIndex@@QAEJJJ@Z 000226da f   thashindex.obj
+ 0001:000216ff       ?getIndex@TcphashIndex@@QAEJJ@Z 000226ff f   thashindex.obj
+ 0003:00000084       ?SrcIP@apptask@@2PADA      00024084     apptask.obj
+ 0003:00000088       ?GateWayIP@apptask@@2PADA  00024088     apptask.obj
+ 0003:0000008c       ?FTPServerIP@apptask@@2PADA 0002408c     apptask.obj
+ 0003:00000090       ?GateWayMAC@apptask@@2PADA 00024090     apptask.obj
+ 0003:00000098       ?SrcMAC@apptask@@2PADA     00024098     apptask.obj
+ 0003:000000a0       ?Current_Task@apptask@@2HA 000240a0     apptask.obj
+ 0003:000000a4       ?Current_Tcbrno@apptask@@2HA 000240a4     apptask.obj
+ 0003:000012bc       ?AUTHSYN_SPORT@AOAProtected@@2PADA 000252bc     aoaprotected.obj
+ 0003:000012c0       ?DomainName@AOAProtected@@2PADA 000252c0     aoaprotected.obj
+ 0003:000014a8       ?FreePtr@ARPObj@@0HA       000254a8     ARPObj.obj
+ 0003:0000156c       ?mTimeLive@IPObj@@0DA      0002556c     IPObj.obj
+ 0003:0000161c       ?SourcePort@TCPObj@@0GA    0002561c     tcpobj.obj
+ 0003:00001620       ?logptr@@3PQTCPObj@@HQ1@   00025620     tcpobj.obj
+ 0003:00001624       ?min@@3KA                  00025624     tcpobj.obj
+ 0003:000016b8       ?httpHeader@@3PADA         000256b8     parserobj.obj
+ 0003:000016c4       ?contentType@@3PADA        000256c4     parserobj.obj
+ 0003:000016f4       ?defaultFile@@3PADA        000256f4     parserobj.obj
+ 0003:00001700       ?acceptRange@@3PADA        00025700     parserobj.obj
+ 0003:00001aec       ?MaxPktSize@FTPObj@@0IA    00025aec     ftpobj.obj
+ 0003:00003e90       ?TaskId@AOATask@@2HA       00027e90     aoatask.obj
+ 0003:00003e94       ?App1TSSPtr@AOATask@@0JA   00027e94     aoatask.obj
+ 0003:00003e98       ?TSSBase@AOATask@@0JA      00027e98     aoatask.obj
+ 0003:00003e9c       ?StackBase@AOATask@@2JA    00027e9c     aoatask.obj
+ 0003:00003ea0       ?TSSSize@AOATask@@0HA      00027ea0     aoatask.obj
+ 0003:00003ea4       ?SchBase@AOATask@@0JA      00027ea4     aoatask.obj
+ 0003:00003ea8       ?SchStack@AOATask@@2JA     00027ea8     aoatask.obj
+ 0003:00003eac       ?TimerBase@AOATask@@0JA    00027eac     aoatask.obj
+ 0003:00003eb0       ?TimerStack@AOATask@@0JA   00027eb0     aoatask.obj
+ 0003:00003eb4       ?TSSFlag@AOATask@@2HA      00027eb4     aoatask.obj
+ 0003:00003eb8       ?RunSch_Flag@AOATask@@2HA  00027eb8     aoatask.obj
+ 0003:00003ebc       ?Task_Delay@apptask@@2PAHA 00027ebc     apptask.obj
+ 0003:0000bbbc       ?arptimer@apptask@@2HA     0002fbbc     apptask.obj
+ 0003:0000bbc0       ?TaskNextPtr@apptask@@2PAHA 0002fbc0     apptask.obj
+ 0003:000138c0       ?ScheduleArray@apptask@@2PAHA 000378c0     apptask.obj
+ 0003:00013900       ?Task_Status@apptask@@2PAHA 00037900     apptask.obj
+ 0003:0001b600       ?ExitTimer@apptask@@2KA    0003f600     apptask.obj
+ 0003:0001b604       ?taskDeletes@apptask@@2HA  0003f604     apptask.obj
+ 0003:0001b608       ?resumeCount@apptask@@2HA  0003f608     apptask.obj
+ 0003:0001b60c       ?runFlag@apptask@@2HA      0003f60c     apptask.obj
+ 0003:0001b610       ?systemstarttime@apptask@@2JA 0003f610     apptask.obj
+ 0003:0001b614       ?cvalue@apptask@@2JA       0003f614     apptask.obj
+ 0003:0001b618       ?svalue@apptask@@2JA       0003f618     apptask.obj
+ 0003:0001b61c       ?gvalue@apptask@@2JA       0003f61c     apptask.obj
+ 0003:0001b620       ?tvalue@apptask@@2JA       0003f620     apptask.obj
+ 0003:0001b624       ?TotalHttpCount@apptask@@2JA 0003f624     apptask.obj
+ 0003:0001b628       ?TotalRcvCount@apptask@@2JA 0003f628     apptask.obj
+ 0003:0001b62c       ?TotalSuspendCount@apptask@@2JA 0003f62c     apptask.obj
+ 0003:0001b630       ?rcvstarttime@apptask@@2JA 0003f630     apptask.obj
+ 0003:0001b634       ?TotalDataRcvd@apptask@@2JA 0003f634     apptask.obj
+ 0003:0001b638       ?httpstarttime@apptask@@2JA 0003f638     apptask.obj
+ 0003:0001b63c       ?totalstarttime@apptask@@2JA 0003f63c     apptask.obj
+ 0003:0001b640       ?rcvcurtime@apptask@@2JA   0003f640     apptask.obj
+ 0003:0001b644       ?httpcurtime@apptask@@2JA  0003f644     apptask.obj
+ 0003:0001b648       ?totalcurtime@apptask@@2JA 0003f648     apptask.obj
+ 0003:0001b64c       ?Scheduler_Flag@apptask@@2JA 0003f64c     apptask.obj
+ 0003:0001b650       ?iddlecount@apptask@@2JA   0003f650     apptask.obj
+ 0003:0001b654       ?MaxTaskId@apptask@@2JA    0003f654     apptask.obj
+ 0003:0001b658       ?MinTaskId@apptask@@2JA    0003f658     apptask.obj
+ 0003:0001b65c       ?t1low@apptask@@2IA        0003f65c     apptask.obj
+ 0003:0001b660       ?t2low@apptask@@2IA        0003f660     apptask.obj
+ 0003:0001b664       ?t1high@apptask@@2IA       0003f664     apptask.obj
+ 0003:0001b668       ?t2high@apptask@@2IA       0003f668     apptask.obj
+ 0003:0001b66c       ?rcvtickshigh@apptask@@2IA 0003f66c     apptask.obj
+ 0003:0001b670       ?rcvtickslow@apptask@@2IA  0003f670     apptask.obj
+ 0003:0001b674       ?httptickshigh@apptask@@2IA 0003f674     apptask.obj
+ 0003:0001b678       ?httptickslow@apptask@@2IA 0003f678     apptask.obj
+ 0003:0001b67c       ?totaltickshigh@apptask@@2IA 0003f67c     apptask.obj
+ 0003:0001b680       ?totaltickslow@apptask@@2IA 0003f680     apptask.obj
+ 0003:0001b684       ?Current_State@apptask@@2HA 0003f684     apptask.obj
+ 0003:0001b688       ?ftpFlag@apptask@@2HA      0003f688     apptask.obj
+ 0003:0001b68c       ?WSStartTaskNo@apptask@@2HA 0003f68c     apptask.obj
+ 0003:0001b690       ?WSEndTaskNo@apptask@@2HA  0003f690     apptask.obj
+ 0003:0001b694       ?WSFreeTask@apptask@@2HA   0003f694     apptask.obj
+ 0003:0001b698       ?packts@apptask@@2JA       0003f698     apptask.obj
+ 0003:0001b69c       ?ippackcount@apptask@@2JA  0003f69c     apptask.obj
+ 0003:0001b6a0       ?arppackcount@apptask@@2JA 0003f6a0     apptask.obj
+ 0003:0001b6a4       ?otherpackcount@apptask@@2JA 0003f6a4     apptask.obj
+ 0003:0001b6a8       ?upCompleteNotSetCount@apptask@@2JA 0003f6a8     apptask.obj
+ 0003:0001b6ac       ?notForThisNodeCount@apptask@@2JA 0003f6ac     apptask.obj
+ 0003:0001b6b0       ?notArpOrIpCount@apptask@@2JA 0003f6b0     apptask.obj
+ 0003:0001b6b4       ?schedulerCount@apptask@@2JA 0003f6b4     apptask.obj
+ 0003:0001b6b8       ?noethpacksp@apptask@@2KA  0003f6b8     apptask.obj
+ 0003:0001b6bc       ?noetherrors@apptask@@2KA  0003f6bc     apptask.obj
+ 0003:0001b6c0       ?Application_Status@AOAProtected@@2HA 0003f6c0     aoaprotected.obj
+ 0003:0001b6c4       ?phpparseflag@AOAProtected@@2HA 0003f6c4     aoaprotected.obj
+ 0003:0001b6c8       ?phpparseflagread@AOAProtected@@2HA 0003f6c8     aoaprotected.obj
+ 0003:0001b6cc       ?PosCount@AOAProtected@@2HA 0003f6cc     aoaprotected.obj
+ 0003:0001b6d0       ?LineNumber@AOAProtected@@2HA 0003f6d0     aoaprotected.obj
+ 0003:0001b6d4       ?RunRegister@AOAProtected@@2JA 0003f6d4     aoaprotected.obj
+ 0003:0001b6d8       ?RcvCounter@AOAProtected@@2JA 0003f6d8     aoaprotected.obj
+ 0003:0001b6dc       ?SndCounter@AOAProtected@@2JA 0003f6dc     aoaprotected.obj
+ 0003:0001b6e0       ?HttpCounter@AOAProtected@@2JA 0003f6e0     aoaprotected.obj
+ 0003:0001b6e4       ?IntCounter@AOAProtected@@2JA 0003f6e4     aoaprotected.obj
+ 0003:0001b6e8       ?tDWCounter@AOAProtected@@2HA 0003f6e8     aoaprotected.obj
+ 0003:0001b6ec       ?mac@EtherObj@@2PADA       0003f6ec     etherobj.obj
+ 0003:0001b6f2       ?IO_BASE@EtherObj@@0FA     0003f6f2     etherobj.obj
+ 0003:0001b6f4       ?IOADDR@EtherObj@@0KA      0003f6f4     etherobj.obj
+ 0003:0001b6f8       ?IODATA@EtherObj@@0KA      0003f6f8     etherobj.obj
+ 0003:0001b6fc       ?TDLPointer@EtherObj@@2JA  0003f6fc     etherobj.obj
+ 0003:0001b700       ?TDLDataPointer@EtherObj@@2JA 0003f700     etherobj.obj
+ 0003:0001b704       ?RDLPointer@EtherObj@@2JA  0003f704     etherobj.obj
+ 0003:0001b708       ?RDLDataPointer@EtherObj@@2JA 0003f708     etherobj.obj
+ 0003:0001b70c       ?SendInPtr@EtherObj@@2JA   0003f70c     etherobj.obj
+ 0003:0001b710       ?SendOutPtr@EtherObj@@2JA  0003f710     etherobj.obj
+ 0003:0001b714       ?ReceiveInPtr@EtherObj@@2JA 0003f714     etherobj.obj
+ 0003:0001b718       ?ReceiveOutPtr@EtherObj@@2JA 0003f718     etherobj.obj
+ 0003:0001b71c       ?TotalRcvCount@EtherObj@@2JA 0003f71c     etherobj.obj
+ 0003:0001b720       ?TotalDataSent@EtherObj@@2JA 0003f720     etherobj.obj
+ 0003:0001b724       ?base@WCirList@@0JA        0003f724     wcirlist.obj
+ 0003:0001b728       ?size@WCirList@@0JA        0003f728     wcirlist.obj
+ 0003:0001b72c       ?InPtr@WCirList@@0HA       0003f72c     wcirlist.obj
+ 0003:0001b730       ?OutPtr@WCirList@@0HA      0003f730     wcirlist.obj
+ 0003:0001b734       ?InRecord@WCirList@@2PAUESRecord@1@A 0003f734     wcirlist.obj
+ 0003:0001b738       ?OutRecord@WCirList@@2PAUESRecord@1@A 0003f738     wcirlist.obj
+ 0003:0001b73c       ?base@WStack@@0JA          0003f73c     wstack.obj
+ 0003:0001b740       ?size@WStack@@0JA          0003f740     wstack.obj
+ 0003:0001b744       ?count@WStack@@2JA         0003f744     wstack.obj
+ 0003:0001b748       ?top@WStack@@2PAUESRecord@1@A 0003f748     wstack.obj
+ 0003:0001b74c       ?base@WTTrace@@0HA         0003f74c     wttrace.obj
+ 0003:0001b750       ?size@WTTrace@@0HA         0003f750     wttrace.obj
+ 0003:0001b754       ?base@WList@@0JA           0003f754     wlist.obj
+ 0003:0001b758       ?size@WList@@0JA           0003f758     wlist.obj
+ 0003:0001b760       ?GateWayIP@ARPObj@@0PADA   0003f760     ARPObj.obj
+ 0003:0001b768       ?ARPT@ARPObj@@0PAUarprecordT@@A 0003f768     ARPObj.obj
+ 0003:0001b790       ?ARPTABLE@ARPObj@@0PAUarprecord@@A 0003f790     ARPObj.obj
+ 0003:0001bdd0       ?mSenderIP@ARPObj@@0PADA   0003fdd0     ARPObj.obj
+ 0003:0001bdd4       ?mSenderHA@ARPObj@@0PADA   0003fdd4     ARPObj.obj
+ 0003:0001bddc       ?hashind@ARPObj@@0PAHA     0003fddc     ARPObj.obj
+ 0003:0001bf6c       ?SUBNETMASK@ARPObj@@0PADA  0003ff6c     ARPObj.obj
+ 0003:0001bf70       ?noArpresolves@ARPObj@@0KA 0003ff70     ARPObj.obj
+ 0003:0001bf74       ?noArpresolvef@ARPObj@@0KA 0003ff74     ARPObj.obj
+ 0003:0001bf78       ?noArprequestp@ARPObj@@0KA 0003ff78     ARPObj.obj
+ 0003:0001bf7c       ?noArppackp@ARPObj@@0KA    0003ff7c     ARPObj.obj
+ 0003:0001bf80       ?resolveFlagForFileTransfer@ARPObj@@2HA 0003ff80     ARPObj.obj
+ 0003:0001bf84       ?ARPT_Index@ARPObj@@2HA    0003ff84     ARPObj.obj
+ 0003:0001bf88       ?msourceIP@IPObj@@2PADA    0003ff88     IPObj.obj
+ 0003:0001bf8c       ?msourceMAC@IPObj@@0PADA   0003ff8c     IPObj.obj
+ 0003:0001bf93       ?mServiceType@IPObj@@0DA   0003ff93     IPObj.obj
+ 0003:0001bf94       ?noippacksr@IPObj@@0KA     0003ff94     IPObj.obj
+ 0003:0001bf98       ?noippackss@IPObj@@0KA     0003ff98     IPObj.obj
+ 0003:0001bf9c       ?noippacksps@IPObj@@0KA    0003ff9c     IPObj.obj
+ 0003:0001bfa0       ?HostSubnetMask@TCPObj@@0PADA 0003ffa0     tcpobj.obj
+ 0003:0001bfa4       ?GateWayIP@TCPObj@@0PADA   0003ffa4     tcpobj.obj
+ 0003:0001bfa8       ?GateWayMAC@TCPObj@@0PADA  0003ffa8     tcpobj.obj
+ 0003:0001bfb0       ?HostIP@TCPObj@@0PADA      0003ffb0     tcpobj.obj
+ 0003:0001bfb4       ?TCBBase@TCPObj@@0KA       0003ffb4     tcpobj.obj
+ 0003:0001bfb8       ?logcount@TCPObj@@0HA      0003ffb8     tcpobj.obj
+ 0003:0001bfbc       ?traceGlobalIndex@TCPObj@@2HA 0003ffbc     tcpobj.obj
+ 0003:0001bfc0       ?FreeList@TCPObj@@0JA      0003ffc0     tcpobj.obj
+ 0003:0001bfc4       ?lcounter@TCPObj@@0HA      0003ffc4     tcpobj.obj
+ 0003:0001bfc8       ?SendCountTotal@TCPObj@@2HA 0003ffc8     tcpobj.obj
+ 0003:0001bfcc       ?HttpCount@TCPObj@@2KA     0003ffcc     tcpobj.obj
+ 0003:0001bfd0       ?HttpRequests@TCPObj@@2KA  0003ffd0     tcpobj.obj
+ 0003:0001bfd4       ?SynCount@TCPObj@@2KA      0003ffd4     tcpobj.obj
+ 0003:0001bfd8       ?SynAckCount@TCPObj@@2KA   0003ffd8     tcpobj.obj
+ 0003:0001bfdc       ?GetCount@TCPObj@@2KA      0003ffdc     tcpobj.obj
+ 0003:0001bfe0       ?MaxSynGetTime@TCPObj@@2KA 0003ffe0     tcpobj.obj
+ 0003:0001bfe4       ?TotalSynGetTime@TCPObj@@2KA 0003ffe4     tcpobj.obj
+ 0003:0001bfe8       ?MaxConnectionTime@TCPObj@@2KA 0003ffe8     tcpobj.obj
+ 0003:0001bfec       ?MaxNoOfTasksUsed@TCPObj@@2KA 0003ffec     tcpobj.obj
+ 0003:0001bff0       ?MaxNoOfTCBsUsed@TCPObj@@2KA 0003fff0     tcpobj.obj
+ 0003:0001bff4       ?TotalDelCount@TCPObj@@2KA 0003fff4     tcpobj.obj
+ 0003:0001bff8       ?MaxSynGetThreshCount@TCPObj@@2KA 0003fff8     tcpobj.obj
+ 0003:0001bffc       ?NoOfRetransmissions@TCPObj@@2KA 0003fffc     tcpobj.obj
+ 0003:0001c000       ?sizeOfTCBRecord@TCPObj@@2HA 00040000     tcpobj.obj
+ 0003:0001c004       ?NoOfResets@TCPObj@@2HA    00040004     tcpobj.obj
+ 0003:0001c008       ?UnMatchedRequests@TCPObj@@2HA 00040008     tcpobj.obj
+ 0003:0001c00c       ?TCBCount@TCPObj@@0JA      0004000c     tcpobj.obj
+ 0003:0001c010       ?trace2Count@TCPObj@@2JA   00040010     tcpobj.obj
+ 0003:0001c014       ?trace1Count@TCPObj@@2JA   00040014     tcpobj.obj
+ 0003:0001c018       ?TCBRecords@TCPObj@@0JA    00040018     tcpobj.obj
+ 0003:0001c01c       ?averageconntime@TCPObj@@0KA 0004001c     tcpobj.obj
+ 0003:0001c020       ?s@@3KA                    00040020     tcpobj.obj
+ 0003:0001c024       ?max@@3KA                  00040024     tcpobj.obj
+ 0003:0001c030       ?ResourceIndexBase@HttpIndex@@0KA 00040030     httpindex.obj
+ 0003:0001c034       ?ResourceBufferBase@HttpIndex@@0KA 00040034     httpindex.obj
+ 0003:0001c038       ?ResourceIndexCount@HttpIndex@@0IA 00040038     httpindex.obj
+ 0003:0001c03c       ?ResourceBufferSize@HttpIndex@@0KA 0004003c     httpindex.obj
+ 0003:0001c040       ?ResourceIndexSize@HttpIndex@@0KA 00040040     httpindex.obj
+ 0003:0001c044       ?ResourcePtr@HttpIndex@@0KA 00040044     httpindex.obj
+ 0003:0001c048       ?ResourceIndexPtr@HttpIndex@@0KA 00040048     httpindex.obj
+ 0003:0001c04c       ?DiskNo@HttpIndex@@0HA     0004004c     httpindex.obj
+ 0003:0001c050       ?HttpnoIndexRecords@HttphashIndex@@0JA 00040050     hashindex.obj
+ 0003:0001c054       ?HttphashBaseAddress@HttphashIndex@@0KA 00040054     hashindex.obj
+ 0003:0001c058       ?sourcePort@UDPObj@@0GA    00040058     udpobj.obj
+ 0003:0001c05c       ?sourceIP@UDPObj@@0PADA    0004005c     udpobj.obj
+ 0003:0001c060       ?port@FTPObj@@2GA          00040060     ftpobj.obj
+ 0003:0001c064       ?curraddress@FTPObj@@0PADA 00040064     ftpobj.obj
+ 0003:0001c068       ?state@FTPObj@@2HA         00040068     ftpobj.obj
+ 0003:0001c06c       ?IP@FTPObj@@2PADA          0004006c     ftpobj.obj
+ 0003:0001c070       ?tftppkts@FTPObj@@0KA      00040070     ftpobj.obj
+ 0003:0001c074       ?LostPkts@FTPObj@@0PAIA    00040074     ftpobj.obj
+ 0003:0001fef4       ?DestMac@FTPObj@@2PADA     00043ef4     ftpobj.obj
+ 0003:0001fefc       ?ResourceIndexBase@FTPObj@@0KA 00043efc     ftpobj.obj
+ 0003:0001ff00       ?ResourceBufferBase@FTPObj@@0KA 00043f00     ftpobj.obj
+ 0003:0001ff04       ?ResourceIndexCount@FTPObj@@0IA 00043f04     ftpobj.obj
+ 0003:0001ff08       ?ResourceBufferSize@FTPObj@@0KA 00043f08     ftpobj.obj
+ 0003:0001ff0c       ?ResourceIndexSize@FTPObj@@0KA 00043f0c     ftpobj.obj
+ 0003:0001ff10       ?ResourcePtr@FTPObj@@0KA   00043f10     ftpobj.obj
+ 0003:0001ff14       ?ResourceIndexPtr@FTPObj@@0KA 00043f14     ftpobj.obj
+ 0003:0001ff18       ?nextseq@FTPObj@@0IA       00043f18     ftpobj.obj
+ 0003:0001ff1c       ?TotalFilePkts@FTPObj@@0IA 00043f1c     ftpobj.obj
+ 0003:0001ff20       ?TotalLostPkts@FTPObj@@0IA 00043f20     ftpobj.obj
+ 0003:0001ff24       ?TFileSize@FTPObj@@0KA     00043f24     ftpobj.obj
+ 0003:0001ff28       ?fileTransferFinished@FTPObj@@2HA 00043f28     ftpobj.obj
+ 0003:0001ff2c       ?Mode@FTOPObj@@0IA         00043f2c     ftopobj.obj
+ 0003:0001ff30       ?LRT@FTOPObj@@0KA          00043f30     ftopobj.obj
+ 0003:0001ff34       ?TcpnoIndexRecords@TcphashIndex@@0JA 00043f34     thashindex.obj
+ 0003:0001ff38       ?TcphashBaseAddress@TcphashIndex@@0KA 00043f38     thashindex.obj
+
+ entry point at        0001:00000000
+
+ Static symbols
+
+
+ 88 bytes saved through ICF
+

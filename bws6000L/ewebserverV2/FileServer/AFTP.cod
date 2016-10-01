@@ -1,0 +1,2379 @@
+	TITLE	AFTP.c
+	.386P
+include listing.inc
+if @Version gt 510
+.model FLAT
+else
+_TEXT	SEGMENT PARA USE32 PUBLIC 'CODE'
+_TEXT	ENDS
+_DATA	SEGMENT DWORD USE32 PUBLIC 'DATA'
+_DATA	ENDS
+CONST	SEGMENT DWORD USE32 PUBLIC 'CONST'
+CONST	ENDS
+_BSS	SEGMENT DWORD USE32 PUBLIC 'BSS'
+_BSS	ENDS
+_TLS	SEGMENT DWORD USE32 PUBLIC 'TLS'
+_TLS	ENDS
+FLAT	GROUP _DATA, CONST, _BSS
+	ASSUME	CS: FLAT, DS: FLAT, SS: FLAT
+endif
+PUBLIC	_fileNumber
+PUBLIC	_nextSeq
+PUBLIC	_totalFiles
+PUBLIC	_IP
+PUBLIC	_TPACK
+PUBLIC	_LPACK
+_DATA	SEGMENT
+COMM	_File:BYTE:0cd140H
+_DATA	ENDS
+_BSS	SEGMENT
+_fileNumber DD	01H DUP (?)
+_nextSeq DD	01H DUP (?)
+_totalFiles DD	01H DUP (?)
+_BSS	ENDS
+_DATA	SEGMENT
+COMM	_rdFile:DWORD
+_DATA	ENDS
+_BSS	SEGMENT
+_IP	DB	014H DUP (?)
+_TPACK	DD	01H DUP (?)
+_LPACK	DD	01H DUP (?)
+_BSS	ENDS
+_DATA	SEGMENT
+COMM	_startTime:DWORD
+COMM	_endTime:DWORD
+COMM	_dif:QWORD
+COMM	_min:DWORD
+COMM	_sec:DWORD
+_DATA	ENDS
+PUBLIC	__real@8@4004f000000000000000
+PUBLIC	_main
+PUBLIC	_Init
+PUBLIC	_Protocol
+PUBLIC	_Create102
+PUBLIC	_Create201
+EXTRN	__imp__ioctlsocket@12:NEAR
+EXTRN	__imp__Sleep@4:NEAR
+EXTRN	__ftol:NEAR
+EXTRN	__fltused:NEAR
+EXTRN	__imp__htons@4:NEAR
+EXTRN	__imp__inet_addr@4:NEAR
+EXTRN	__imp__inet_ntoa@4:NEAR
+EXTRN	__imp__recvfrom@24:NEAR
+EXTRN	_difftime:NEAR
+EXTRN	_time:NEAR
+EXTRN	__imp__sendto@24:NEAR
+EXTRN	__imp__socket@12:NEAR
+EXTRN	_strcpy:NEAR
+EXTRN	_strcat:NEAR
+EXTRN	__imp__WSAStartup@8:NEAR
+EXTRN	__imp__WSACleanup@0:NEAR
+EXTRN	__imp__WSAGetLastError@0:NEAR
+EXTRN	_exit:NEAR
+EXTRN	__iob:BYTE
+EXTRN	_fclose:NEAR
+EXTRN	_getch:NEAR
+EXTRN	_fopen:NEAR
+EXTRN	_fprintf:NEAR
+EXTRN	_fread:NEAR
+EXTRN	_fseek:NEAR
+EXTRN	_printf:NEAR
+EXTRN	__imp__bind@12:NEAR
+EXTRN	__imp__closesocket@4:NEAR
+_DATA	SEGMENT
+$SG19201 DB	'C:\home\student\rkk\wwwt\', 00H
+	ORG $+2
+$SG19222 DB	'WSAStartup failed with error %d', 0aH, 00H
+	ORG $+3
+$SG19226 DB	'socket() failed with error %d', 0aH, 00H
+	ORG $+1
+$SG19229 DB	'bind() failed with error %d', 0aH, 00H
+	ORG $+3
+$SG19235 DB	'A: recv() failec: error %d', 0aH, 00H
+$SG19237 DB	0aH, 'Error::Client closed connection', 0aH, 00H
+	ORG $+2
+$SG19247 DB	'B1: recv() failec: error %d', 0aH, 00H
+	ORG $+3
+$SG19250 DB	0aH, 'Total Packets Sent: %ld ', 00H
+	ORG $+2
+$SG19252 DB	0aH, 'TransferTime %ld.%2ld', 0aH, 00H
+$SG19253 DB	0aH, 'End of file Transfer, Press any key to exit....', 00H
+	ORG $+3
+$SG19260 DB	'send() failec: error %d', 0aH, 00H
+	ORG $+3
+$SG19262 DB	'rb', 00H
+	ORG $+1
+$SG19265 DB	0aH, 'Error:A Cannot open File: %s', 00H
+	ORG $+2
+$SG19267 DB	0aH, 'Error:B Cannot open File: %s', 00H
+	ORG $+2
+$SG19270 DB	0aH, 'Total Packets Sent: %ld ', 00H
+	ORG $+2
+$SG19273 DB	'send() failec: error %d', 0aH, 00H
+	ORG $+3
+$SG19279 DB	'Error:Could put Socket in non-Blocking mode', 00H
+$SG19280 DB	'Press any key to exit..........', 00H
+$SG19283 DB	'B: recv() failec: error %d', 0aH, 00H
+$SG19291 DB	'Client Not ready to accept.Press any key to exit......', 00H
+	ORG $+1
+$SG19296 DB	'rb', 00H
+	ORG $+1
+$SG19299 DB	0aH, 'Error:C Cannot open File: %s', 00H
+	ORG $+2
+$SG19313 DB	'send() failec: error %d', 0aH, 00H
+	ORG $+3
+$SG19319 DB	'Error:Could put Socket in non-Blocking mode', 00H
+$SG19320 DB	'Press any key to exit..........', 00H
+$SG19327 DB	'Error:Could put Socket in Blocking mode', 00H
+$SG19328 DB	'Press any key to exit..........', 00H
+$SG19331 DB	'send() failec: error %d', 0aH, 00H
+	ORG $+3
+$SG19337 DB	'Error:Could put Socket in Blocking mode', 00H
+$SG19338 DB	'Press any key to exit..........', 00H
+$SG19342 DB	'C: recv() failec: error %d', 0aH, 00H
+$SG19349 DB	0aH, 'Retransmission %d', 00H
+_DATA	ENDS
+;	COMDAT __real@8@4004f000000000000000
+; File AFTP.c
+CONST	SEGMENT
+__real@8@4004f000000000000000 DQ 0404e000000000000r ; 60
+CONST	ENDS
+_TEXT	SEGMENT
+_Buffer$ = -312
+_sendBuffer$ = -1872
+_interface$ = -1908
+_Path$ = -416
+_Path2$ = -184
+_port$ = -1916
+_retval$ = -1900
+_fromlen$ = -1896
+_i$ = -852
+_statusCode$ = -1912
+_Size$ = -4
+_ack$ = -1904
+_conv$ = -828
+_seq$ = -420
+_iMode$ = -824
+_block$ = -1920
+_socket_type$ = -1892
+_local$ = -848
+_from$ = -1888
+_wsaData$ = -820
+_listen_socket$ = -316
+_msgsock$ = -832
+_main	PROC NEAR
+; File AFTP.c
+; Line 37
+  00000	55		 push	 ebp
+  00001	8b ec		 mov	 ebp, esp
+  00003	81 ec 84 07 00
+	00		 sub	 esp, 1924		; 00000784H
+  00009	56		 push	 esi
+  0000a	57		 push	 edi
+; Line 43
+  0000b	c7 85 8c f8 ff
+	ff 00 00 00 00	 mov	 DWORD PTR _interface$[ebp], 0
+; Line 44
+  00015	b9 06 00 00 00	 mov	 ecx, 6
+  0001a	be 00 00 00 00	 mov	 esi, OFFSET FLAT:$SG19201
+  0001f	8d bd 60 fe ff
+	ff		 lea	 edi, DWORD PTR _Path$[ebp]
+  00025	f3 a5		 rep movsd
+  00027	66 a5		 movsw
+  00029	b9 12 00 00 00	 mov	 ecx, 18			; 00000012H
+  0002e	33 c0		 xor	 eax, eax
+  00030	8d bd 7a fe ff
+	ff		 lea	 edi, DWORD PTR _Path$[ebp+26]
+  00036	f3 ab		 rep stosd
+  00038	66 ab		 stosw
+; Line 46
+  0003a	66 c7 85 84 f8
+	ff ff 90 13	 mov	 WORD PTR _port$[ebp], 5008 ; 00001390H
+; Line 50
+  00043	c7 85 88 f8 ff
+	ff 00 00 00 00	 mov	 DWORD PTR _statusCode$[ebp], 0
+; Line 51
+  0004d	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR _Size$[ebp], 0
+; Line 55
+  00054	c7 85 c8 fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _iMode$[ebp], 0
+; Line 57
+  0005e	c7 85 9c f8 ff
+	ff 02 00 00 00	 mov	 DWORD PTR _socket_type$[ebp], 2
+; Line 67
+  00068	e8 00 00 00 00	 call	 _Init
+; Line 71
+  0006d	8d 85 cc fc ff
+	ff		 lea	 eax, DWORD PTR _wsaData$[ebp]
+  00073	50		 push	 eax
+  00074	68 02 02 00 00	 push	 514			; 00000202H
+  00079	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAStartup@8
+  0007f	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+  00085	83 bd 94 f8 ff
+	ff 00		 cmp	 DWORD PTR _retval$[ebp], 0
+  0008c	74 1f		 je	 SHORT $L19221
+; Line 73
+  0008e	8b 8d 94 f8 ff
+	ff		 mov	 ecx, DWORD PTR _retval$[ebp]
+  00094	51		 push	 ecx
+  00095	68 00 00 00 00	 push	 OFFSET FLAT:$SG19222
+  0009a	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  0009f	e8 00 00 00 00	 call	 _fprintf
+  000a4	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 74
+  000a7	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSACleanup@0
+$L19221:
+; Line 78
+  000ad	66 c7 85 b0 fc
+	ff ff 02 00	 mov	 WORD PTR _local$[ebp], 2
+; Line 79
+  000b6	83 bd 8c f8 ff
+	ff 00		 cmp	 DWORD PTR _interface$[ebp], 0
+  000bd	75 0c		 jne	 SHORT $L19484
+  000bf	c7 85 7c f8 ff
+	ff 00 00 00 00	 mov	 DWORD PTR -1924+[ebp], 0
+  000c9	eb 13		 jmp	 SHORT $L19485
+$L19484:
+  000cb	8b 95 8c f8 ff
+	ff		 mov	 edx, DWORD PTR _interface$[ebp]
+  000d1	52		 push	 edx
+  000d2	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__inet_addr@4
+  000d8	89 85 7c f8 ff
+	ff		 mov	 DWORD PTR -1924+[ebp], eax
+$L19485:
+  000de	8b 85 7c f8 ff
+	ff		 mov	 eax, DWORD PTR -1924+[ebp]
+  000e4	89 85 b4 fc ff
+	ff		 mov	 DWORD PTR _local$[ebp+4], eax
+; Line 84
+  000ea	66 8b 8d 84 f8
+	ff ff		 mov	 cx, WORD PTR _port$[ebp]
+  000f1	51		 push	 ecx
+  000f2	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__htons@4
+  000f8	66 89 85 b2 fc
+	ff ff		 mov	 WORD PTR _local$[ebp+2], ax
+; Line 86
+  000ff	6a 00		 push	 0
+  00101	8b 95 9c f8 ff
+	ff		 mov	 edx, DWORD PTR _socket_type$[ebp]
+  00107	52		 push	 edx
+  00108	6a 02		 push	 2
+  0010a	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__socket@12
+  00110	89 85 c4 fe ff
+	ff		 mov	 DWORD PTR _listen_socket$[ebp], eax
+; Line 88
+  00116	83 bd c4 fe ff
+	ff ff		 cmp	 DWORD PTR _listen_socket$[ebp], -1
+  0011d	75 1f		 jne	 SHORT $L19225
+; Line 90
+  0011f	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  00125	50		 push	 eax
+  00126	68 00 00 00 00	 push	 OFFSET FLAT:$SG19226
+  0012b	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  00130	e8 00 00 00 00	 call	 _fprintf
+  00135	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 91
+  00138	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSACleanup@0
+$L19225:
+; Line 101
+  0013e	6a 10		 push	 16			; 00000010H
+  00140	8d 85 b0 fc ff
+	ff		 lea	 eax, DWORD PTR _local$[ebp]
+  00146	50		 push	 eax
+  00147	8b 8d c4 fe ff
+	ff		 mov	 ecx, DWORD PTR _listen_socket$[ebp]
+  0014d	51		 push	 ecx
+  0014e	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__bind@12
+  00154	83 f8 ff	 cmp	 eax, -1
+  00157	75 1f		 jne	 SHORT $L19228
+; Line 103
+  00159	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  0015f	50		 push	 eax
+  00160	68 00 00 00 00	 push	 OFFSET FLAT:$SG19229
+  00165	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  0016a	e8 00 00 00 00	 call	 _fprintf
+  0016f	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 104
+  00172	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSACleanup@0
+$L19228:
+; Line 108
+  00178	ba 01 00 00 00	 mov	 edx, 1
+  0017d	85 d2		 test	 edx, edx
+  0017f	0f 84 19 0c 00
+	00		 je	 $L19232
+; Line 111
+  00185	c7 85 98 f8 ff
+	ff 10 00 00 00	 mov	 DWORD PTR _fromlen$[ebp], 16 ; 00000010H
+; Line 112
+  0018f	8b 85 c4 fe ff
+	ff		 mov	 eax, DWORD PTR _listen_socket$[ebp]
+  00195	89 85 c0 fc ff
+	ff		 mov	 DWORD PTR _msgsock$[ebp], eax
+; Line 117
+  0019b	8d 8d 98 f8 ff
+	ff		 lea	 ecx, DWORD PTR _fromlen$[ebp]
+  001a1	51		 push	 ecx
+  001a2	8d 95 a0 f8 ff
+	ff		 lea	 edx, DWORD PTR _from$[ebp]
+  001a8	52		 push	 edx
+  001a9	6a 00		 push	 0
+  001ab	68 80 00 00 00	 push	 128			; 00000080H
+  001b0	8d 85 c8 fe ff
+	ff		 lea	 eax, DWORD PTR _Buffer$[ebp]
+  001b6	50		 push	 eax
+  001b7	8b 8d c0 fc ff
+	ff		 mov	 ecx, DWORD PTR _msgsock$[ebp]
+  001bd	51		 push	 ecx
+  001be	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__recvfrom@24
+  001c4	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 120
+  001ca	8b 95 a4 f8 ff
+	ff		 mov	 edx, DWORD PTR _from$[ebp+4]
+  001d0	52		 push	 edx
+  001d1	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__inet_ntoa@4
+  001d7	50		 push	 eax
+  001d8	68 00 00 00 00	 push	 OFFSET FLAT:_IP
+  001dd	e8 00 00 00 00	 call	 _strcpy
+  001e2	83 c4 08	 add	 esp, 8
+; Line 122
+  001e5	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  001ec	75 2b		 jne	 SHORT $L19234
+; Line 124
+  001ee	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  001f4	50		 push	 eax
+  001f5	68 00 00 00 00	 push	 OFFSET FLAT:$SG19235
+  001fa	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  001ff	e8 00 00 00 00	 call	 _fprintf
+  00204	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 125
+  00207	8b 85 c0 fc ff
+	ff		 mov	 eax, DWORD PTR _msgsock$[ebp]
+  0020d	50		 push	 eax
+  0020e	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__closesocket@4
+; Line 126
+  00214	e9 5f ff ff ff	 jmp	 $L19228
+$L19234:
+; Line 129
+  00219	83 bd 94 f8 ff
+	ff 00		 cmp	 DWORD PTR _retval$[ebp], 0
+  00220	75 1f		 jne	 SHORT $L19236
+; Line 131
+  00222	68 00 00 00 00	 push	 OFFSET FLAT:$SG19237
+  00227	e8 00 00 00 00	 call	 _printf
+  0022c	83 c4 04	 add	 esp, 4
+; Line 132
+  0022f	8b 8d c0 fc ff
+	ff		 mov	 ecx, DWORD PTR _msgsock$[ebp]
+  00235	51		 push	 ecx
+  00236	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__closesocket@4
+; Line 133
+  0023c	e9 37 ff ff ff	 jmp	 $L19228
+$L19236:
+; Line 140
+  00241	8d 95 c8 fe ff
+	ff		 lea	 edx, DWORD PTR _Buffer$[ebp]
+  00247	52		 push	 edx
+  00248	e8 00 00 00 00	 call	 _Protocol
+  0024d	83 c4 04	 add	 esp, 4
+  00250	89 85 88 f8 ff
+	ff		 mov	 DWORD PTR _statusCode$[ebp], eax
+; Line 141
+  00256	83 bd 88 f8 ff
+	ff ff		 cmp	 DWORD PTR _statusCode$[ebp], -1
+  0025d	75 05		 jne	 SHORT $L19239
+; Line 143
+  0025f	e9 14 ff ff ff	 jmp	 $L19228
+$L19239:
+; Line 145
+  00264	81 bd 88 f8 ff
+	ff c9 00 00 00	 cmp	 DWORD PTR _statusCode$[ebp], 201 ; 000000c9H
+  0026e	0f 85 df 04 00
+	00		 jne	 $L19241
+$EndTransfer$19242:
+; Line 148
+  00274	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  00279	3b 05 00 00 00
+	00		 cmp	 eax, DWORD PTR _totalFiles
+  0027f	0f 8c 80 01 00
+	00		 jl	 $Label102$19256
+; Line 152
+  00285	c6 85 b0 f8 ff
+	ff 31		 mov	 BYTE PTR _sendBuffer$[ebp], 49 ; 00000031H
+; Line 153
+  0028c	c6 85 b1 f8 ff
+	ff 30		 mov	 BYTE PTR _sendBuffer$[ebp+1], 48 ; 00000030H
+; Line 154
+  00293	c6 85 b2 f8 ff
+	ff 33		 mov	 BYTE PTR _sendBuffer$[ebp+2], 51 ; 00000033H
+; Line 157
+  0029a	8b 8d 98 f8 ff
+	ff		 mov	 ecx, DWORD PTR _fromlen$[ebp]
+  002a0	51		 push	 ecx
+  002a1	8d 95 a0 f8 ff
+	ff		 lea	 edx, DWORD PTR _from$[ebp]
+  002a7	52		 push	 edx
+  002a8	6a 00		 push	 0
+  002aa	6a 12		 push	 18			; 00000012H
+  002ac	8d 85 b0 f8 ff
+	ff		 lea	 eax, DWORD PTR _sendBuffer$[ebp]
+  002b2	50		 push	 eax
+  002b3	8b 8d c0 fc ff
+	ff		 mov	 ecx, DWORD PTR _msgsock$[ebp]
+  002b9	51		 push	 ecx
+  002ba	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__sendto@24
+  002c0	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 158
+  002c6	6a 01		 push	 1
+  002c8	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__Sleep@4
+; Line 159
+  002ce	8d 95 98 f8 ff
+	ff		 lea	 edx, DWORD PTR _fromlen$[ebp]
+  002d4	52		 push	 edx
+  002d5	8d 85 a0 f8 ff
+	ff		 lea	 eax, DWORD PTR _from$[ebp]
+  002db	50		 push	 eax
+  002dc	6a 00		 push	 0
+  002de	68 80 00 00 00	 push	 128			; 00000080H
+  002e3	8d 8d c8 fe ff
+	ff		 lea	 ecx, DWORD PTR _Buffer$[ebp]
+  002e9	51		 push	 ecx
+  002ea	8b 95 c0 fc ff
+	ff		 mov	 edx, DWORD PTR _msgsock$[ebp]
+  002f0	52		 push	 edx
+  002f1	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__recvfrom@24
+  002f7	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 160
+  002fd	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00304	75 1e		 jne	 SHORT $L19246
+; Line 162
+  00306	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  0030c	50		 push	 eax
+  0030d	68 00 00 00 00	 push	 OFFSET FLAT:$SG19247
+  00312	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  00317	e8 00 00 00 00	 call	 _fprintf
+  0031c	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 164
+  0031f	e9 50 ff ff ff	 jmp	 $EndTransfer$19242
+$L19246:
+; Line 169
+  00324	0f be 85 c8 fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp]
+  0032b	83 f8 31	 cmp	 eax, 49			; 00000031H
+  0032e	0f 85 cc 00 00
+	00		 jne	 $L19249
+  00334	0f be 8d c9 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp+1]
+  0033b	83 f9 30	 cmp	 ecx, 48			; 00000030H
+  0033e	0f 85 bc 00 00
+	00		 jne	 $L19249
+  00344	0f be 95 ca fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+2]
+  0034b	83 fa 34	 cmp	 edx, 52			; 00000034H
+  0034e	0f 85 ac 00 00
+	00		 jne	 $L19249
+; Line 171
+  00354	c7 05 00 00 00
+	00 00 00 00 00	 mov	 DWORD PTR _fileNumber, 0
+; Line 172
+  0035e	c7 05 00 00 00
+	00 00 00 00 00	 mov	 DWORD PTR _totalFiles, 0
+; Line 174
+  00368	a1 00 00 00 00	 mov	 eax, DWORD PTR _TPACK
+  0036d	50		 push	 eax
+  0036e	68 00 00 00 00	 push	 OFFSET FLAT:$SG19250
+  00373	e8 00 00 00 00	 call	 _printf
+  00378	83 c4 08	 add	 esp, 8
+; Line 175
+  0037b	68 00 00 00 00	 push	 OFFSET FLAT:_endTime
+  00380	e8 00 00 00 00	 call	 _time
+  00385	83 c4 04	 add	 esp, 4
+; Line 176
+  00388	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _startTime
+  0038e	51		 push	 ecx
+  0038f	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _endTime
+  00395	52		 push	 edx
+  00396	e8 00 00 00 00	 call	 _difftime
+  0039b	83 c4 08	 add	 esp, 8
+  0039e	dd 15 00 00 00
+	00		 fst	 QWORD PTR _dif
+; Line 177
+  003a4	dc 35 00 00 00
+	00		 fdiv	 QWORD PTR __real@8@4004f000000000000000
+  003aa	e8 00 00 00 00	 call	 __ftol
+  003af	a3 00 00 00 00	 mov	 DWORD PTR _min, eax
+; Line 178
+  003b4	dd 05 00 00 00
+	00		 fld	 QWORD PTR _dif
+  003ba	e8 00 00 00 00	 call	 __ftol
+  003bf	99		 cdq
+  003c0	b9 3c 00 00 00	 mov	 ecx, 60			; 0000003cH
+  003c5	f7 f9		 idiv	 ecx
+  003c7	89 15 00 00 00
+	00		 mov	 DWORD PTR _sec, edx
+; Line 179
+  003cd	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _sec
+  003d3	52		 push	 edx
+  003d4	a1 00 00 00 00	 mov	 eax, DWORD PTR _min
+  003d9	50		 push	 eax
+  003da	68 00 00 00 00	 push	 OFFSET FLAT:$SG19252
+  003df	e8 00 00 00 00	 call	 _printf
+  003e4	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 180
+  003e7	68 00 00 00 00	 push	 OFFSET FLAT:$SG19253
+  003ec	e8 00 00 00 00	 call	 _printf
+  003f1	83 c4 04	 add	 esp, 4
+; Line 181
+  003f4	e8 00 00 00 00	 call	 _getch
+; Line 182
+  003f9	6a 00		 push	 0
+  003fb	e8 00 00 00 00	 call	 _exit
+$L19249:
+; Line 186
+  00400	e9 6f fe ff ff	 jmp	 $EndTransfer$19242
+$Label102$19256:
+; Line 195
+  00405	8d 8d b0 f8 ff
+	ff		 lea	 ecx, DWORD PTR _sendBuffer$[ebp]
+  0040b	51		 push	 ecx
+  0040c	e8 00 00 00 00	 call	 _Create102
+  00411	83 c4 04	 add	 esp, 4
+; Line 197
+  00414	68 00 00 00 00	 push	 OFFSET FLAT:_startTime
+  00419	e8 00 00 00 00	 call	 _time
+  0041e	83 c4 04	 add	 esp, 4
+; Line 200
+  00421	8b 95 98 f8 ff
+	ff		 mov	 edx, DWORD PTR _fromlen$[ebp]
+  00427	52		 push	 edx
+  00428	8d 85 a0 f8 ff
+	ff		 lea	 eax, DWORD PTR _from$[ebp]
+  0042e	50		 push	 eax
+  0042f	6a 00		 push	 0
+  00431	6a 12		 push	 18			; 00000012H
+  00433	8d 8d b0 f8 ff
+	ff		 lea	 ecx, DWORD PTR _sendBuffer$[ebp]
+  00439	51		 push	 ecx
+  0043a	8b 95 c0 fc ff
+	ff		 mov	 edx, DWORD PTR _msgsock$[ebp]
+  00440	52		 push	 edx
+  00441	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__sendto@24
+  00447	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 203
+  0044d	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00454	75 19		 jne	 SHORT $L19259
+; Line 205
+  00456	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  0045c	50		 push	 eax
+  0045d	68 00 00 00 00	 push	 OFFSET FLAT:$SG19260
+  00462	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  00467	e8 00 00 00 00	 call	 _fprintf
+  0046c	83 c4 0c	 add	 esp, 12			; 0000000cH
+$L19259:
+; Line 210
+  0046f	c6 85 b0 f8 ff
+	ff 00		 mov	 BYTE PTR _sendBuffer$[ebp], 0
+$OpenNext$19261:
+; Line 214
+  00476	8d 85 60 fe ff
+	ff		 lea	 eax, DWORD PTR _Path$[ebp]
+  0047c	50		 push	 eax
+  0047d	8d 8d 48 ff ff
+	ff		 lea	 ecx, DWORD PTR _Path2$[ebp]
+  00483	51		 push	 ecx
+  00484	e8 00 00 00 00	 call	 _strcpy
+  00489	83 c4 08	 add	 esp, 8
+; Line 215
+  0048c	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _fileNumber
+  00492	6b d2 54	 imul	 edx, 84			; 00000054H
+  00495	81 c2 00 00 00
+	00		 add	 edx, OFFSET FLAT:_File
+  0049b	52		 push	 edx
+  0049c	8d 85 48 ff ff
+	ff		 lea	 eax, DWORD PTR _Path2$[ebp]
+  004a2	50		 push	 eax
+  004a3	e8 00 00 00 00	 call	 _strcat
+  004a8	83 c4 08	 add	 esp, 8
+; Line 216
+  004ab	68 00 00 00 00	 push	 OFFSET FLAT:$SG19262
+  004b0	8d 8d 48 ff ff
+	ff		 lea	 ecx, DWORD PTR _Path2$[ebp]
+  004b6	51		 push	 ecx
+  004b7	e8 00 00 00 00	 call	 _fopen
+  004bc	83 c4 08	 add	 esp, 8
+  004bf	a3 00 00 00 00	 mov	 DWORD PTR _rdFile, eax
+; Line 217
+  004c4	83 3d 00 00 00
+	00 00		 cmp	 DWORD PTR _rdFile, 0
+  004cb	75 5b		 jne	 SHORT $L19264
+; Line 219
+  004cd	8d 95 48 ff ff
+	ff		 lea	 edx, DWORD PTR _Path2$[ebp]
+  004d3	52		 push	 edx
+  004d4	68 00 00 00 00	 push	 OFFSET FLAT:$SG19265
+  004d9	e8 00 00 00 00	 call	 _printf
+  004de	83 c4 08	 add	 esp, 8
+; Line 220
+  004e1	a1 00 00 00 00	 mov	 eax, DWORD PTR _rdFile
+  004e6	50		 push	 eax
+  004e7	e8 00 00 00 00	 call	 _fclose
+  004ec	83 c4 04	 add	 esp, 4
+; Line 221
+  004ef	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _fileNumber
+  004f5	3b 0d 00 00 00
+	00		 cmp	 ecx, DWORD PTR _totalFiles
+  004fb	7c 19		 jl	 SHORT $L19266
+; Line 223
+  004fd	8d 95 48 ff ff
+	ff		 lea	 edx, DWORD PTR _Path2$[ebp]
+  00503	52		 push	 edx
+  00504	68 00 00 00 00	 push	 OFFSET FLAT:$SG19267
+  00509	e8 00 00 00 00	 call	 _printf
+  0050e	83 c4 08	 add	 esp, 8
+; Line 224
+  00511	e9 5e fd ff ff	 jmp	 $EndTransfer$19242
+$L19266:
+; Line 226
+  00516	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  0051b	83 c0 01	 add	 eax, 1
+  0051e	a3 00 00 00 00	 mov	 DWORD PTR _fileNumber, eax
+; Line 227
+  00523	e9 4e ff ff ff	 jmp	 $OpenNext$19261
+$L19264:
+; Line 229
+  00528	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _rdFile
+  0052e	51		 push	 ecx
+  0052f	e8 00 00 00 00	 call	 _fclose
+  00534	83 c4 04	 add	 esp, 4
+$Label201$19268:
+; Line 232
+  00537	8d 95 b0 f8 ff
+	ff		 lea	 edx, DWORD PTR _sendBuffer$[ebp]
+  0053d	52		 push	 edx
+  0053e	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  00543	50		 push	 eax
+  00544	e8 00 00 00 00	 call	 _Create201
+  00549	83 c4 08	 add	 esp, 8
+; Line 235
+  0054c	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _TPACK
+  00552	51		 push	 ecx
+  00553	68 00 00 00 00	 push	 OFFSET FLAT:$SG19270
+  00558	e8 00 00 00 00	 call	 _printf
+  0055d	83 c4 08	 add	 esp, 8
+; Line 237
+  00560	8b 95 98 f8 ff
+	ff		 mov	 edx, DWORD PTR _fromlen$[ebp]
+  00566	52		 push	 edx
+  00567	8d 85 a0 f8 ff
+	ff		 lea	 eax, DWORD PTR _from$[ebp]
+  0056d	50		 push	 eax
+  0056e	6a 00		 push	 0
+  00570	6a 64		 push	 100			; 00000064H
+  00572	8d 8d b0 f8 ff
+	ff		 lea	 ecx, DWORD PTR _sendBuffer$[ebp]
+  00578	51		 push	 ecx
+  00579	8b 95 c0 fc ff
+	ff		 mov	 edx, DWORD PTR _msgsock$[ebp]
+  0057f	52		 push	 edx
+  00580	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__sendto@24
+  00586	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 239
+  0058c	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00593	75 19		 jne	 SHORT $L19272
+; Line 241
+  00595	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  0059b	50		 push	 eax
+  0059c	68 00 00 00 00	 push	 OFFSET FLAT:$SG19273
+  005a1	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  005a6	e8 00 00 00 00	 call	 _fprintf
+  005ab	83 c4 0c	 add	 esp, 12			; 0000000cH
+$L19272:
+; Line 245
+  005ae	c6 85 b0 f8 ff
+	ff 00		 mov	 BYTE PTR _sendBuffer$[ebp], 0
+; Line 251
+  005b5	83 bd c8 fc ff
+	ff 00		 cmp	 DWORD PTR _iMode$[ebp], 0
+  005bc	75 58		 jne	 SHORT $L19278
+; Line 253
+  005be	c7 85 c8 fc ff
+	ff 01 00 00 00	 mov	 DWORD PTR _iMode$[ebp], 1
+; Line 254
+  005c8	8d 85 c8 fc ff
+	ff		 lea	 eax, DWORD PTR _iMode$[ebp]
+  005ce	50		 push	 eax
+  005cf	68 7e 66 04 80	 push	 -2147195266		; 8004667eH
+  005d4	8b 8d c0 fc ff
+	ff		 mov	 ecx, DWORD PTR _msgsock$[ebp]
+  005da	51		 push	 ecx
+  005db	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__ioctlsocket@12
+  005e1	89 85 80 f8 ff
+	ff		 mov	 DWORD PTR _block$[ebp], eax
+; Line 255
+  005e7	83 bd 80 f8 ff
+	ff 00		 cmp	 DWORD PTR _block$[ebp], 0
+  005ee	74 26		 je	 SHORT $L19278
+; Line 257
+  005f0	68 00 00 00 00	 push	 OFFSET FLAT:$SG19279
+  005f5	e8 00 00 00 00	 call	 _printf
+  005fa	83 c4 04	 add	 esp, 4
+; Line 258
+  005fd	68 00 00 00 00	 push	 OFFSET FLAT:$SG19280
+  00602	e8 00 00 00 00	 call	 _printf
+  00607	83 c4 04	 add	 esp, 4
+; Line 259
+  0060a	e8 00 00 00 00	 call	 _getch
+; Line 260
+  0060f	6a 00		 push	 0
+  00611	e8 00 00 00 00	 call	 _exit
+$L19278:
+; Line 264
+  00616	c6 85 c8 fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp], 0
+; Line 265
+  0061d	c6 85 c9 fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp+1], 0
+; Line 266
+  00624	c6 85 ca fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp+2], 0
+; Line 267
+  0062b	6a 01		 push	 1
+  0062d	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__Sleep@4
+; Line 269
+  00633	8d 95 98 f8 ff
+	ff		 lea	 edx, DWORD PTR _fromlen$[ebp]
+  00639	52		 push	 edx
+  0063a	8d 85 a0 f8 ff
+	ff		 lea	 eax, DWORD PTR _from$[ebp]
+  00640	50		 push	 eax
+  00641	6a 00		 push	 0
+  00643	68 80 00 00 00	 push	 128			; 00000080H
+  00648	8d 8d c8 fe ff
+	ff		 lea	 ecx, DWORD PTR _Buffer$[ebp]
+  0064e	51		 push	 ecx
+  0064f	8b 95 c0 fc ff
+	ff		 mov	 edx, DWORD PTR _msgsock$[ebp]
+  00655	52		 push	 edx
+  00656	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__recvfrom@24
+  0065c	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 286
+  00662	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00669	75 1e		 jne	 SHORT $L19282
+; Line 288
+  0066b	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  00671	50		 push	 eax
+  00672	68 00 00 00 00	 push	 OFFSET FLAT:$SG19283
+  00677	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  0067c	e8 00 00 00 00	 call	 _fprintf
+  00681	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 290
+  00684	e9 ae fe ff ff	 jmp	 $Label201$19268
+$L19282:
+; Line 294
+  00689	0f be 85 c8 fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp]
+  00690	83 f8 32	 cmp	 eax, 50			; 00000032H
+  00693	75 1d		 jne	 SHORT $L19285
+  00695	0f be 8d c9 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp+1]
+  0069c	83 f9 30	 cmp	 ecx, 48			; 00000030H
+  0069f	75 11		 jne	 SHORT $L19285
+  006a1	0f be 95 ca fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+2]
+  006a8	83 fa 32	 cmp	 edx, 50			; 00000032H
+  006ab	75 05		 jne	 SHORT $L19285
+; Line 296
+  006ad	e9 b1 00 00 00	 jmp	 $Label301$19286
+$L19285:
+; Line 298
+  006b2	0f be 85 c8 fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp]
+  006b9	83 f8 32	 cmp	 eax, 50			; 00000032H
+  006bc	75 2a		 jne	 SHORT $L19288
+  006be	0f be 8d c9 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp+1]
+  006c5	83 f9 30	 cmp	 ecx, 48			; 00000030H
+  006c8	75 1e		 jne	 SHORT $L19288
+  006ca	0f be 95 ca fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+2]
+  006d1	83 fa 34	 cmp	 edx, 52			; 00000034H
+  006d4	75 12		 jne	 SHORT $L19288
+; Line 300
+  006d6	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  006db	83 c0 01	 add	 eax, 1
+  006de	a3 00 00 00 00	 mov	 DWORD PTR _fileNumber, eax
+; Line 301
+  006e3	e9 8e fd ff ff	 jmp	 $OpenNext$19261
+$L19288:
+; Line 303
+  006e8	0f be 8d c8 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp]
+  006ef	83 f9 32	 cmp	 ecx, 50			; 00000032H
+  006f2	75 31		 jne	 SHORT $L19290
+  006f4	0f be 95 c9 fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+1]
+  006fb	83 fa 30	 cmp	 edx, 48			; 00000030H
+  006fe	75 25		 jne	 SHORT $L19290
+  00700	0f be 85 ca fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp+2]
+  00707	83 f8 33	 cmp	 eax, 51			; 00000033H
+  0070a	75 19		 jne	 SHORT $L19290
+; Line 305
+  0070c	68 00 00 00 00	 push	 OFFSET FLAT:$SG19291
+  00711	e8 00 00 00 00	 call	 _printf
+  00716	83 c4 04	 add	 esp, 4
+; Line 306
+  00719	e8 00 00 00 00	 call	 _getch
+; Line 307
+  0071e	6a 00		 push	 0
+  00720	e8 00 00 00 00	 call	 _exit
+$L19290:
+; Line 309
+  00725	0f be 8d c8 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp]
+  0072c	83 f9 31	 cmp	 ecx, 49			; 00000031H
+  0072f	75 1d		 jne	 SHORT $L19292
+  00731	0f be 95 c9 fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+1]
+  00738	83 fa 30	 cmp	 edx, 48			; 00000030H
+  0073b	75 11		 jne	 SHORT $L19292
+  0073d	0f be 85 ca fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp+2]
+  00744	83 f8 31	 cmp	 eax, 49			; 00000031H
+  00747	75 05		 jne	 SHORT $L19292
+; Line 311
+  00749	e9 b7 fc ff ff	 jmp	 $Label102$19256
+$L19292:
+; Line 315
+  0074e	e9 e4 fd ff ff	 jmp	 $Label201$19268
+$L19241:
+; Line 321
+  00753	81 bd 88 f8 ff
+	ff 2d 01 00 00	 cmp	 DWORD PTR _statusCode$[ebp], 301 ; 0000012dH
+  0075d	0f 85 36 06 00
+	00		 jne	 $L19295
+$Label301$19286:
+; Line 326
+  00763	8d 8d 60 fe ff
+	ff		 lea	 ecx, DWORD PTR _Path$[ebp]
+  00769	51		 push	 ecx
+  0076a	8d 95 48 ff ff
+	ff		 lea	 edx, DWORD PTR _Path2$[ebp]
+  00770	52		 push	 edx
+  00771	e8 00 00 00 00	 call	 _strcpy
+  00776	83 c4 08	 add	 esp, 8
+; Line 327
+  00779	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  0077e	6b c0 54	 imul	 eax, 84			; 00000054H
+  00781	05 00 00 00 00	 add	 eax, OFFSET FLAT:_File
+  00786	50		 push	 eax
+  00787	8d 8d 48 ff ff
+	ff		 lea	 ecx, DWORD PTR _Path2$[ebp]
+  0078d	51		 push	 ecx
+  0078e	e8 00 00 00 00	 call	 _strcat
+  00793	83 c4 08	 add	 esp, 8
+; Line 328
+  00796	68 00 00 00 00	 push	 OFFSET FLAT:$SG19296
+  0079b	8d 95 48 ff ff
+	ff		 lea	 edx, DWORD PTR _Path2$[ebp]
+  007a1	52		 push	 edx
+  007a2	e8 00 00 00 00	 call	 _fopen
+  007a7	83 c4 08	 add	 esp, 8
+  007aa	a3 00 00 00 00	 mov	 DWORD PTR _rdFile, eax
+; Line 329
+  007af	83 3d 00 00 00
+	00 00		 cmp	 DWORD PTR _rdFile, 0
+  007b6	75 28		 jne	 SHORT $L19298
+; Line 331
+  007b8	8d 85 48 ff ff
+	ff		 lea	 eax, DWORD PTR _Path2$[ebp]
+  007be	50		 push	 eax
+  007bf	68 00 00 00 00	 push	 OFFSET FLAT:$SG19299
+  007c4	e8 00 00 00 00	 call	 _printf
+  007c9	83 c4 08	 add	 esp, 8
+; Line 332
+  007cc	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _fileNumber
+  007d2	83 c1 01	 add	 ecx, 1
+  007d5	89 0d 00 00 00
+	00		 mov	 DWORD PTR _fileNumber, ecx
+; Line 333
+  007db	e9 96 fc ff ff	 jmp	 $OpenNext$19261
+$L19298:
+; Line 337
+  007e0	6a 00		 push	 0
+  007e2	6a 00		 push	 0
+  007e4	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _rdFile
+  007ea	52		 push	 edx
+  007eb	e8 00 00 00 00	 call	 _fseek
+  007f0	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 341
+  007f3	c6 85 b0 f8 ff
+	ff 33		 mov	 BYTE PTR _sendBuffer$[ebp], 51 ; 00000033H
+; Line 342
+  007fa	c6 85 b1 f8 ff
+	ff 30		 mov	 BYTE PTR _sendBuffer$[ebp+1], 48 ; 00000030H
+; Line 343
+  00801	c6 85 b2 f8 ff
+	ff 31		 mov	 BYTE PTR _sendBuffer$[ebp+2], 49 ; 00000031H
+; Line 346
+  00808	c6 85 b3 f8 ff
+	ff 10		 mov	 BYTE PTR _sendBuffer$[ebp+3], 16 ; 00000010H
+; Line 347
+  0080f	c6 85 b4 f8 ff
+	ff 13		 mov	 BYTE PTR _sendBuffer$[ebp+4], 19 ; 00000013H
+; Line 349
+  00816	c6 85 b7 f8 ff
+	ff 10		 mov	 BYTE PTR _sendBuffer$[ebp+7], 16 ; 00000010H
+; Line 350
+  0081d	c6 85 b8 f8 ff
+	ff 13		 mov	 BYTE PTR _sendBuffer$[ebp+8], 19 ; 00000013H
+; Line 352
+  00824	c6 85 bb f8 ff
+	ff 10		 mov	 BYTE PTR _sendBuffer$[ebp+11], 16 ; 00000010H
+; Line 353
+  0082b	c6 85 bc f8 ff
+	ff 13		 mov	 BYTE PTR _sendBuffer$[ebp+12], 19 ; 00000013H
+; Line 359
+  00832	c7 85 5c fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _seq$[ebp], OFFSET FLAT:_nextSeq
+$Label2$19304:
+; Line 363
+  0083c	8b 85 5c fe ff
+	ff		 mov	 eax, DWORD PTR _seq$[ebp]
+  00842	8a 08		 mov	 cl, BYTE PTR [eax]
+  00844	88 8d b5 f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+5], cl
+; Line 364
+  0084a	8b 95 5c fe ff
+	ff		 mov	 edx, DWORD PTR _seq$[ebp]
+  00850	8a 42 01	 mov	 al, BYTE PTR [edx+1]
+  00853	88 85 b6 f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+6], al
+; Line 365
+  00859	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _rdFile
+  0085f	51		 push	 ecx
+  00860	68 e8 03 00 00	 push	 1000			; 000003e8H
+  00865	6a 01		 push	 1
+  00867	8d 95 bd f8 ff
+	ff		 lea	 edx, DWORD PTR _sendBuffer$[ebp+13]
+  0086d	52		 push	 edx
+  0086e	e8 00 00 00 00	 call	 _fread
+  00873	83 c4 10	 add	 esp, 16			; 00000010H
+  00876	89 45 fc	 mov	 DWORD PTR _Size$[ebp], eax
+; Line 367
+  00879	81 7d fc e8 03
+	00 00		 cmp	 DWORD PTR _Size$[ebp], 1000 ; 000003e8H
+  00880	7d 3e		 jge	 SHORT $L19308
+; Line 369
+  00882	c7 85 ac fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _i$[ebp], 0
+  0088c	eb 0f		 jmp	 SHORT $L19306
+$L19307:
+  0088e	8b 85 ac fc ff
+	ff		 mov	 eax, DWORD PTR _i$[ebp]
+  00894	83 c0 01	 add	 eax, 1
+  00897	89 85 ac fc ff
+	ff		 mov	 DWORD PTR _i$[ebp], eax
+$L19306:
+  0089d	b9 e8 03 00 00	 mov	 ecx, 1000		; 000003e8H
+  008a2	2b 4d fc	 sub	 ecx, DWORD PTR _Size$[ebp]
+  008a5	39 8d ac fc ff
+	ff		 cmp	 DWORD PTR _i$[ebp], ecx
+  008ab	7d 13		 jge	 SHORT $L19308
+; Line 371
+  008ad	8b 55 fc	 mov	 edx, DWORD PTR _Size$[ebp]
+  008b0	03 95 ac fc ff
+	ff		 add	 edx, DWORD PTR _i$[ebp]
+  008b6	c6 84 15 bd f8
+	ff ff 00	 mov	 BYTE PTR _sendBuffer$[ebp+edx+13], 0
+; Line 373
+  008be	eb ce		 jmp	 SHORT $L19307
+$L19308:
+; Line 376
+  008c0	8d 45 fc	 lea	 eax, DWORD PTR _Size$[ebp]
+  008c3	89 85 c4 fc ff
+	ff		 mov	 DWORD PTR _conv$[ebp], eax
+; Line 377
+  008c9	8b 8d c4 fc ff
+	ff		 mov	 ecx, DWORD PTR _conv$[ebp]
+  008cf	8a 11		 mov	 dl, BYTE PTR [ecx]
+  008d1	88 95 b9 f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+9], dl
+; Line 378
+  008d7	8b 85 c4 fc ff
+	ff		 mov	 eax, DWORD PTR _conv$[ebp]
+  008dd	8a 48 01	 mov	 cl, BYTE PTR [eax+1]
+  008e0	88 8d ba f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+10], cl
+; Line 380
+  008e6	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _nextSeq
+  008ec	83 c2 01	 add	 edx, 1
+  008ef	89 15 00 00 00
+	00		 mov	 DWORD PTR _nextSeq, edx
+$Label1$19310:
+; Line 382
+  008f5	6a 01		 push	 1
+  008f7	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__Sleep@4
+; Line 383
+  008fd	8b 85 98 f8 ff
+	ff		 mov	 eax, DWORD PTR _fromlen$[ebp]
+  00903	50		 push	 eax
+  00904	8d 8d a0 f8 ff
+	ff		 lea	 ecx, DWORD PTR _from$[ebp]
+  0090a	51		 push	 ecx
+  0090b	6a 00		 push	 0
+  0090d	68 fc 03 00 00	 push	 1020			; 000003fcH
+  00912	8d 95 b0 f8 ff
+	ff		 lea	 edx, DWORD PTR _sendBuffer$[ebp]
+  00918	52		 push	 edx
+  00919	8b 85 c0 fc ff
+	ff		 mov	 eax, DWORD PTR _msgsock$[ebp]
+  0091f	50		 push	 eax
+  00920	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__sendto@24
+  00926	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 384
+  0092c	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _TPACK
+  00932	83 c1 01	 add	 ecx, 1
+  00935	89 0d 00 00 00
+	00		 mov	 DWORD PTR _TPACK, ecx
+; Line 385
+  0093b	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00942	75 19		 jne	 SHORT $L19312
+; Line 387
+  00944	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  0094a	50		 push	 eax
+  0094b	68 00 00 00 00	 push	 OFFSET FLAT:$SG19313
+  00950	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  00955	e8 00 00 00 00	 call	 _fprintf
+  0095a	83 c4 0c	 add	 esp, 12			; 0000000cH
+$L19312:
+; Line 396
+  0095d	83 bd c8 fc ff
+	ff 00		 cmp	 DWORD PTR _iMode$[ebp], 0
+  00964	75 58		 jne	 SHORT $L19318
+; Line 398
+  00966	c7 85 c8 fc ff
+	ff 01 00 00 00	 mov	 DWORD PTR _iMode$[ebp], 1
+; Line 399
+  00970	8d 95 c8 fc ff
+	ff		 lea	 edx, DWORD PTR _iMode$[ebp]
+  00976	52		 push	 edx
+  00977	68 7e 66 04 80	 push	 -2147195266		; 8004667eH
+  0097c	8b 85 c0 fc ff
+	ff		 mov	 eax, DWORD PTR _msgsock$[ebp]
+  00982	50		 push	 eax
+  00983	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__ioctlsocket@12
+  00989	89 85 80 f8 ff
+	ff		 mov	 DWORD PTR _block$[ebp], eax
+; Line 400
+  0098f	83 bd 80 f8 ff
+	ff 00		 cmp	 DWORD PTR _block$[ebp], 0
+  00996	74 26		 je	 SHORT $L19318
+; Line 402
+  00998	68 00 00 00 00	 push	 OFFSET FLAT:$SG19319
+  0099d	e8 00 00 00 00	 call	 _printf
+  009a2	83 c4 04	 add	 esp, 4
+; Line 403
+  009a5	68 00 00 00 00	 push	 OFFSET FLAT:$SG19320
+  009aa	e8 00 00 00 00	 call	 _printf
+  009af	83 c4 04	 add	 esp, 4
+; Line 404
+  009b2	e8 00 00 00 00	 call	 _getch
+; Line 405
+  009b7	6a 00		 push	 0
+  009b9	e8 00 00 00 00	 call	 _exit
+$L19318:
+; Line 408
+  009be	c6 85 c8 fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp], 0
+; Line 409
+  009c5	c6 85 c9 fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp+1], 0
+; Line 410
+  009cc	c6 85 ca fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp+2], 0
+; Line 446
+  009d3	81 7d fc e8 03
+	00 00		 cmp	 DWORD PTR _Size$[ebp], 1000 ; 000003e8H
+  009da	0f 84 5c fe ff
+	ff		 je	 $Label2$19304
+; Line 454
+  009e0	c7 05 00 00 00
+	00 00 00 00 00	 mov	 DWORD PTR _nextSeq, 0
+$Label303$19321:
+; Line 458
+  009ea	c6 85 b0 f8 ff
+	ff 33		 mov	 BYTE PTR _sendBuffer$[ebp], 51 ; 00000033H
+; Line 459
+  009f1	c6 85 b1 f8 ff
+	ff 30		 mov	 BYTE PTR _sendBuffer$[ebp+1], 48 ; 00000030H
+; Line 460
+  009f8	c6 85 b2 f8 ff
+	ff 33		 mov	 BYTE PTR _sendBuffer$[ebp+2], 51 ; 00000033H
+; Line 463
+  009ff	83 bd c8 fc ff
+	ff 00		 cmp	 DWORD PTR _iMode$[ebp], 0
+  00a06	74 53		 je	 SHORT $L19326
+; Line 465
+  00a08	c7 85 c8 fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _iMode$[ebp], 0
+; Line 466
+  00a12	8d 8d c8 fc ff
+	ff		 lea	 ecx, DWORD PTR _iMode$[ebp]
+  00a18	51		 push	 ecx
+  00a19	68 7e 66 04 80	 push	 -2147195266		; 8004667eH
+  00a1e	8b 95 c0 fc ff
+	ff		 mov	 edx, DWORD PTR _msgsock$[ebp]
+  00a24	52		 push	 edx
+  00a25	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__ioctlsocket@12
+  00a2b	89 85 80 f8 ff
+	ff		 mov	 DWORD PTR _block$[ebp], eax
+; Line 467
+  00a31	83 bd 80 f8 ff
+	ff 00		 cmp	 DWORD PTR _block$[ebp], 0
+  00a38	74 21		 je	 SHORT $L19326
+; Line 469
+  00a3a	68 00 00 00 00	 push	 OFFSET FLAT:$SG19327
+  00a3f	e8 00 00 00 00	 call	 _printf
+  00a44	83 c4 04	 add	 esp, 4
+; Line 470
+  00a47	68 00 00 00 00	 push	 OFFSET FLAT:$SG19328
+  00a4c	e8 00 00 00 00	 call	 _printf
+  00a51	83 c4 04	 add	 esp, 4
+; Line 472
+  00a54	6a 00		 push	 0
+  00a56	e8 00 00 00 00	 call	 _exit
+$L19326:
+; Line 478
+  00a5b	8b 85 98 f8 ff
+	ff		 mov	 eax, DWORD PTR _fromlen$[ebp]
+  00a61	50		 push	 eax
+  00a62	8d 8d a0 f8 ff
+	ff		 lea	 ecx, DWORD PTR _from$[ebp]
+  00a68	51		 push	 ecx
+  00a69	6a 00		 push	 0
+  00a6b	6a 12		 push	 18			; 00000012H
+  00a6d	8d 95 b0 f8 ff
+	ff		 lea	 edx, DWORD PTR _sendBuffer$[ebp]
+  00a73	52		 push	 edx
+  00a74	8b 85 c0 fc ff
+	ff		 mov	 eax, DWORD PTR _msgsock$[ebp]
+  00a7a	50		 push	 eax
+  00a7b	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__sendto@24
+  00a81	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 479
+  00a87	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00a8e	75 19		 jne	 SHORT $L19330
+; Line 481
+  00a90	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  00a96	50		 push	 eax
+  00a97	68 00 00 00 00	 push	 OFFSET FLAT:$SG19331
+  00a9c	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  00aa1	e8 00 00 00 00	 call	 _fprintf
+  00aa6	83 c4 0c	 add	 esp, 12			; 0000000cH
+$L19330:
+; Line 485
+  00aa9	c6 85 b0 f8 ff
+	ff 00		 mov	 BYTE PTR _sendBuffer$[ebp], 0
+; Line 487
+  00ab0	c6 85 c8 fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp], 0
+; Line 488
+  00ab7	c6 85 c9 fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp+1], 0
+; Line 489
+  00abe	c6 85 ca fe ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp+2], 0
+; Line 491
+  00ac5	83 bd c8 fc ff
+	ff 00		 cmp	 DWORD PTR _iMode$[ebp], 0
+  00acc	75 53		 jne	 SHORT $Label305$19339
+; Line 493
+  00ace	c7 85 c8 fc ff
+	ff 01 00 00 00	 mov	 DWORD PTR _iMode$[ebp], 1
+; Line 494
+  00ad8	8d 8d c8 fc ff
+	ff		 lea	 ecx, DWORD PTR _iMode$[ebp]
+  00ade	51		 push	 ecx
+  00adf	68 7e 66 04 80	 push	 -2147195266		; 8004667eH
+  00ae4	8b 95 c0 fc ff
+	ff		 mov	 edx, DWORD PTR _msgsock$[ebp]
+  00aea	52		 push	 edx
+  00aeb	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__ioctlsocket@12
+  00af1	89 85 80 f8 ff
+	ff		 mov	 DWORD PTR _block$[ebp], eax
+; Line 495
+  00af7	83 bd 80 f8 ff
+	ff 00		 cmp	 DWORD PTR _block$[ebp], 0
+  00afe	74 21		 je	 SHORT $Label305$19339
+; Line 497
+  00b00	68 00 00 00 00	 push	 OFFSET FLAT:$SG19337
+  00b05	e8 00 00 00 00	 call	 _printf
+  00b0a	83 c4 04	 add	 esp, 4
+; Line 498
+  00b0d	68 00 00 00 00	 push	 OFFSET FLAT:$SG19338
+  00b12	e8 00 00 00 00	 call	 _printf
+  00b17	83 c4 04	 add	 esp, 4
+; Line 500
+  00b1a	6a 00		 push	 0
+  00b1c	e8 00 00 00 00	 call	 _exit
+$Label305$19339:
+; Line 504
+  00b21	6a 01		 push	 1
+  00b23	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__Sleep@4
+; Line 507
+  00b29	8d 85 98 f8 ff
+	ff		 lea	 eax, DWORD PTR _fromlen$[ebp]
+  00b2f	50		 push	 eax
+  00b30	8d 8d a0 f8 ff
+	ff		 lea	 ecx, DWORD PTR _from$[ebp]
+  00b36	51		 push	 ecx
+  00b37	6a 00		 push	 0
+  00b39	68 80 00 00 00	 push	 128			; 00000080H
+  00b3e	8d 95 c8 fe ff
+	ff		 lea	 edx, DWORD PTR _Buffer$[ebp]
+  00b44	52		 push	 edx
+  00b45	8b 85 c0 fc ff
+	ff		 mov	 eax, DWORD PTR _msgsock$[ebp]
+  00b4b	50		 push	 eax
+  00b4c	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__recvfrom@24
+  00b52	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 511
+  00b58	83 bd 94 f8 ff
+	ff ff		 cmp	 DWORD PTR _retval$[ebp], -1
+  00b5f	75 1e		 jne	 SHORT $L19341
+; Line 513
+  00b61	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__WSAGetLastError@0
+  00b67	50		 push	 eax
+  00b68	68 00 00 00 00	 push	 OFFSET FLAT:$SG19342
+  00b6d	68 40 00 00 00	 push	 OFFSET FLAT:__iob+64
+  00b72	e8 00 00 00 00	 call	 _fprintf
+  00b77	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 515
+  00b7a	e9 6b fe ff ff	 jmp	 $Label303$19321
+$L19341:
+; Line 519
+  00b7f	0f be 8d c8 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp]
+  00b86	83 f9 33	 cmp	 ecx, 51			; 00000033H
+  00b89	75 4d		 jne	 SHORT $L19344
+  00b8b	0f be 95 c9 fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+1]
+  00b92	83 fa 30	 cmp	 edx, 48			; 00000030H
+  00b95	75 41		 jne	 SHORT $L19344
+  00b97	0f be 85 ca fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp+2]
+  00b9e	83 f8 34	 cmp	 eax, 52			; 00000034H
+  00ba1	75 35		 jne	 SHORT $L19344
+; Line 521
+  00ba3	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR _rdFile
+  00ba9	51		 push	 ecx
+  00baa	e8 00 00 00 00	 call	 _fclose
+  00baf	83 c4 04	 add	 esp, 4
+; Line 522
+  00bb2	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _fileNumber
+  00bb8	83 c2 01	 add	 edx, 1
+  00bbb	89 15 00 00 00
+	00		 mov	 DWORD PTR _fileNumber, edx
+; Line 523
+  00bc1	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  00bc6	3b 05 00 00 00
+	00		 cmp	 eax, DWORD PTR _totalFiles
+  00bcc	7c 05		 jl	 SHORT $L19345
+; Line 525
+  00bce	e9 a1 f6 ff ff	 jmp	 $EndTransfer$19242
+$L19345:
+; Line 530
+  00bd3	e9 9e f8 ff ff	 jmp	 $OpenNext$19261
+$L19344:
+; Line 533
+  00bd8	0f be 8d c8 fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp]
+  00bdf	83 f9 33	 cmp	 ecx, 51			; 00000033H
+  00be2	0f 85 ac 01 00
+	00		 jne	 $L19348
+  00be8	0f be 95 c9 fe
+	ff ff		 movsx	 edx, BYTE PTR _Buffer$[ebp+1]
+  00bef	83 fa 30	 cmp	 edx, 48			; 00000030H
+  00bf2	0f 85 9c 01 00
+	00		 jne	 $L19348
+  00bf8	0f be 85 ca fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp+2]
+  00bff	83 f8 36	 cmp	 eax, 54			; 00000036H
+  00c02	0f 85 8c 01 00
+	00		 jne	 $L19348
+; Line 536
+  00c08	0f be 8d ce fe
+	ff ff		 movsx	 ecx, BYTE PTR _Buffer$[ebp+6]
+  00c0f	81 e1 ff 00 00
+	00		 and	 ecx, 255		; 000000ffH
+  00c15	89 8d 90 f8 ff
+	ff		 mov	 DWORD PTR _ack$[ebp], ecx
+; Line 537
+  00c1b	8b 95 90 f8 ff
+	ff		 mov	 edx, DWORD PTR _ack$[ebp]
+  00c21	c1 e2 08	 shl	 edx, 8
+  00c24	81 e2 00 ff 00
+	00		 and	 edx, 65280		; 0000ff00H
+  00c2a	0f be 85 cd fe
+	ff ff		 movsx	 eax, BYTE PTR _Buffer$[ebp+5]
+  00c31	25 ff 00 00 00	 and	 eax, 255		; 000000ffH
+  00c36	0b d0		 or	 edx, eax
+  00c38	89 95 90 f8 ff
+	ff		 mov	 DWORD PTR _ack$[ebp], edx
+; Line 538
+  00c3e	8b 8d 90 f8 ff
+	ff		 mov	 ecx, DWORD PTR _ack$[ebp]
+  00c44	51		 push	 ecx
+  00c45	68 00 00 00 00	 push	 OFFSET FLAT:$SG19349
+  00c4a	e8 00 00 00 00	 call	 _printf
+  00c4f	83 c4 08	 add	 esp, 8
+; Line 540
+  00c52	6a 00		 push	 0
+  00c54	8b 95 90 f8 ff
+	ff		 mov	 edx, DWORD PTR _ack$[ebp]
+  00c5a	69 d2 e8 03 00
+	00		 imul	 edx, 1000		; 000003e8H
+  00c60	52		 push	 edx
+  00c61	a1 00 00 00 00	 mov	 eax, DWORD PTR _rdFile
+  00c66	50		 push	 eax
+  00c67	e8 00 00 00 00	 call	 _fseek
+  00c6c	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 542
+  00c6f	8d 8d 90 f8 ff
+	ff		 lea	 ecx, DWORD PTR _ack$[ebp]
+  00c75	89 8d 5c fe ff
+	ff		 mov	 DWORD PTR _seq$[ebp], ecx
+; Line 544
+  00c7b	8b 95 5c fe ff
+	ff		 mov	 edx, DWORD PTR _seq$[ebp]
+  00c81	8a 02		 mov	 al, BYTE PTR [edx]
+  00c83	88 85 b5 f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+5], al
+; Line 545
+  00c89	8b 8d 5c fe ff
+	ff		 mov	 ecx, DWORD PTR _seq$[ebp]
+  00c8f	8a 51 01	 mov	 dl, BYTE PTR [ecx+1]
+  00c92	88 95 b6 f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+6], dl
+; Line 546
+  00c98	a1 00 00 00 00	 mov	 eax, DWORD PTR _rdFile
+  00c9d	50		 push	 eax
+  00c9e	68 e8 03 00 00	 push	 1000			; 000003e8H
+  00ca3	6a 01		 push	 1
+  00ca5	8d 8d bd f8 ff
+	ff		 lea	 ecx, DWORD PTR _sendBuffer$[ebp+13]
+  00cab	51		 push	 ecx
+  00cac	e8 00 00 00 00	 call	 _fread
+  00cb1	83 c4 10	 add	 esp, 16			; 00000010H
+  00cb4	89 45 fc	 mov	 DWORD PTR _Size$[ebp], eax
+; Line 548
+  00cb7	81 7d fc e8 03
+	00 00		 cmp	 DWORD PTR _Size$[ebp], 1000 ; 000003e8H
+  00cbe	7d 3e		 jge	 SHORT $L19354
+; Line 550
+  00cc0	c7 85 ac fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _i$[ebp], 0
+  00cca	eb 0f		 jmp	 SHORT $L19352
+$L19353:
+  00ccc	8b 95 ac fc ff
+	ff		 mov	 edx, DWORD PTR _i$[ebp]
+  00cd2	83 c2 01	 add	 edx, 1
+  00cd5	89 95 ac fc ff
+	ff		 mov	 DWORD PTR _i$[ebp], edx
+$L19352:
+  00cdb	b8 e8 03 00 00	 mov	 eax, 1000		; 000003e8H
+  00ce0	2b 45 fc	 sub	 eax, DWORD PTR _Size$[ebp]
+  00ce3	39 85 ac fc ff
+	ff		 cmp	 DWORD PTR _i$[ebp], eax
+  00ce9	7d 13		 jge	 SHORT $L19354
+; Line 552
+  00ceb	8b 4d fc	 mov	 ecx, DWORD PTR _Size$[ebp]
+  00cee	03 8d ac fc ff
+	ff		 add	 ecx, DWORD PTR _i$[ebp]
+  00cf4	c6 84 0d bd f8
+	ff ff 00	 mov	 BYTE PTR _sendBuffer$[ebp+ecx+13], 0
+; Line 554
+  00cfc	eb ce		 jmp	 SHORT $L19353
+$L19354:
+; Line 557
+  00cfe	8d 55 fc	 lea	 edx, DWORD PTR _Size$[ebp]
+  00d01	89 95 c4 fc ff
+	ff		 mov	 DWORD PTR _conv$[ebp], edx
+; Line 558
+  00d07	8b 85 c4 fc ff
+	ff		 mov	 eax, DWORD PTR _conv$[ebp]
+  00d0d	8a 08		 mov	 cl, BYTE PTR [eax]
+  00d0f	88 8d b9 f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+9], cl
+; Line 559
+  00d15	8b 95 c4 fc ff
+	ff		 mov	 edx, DWORD PTR _conv$[ebp]
+  00d1b	8a 42 01	 mov	 al, BYTE PTR [edx+1]
+  00d1e	88 85 ba f8 ff
+	ff		 mov	 BYTE PTR _sendBuffer$[ebp+10], al
+; Line 563
+  00d24	c6 85 b0 f8 ff
+	ff 33		 mov	 BYTE PTR _sendBuffer$[ebp], 51 ; 00000033H
+; Line 564
+  00d2b	c6 85 b1 f8 ff
+	ff 30		 mov	 BYTE PTR _sendBuffer$[ebp+1], 48 ; 00000030H
+; Line 565
+  00d32	c6 85 b2 f8 ff
+	ff 35		 mov	 BYTE PTR _sendBuffer$[ebp+2], 53 ; 00000035H
+; Line 568
+  00d39	c6 85 b3 f8 ff
+	ff 10		 mov	 BYTE PTR _sendBuffer$[ebp+3], 16 ; 00000010H
+; Line 569
+  00d40	c6 85 b4 f8 ff
+	ff 13		 mov	 BYTE PTR _sendBuffer$[ebp+4], 19 ; 00000013H
+; Line 571
+  00d47	c6 85 b7 f8 ff
+	ff 10		 mov	 BYTE PTR _sendBuffer$[ebp+7], 16 ; 00000010H
+; Line 572
+  00d4e	c6 85 b8 f8 ff
+	ff 13		 mov	 BYTE PTR _sendBuffer$[ebp+8], 19 ; 00000013H
+; Line 574
+  00d55	c6 85 bb f8 ff
+	ff 10		 mov	 BYTE PTR _sendBuffer$[ebp+11], 16 ; 00000010H
+; Line 575
+  00d5c	c6 85 bc f8 ff
+	ff 13		 mov	 BYTE PTR _sendBuffer$[ebp+12], 19 ; 00000013H
+; Line 581
+  00d63	8b 8d 98 f8 ff
+	ff		 mov	 ecx, DWORD PTR _fromlen$[ebp]
+  00d69	51		 push	 ecx
+  00d6a	8d 95 a0 f8 ff
+	ff		 lea	 edx, DWORD PTR _from$[ebp]
+  00d70	52		 push	 edx
+  00d71	6a 00		 push	 0
+  00d73	6a 12		 push	 18			; 00000012H
+  00d75	8d 85 b0 f8 ff
+	ff		 lea	 eax, DWORD PTR _sendBuffer$[ebp]
+  00d7b	50		 push	 eax
+  00d7c	8b 8d c0 fc ff
+	ff		 mov	 ecx, DWORD PTR _msgsock$[ebp]
+  00d82	51		 push	 ecx
+  00d83	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__sendto@24
+  00d89	89 85 94 f8 ff
+	ff		 mov	 DWORD PTR _retval$[ebp], eax
+; Line 582
+  00d8f	e9 8d fd ff ff	 jmp	 $Label305$19339
+$L19348:
+; Line 586
+  00d94	e9 51 fc ff ff	 jmp	 $Label303$19321
+$L19295:
+; Line 597
+  00d99	e9 da f3 ff ff	 jmp	 $L19228
+$L19232:
+; Line 615
+  00d9e	5f		 pop	 edi
+  00d9f	5e		 pop	 esi
+  00da0	8b e5		 mov	 esp, ebp
+  00da2	5d		 pop	 ebp
+  00da3	c3		 ret	 0
+_main	ENDP
+_TEXT	ENDS
+_DATA	SEGMENT
+	ORG $+1
+$SG19369 DB	0aH, 'Connection requested by %s', 0aH, 00H
+_DATA	ENDS
+_TEXT	SEGMENT
+_bufferAdd$ = 8
+_i$ = -8
+_bufferPtr$ = -4
+_Protocol PROC NEAR
+; Line 618
+  00da4	55		 push	 ebp
+  00da5	8b ec		 mov	 ebp, esp
+  00da7	83 ec 08	 sub	 esp, 8
+; Line 621
+  00daa	8b 45 08	 mov	 eax, DWORD PTR _bufferAdd$[ebp]
+  00dad	89 45 fc	 mov	 DWORD PTR _bufferPtr$[ebp], eax
+; Line 622
+  00db0	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+  00db7	83 7d f8 03	 cmp	 DWORD PTR _i$[ebp], 3
+  00dbb	0f 8d 66 01 00
+	00		 jge	 $L19367
+; Line 624
+  00dc1	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00dc4	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00dc7	83 f8 31	 cmp	 eax, 49			; 00000031H
+  00dca	75 34		 jne	 SHORT $L19368
+  00dcc	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00dcf	0f be 51 01	 movsx	 edx, BYTE PTR [ecx+1]
+  00dd3	83 fa 30	 cmp	 edx, 48			; 00000030H
+  00dd6	75 28		 jne	 SHORT $L19368
+  00dd8	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00ddb	0f be 48 02	 movsx	 ecx, BYTE PTR [eax+2]
+  00ddf	83 f9 31	 cmp	 ecx, 49			; 00000031H
+  00de2	75 1c		 jne	 SHORT $L19368
+; Line 627
+  00de4	68 00 00 00 00	 push	 OFFSET FLAT:_IP
+  00de9	68 00 00 00 00	 push	 OFFSET FLAT:$SG19369
+  00dee	e8 00 00 00 00	 call	 _printf
+  00df3	83 c4 08	 add	 esp, 8
+; Line 628
+  00df6	b8 c9 00 00 00	 mov	 eax, 201		; 000000c9H
+  00dfb	e9 29 01 00 00	 jmp	 $L19361
+$L19368:
+; Line 630
+  00e00	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00e03	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00e06	83 f8 32	 cmp	 eax, 50			; 00000032H
+  00e09	75 22		 jne	 SHORT $L19371
+  00e0b	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00e0e	0f be 51 01	 movsx	 edx, BYTE PTR [ecx+1]
+  00e12	83 fa 30	 cmp	 edx, 48			; 00000030H
+  00e15	75 16		 jne	 SHORT $L19371
+  00e17	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00e1a	0f be 48 02	 movsx	 ecx, BYTE PTR [eax+2]
+  00e1e	83 f9 32	 cmp	 ecx, 50			; 00000032H
+  00e21	75 0a		 jne	 SHORT $L19371
+; Line 633
+  00e23	b8 2d 01 00 00	 mov	 eax, 301		; 0000012dH
+  00e28	e9 fc 00 00 00	 jmp	 $L19361
+$L19371:
+; Line 635
+  00e2d	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00e30	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00e33	83 f8 32	 cmp	 eax, 50			; 00000032H
+  00e36	75 20		 jne	 SHORT $L19373
+  00e38	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00e3b	0f be 51 01	 movsx	 edx, BYTE PTR [ecx+1]
+  00e3f	83 fa 30	 cmp	 edx, 48			; 00000030H
+  00e42	75 14		 jne	 SHORT $L19373
+  00e44	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00e47	0f be 48 02	 movsx	 ecx, BYTE PTR [eax+2]
+  00e4b	83 f9 33	 cmp	 ecx, 51			; 00000033H
+  00e4e	75 08		 jne	 SHORT $L19373
+; Line 638
+  00e50	83 c8 ff	 or	 eax, -1
+  00e53	e9 d1 00 00 00	 jmp	 $L19361
+$L19373:
+; Line 640
+  00e58	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00e5b	0f be 02	 movsx	 eax, BYTE PTR [edx]
+  00e5e	83 f8 32	 cmp	 eax, 50			; 00000032H
+  00e61	75 31		 jne	 SHORT $L19375
+  00e63	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00e66	0f be 51 01	 movsx	 edx, BYTE PTR [ecx+1]
+  00e6a	83 fa 30	 cmp	 edx, 48			; 00000030H
+  00e6d	75 25		 jne	 SHORT $L19375
+  00e6f	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00e72	0f be 48 02	 movsx	 ecx, BYTE PTR [eax+2]
+  00e76	83 f9 34	 cmp	 ecx, 52			; 00000034H
+  00e79	75 19		 jne	 SHORT $L19375
+; Line 643
+  00e7b	8b 15 00 00 00
+	00		 mov	 edx, DWORD PTR _fileNumber
+  00e81	83 c2 01	 add	 edx, 1
+  00e84	89 15 00 00 00
+	00		 mov	 DWORD PTR _fileNumber, edx
+; Line 644
+  00e8a	b8 c9 00 00 00	 mov	 eax, 201		; 000000c9H
+  00e8f	e9 95 00 00 00	 jmp	 $L19361
+$L19375:
+; Line 646
+  00e94	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00e97	0f be 08	 movsx	 ecx, BYTE PTR [eax]
+  00e9a	83 f9 33	 cmp	 ecx, 51			; 00000033H
+  00e9d	75 1d		 jne	 SHORT $L19377
+  00e9f	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00ea2	0f be 42 01	 movsx	 eax, BYTE PTR [edx+1]
+  00ea6	83 f8 30	 cmp	 eax, 48			; 00000030H
+  00ea9	75 11		 jne	 SHORT $L19377
+  00eab	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00eae	0f be 51 02	 movsx	 edx, BYTE PTR [ecx+2]
+  00eb2	83 fa 32	 cmp	 edx, 50			; 00000032H
+  00eb5	75 05		 jne	 SHORT $L19377
+; Line 651
+  00eb7	83 c8 ff	 or	 eax, -1
+  00eba	eb 6d		 jmp	 SHORT $L19361
+$L19377:
+; Line 654
+  00ebc	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00ebf	0f be 08	 movsx	 ecx, BYTE PTR [eax]
+  00ec2	83 f9 33	 cmp	 ecx, 51			; 00000033H
+  00ec5	75 2c		 jne	 SHORT $L19379
+  00ec7	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00eca	0f be 42 01	 movsx	 eax, BYTE PTR [edx+1]
+  00ece	83 f8 30	 cmp	 eax, 48			; 00000030H
+  00ed1	75 20		 jne	 SHORT $L19379
+  00ed3	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00ed6	0f be 51 02	 movsx	 edx, BYTE PTR [ecx+2]
+  00eda	83 fa 34	 cmp	 edx, 52			; 00000034H
+  00edd	75 14		 jne	 SHORT $L19379
+; Line 656
+  00edf	a1 00 00 00 00	 mov	 eax, DWORD PTR _fileNumber
+  00ee4	83 c0 01	 add	 eax, 1
+  00ee7	a3 00 00 00 00	 mov	 DWORD PTR _fileNumber, eax
+; Line 658
+  00eec	b8 c9 00 00 00	 mov	 eax, 201		; 000000c9H
+  00ef1	eb 36		 jmp	 SHORT $L19361
+$L19379:
+; Line 660
+  00ef3	8b 4d fc	 mov	 ecx, DWORD PTR _bufferPtr$[ebp]
+  00ef6	0f be 11	 movsx	 edx, BYTE PTR [ecx]
+  00ef9	83 fa 31	 cmp	 edx, 49			; 00000031H
+  00efc	75 24		 jne	 SHORT $L19381
+  00efe	8b 45 fc	 mov	 eax, DWORD PTR _bufferPtr$[ebp]
+  00f01	0f be 48 01	 movsx	 ecx, BYTE PTR [eax+1]
+  00f05	83 f9 30	 cmp	 ecx, 48			; 00000030H
+  00f08	75 18		 jne	 SHORT $L19381
+  00f0a	8b 55 fc	 mov	 edx, DWORD PTR _bufferPtr$[ebp]
+  00f0d	0f be 42 02	 movsx	 eax, BYTE PTR [edx+2]
+  00f11	83 f8 34	 cmp	 eax, 52			; 00000034H
+  00f14	75 0c		 jne	 SHORT $L19381
+; Line 662
+  00f16	c6 05 00 00 00
+	00 00		 mov	 BYTE PTR _IP, 0
+; Line 664
+  00f1d	83 c8 ff	 or	 eax, -1
+  00f20	eb 07		 jmp	 SHORT $L19361
+$L19381:
+; Line 667
+  00f22	83 c8 ff	 or	 eax, -1
+  00f25	eb 02		 jmp	 SHORT $L19361
+$L19367:
+; Line 669
+  00f27	33 c0		 xor	 eax, eax
+$L19361:
+; Line 670
+  00f29	8b e5		 mov	 esp, ebp
+  00f2b	5d		 pop	 ebp
+  00f2c	c3		 ret	 0
+_Protocol ENDP
+_TEXT	ENDS
+EXTRN	_strlen:NEAR
+EXTRN	_fscanf:NEAR
+_BSS	SEGMENT
+$SG19391 DB	02H DUP (?)
+	ALIGN	4
+
+$SG19399 DB	02H DUP (?)
+_BSS	ENDS
+_DATA	SEGMENT
+	ORG $+3
+$SG19389 DB	'C:\home\student\rkk\wwwt\', 00H
+	ORG $+2
+$SG19393 DB	'index.txt', 00H
+	ORG $+2
+$SG19400 DB	0aH, '----------------------------------Starting File Tra'
+	DB	'nsfer------------------------------', 00H
+$SG19401 DB	'rb', 00H
+	ORG $+1
+$SG19404 DB	0aH, 'Error: No Index File in this path %s', 00H
+	ORG $+2
+$SG19408 DB	'%s', 00H
+	ORG $+1
+$SG19411 DB	'C:\home\student\rkk\wwwt\', 00H
+	ORG $+2
+$SG19412 DB	'rb', 00H
+	ORG $+1
+$SG19415 DB	0aH, 'Error: Cannot open File: %s', 00H
+	ORG $+3
+$SG19418 DB	0aH, 'Total Files in Index =%d', 00H
+	ORG $+2
+$SG19419 DB	0aH, 'FileNo.', 09H, 'FileSize', 09H, 09H, 'FileName', 00H
+$SG19423 DB	'C:\home\student\rkk\wwwt\', 00H
+	ORG $+2
+$SG19424 DB	'rb', 00H
+	ORG $+1
+$SG19427 DB	0aH, 'Error: Cannot open File: %s', 00H
+	ORG $+3
+$SG19431 DB	0aH, '%d .', 00H
+	ORG $+2
+$SG19432 DB	09H, '%ld', 00H
+	ORG $+3
+$SG19433 DB	09H, 09H, '%s', 00H
+	ORG $+3
+$SG19434 DB	0aH, 'Index Created', 00H
+	ORG $+1
+$SG19435 DB	0aH, 'Ready to accept transfer', 00H
+_DATA	ENDS
+_TEXT	SEGMENT
+_myDisk$ = -884
+_myFile$ = -896
+_Buffer$ = -776
+_Path$ = -880
+_Path2$ = -264
+_indexFile$ = -892
+_Size$ = -84
+_i$ = -888
+_Index$ = -780
+_fSize$ = -900
+_fileName$ = -80
+_Init	PROC NEAR
+; Line 673
+  00f2d	55		 push	 ebp
+  00f2e	8b ec		 mov	 ebp, esp
+  00f30	81 ec 84 03 00
+	00		 sub	 esp, 900		; 00000384H
+  00f36	56		 push	 esi
+  00f37	57		 push	 edi
+; Line 677
+  00f38	b9 06 00 00 00	 mov	 ecx, 6
+  00f3d	be 00 00 00 00	 mov	 esi, OFFSET FLAT:$SG19389
+  00f42	8d bd 90 fc ff
+	ff		 lea	 edi, DWORD PTR _Path$[ebp]
+  00f48	f3 a5		 rep movsd
+  00f4a	66 a5		 movsw
+  00f4c	b9 12 00 00 00	 mov	 ecx, 18			; 00000012H
+  00f51	33 c0		 xor	 eax, eax
+  00f53	8d bd aa fc ff
+	ff		 lea	 edi, DWORD PTR _Path$[ebp+26]
+  00f59	f3 ab		 rep stosd
+  00f5b	66 ab		 stosw
+; Line 678
+  00f5d	66 a1 00 00 00
+	00		 mov	 ax, WORD PTR $SG19391
+  00f63	66 89 85 f8 fe
+	ff ff		 mov	 WORD PTR _Path2$[ebp], ax
+  00f6a	b9 2c 00 00 00	 mov	 ecx, 44			; 0000002cH
+  00f6f	33 c0		 xor	 eax, eax
+  00f71	8d bd fa fe ff
+	ff		 lea	 edi, DWORD PTR _Path2$[ebp+2]
+  00f77	f3 ab		 rep stosd
+  00f79	66 ab		 stosw
+; Line 679
+  00f7b	c7 85 84 fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _indexFile$[ebp], OFFSET FLAT:$SG19393
+; Line 680
+  00f85	c7 45 ac 00 00
+	00 00		 mov	 DWORD PTR _Size$[ebp], 0
+  00f8c	c7 85 88 fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _i$[ebp], 0
+  00f96	c7 85 f4 fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _Index$[ebp], 0
+; Line 681
+  00fa0	c7 85 7c fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _fSize$[ebp], 0
+; Line 682
+  00faa	66 8b 0d 00 00
+	00 00		 mov	 cx, WORD PTR $SG19399
+  00fb1	66 89 4d b0	 mov	 WORD PTR _fileName$[ebp], cx
+  00fb5	b9 13 00 00 00	 mov	 ecx, 19			; 00000013H
+  00fba	33 c0		 xor	 eax, eax
+  00fbc	8d 7d b2	 lea	 edi, DWORD PTR _fileName$[ebp+2]
+  00fbf	f3 ab		 rep stosd
+  00fc1	66 ab		 stosw
+; Line 683
+  00fc3	c6 85 f8 fc ff
+	ff 00		 mov	 BYTE PTR _Buffer$[ebp], 0
+; Line 684
+  00fca	68 00 00 00 00	 push	 OFFSET FLAT:$SG19400
+  00fcf	e8 00 00 00 00	 call	 _printf
+  00fd4	83 c4 04	 add	 esp, 4
+; Line 686
+  00fd7	8b 95 84 fc ff
+	ff		 mov	 edx, DWORD PTR _indexFile$[ebp]
+  00fdd	52		 push	 edx
+  00fde	8d 85 90 fc ff
+	ff		 lea	 eax, DWORD PTR _Path$[ebp]
+  00fe4	50		 push	 eax
+  00fe5	e8 00 00 00 00	 call	 _strcat
+  00fea	83 c4 08	 add	 esp, 8
+; Line 690
+  00fed	68 00 00 00 00	 push	 OFFSET FLAT:$SG19401
+  00ff2	8d 8d 90 fc ff
+	ff		 lea	 ecx, DWORD PTR _Path$[ebp]
+  00ff8	51		 push	 ecx
+  00ff9	e8 00 00 00 00	 call	 _fopen
+  00ffe	83 c4 08	 add	 esp, 8
+  01001	89 85 8c fc ff
+	ff		 mov	 DWORD PTR _myDisk$[ebp], eax
+; Line 692
+  01007	83 bd 8c fc ff
+	ff 00		 cmp	 DWORD PTR _myDisk$[ebp], 0
+  0100e	75 1c		 jne	 SHORT $L19403
+; Line 694
+  01010	8d 95 90 fc ff
+	ff		 lea	 edx, DWORD PTR _Path$[ebp]
+  01016	52		 push	 edx
+  01017	68 00 00 00 00	 push	 OFFSET FLAT:$SG19404
+  0101c	e8 00 00 00 00	 call	 _printf
+  01021	83 c4 08	 add	 esp, 8
+; Line 695
+  01024	83 c8 ff	 or	 eax, -1
+  01027	e9 c2 02 00 00	 jmp	 $L19384
+$L19403:
+; Line 701
+  0102c	b8 01 00 00 00	 mov	 eax, 1
+  01031	85 c0		 test	 eax, eax
+  01033	0f 84 ef 00 00
+	00		 je	 $L19407
+; Line 703
+  01039	8d 4d b0	 lea	 ecx, DWORD PTR _fileName$[ebp]
+  0103c	51		 push	 ecx
+  0103d	68 00 00 00 00	 push	 OFFSET FLAT:$SG19408
+  01042	8b 95 8c fc ff
+	ff		 mov	 edx, DWORD PTR _myDisk$[ebp]
+  01048	52		 push	 edx
+  01049	e8 00 00 00 00	 call	 _fscanf
+  0104e	83 c4 0c	 add	 esp, 12			; 0000000cH
+; Line 713
+  01051	0f be 45 b0	 movsx	 eax, BYTE PTR _fileName$[ebp]
+  01055	83 f8 78	 cmp	 eax, 120		; 00000078H
+  01058	75 17		 jne	 SHORT $L19409
+  0105a	0f be 4d b1	 movsx	 ecx, BYTE PTR _fileName$[ebp+1]
+  0105e	83 f9 79	 cmp	 ecx, 121		; 00000079H
+  01061	75 0e		 jne	 SHORT $L19409
+  01063	0f be 55 b2	 movsx	 edx, BYTE PTR _fileName$[ebp+2]
+  01067	83 fa 7a	 cmp	 edx, 122		; 0000007aH
+  0106a	75 05		 jne	 SHORT $L19409
+; Line 715
+  0106c	e9 b7 00 00 00	 jmp	 $L19407
+$L19409:
+; Line 720
+  01071	68 00 00 00 00	 push	 OFFSET FLAT:$SG19411
+  01076	8d 85 f8 fe ff
+	ff		 lea	 eax, DWORD PTR _Path2$[ebp]
+  0107c	50		 push	 eax
+  0107d	e8 00 00 00 00	 call	 _strcpy
+  01082	83 c4 08	 add	 esp, 8
+; Line 721
+  01085	8d 4d b0	 lea	 ecx, DWORD PTR _fileName$[ebp]
+  01088	51		 push	 ecx
+  01089	8d 95 f8 fe ff
+	ff		 lea	 edx, DWORD PTR _Path2$[ebp]
+  0108f	52		 push	 edx
+  01090	e8 00 00 00 00	 call	 _strcat
+  01095	83 c4 08	 add	 esp, 8
+; Line 722
+  01098	68 00 00 00 00	 push	 OFFSET FLAT:$SG19412
+  0109d	8d 85 f8 fe ff
+	ff		 lea	 eax, DWORD PTR _Path2$[ebp]
+  010a3	50		 push	 eax
+  010a4	e8 00 00 00 00	 call	 _fopen
+  010a9	83 c4 08	 add	 esp, 8
+  010ac	89 85 80 fc ff
+	ff		 mov	 DWORD PTR _myFile$[ebp], eax
+; Line 723
+  010b2	83 bd 80 fc ff
+	ff 00		 cmp	 DWORD PTR _myFile$[ebp], 0
+  010b9	75 19		 jne	 SHORT $L19414
+; Line 725
+  010bb	8d 8d f8 fe ff
+	ff		 lea	 ecx, DWORD PTR _Path2$[ebp]
+  010c1	51		 push	 ecx
+  010c2	68 00 00 00 00	 push	 OFFSET FLAT:$SG19415
+  010c7	e8 00 00 00 00	 call	 _printf
+  010cc	83 c4 08	 add	 esp, 8
+; Line 726
+  010cf	e9 58 ff ff ff	 jmp	 $L19403
+$L19414:
+; Line 730
+  010d4	8d 55 b0	 lea	 edx, DWORD PTR _fileName$[ebp]
+  010d7	52		 push	 edx
+  010d8	8b 85 88 fc ff
+	ff		 mov	 eax, DWORD PTR _i$[ebp]
+  010de	6b c0 54	 imul	 eax, 84			; 00000054H
+  010e1	05 00 00 00 00	 add	 eax, OFFSET FLAT:_File
+  010e6	50		 push	 eax
+  010e7	e8 00 00 00 00	 call	 _strcpy
+  010ec	83 c4 08	 add	 esp, 8
+; Line 731
+  010ef	8b 8d 80 fc ff
+	ff		 mov	 ecx, DWORD PTR _myFile$[ebp]
+  010f5	51		 push	 ecx
+  010f6	e8 00 00 00 00	 call	 _fclose
+  010fb	83 c4 04	 add	 esp, 4
+; Line 732
+  010fe	8b 95 88 fc ff
+	ff		 mov	 edx, DWORD PTR _i$[ebp]
+  01104	83 c2 01	 add	 edx, 1
+  01107	89 95 88 fc ff
+	ff		 mov	 DWORD PTR _i$[ebp], edx
+; Line 738
+  0110d	8d 45 b0	 lea	 eax, DWORD PTR _fileName$[ebp]
+  01110	50		 push	 eax
+  01111	e8 00 00 00 00	 call	 _strlen
+  01116	83 c4 04	 add	 esp, 4
+  01119	83 f8 50	 cmp	 eax, 80			; 00000050H
+  0111c	72 05		 jb	 SHORT $L19417
+; Line 740
+  0111e	e9 09 ff ff ff	 jmp	 $L19403
+$L19417:
+; Line 744
+  01123	e9 04 ff ff ff	 jmp	 $L19403
+$L19407:
+; Line 746
+  01128	8b 8d 8c fc ff
+	ff		 mov	 ecx, DWORD PTR _myDisk$[ebp]
+  0112e	51		 push	 ecx
+  0112f	e8 00 00 00 00	 call	 _fclose
+  01134	83 c4 04	 add	 esp, 4
+; Line 747
+  01137	8b 95 88 fc ff
+	ff		 mov	 edx, DWORD PTR _i$[ebp]
+  0113d	52		 push	 edx
+  0113e	68 00 00 00 00	 push	 OFFSET FLAT:$SG19418
+  01143	e8 00 00 00 00	 call	 _printf
+  01148	83 c4 08	 add	 esp, 8
+; Line 748
+  0114b	68 00 00 00 00	 push	 OFFSET FLAT:$SG19419
+  01150	e8 00 00 00 00	 call	 _printf
+  01155	83 c4 04	 add	 esp, 4
+$L19421:
+; Line 750
+  01158	8b 85 88 fc ff
+	ff		 mov	 eax, DWORD PTR _i$[ebp]
+  0115e	83 e8 01	 sub	 eax, 1
+  01161	39 85 f4 fc ff
+	ff		 cmp	 DWORD PTR _Index$[ebp], eax
+  01167	0f 8f 59 01 00
+	00		 jg	 $L19422
+; Line 753
+  0116d	68 00 00 00 00	 push	 OFFSET FLAT:$SG19423
+  01172	8d 8d f8 fe ff
+	ff		 lea	 ecx, DWORD PTR _Path2$[ebp]
+  01178	51		 push	 ecx
+  01179	e8 00 00 00 00	 call	 _strcpy
+  0117e	83 c4 08	 add	 esp, 8
+; Line 755
+  01181	8b 95 f4 fc ff
+	ff		 mov	 edx, DWORD PTR _Index$[ebp]
+  01187	6b d2 54	 imul	 edx, 84			; 00000054H
+  0118a	81 c2 00 00 00
+	00		 add	 edx, OFFSET FLAT:_File
+  01190	52		 push	 edx
+  01191	8d 85 f8 fe ff
+	ff		 lea	 eax, DWORD PTR _Path2$[ebp]
+  01197	50		 push	 eax
+  01198	e8 00 00 00 00	 call	 _strcat
+  0119d	83 c4 08	 add	 esp, 8
+; Line 757
+  011a0	68 00 00 00 00	 push	 OFFSET FLAT:$SG19424
+  011a5	8d 8d f8 fe ff
+	ff		 lea	 ecx, DWORD PTR _Path2$[ebp]
+  011ab	51		 push	 ecx
+  011ac	e8 00 00 00 00	 call	 _fopen
+  011b1	83 c4 08	 add	 esp, 8
+  011b4	89 85 80 fc ff
+	ff		 mov	 DWORD PTR _myFile$[ebp], eax
+; Line 759
+  011ba	83 bd 80 fc ff
+	ff 00		 cmp	 DWORD PTR _myFile$[ebp], 0
+  011c1	75 28		 jne	 SHORT $L19426
+; Line 761
+  011c3	8d 95 f8 fe ff
+	ff		 lea	 edx, DWORD PTR _Path2$[ebp]
+  011c9	52		 push	 edx
+  011ca	68 00 00 00 00	 push	 OFFSET FLAT:$SG19427
+  011cf	e8 00 00 00 00	 call	 _printf
+  011d4	83 c4 08	 add	 esp, 8
+; Line 762
+  011d7	8b 85 f4 fc ff
+	ff		 mov	 eax, DWORD PTR _Index$[ebp]
+  011dd	83 c0 01	 add	 eax, 1
+  011e0	89 85 f4 fc ff
+	ff		 mov	 DWORD PTR _Index$[ebp], eax
+; Line 763
+  011e6	e9 6d ff ff ff	 jmp	 $L19421
+$L19426:
+; Line 766
+  011eb	6a 00		 push	 0
+  011ed	6a 00		 push	 0
+  011ef	8b 8d 80 fc ff
+	ff		 mov	 ecx, DWORD PTR _myFile$[ebp]
+  011f5	51		 push	 ecx
+  011f6	e8 00 00 00 00	 call	 _fseek
+  011fb	83 c4 0c	 add	 esp, 12			; 0000000cH
+$L19428:
+; Line 769
+  011fe	8b 95 80 fc ff
+	ff		 mov	 edx, DWORD PTR _myFile$[ebp]
+  01204	52		 push	 edx
+  01205	68 00 02 00 00	 push	 512			; 00000200H
+  0120a	6a 01		 push	 1
+  0120c	8d 85 f8 fc ff
+	ff		 lea	 eax, DWORD PTR _Buffer$[ebp]
+  01212	50		 push	 eax
+  01213	e8 00 00 00 00	 call	 _fread
+  01218	83 c4 10	 add	 esp, 16			; 00000010H
+  0121b	89 45 ac	 mov	 DWORD PTR _Size$[ebp], eax
+; Line 770
+  0121e	8b 8d 7c fc ff
+	ff		 mov	 ecx, DWORD PTR _fSize$[ebp]
+  01224	03 4d ac	 add	 ecx, DWORD PTR _Size$[ebp]
+  01227	89 8d 7c fc ff
+	ff		 mov	 DWORD PTR _fSize$[ebp], ecx
+; Line 771
+  0122d	81 7d ac 00 02
+	00 00		 cmp	 DWORD PTR _Size$[ebp], 512 ; 00000200H
+  01234	74 c8		 je	 SHORT $L19428
+; Line 773
+  01236	8b 95 f4 fc ff
+	ff		 mov	 edx, DWORD PTR _Index$[ebp]
+  0123c	6b d2 54	 imul	 edx, 84			; 00000054H
+  0123f	8b 85 7c fc ff
+	ff		 mov	 eax, DWORD PTR _fSize$[ebp]
+  01245	89 82 50 00 00
+	00		 mov	 DWORD PTR _File[edx+80], eax
+; Line 774
+  0124b	8b 8d f4 fc ff
+	ff		 mov	 ecx, DWORD PTR _Index$[ebp]
+  01251	51		 push	 ecx
+  01252	68 00 00 00 00	 push	 OFFSET FLAT:$SG19431
+  01257	e8 00 00 00 00	 call	 _printf
+  0125c	83 c4 08	 add	 esp, 8
+; Line 775
+  0125f	8b 95 f4 fc ff
+	ff		 mov	 edx, DWORD PTR _Index$[ebp]
+  01265	6b d2 54	 imul	 edx, 84			; 00000054H
+  01268	8b 82 50 00 00
+	00		 mov	 eax, DWORD PTR _File[edx+80]
+  0126e	50		 push	 eax
+  0126f	68 00 00 00 00	 push	 OFFSET FLAT:$SG19432
+  01274	e8 00 00 00 00	 call	 _printf
+  01279	83 c4 08	 add	 esp, 8
+; Line 776
+  0127c	8b 8d f4 fc ff
+	ff		 mov	 ecx, DWORD PTR _Index$[ebp]
+  01282	6b c9 54	 imul	 ecx, 84			; 00000054H
+  01285	81 c1 00 00 00
+	00		 add	 ecx, OFFSET FLAT:_File
+  0128b	51		 push	 ecx
+  0128c	68 00 00 00 00	 push	 OFFSET FLAT:$SG19433
+  01291	e8 00 00 00 00	 call	 _printf
+  01296	83 c4 08	 add	 esp, 8
+; Line 777
+  01299	c7 85 7c fc ff
+	ff 00 00 00 00	 mov	 DWORD PTR _fSize$[ebp], 0
+; Line 778
+  012a3	8b 95 80 fc ff
+	ff		 mov	 edx, DWORD PTR _myFile$[ebp]
+  012a9	52		 push	 edx
+  012aa	e8 00 00 00 00	 call	 _fclose
+  012af	83 c4 04	 add	 esp, 4
+; Line 779
+  012b2	8b 85 f4 fc ff
+	ff		 mov	 eax, DWORD PTR _Index$[ebp]
+  012b8	83 c0 01	 add	 eax, 1
+  012bb	89 85 f4 fc ff
+	ff		 mov	 DWORD PTR _Index$[ebp], eax
+; Line 781
+  012c1	e9 92 fe ff ff	 jmp	 $L19421
+$L19422:
+; Line 782
+  012c6	8b 8d f4 fc ff
+	ff		 mov	 ecx, DWORD PTR _Index$[ebp]
+  012cc	89 0d 00 00 00
+	00		 mov	 DWORD PTR _totalFiles, ecx
+; Line 783
+  012d2	68 00 00 00 00	 push	 OFFSET FLAT:$SG19434
+  012d7	e8 00 00 00 00	 call	 _printf
+  012dc	83 c4 04	 add	 esp, 4
+; Line 784
+  012df	68 00 00 00 00	 push	 OFFSET FLAT:$SG19435
+  012e4	e8 00 00 00 00	 call	 _printf
+  012e9	83 c4 04	 add	 esp, 4
+; Line 787
+  012ec	33 c0		 xor	 eax, eax
+$L19384:
+; Line 789
+  012ee	5f		 pop	 edi
+  012ef	5e		 pop	 esi
+  012f0	8b e5		 mov	 esp, ebp
+  012f2	5d		 pop	 ebp
+  012f3	c3		 ret	 0
+_Init	ENDP
+_sendBuffer$ = 8
+_Create102 PROC NEAR
+; Line 792
+  012f4	55		 push	 ebp
+  012f5	8b ec		 mov	 ebp, esp
+; Line 794
+  012f7	8b 45 08	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  012fa	c6 00 31	 mov	 BYTE PTR [eax], 49	; 00000031H
+; Line 795
+  012fd	8b 4d 08	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  01300	c6 41 01 30	 mov	 BYTE PTR [ecx+1], 48	; 00000030H
+; Line 796
+  01304	8b 55 08	 mov	 edx, DWORD PTR _sendBuffer$[ebp]
+  01307	c6 42 02 32	 mov	 BYTE PTR [edx+2], 50	; 00000032H
+; Line 797
+  0130b	8b 45 08	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  0130e	c6 40 03 10	 mov	 BYTE PTR [eax+3], 16	; 00000010H
+; Line 798
+  01312	8b 4d 08	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  01315	c6 41 04 13	 mov	 BYTE PTR [ecx+4], 19	; 00000013H
+; Line 799
+  01319	33 c0		 xor	 eax, eax
+; Line 802
+  0131b	5d		 pop	 ebp
+  0131c	c3		 ret	 0
+_Create102 ENDP
+_TEXT	ENDS
+_DATA	SEGMENT
+	ORG $+2
+$SG19454 DB	0aH, 'Sending.....', 00H
+	ORG $+2
+$SG19455 DB	'%d.', 00H
+$SG19456 DB	09H, '%ld', 00H
+	ORG $+3
+$SG19457 DB	09H, 09H, '%s', 00H
+_DATA	ENDS
+_TEXT	SEGMENT
+_fileNumber$ = 8
+_sendBuffer$ = 12
+_fileNameSize$ = -8
+_padLength$ = -28
+_j$ = -24
+_Padding$ = -16
+_padStart$ = -20
+_fsize$ = -4
+_Create201 PROC NEAR
+; Line 805
+  0131d	55		 push	 ebp
+  0131e	8b ec		 mov	 ebp, esp
+  01320	83 ec 1c	 sub	 esp, 28			; 0000001cH
+; Line 806
+  01323	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _fileNameSize$[ebp], 0
+; Line 807
+  0132a	c7 45 e4 00 00
+	00 00		 mov	 DWORD PTR _padLength$[ebp], 0
+; Line 809
+  01331	c6 45 f0 00	 mov	 BYTE PTR _Padding$[ebp], 0
+; Line 810
+  01335	c7 45 ec 00 00
+	00 00		 mov	 DWORD PTR _padStart$[ebp], 0
+; Line 815
+  0133c	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  0133f	c6 00 32	 mov	 BYTE PTR [eax], 50	; 00000032H
+; Line 816
+  01342	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  01345	c6 41 01 30	 mov	 BYTE PTR [ecx+1], 48	; 00000030H
+; Line 817
+  01349	8b 55 0c	 mov	 edx, DWORD PTR _sendBuffer$[ebp]
+  0134c	c6 42 02 31	 mov	 BYTE PTR [edx+2], 49	; 00000031H
+; Line 820
+  01350	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  01353	c6 40 03 10	 mov	 BYTE PTR [eax+3], 16	; 00000010H
+; Line 821
+  01357	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  0135a	c6 41 04 13	 mov	 BYTE PTR [ecx+4], 19	; 00000013H
+; Line 824
+  0135e	8b 55 08	 mov	 edx, DWORD PTR _fileNumber$[ebp]
+  01361	6b d2 54	 imul	 edx, 84			; 00000054H
+  01364	81 c2 00 00 00
+	00		 add	 edx, OFFSET FLAT:_File
+  0136a	52		 push	 edx
+  0136b	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  0136e	83 c0 05	 add	 eax, 5
+  01371	50		 push	 eax
+  01372	e8 00 00 00 00	 call	 _strcpy
+  01377	83 c4 08	 add	 esp, 8
+; Line 826
+  0137a	8b 4d 08	 mov	 ecx, DWORD PTR _fileNumber$[ebp]
+  0137d	6b c9 54	 imul	 ecx, 84			; 00000054H
+  01380	81 c1 00 00 00
+	00		 add	 ecx, OFFSET FLAT:_File
+  01386	51		 push	 ecx
+  01387	e8 00 00 00 00	 call	 _strlen
+  0138c	83 c4 04	 add	 esp, 4
+  0138f	89 45 f8	 mov	 DWORD PTR _fileNameSize$[ebp], eax
+; Line 827
+  01392	ba 50 00 00 00	 mov	 edx, 80			; 00000050H
+  01397	2b 55 f8	 sub	 edx, DWORD PTR _fileNameSize$[ebp]
+  0139a	89 55 e4	 mov	 DWORD PTR _padLength$[ebp], edx
+; Line 828
+  0139d	8b 45 f8	 mov	 eax, DWORD PTR _fileNameSize$[ebp]
+  013a0	83 c0 06	 add	 eax, 6
+  013a3	89 45 ec	 mov	 DWORD PTR _padStart$[ebp], eax
+; Line 829
+  013a6	c7 45 e8 00 00
+	00 00		 mov	 DWORD PTR _j$[ebp], 0
+  013ad	eb 09		 jmp	 SHORT $L19451
+$L19452:
+  013af	8b 4d e8	 mov	 ecx, DWORD PTR _j$[ebp]
+  013b2	83 c1 01	 add	 ecx, 1
+  013b5	89 4d e8	 mov	 DWORD PTR _j$[ebp], ecx
+$L19451:
+  013b8	8b 55 e8	 mov	 edx, DWORD PTR _j$[ebp]
+  013bb	3b 55 e4	 cmp	 edx, DWORD PTR _padLength$[ebp]
+  013be	7f 16		 jg	 SHORT $L19453
+; Line 831
+  013c0	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  013c3	03 45 ec	 add	 eax, DWORD PTR _padStart$[ebp]
+  013c6	8a 4d f0	 mov	 cl, BYTE PTR _Padding$[ebp]
+  013c9	88 08		 mov	 BYTE PTR [eax], cl
+; Line 832
+  013cb	8b 55 ec	 mov	 edx, DWORD PTR _padStart$[ebp]
+  013ce	83 c2 01	 add	 edx, 1
+  013d1	89 55 ec	 mov	 DWORD PTR _padStart$[ebp], edx
+; Line 833
+  013d4	eb d9		 jmp	 SHORT $L19452
+$L19453:
+; Line 835
+  013d6	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  013d9	c6 40 55 10	 mov	 BYTE PTR [eax+85], 16	; 00000010H
+; Line 836
+  013dd	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  013e0	c6 41 56 13	 mov	 BYTE PTR [ecx+86], 19	; 00000013H
+; Line 840
+  013e4	68 00 00 00 00	 push	 OFFSET FLAT:$SG19454
+  013e9	e8 00 00 00 00	 call	 _printf
+  013ee	83 c4 04	 add	 esp, 4
+; Line 841
+  013f1	8b 55 08	 mov	 edx, DWORD PTR _fileNumber$[ebp]
+  013f4	52		 push	 edx
+  013f5	68 00 00 00 00	 push	 OFFSET FLAT:$SG19455
+  013fa	e8 00 00 00 00	 call	 _printf
+  013ff	83 c4 08	 add	 esp, 8
+; Line 842
+  01402	8b 45 08	 mov	 eax, DWORD PTR _fileNumber$[ebp]
+  01405	6b c0 54	 imul	 eax, 84			; 00000054H
+  01408	8b 88 50 00 00
+	00		 mov	 ecx, DWORD PTR _File[eax+80]
+  0140e	51		 push	 ecx
+  0140f	68 00 00 00 00	 push	 OFFSET FLAT:$SG19456
+  01414	e8 00 00 00 00	 call	 _printf
+  01419	83 c4 08	 add	 esp, 8
+; Line 843
+  0141c	8b 55 08	 mov	 edx, DWORD PTR _fileNumber$[ebp]
+  0141f	6b d2 54	 imul	 edx, 84			; 00000054H
+  01422	81 c2 00 00 00
+	00		 add	 edx, OFFSET FLAT:_File
+  01428	52		 push	 edx
+  01429	68 00 00 00 00	 push	 OFFSET FLAT:$SG19457
+  0142e	e8 00 00 00 00	 call	 _printf
+  01433	83 c4 08	 add	 esp, 8
+; Line 846
+  01436	8b 45 08	 mov	 eax, DWORD PTR _fileNumber$[ebp]
+  01439	6b c0 54	 imul	 eax, 84			; 00000054H
+  0143c	05 50 00 00 00	 add	 eax, OFFSET FLAT:_File+80
+  01441	89 45 fc	 mov	 DWORD PTR _fsize$[ebp], eax
+; Line 848
+  01444	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  01447	8b 55 fc	 mov	 edx, DWORD PTR _fsize$[ebp]
+  0144a	8a 02		 mov	 al, BYTE PTR [edx]
+  0144c	88 41 57	 mov	 BYTE PTR [ecx+87], al
+; Line 849
+  0144f	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  01452	8b 55 fc	 mov	 edx, DWORD PTR _fsize$[ebp]
+  01455	8a 42 01	 mov	 al, BYTE PTR [edx+1]
+  01458	88 41 58	 mov	 BYTE PTR [ecx+88], al
+; Line 850
+  0145b	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  0145e	8b 55 fc	 mov	 edx, DWORD PTR _fsize$[ebp]
+  01461	8a 42 02	 mov	 al, BYTE PTR [edx+2]
+  01464	88 41 59	 mov	 BYTE PTR [ecx+89], al
+; Line 851
+  01467	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  0146a	8b 55 fc	 mov	 edx, DWORD PTR _fsize$[ebp]
+  0146d	8a 42 03	 mov	 al, BYTE PTR [edx+3]
+  01470	88 41 5a	 mov	 BYTE PTR [ecx+90], al
+; Line 852
+  01473	33 c0		 xor	 eax, eax
+; Line 854
+  01475	8b e5		 mov	 esp, ebp
+  01477	5d		 pop	 ebp
+  01478	c3		 ret	 0
+_Create201 ENDP
+_TEXT	ENDS
+PUBLIC	_Create301
+_TEXT	SEGMENT
+_sendBuffer$ = 12
+_Create301 PROC NEAR
+; Line 857
+  01479	55		 push	 ebp
+  0147a	8b ec		 mov	 ebp, esp
+  0147c	51		 push	 ecx
+; Line 863
+  0147d	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  01480	c6 00 33	 mov	 BYTE PTR [eax], 51	; 00000033H
+; Line 864
+  01483	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  01486	c6 41 01 30	 mov	 BYTE PTR [ecx+1], 48	; 00000030H
+; Line 865
+  0148a	8b 55 0c	 mov	 edx, DWORD PTR _sendBuffer$[ebp]
+  0148d	c6 42 02 31	 mov	 BYTE PTR [edx+2], 49	; 00000031H
+; Line 868
+  01491	8b 45 0c	 mov	 eax, DWORD PTR _sendBuffer$[ebp]
+  01494	c6 40 03 10	 mov	 BYTE PTR [eax+3], 16	; 00000010H
+; Line 869
+  01498	8b 4d 0c	 mov	 ecx, DWORD PTR _sendBuffer$[ebp]
+  0149b	c6 41 04 13	 mov	 BYTE PTR [ecx+4], 19	; 00000013H
+; Line 874
+  0149f	33 c0		 xor	 eax, eax
+; Line 876
+  014a1	8b e5		 mov	 esp, ebp
+  014a3	5d		 pop	 ebp
+  014a4	c3		 ret	 0
+_Create301 ENDP
+_TEXT	ENDS
+END

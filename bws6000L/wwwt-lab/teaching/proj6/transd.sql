@@ -1,0 +1,110 @@
+INSERT INTO TRANSACTION VALUES 
+('Checking', '20013948', '01-Jan-98',  259.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '20022954', '02-Feb-98',  398.00, 'Withdraw', 'FLAG');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '20033984', '03-Mar-98',  246.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savingsg', '20041234', '01-Jan-98',  678.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21069321', '04-Jan-98',  123.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21077924', '09-Jan-98',  327.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21080121', '08-Jul-98',  386.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21095647', '07-Jul-98',  250.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21118080', '06-Jul-98',  450.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21128651', '05-Jul-98',  355.00, 'Deposit',  'FLAG');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '21132219', '02-Jul-98',  750.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '21148843', '03-Jul-98',  281.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '21150071', '04-Jun-98',  234.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '21169344', '11-Jun-98',  971.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '21170248', '21-Jun-98',  139.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '30012849', '11-Jun-98',  230.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '30024468', '21-Jun-98',  923.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '30035111', '30-Jun-98',  567.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '30045647', '29-Jun-98',  834.00, 'Withdraw', 'FLAG');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '30059876', '08-Jun-98',  289.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '30062208', '07-Jun-98',  746.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '30070187', '06-Dec-98',  154.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '30082460', '05-Dec-98',  900.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '30097477', '04-Dec-98',  600.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '31008652', '03-Dec-98',  700.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '40012071', '02-Dec-98',  245.00, 'Payment',  'NONE'); 
+INSERT INTO TRANSACTION VALUES 
+('Loan',     '40028315', '01-Dec-98',  861.00, 'Payment',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40032940', '03-Dec-98',  258.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40048610', '05-Dec-98',  973.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40057899', '07-Dec-98',  240.00, 'Withdraw', 'FLAG');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40062112', '09-Dec-98',  862.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40071867', '08-Dec-98',  108.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40083222', '06-Dec-98',  384.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40090031', '04-Dec-98',  219.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40103456', '12-Apr-98',  148.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40113948', '11-Apr-98',  847.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '40128033', '12-Apr-98',  987.00, 'Withdraw', 'FLAG');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '40130641', '13-Apr-98',  230.00, 'Withdraw', 'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '40142221', '14-Apr-98',  930.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '40153339', '15-Apr-98',  234.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50012244', '16-Apr-98',  807.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50023365', '17-Apr-98',  478.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50038834', '18-Jan-98',  309.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50040131', '09-Mar-98',  870.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50040132', '03-Mar-98',  258.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50040133', '02-Mar-98',  761.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50054448', '01-Mar-98',  135.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Savings',  '50068666', '06-Mar-98',  246.00, 'Deposit',  'FLAG');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '50072222', '04-Mar-98',  432.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '50081398', '03-Feb-98',  952.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '50103141', '07-Feb-98',  357.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '51004444', '14-Feb-98',  123.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '51025419', '16-Feb-98',  479.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '51036767', '19-Feb-98',  876.00, 'Deposit',  'NONE');
+INSERT INTO TRANSACTION VALUES 
+('Checking', '51044321', '30-Jan-98',  543.00, 'Deposit',  'FLAG');

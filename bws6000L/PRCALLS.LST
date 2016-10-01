@@ -1,0 +1,252 @@
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 1
+prcalls.ASM
+
+
+
+      1					 ;----------------------------------------------------------------------------
+      2					 ;prcalls.asm
+      3					 ;----------------------------------------------------------------------------
+      4					 ;Place	all the	procedures in this file	which do not have any data.
+      5					 ;----------------------------------------------------------------------------
+      6
+      7					 PUBLIC		 WriteString
+      8					 PUBLIC		 ClearScreen
+      9					 PUBLIC		 GETKEYFORMENU
+     10					 PUBLIC		 NEWLINE
+     11					 PUBLIC		 GET_PARAMETER
+     12					 PUBLIC		 ResetPointer
+     13					 PUBLIC		 PRINTSTR
+     14
+     15					 EXTRN		 PUTHEX32R:near
+     16
+     17					 ;----------------------------------------------------------------------------
+     18					 .386
+     19					 ;----------------------------------------------------------------------------
+     20	    0000			 RCodeSeg	 SEGMENT PARA public USE16 'CODE'
+     21							 ASSUME	 CS:RCodeSeg
+     22					 ;----------------------------------------------------------------------------
+     23					 ; Display string call,	works in real mode
+     24					 ; data	at pointer ESI
+     25					 ;----------------------------------------------------------------------------
+     26	    0000			 WriteString proc		 ; Print an ASCIIZ string at DS:ESI
+     27	    0000  66| 50			 push	 eax
+     28	    0002  66| 53			 push	 ebx
+     29	    0004			 Write_Begin:
+     30	    0004  AC				 LODSB			 ; Next	character
+     31	    0005  0A C0				 OR	 AL, AL
+     32	    0007  74 08				 JZ	 Write_End	 ; AL=0	=> end of ASCIIZ string
+     33	    0009  B3 0D				 MOV	 BL,13		 ; Char's attribute
+     34	    000B  B4 0E				 MOV	 AH,0EH		 ; BIOS	service	- write	character
+     35	    000D  CD 10				 INT	 10H
+     36	    000F  EB F3				 JMP	 SHORT Write_Begin
+     37	    0011			 Write_End:
+     38	    0011  66| 5B			 pop	 ebx
+     39	    0013  66| 58			 pop	 eax
+     40	    0015  C3				 RET
+     41	    0016			 WriteString endp
+     42					 ;----------------------------------------------------------------------------
+     43					 ; In real mode	CLEAR_SCREEN clears the	screen
+     44					 ;----------------------------------------------------------------------------
+     45	    0016			 ClearScreen	 PROC
+     46
+     47	    0016  66| 51				 push	 ecx
+     48	    0018  66| 53				 push	 ebx
+     49	    001A  66| 50				 push	 eax
+     50	    001C  66| 52				 push	 edx
+     51	    001E  66| 33 C9				 XOR   ECX,ECX
+     52	    0021  B2 81					 MOV   DL, 129
+     53
+     54	    0023  B6 32					 MOV   DH, 50
+     55	    0025  B7 07					 MOV   BH,7
+     56	    0027  32 C0					 XOR   AL,AL
+     57	    0029  B4 06					 MOV   AH,6
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 2
+prcalls.ASM
+
+
+
+     58	    002B  CD 10					 INT   10H
+     59
+     60	    002D  66| 5A				 pop	 edx
+     61	    002F  66| 58				 pop	 eax
+     62	    0031  66| 5B				 pop	 ebx
+     63	    0033  66| 59				 pop	 ecx
+     64
+     65	    0035  C3					 RET
+     66	    0036			 ClearScreen	 ENDP
+     67					 ;----------------------------------------------------------------------------
+     68					 ;Takes	the keyboard input in Realmode
+     69					 ;----------------------------------------------------------------------------
+     70	    0036			 GETKEYFORMENU	 PROC
+     71
+     72	    0036  B4 10				 MOV	 AH,10H
+     73	    0038  CD 16				 INT	 16H
+     74	    003A  B4 0E				 MOV	 AH,14
+     75	    003C  CD 10				 INT	 10H
+     76	    003E  C3				 RET
+     77
+     78	    003F			 GETKEYFORMENU	 ENDP
+     79					 ;----------------------------------------------------------------------------
+     80					 ;Prints a Newline
+     81					 ;----------------------------------------------------------------------------
+     82	    003F			 NEWLINE PROC
+     83
+     84	    003F  66| 50			 PUSH	 EAX
+     85	    0041  B0 0A				 MOV	 AL,0AH
+     86	    0043  B4 0E				 MOV	 AH,14
+     87	    0045  CD 10				 INT	 10H
+     88
+     89	    0047  B0 0D				 MOV	 AL,0dH
+     90	    0049  B4 0E				 MOV	 AH,14
+     91	    004B  CD 10				 INT	 10H
+     92	    004D  66| 58			 POP	 EAX
+     93	    004F  C3				 RET
+     94
+     95	    0050			 NEWLINE ENDP
+     96					 ;----------------------------------------------------------------------------
+     97					 ;Takes	the user input parameters
+     98					 ;----------------------------------------------------------------------------
+     99	    0050			 GET_PARAMETER	 PROC
+    100
+    101	    0050  66| 50			 PUSH	 EAX
+    102	    0052  B4 10				 MOV	 AH,10H
+    103	    0054  CD 16				 INT	 16H
+    104
+    105	    0056  8A F8				 MOV	 BH,AL
+    106
+    107	    0058  B4 10				 MOV	 AH,10H
+    108	    005A  CD 16				 INT	 16H
+    109	    005C  8A D8				 MOV	 BL,AL
+    110
+    111	    005E  8A C7				 MOV	 AL,BH
+    112	    0060  B4 0E				 MOV	 AH,14
+    113	    0062  CD 10				 INT	 10H
+    114
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 3
+prcalls.ASM
+
+
+
+    115	    0064  8A C3				 MOV	 AL,BL
+    116	    0066  B4 0E				 MOV	 AH,14
+    117	    0068  CD 10				 INT	 10H
+    118
+    119	    006A  B0 20				 MOV	 AL,' '
+    120	    006C  B4 0E				 MOV	 AH,14
+    121	    006E  CD 10				 INT	 10H
+    122
+    123	    0070  66| 58			 POP	 EAX
+    124	    0072  C3				 RET
+    125
+    126	    0073			 GET_PARAMETER	 ENDP
+    127					 ;----------------------------------------------------------------------------
+    128	    0073			 ResetPointer proc
+    129
+    130	    0073  66| 50			 push	 eax
+    131	    0075  66| 52			 push	 edx
+    132	    0077  66| 53			 push	 ebx
+    133
+    134	    0079  B4 02				 MOV	 AH,2
+    135	    007B  B7 00				 MOV	 bh,0
+    136	    007D  B6 00				 mov	 dh,0
+    137	    007F  B2 00				 mov	 dl,0
+    138	    0081  CD 10				 INT	 10H
+    139
+    140	    0083  66| 5B			 pop	 ebx
+    141	    0085  66| 5A			 pop	 edx
+    142	    0087  66| 58			 pop	 eax
+    143	    0089  C3				 RET
+    144	    008A			 ResetPointer endp
+    145
+    146					 ;==============================================================================
+    147					 ;this procedure prints	stack given SS,ESP
+    148					 ;eax should have the number of	words to display
+    149					 ;==============================================================================
+    150
+    151	    008A			 PRINTSTR PROC near
+    152
+    153						 ; eax register	has the	count for printing stack
+    154						 ;==================================================
+    155	    008A  66| 55			 push	 ebp	    ; save bp
+    156	    008C  66| 8B EC			 mov	 ebp,esp
+    157
+    158	    008F  66| 51			 push	 ecx
+    159	    0091  66| 50			 push	 eax
+    160	    0093  66| 57			 push	 edi
+    161	    0095  66| 53			 push	 ebx
+    162
+    163	    0097  E8 FFA5			 CALL	 NEWLINE
+    164
+    165	    009A  66| 8B F8			 mov	 edi,eax
+    166	    009D  66| BB 00000010		 mov	 ebx, 16
+    167	    00A3			 LOOPSTACK1:
+    168	    00A3  66| B8 00000000		 mov	 eax,0
+    169	    00A9  67| 8B 44 3D 00		 mov	 ax,ss:[ebp+edi+0]
+    170	    00AE  E8 0000e			 CALL	 PUTHEX32R
+    171
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 4
+prcalls.ASM
+
+
+
+    172	    00B1  B0 20				 mov	 al,' '
+    173	    00B3  B4 0E				 mov	 ah,14
+    174	    00B5  CD 10				 int	 10h
+    175
+    176	    00B7  66| 83 EB 02			 sub	 ebx, 2
+    177	    00BB  66| 83 FB 00			 cmp	 ebx, 0
+    178	    00BF  75 09				 JNZ	 NONEWLINE
+    179	    00C1  E8 FF7B			 CALL	 NEWLINE
+    180	    00C4  66| BB 00000010		 mov	 ebx,16
+    181	    00CA			 NONEWLINE:
+    182	    00CA  66| 83 EF 02			 SUB	 edi,2
+    183	    00CE  66| 83 FF 00			 cmp	 edi,0
+    184	    00D2  75 CF				 JNZ	 LOOPSTACK1
+    185
+    186	    00D4  66| 5B			 pop	 ebx
+    187	    00D6  66| 5F			 pop	 edi
+    188	    00D8  66| 58			 pop	 eax
+    189	    00DA  66| 59			 pop	 ecx
+    190	    00DC  66| 5D			 pop	 ebp	     ; restore reg values
+    191
+    192	    00DE  C3				 RET
+    193
+    194	    00DF			 PRINTSTR ENDP		     ; end of procedure
+    195
+    196					 ;----------------------------------------------------------------------------
+    197
+    198	    00DF			 RCodeSeg	 ENDS
+    199							 END
+Turbo Assembler	 Version 2.5	    08/29/16 14:48:15	    Page 5
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??DATE			Text   "08/29/16"
+??FILENAME		Text   "prcalls	"
+??TIME			Text   "14:48:15"
+??VERSION		Number 0205
+@CPU			Text   0D0FH			   #18
+@CURSEG			Text   RCODESEG			   #20
+@FILENAME		Text   PRCALLS
+@WORDSIZE		Text   2			   #18	#20
+CLEARSCREEN		Near   RCODESEG:0016		   8  #45
+GETKEYFORMENU		Near   RCODESEG:0036		   9  #70
+GET_PARAMETER		Near   RCODESEG:0050		   11  #99
+LOOPSTACK1		Near   RCODESEG:00A3		   #167	 184
+NEWLINE			Near   RCODESEG:003F		   10  #82  163	 179
+NONEWLINE		Near   RCODESEG:00CA		   178	#181
+PRINTSTR		Near   RCODESEG:008A		   13  #151
+PUTHEX32R		Near   ----:---- Extern		   #15	170
+RESETPOINTER		Near   RCODESEG:0073		   12  #128
+WRITESTRING		Near   RCODESEG:0000		   7  #26
+WRITE_BEGIN		Near   RCODESEG:0004		   #29	36
+WRITE_END		Near   RCODESEG:0011		   32  #37
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+RCODESEG		16  00DF Para	Public	CODE	   #20	21
+

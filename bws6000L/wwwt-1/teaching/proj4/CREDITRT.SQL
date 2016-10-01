@@ -1,0 +1,17 @@
+INSERT INTO CREDIT_RATE VALUES 
+('A', 0.75, 'more than ten reservations recently');
+
+INSERT INTO CREDIT_RATE VALUES 
+('B', 0.50, ' ');
+
+INSERT INTO CREDIT_RATE VALUES 
+('C', 0.25, ' ');
+
+INSERT INTO CREDIT_RATE VALUES 
+('D', 0.10, ' ');
+
+INSERT INTO CREDIT_RATE VALUES 
+('E', 0.05, ' ');
+
+INSERT INTO CREDIT_RATE VALUES 
+('F', 1.00, ' ');

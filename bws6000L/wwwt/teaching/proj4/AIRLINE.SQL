@@ -1,0 +1,6728 @@
+INSERT INTO AIRLINE VALUES
+('TWA198',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA117',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir132',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA60',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW148',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA88',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW273',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir10',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA262',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta47',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA84',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir217',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA183',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW232',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA124',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA73',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW80',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir54',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta282',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA141',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA293',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW232',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA2',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA169',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA134',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA181',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW50',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL145',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA234',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW43',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW147',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL113',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA144',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA79',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW135',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir235',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA80',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA0',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA103',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta95',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA222',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir257',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA62',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA265',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA266',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW73',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA266',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA119',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW219',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA32',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA86',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA286',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW46',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir216',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA33',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA67',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA275',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir283',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir135',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW93',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL37',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW215',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir55',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA138',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta71',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA293',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW68',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW178',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA69',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW142',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA146',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA234',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA297',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA150',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW157',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA129',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta277',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA111',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir193',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW2',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA149',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL56',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL124',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA225',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA132',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA11',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir123',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA68',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL10',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW78',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA279',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA245',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA111',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA53',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA245',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL4',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW38',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir97',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW94',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW53',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta190',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW220',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW179',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL154',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta230',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA220',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL57',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir16',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA218',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW149',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA273',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL250',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA99',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA208',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA43',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA18',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW1',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA215',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW115',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW97',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL169',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL23',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA78',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA63',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL152',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW199',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta24',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA152',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL136',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA42',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta158',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA147',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA137',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW262',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW261',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA137',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA29',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW96',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA200',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA105',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA234',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir190',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta87',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta288',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA160',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA47',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA199',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA0',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir41',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW126',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA23',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA193',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir93',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir12',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA249',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA288',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta121',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW105',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA205',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir67',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA117',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA234',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA85',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA44',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW99',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA223',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA185',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL254',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW80',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL182',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL167',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL127',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA195',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW236',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA20',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA158',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA217',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA228',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA173',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA151',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA110',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW262',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA179',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta213',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir37',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA203',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA219',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL62',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW129',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta217',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW228',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA229',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL222',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta93',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA214',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA75',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW229',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA94',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir292',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta258',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA75',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW142',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA174',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW121',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA13',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW118',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir57',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA81',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW72',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW65',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW19',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW130',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW225',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir117',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta28',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW69',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL97',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir251',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir264',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA28',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta67',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA9',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA177',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir84',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir32',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL272',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta202',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA92',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA152',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta269',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW213',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA61',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW22',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW71',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW146',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW169',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA263',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA276',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA276',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA21',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA237',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta246',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL76',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW134',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta218',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW30',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW192',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW164',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW115',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA84',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA5',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA43',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA88',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta182',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL268',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA203',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA92',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA78',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA146',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL58',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW145',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA54',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA103',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA182',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA89',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL42',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA143',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA143',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW285',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL81',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir65',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA135',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta73',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir64',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta165',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA89',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW151',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL150',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA292',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA59',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL82',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA54',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL95',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW186',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL34',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW161',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL48',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW290',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA282',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW24',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW174',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL65',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW65',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW216',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir255',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW103',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir33',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA71',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA95',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA226',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA258',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA183',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA81',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW276',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta243',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL159',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA3',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW38',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA89',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW67',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL138',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA258',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA52',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA224',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA175',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL7',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA155',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW288',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW76',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA105',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA261',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA159',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA225',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW240',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW196',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir222',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW42',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA210',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA190',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir29',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA239',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL89',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW62',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW268',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL201',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW51',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW85',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta13',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA274',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW107',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW92',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA245',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA220',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir164',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir23',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW114',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA15',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA182',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA264',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA202',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL123',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA128',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA253',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA231',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA190',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA253',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL83',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta124',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA56',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir106',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA100',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW60',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW23',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA240',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL210',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta270',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA142',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir76',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir161',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA4',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta110',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA108',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW274',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA232',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir126',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL30',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA128',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA17',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA85',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir77',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta125',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta3',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta66',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL282',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA199',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW124',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW96',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA35',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir206',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir60',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL246',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA156',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA124',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL247',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA250',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA222',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA209',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW182',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA166',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA107',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta273',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW235',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA157',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA190',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir22',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA70',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW256',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA204',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA33',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta223',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta106',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL172',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA95',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir109',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA21',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA257',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL133',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta62',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW0',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA105',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA298',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA121',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW251',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta68',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA244',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL64',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir86',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW252',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW34',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL130',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL119',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW254',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA123',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta235',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir178',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA61',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA132',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA26',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW91',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW31',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta86',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir115',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta249',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL181',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA46',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW46',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL270',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW176',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW112',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir252',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA254',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW188',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA290',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA98',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA145',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW297',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir212',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA9',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta113',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA145',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir148',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir170',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA83',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL199',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA112',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW249',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta148',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA10',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA243',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW134',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA136',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta76',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA204',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA113',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA38',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW95',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL140',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA200',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA118',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA28',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW121',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA73',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA214',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA36',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA276',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir200',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta296',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA292',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta116',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA284',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW164',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA19',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA42',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA49',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA198',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA264',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA196',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA243',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA120',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir20',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA138',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW219',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW255',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW166',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW28',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir224',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta255',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL115',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW13',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA284',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta94',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW184',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA108',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW280',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta0',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA13',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA227',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA50',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA115',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL153',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta274',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL6',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL117',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta40',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW275',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL90',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW180',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta45',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA203',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW189',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA177',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta43',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir271',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA263',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL184',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW129',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta55',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW187',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA67',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA278',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA202',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA281',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA211',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW120',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta156',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW227',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL170',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW210',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA197',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA27',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir104',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir112',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA199',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA29',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW63',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA244',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW214',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA150',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL285',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA45',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW26',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA281',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta151',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir137',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA16',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA193',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA277',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA145',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL191',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW136',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW132',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW284',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA22',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW89',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA258',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta134',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA183',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir180',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA74',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW289',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW122',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA135',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW169',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW7',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta154',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA242',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW274',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta44',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta34',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA137',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL217',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta225',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta209',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL193',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW75',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA140',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW242',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA7',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA270',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA32',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA22',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW195',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA77',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA240',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta259',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA164',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA162',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA84',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir173',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW216',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta38',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA4',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta22',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW218',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA51',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta195',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir9',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA55',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA254',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA205',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir228',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA206',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW201',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA57',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta56',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir154',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA188',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir258',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir192',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta200',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL141',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA246',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW138',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA149',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA20',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL276',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL155',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir204',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir169',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL147',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA157',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA208',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA39',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL125',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL189',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta133',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta175',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL194',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta166',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA170',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA257',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir254',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA125',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir185',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW48',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW106',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL258',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW50',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir120',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA167',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW130',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir46',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL156',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir159',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL111',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA243',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA211',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA189',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL44',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA187',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA206',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL122',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA201',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA114',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA80',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW119',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW92',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW269',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW131',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA147',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW47',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA175',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA5',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA161',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW197',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta60',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir88',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA184',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW146',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir91',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA6',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW294',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL12',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW268',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta241',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA174',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA270',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta196',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW4',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta59',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW212',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta207',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA157',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta204',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA138',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta281',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL31',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW112',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA52',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW158',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir21',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA39',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir11',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA171',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW175',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA131',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA44',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA158',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA233',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta20',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta91',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA52',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA184',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL21',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir125',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta132',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL149',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA202',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA133',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA259',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL129',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA181',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA82',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA139',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA212',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA97',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA53',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW150',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA196',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir232',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL253',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL91',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA169',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA162',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL9',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir100',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir166',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW40',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW133',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL116',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA286',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta131',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA35',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA67',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW21',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA223',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta98',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA11',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA272',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA159',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW77',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL192',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA218',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA194',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta159',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta262',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA110',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA129',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW87',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA292',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA142',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA109',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA231',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA215',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA176',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA25',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA9',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW59',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL164',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA167',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW55',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA247',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta164',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW149',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA153',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW200',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA131',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA13',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW233',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA176',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta247',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA66',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW194',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL103',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir256',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA269',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir56',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA115',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA1',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA23',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta108',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA8',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW171',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA39',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir215',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta63',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL163',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA249',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW172',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA213',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta155',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW171',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir68',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir42',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW102',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA127',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA110',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA12',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA77',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW16',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir30',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL213',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA127',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta208',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW40',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW117',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL209',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW191',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW179',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir72',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA62',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA69',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta284',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta48',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir145',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW168',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA186',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA140',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA185',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA14',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA130',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL197',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA267',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW263',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA43',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta26',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA122',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA211',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir127',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA34',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta65',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW101',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA274',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir278',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA195',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA12',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir80',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA256',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA4',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW45',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir195',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW7',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL215',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW132',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW33',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA180',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA191',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL86',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA167',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir223',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir13',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA64',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta264',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW3',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta135',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW282',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA201',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA124',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir265',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA28',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA66',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA30',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA215',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL143',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA13',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW28',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA45',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW175',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta261',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW109',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA1',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir189',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA269',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta12',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL49',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir140',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA136',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta279',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW253',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW289',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA88',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir194',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA129',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA296',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL40',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA154',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL107',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir261',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir138',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW211',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta169',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA189',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA271',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL69',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA135',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir133',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA15',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW5',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW198',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL226',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir276',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA226',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW198',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW195',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW15',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL200',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW52',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir218',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW287',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA115',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA58',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW143',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA25',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW270',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA149',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA260',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA91',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL173',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir226',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL266',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta18',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir253',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW5',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir146',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA48',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA249',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA296',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW170',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW214',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL32',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir272',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir107',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA238',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA18',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA82',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA170',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir152',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL294',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA279',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW249',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta211',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA0',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA219',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL8',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA70',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA250',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir122',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA205',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta186',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA3',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA267',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir87',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL252',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA165',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta206',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir7',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA233',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA15',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta198',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA282',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA79',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta285',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA30',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta238',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir3',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA176',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA220',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA134',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA38',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA117',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA283',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta254',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA144',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW226',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA298',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW8',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW253',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW124',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA277',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir282',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA294',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir187',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW110',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA292',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL131',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA101',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL92',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA232',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL102',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA14',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA9',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta224',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA210',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA98',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA271',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA106',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA272',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA178',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA264',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA249',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA226',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW223',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW3',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir74',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW139',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir287',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA24',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir15',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW135',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW64',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW41',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA93',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA186',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta81',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA78',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA132',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW285',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA55',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA8',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW248',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir34',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL225',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta17',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL106',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA259',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA110',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA268',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA38',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW125',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW264',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta139',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL146',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL13',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA130',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL232',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL94',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA218',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW204',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL291',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA241',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta257',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir99',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta283',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW153',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA227',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta179',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA135',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW230',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW166',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta233',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW113',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL70',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW157',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA213',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA2',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA229',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW208',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta61',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA131',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta227',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta21',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW194',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta141',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir191',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir230',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA242',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW0',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA163',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW128',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA91',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW168',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW258',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA25',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir297',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta126',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL228',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW222',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta192',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA270',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA290',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir82',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir85',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA195',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA125',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL1',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir240',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir63',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA191',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA21',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW207',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA11',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta161',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir105',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW221',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW16',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA174',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA209',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir110',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA238',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta293',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW62',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA88',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA165',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA297',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA172',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW281',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW286',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta50',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW22',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir128',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA136',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta239',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA207',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta90',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW69',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA55',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA90',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL39',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW6',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA166',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW230',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA36',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta215',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA219',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW114',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA99',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA47',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta291',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW246',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir274',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA125',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA56',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA245',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW1',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA104',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA86',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta16',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA44',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW224',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir28',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA25',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL188',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL240',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA116',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta252',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir24',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW244',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL223',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA46',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta31',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA180',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta120',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir183',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA133',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta162',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA121',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW217',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA255',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA11',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL242',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA257',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta276',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir243',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW52',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir35',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW245',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir27',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA283',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA215',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA247',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta191',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA230',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta216',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA93',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA205',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA37',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA71',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta103',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL16',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW54',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL99',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW88',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta210',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA288',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL289',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta49',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA230',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW47',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA109',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir31',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL114',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA87',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL74',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL33',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW82',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA263',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA223',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta32',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW70',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta142',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir186',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA27',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA213',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA181',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL54',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA287',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta82',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA106',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA40',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta298',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW44',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA286',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta172',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA76',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA237',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW239',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL206',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL35',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL205',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW277',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA280',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL274',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW111',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA139',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA27',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW127',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA250',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir121',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL231',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA281',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta51',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW44',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW10',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA46',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA3',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA212',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA283',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA64',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta237',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA241',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL161',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir136',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA171',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL112',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta109',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW37',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA40',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL166',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA33',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW183',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL275',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW202',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW36',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL53',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA69',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA287',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir288',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir81',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA116',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW66',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA127',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA130',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW104',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW279',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA198',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW74',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta27',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA188',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA74',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW33',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA169',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA296',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA96',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW241',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta149',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA75',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW245',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA116',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL26',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA84',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA210',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta97',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA37',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA96',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA176',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA147',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW19',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta266',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA94',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir260',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA56',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA102',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA28',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA257',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA192',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW152',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA36',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA225',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA284',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA206',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir39',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA161',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW293',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW120',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir50',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA253',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW292',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA248',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL75',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA10',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW233',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA52',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA166',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA141',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA42',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL77',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW223',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL283',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA251',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA173',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir47',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA248',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA172',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW31',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA282',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL260',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW95',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW119',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir246',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW276',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA184',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA87',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW250',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL15',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW160',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir102',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW174',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta88',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA200',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir259',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL238',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta96',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA240',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA265',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW235',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA50',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta112',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA136',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA218',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL93',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta89',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL55',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA72',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL24',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir66',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA261',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA280',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta183',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW220',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW299',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta295',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta199',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA49',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta54',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA199',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW118',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA291',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir196',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW34',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA99',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA273',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA133',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA128',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL281',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW176',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta271',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA29',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW234',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA35',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW15',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir98',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA187',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA114',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL219',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA120',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL96',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW59',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL101',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta193',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW266',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA59',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW98',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta173',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW298',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA272',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA244',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW272',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta5',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA100',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir227',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir19',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA299',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta46',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA134',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA177',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA119',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta85',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA160',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA20',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL287',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL273',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir160',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA293',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA167',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA32',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA252',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL2',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA174',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir176',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA138',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW152',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA1',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta9',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir268',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta130',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA142',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL78',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA17',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW123',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW278',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA161',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA170',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA202',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW37',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW211',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir113',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA297',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA139',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW172',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir239',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA119',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW197',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA117',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA178',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA282',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW138',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA181',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir129',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW260',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA48',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL175',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA53',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW26',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA58',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA63',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW180',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW291',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW116',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta23',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL18',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA260',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta171',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW271',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA279',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW182',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA224',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL60',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW210',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW13',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA175',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir43',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA41',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL25',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir59',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA209',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA19',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW275',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL14',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA55',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW139',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA158',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA247',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir290',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA7',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW145',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA115',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir62',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA255',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW29',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL202',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA148',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA123',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA173',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW170',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW55',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA172',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW159',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW196',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW32',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA213',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW137',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL160',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA289',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA34',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA187',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA74',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA1',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta181',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL290',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA266',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA175',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta253',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW143',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir219',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL190',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA155',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW204',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir188',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA39',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW156',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA171',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW63',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL234',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir241',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA247',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL52',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA63',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA30',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta69',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL297',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir92',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA30',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL298',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA41',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA31',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW163',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir207',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW103',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir8',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta78',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW21',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW173',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta29',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW278',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta75',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL109',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA216',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA230',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA259',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA277',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW71',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW293',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL98',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA31',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA112',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW75',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta231',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir17',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AL110',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL227',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir231',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW131',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW255',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA152',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA14',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir114',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW264',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta174',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir53',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA275',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta53',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL235',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA186',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir49',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA85',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW140',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir210',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA26',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta289',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW247',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW290',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW51',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta267',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA266',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta214',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir26',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir277',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta77',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW84',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir45',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir266',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('Delta8',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir116',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('TWA146',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA185',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta299',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta129',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir143',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA251',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA236',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir208',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW247',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta4',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA220',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA189',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA107',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW91',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA269',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA261',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW81',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA260',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir150',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA275',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir280',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('AA104',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta229',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW270',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta153',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta197',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW155',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW116',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA186',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta144',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL29',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta236',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta70',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA147',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW273',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir44',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW14',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA278',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW205',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW54',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA233',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA232',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA278',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir48',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('UA96',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta19',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW238',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA222',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir299',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('USAir245',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('SW263',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir284',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('NW123',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA114',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('UA107',
+ 'United Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW128',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AL104',
+ 'Alaska Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW99',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW184',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA209',
+ 'Traval World Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW203',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('NW154',
+ 'NorthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('AA108',
+ 'American Airline');
+
+INSERT INTO AIRLINE VALUES
+('SW229',
+ 'SouthWest Airline');
+
+INSERT INTO AIRLINE VALUES
+('USAir6',
+ 'US Air');
+
+INSERT INTO AIRLINE VALUES
+('CA145',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('Delta178',
+ 'Delta Airline');
+
+INSERT INTO AIRLINE VALUES
+('CA261',
+ 'Continental Airline');
+
+INSERT INTO AIRLINE VALUES
+('TWA69',
+ 'Traval World Airline');
+

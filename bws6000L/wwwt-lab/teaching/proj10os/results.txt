@@ -1,0 +1,175 @@
+
+
+
+
+Results for FIFO 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2218
+Total distance traveled		903911
+Average distance traveled	2215
+Number of direction changes	249
+
+
+Results for FIFO 
+Number of Disk Requests		408
+Disk start location		5000
+Time to complete		2218
+Total distance traveled		908865
+Average distance traveled	2227
+Number of direction changes	251
+
+
+Results for FIFO 
+Number of Disk Requests		408
+Disk start location		9999
+Time to complete		2062
+Total distance traveled		913864
+Average distance traveled	2239
+Number of direction changes	251
+
+
+Results for SSTF 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2172
+Total distance traveled		9999
+Average distance traveled	24
+Number of direction changes	136
+
+
+Results for SSTF 
+Number of Disk Requests		408
+Disk start location		5000
+Time to complete		2172
+Total distance traveled		14997
+Average distance traveled	36
+Number of direction changes	16
+
+
+Results for SSTF 
+Number of Disk Requests		408
+Disk start location		9999
+Time to complete		2078
+Total distance traveled		9998
+Average distance traveled	24
+Number of direction changes	1
+
+
+
+
+Results for SCAN (Start Direction: Forward) 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2359
+Total distance traveled		10000
+Average distance traveled	24
+Number of direction changes	1
+
+
+Results for SCAN (Start Direction: Backward) 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2329
+Total distance traveled		10000
+Average distance traveled	24
+Number of direction changes	2
+
+
+Results for SCAN (Start Direction: Forward) 
+Number of Disk Requests		408
+Disk start location		5000
+Time to complete		3406
+Total distance traveled		14998
+Average distance traveled	36
+Number of direction changes	1
+
+
+Results for SCAN (Start Direction: Backward) 
+Number of Disk Requests		408
+Disk start location		5000
+Time to complete		2688
+Total distance traveled		15000
+Average distance traveled	36
+Number of direction changes	2
+
+
+Results for SCAN (Start Direction: Forward) 
+Number of Disk Requests		408
+Disk start location		9999
+Time to complete		2875
+Total distance traveled		9999
+Average distance traveled	24
+Number of direction changes	1
+
+
+Results for SCAN (Start Direction: Backward) 
+Number of Disk Requests		408
+Disk start location		9999
+Time to complete		2907
+Total distance traveled		9999
+Average distance traveled	24
+Number of direction changes	0
+
+
+Results for LOOK (Start Direction: Forward) 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2313
+Total distance traveled		10000
+Average distance traveled	24
+Number of direction changes	1
+
+
+Results for LOOK (Start Direction: Backward) 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2297
+Total distance traveled		10000
+Average distance traveled	24
+Number of direction changes	2
+
+
+Results for LOOK (Start Direction: Forward) 
+Number of Disk Requests		408
+Disk start location		5000
+Time to complete		3454
+Total distance traveled		14998
+Average distance traveled	36
+Number of direction changes	2
+
+
+Results for LOOK (Start Direction: Backward) 
+Number of Disk Requests		408
+Disk start location		5000
+Time to complete		2703
+Total distance traveled		14998
+Average distance traveled	36
+Number of direction changes	2
+
+
+Results for LOOK (Start Direction: Forward) 
+Number of Disk Requests		408
+Disk start location		9999
+Time to complete		3016
+Total distance traveled		9999
+Average distance traveled	24
+Number of direction changes	2
+
+
+Results for LOOK (Start Direction: Backward) 
+Number of Disk Requests		408
+Disk start location		9999
+Time to complete		3079
+Total distance traveled		9999
+Average distance traveled	24
+Number of direction changes	1
+
+
+Results for FIFO 
+Number of Disk Requests		408
+Disk start location		0
+Time to complete		2203
+Total distance traveled		903911
+Average distance traveled	2215
+Number of direction changes	250

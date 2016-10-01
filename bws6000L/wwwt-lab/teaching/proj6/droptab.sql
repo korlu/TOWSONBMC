@@ -1,0 +1,10 @@
+drop table checking;
+drop table departments;
+drop table employees;
+drop table has_account;
+drop table loans;
+drop table location;
+drop table members;
+drop table savings;
+drop table transaction;
+drop table vendors;

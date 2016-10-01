@@ -1,0 +1,3 @@
+set PATH=c:\student\rkk\optimalserver\masm\bin;c:\student\rkk\optimalserver\masm\binr;%PATH%
+set LIB=c:\student\rkk\optimalserver\masm\lib;c:\student\rkk\lib
+set INCLUDE=c:\student\rkk\optimalserver\masm\include;c:\student\rkk\include

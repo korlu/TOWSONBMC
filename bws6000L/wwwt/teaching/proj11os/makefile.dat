@@ -1,0 +1,20 @@
+# Author : Shireesha
+# This is the make file for our
+# group project 519.
+
+
+# The project is the name we chose for 
+# the make file.To build the project just
+# type the make command at the command 
+# prompt.
+
+project: parse.c disk.h 
+		gcc -o project parse.c
+		./project
+
+#This command with make cleans
+# the previously generated object file.
+clean:
+	 rm project 
+
+

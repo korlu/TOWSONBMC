@@ -1,0 +1,859 @@
+Microsoft (R) Macro Assembler Version 6.11		    04/14/06 10:26:29
+init.asm						     Page 1 - 1
+
+
+					.386p
+					.387
+					.model flat,c
+
+					include ethernetinc.inc
+			      C 
+			      C option expr32
+			      C option casemap:none
+			      C 
+			      C ; Begin of file ethernetinc.h
+			      C ; all these values were obtained from the 3com manual 
+			      C ; no need to change them 
+ = 00000020		      C SizeOfDpd			EQU		00000020h
+ = 00000020		      C SizeOfUpd			EQU	        00000020h
+			      C 
+ = 00007800		      C Command_SetIndicationEnable	EQU		00007800h
+ = 00002800		      C Command_RXReset			EQU		00002800h
+ = 00000800		      C Command_SelectWindow		EQU		00000800h
+ = 00002000		      C Command_RXEnable		EQU		00002000h
+ = 00008000		      C Command_SetRXFilter		EQU		00008000h
+ = 00005800		      C Command_TXReset			EQU		00005800h
+ = 00004800		      C Command_TXEnable		EQU		00004800h
+ = 00005000		      C Command_TXDisable		EQU		00005000h
+ = 00000080		      C Command_ReadEpromCommand	EQU		00000080h
+ = 0000983C		      C Command_TxStartThresh		EQU		0000983ch 
+			      C ; 60 bytes = 3ch min threshold which is length of ethernet packet
+ = 00003002		      C Command_DnStall			EQU		00003002h 
+ = 00003003		      C Command_DnUnStall		EQU		00003003h 
+ = 00003000		      C Command_UpStall			EQU		00003000h 
+ = 00003001		      C Command_UpUnStall		EQU		00003001h 
+ = 0000A800		      C Command_StatsEnable		EQU		0000a800h
+			      C 
+			      C 
+			      C 
+			      C 
+ = 00000110		      C ID_PORT				EQU		00000110h
+ = 0000820C		      C PreambleData			EQU		0000820ch
+ = 00000000		      C Command_GlobalReset		EQU		00000000h
+ = 00001000		      C Command_StartIntXCVR		EQU		00001000h
+ = 00001800		      C Command_RXDisable		EQU		00001800h
+ = 00004000		      C Command_RXDiscard		EQU		00004000h
+ = 00006000		      C Command_RequestInt		EQU		00006000h
+ = 00006800		      C Command_AckInt			EQU		00006800h
+ = 00007000		      C Command_SetIntMask		EQU		00007000h
+			      C ;Command_SetRZMask		EQU		00007800h
+ = 00008800		      C Command_SetRXEarly		EQU		00008800h
+ = 00009000		      C Command_SetTXAvailable		EQU		00009000h
+ = 00009800		      C Command_SetTXStart		EQU		00009800h
+ = 0000B000		      C Command_StatsDisable		EQU		0000b000h
+ = 0000B800		      C Command_StopCoaxTrans		EQU		0000b800h
+			      C 
+			      C ;Processor Speed in MHZ. This is used by Short Delay Procedure
+			      C ;-------------------------------------------------------------
+ = 00000163		      C Processor_Speed		EQU		355
+ = 00000005		      C NoOfCycles_Delay	EQU		5	
+			      C ; No of cycles used to calculate the delay loop 
+			      C ;-------------------------------------------------------------
+ = 000000B8		      C GlobalDataSel		EQU		000000b8h
+ = 00000018		      C RDataSel		EQU		00000018h
+ = 00000308		      C GKKQ			EQU		00000308h
+ = 00000407		      C GKHead			EQU		00000407h
+ = 00000408		      C GKTail			EQU		00000408h
+ = 0000000C		      C StackSel		EQU		0000000Ch
+ = 00000090		      C Puthex32DataSel 	EQU		00000090h
+ = 000000C0		      C MEMDataSel         	EQU		000000C0h ; G4Data_Sel prcycle 
+			      C 
+			      C @proto_0		TYPEDEF		PROTO C :WORD, :PTR BYTE
+			      C initasm		PROTO		@proto_0
+			      C 
+			      C @proto_1		TYPEDEF		PROTO C :WORD, :PTR BYTE
+			      C receasm		PROTO		@proto_1
+			      C 
+			      C @proto_2		TYPEDEF		PROTO C :WORD, :PTR BYTE, :DWORD
+			      C transasm		PROTO		@proto_2
+			      C 
+			      C @proto_7		typedef		proto c :word
+			      C closeasm			proto		@proto_7
+			      C 
+			      C @proto_3		TYPEDEF		PROTO C 
+			      C Wait_Command_Finish		PROTO		@proto_3
+			      C 
+			      C @proto_4		TYPEDEF		PROTO C 
+			      C Wait_EEPROM_Unbusy		PROTO		@proto_4
+			      C 
+			      C @proto_5		TYPEDEF		PROTO C 
+			      C Check_Window6_Transmit_Success		PROTO		@proto_5
+			      C 
+			      C @proto_6		TYPEDEF		PROTO C 
+			      C Check_Window3_FreeTX		PROTO		@proto_6
+			      C 
+			      C ; End of file ethernetinc.h
+			      C 
+
+ 00000000			.CODE
+
+				;****************************************************************
+				;  all initialization of the NIC card is done in the following 
+				;   call 
+				;****************************************************************
+ 00000000			initasm proc c public uses ebx ecx edx esi edi, IO_BASE:word, MAC:ptr byte
+					;----------------------------------------
+					; global reset 
+					;  all bits are 0's 
+					;;----------------------------------------
+ 00000008  60				pushad                  ; push all registers 
+
+ 00000009  66| 8B 45 08		        mov ax, IO_BASE 	;go to default window 0 Command Register
+ 0000000D  66| 8B D0		 	mov dx, ax       	;and make global reset    
+ 00000010  66| 83 C2 0E			add dx, 0eh
+ 00000014  66| 33 C0			xor ax, ax		;set GlobalReset value as 0
+ 00000017  66| EF			out dx, ax	  	; read PIC1 mask, enable PIC2 bit and restore the mask
+ 00000019  E8 00000000 E		CALL Wait_Command_Finish 
+
+					; index is the index value in shared memory for a given variable 
+					; eax has the data to be retunred 
+					
+ 0000001E  B8 00000000			mov 	eax, 0
+ 00000023  66| ED		        in 	ax, dx 
+ 00000025  BB 00000140			mov	ebx, 320	;print intStatus 
+ 0000002A  CD FD			int	0fdh 
+
+				  	; read PIC1 mask, enable PIC2 bit and restore the mask
+ 0000002C  66| B8 0021		        mov	ax, 021h ; PIC1 
+ 00000030  66| 8B D0			mov	dx, ax
+ 00000033  EC				in	al, dx   ; read masks for PIC1
+					;or	al, 09h  ; enable PIC2 
+ 00000034  B0 01			mov al, 01h ;---------------------
+ 00000036  EE				out	dx, al 
+ 00000037  B0 00			mov	al, 0h
+ 00000039  EC				in	al, dx   ; read it again 
+					;mov 	ebx, 1120 
+
+
+					; read PIC2 mask, disable real time clock interrupts and restore the mask
+ 0000003A  66| B8 00A1		        mov	ax, 0a1h ; PIC2 
+ 0000003E  66| 8B D0			mov	dx, ax
+ 00000041  EC				in	al, dx   ; read masks for PIC2
+					;or	al, 03h  ; disable real time clock interrupt bit 
+ 00000042  B0 01			mov al, 01h ;--------------------
+					;and	al, 0f3h ; enable IRQ11, IRQ10 
+ 00000044  EE				out	dx, al 
+ 00000045  B0 00			mov	al, 0
+ 00000047  EC				in	al, dx   ; read it again  
+					;mov 	ebx, 1140 	
+					;int	0fdh
+
+					;----------------------------------------
+					; set indication enable 
+					;  all bits are set to indicate that InStatus regiser bit can be set 
+					;----------------------------------------
+ 00000048  66| 8B 45 08		        mov ax, IO_BASE 	;go to default window 0 Command Register
+ 0000004C  66| 8B D0		 	mov dx, ax       	    
+ 0000004F  66| 83 C2 0E			add dx, 0eh
+ 00000053  66| B8 7FFF		        mov ax, Command_SetIndicationEnable+7ffh  ; indicates sent or not   
+ 00000057  66| EF			out dx, ax 
+ 00000059  E8 00000000 E		CALL Wait_Command_Finish 
+
+ 0000005E  66| B8 0805			mov ax, Command_SelectWindow + 5   ; move to window 5
+ 00000062  66| EF			out dx, ax 
+ 00000064  E8 00000000 E		CALL Wait_Command_Finish 
+
+ 00000069  66| 83 EA 02			sub dx, 2    ; IndicationEnable bit p.24
+ 0000006D  66| B8 0000			mov ax, 0
+ 00000071  66| ED			in ax, dx 
+
+ 00000073  BB 00000154		        mov ebx, 340  	;print window 5 IndicationEnable
+ 00000078  CD FD		        int 0fdh
+
+					; ---------------------------------------
+					; internal config register
+					; setting xcvr bit
+					; ---------------------------------------
+				;	mov 	ax, IO_BASE
+				;	mov 	dx, ax            
+				;	add 	dx, 0eh    
+				;	mov 	ax, Command_SelectWindow + 3  
+				;	out 	dx, ax 
+				;	CALL 	Wait_Command_Finish 
+					
+				;	mov 	ax, IO_BASE
+				;	mov	dx, ax 
+				;	add 	dx, 0h
+				;	mov	eax, 01400000h
+				;	out  	dx, eax
+				;	CALL Wait_Command_Finish
+
+					; ---------------------------------------
+					; mac control register
+					; setting fullDuplexEnable bit
+					; ---------------------------------------
+				;	mov 	ax, IO_BASE
+				;	mov 	dx, ax            
+				;	add 	dx, 0eh    
+				;	mov 	ax, Command_SelectWindow + 3  
+				;	out 	dx, ax 
+				;	CALL 	Wait_Command_Finish 
+					
+				;	mov 	ax, IO_BASE
+				;	mov	dx, ax 
+				;	add 	dx, 6h
+				;	mov	ax, 0020h
+				;	out  	dx, ax
+				;	CALL Wait_Command_Finish
+
+
+					;----------------------------------------
+					; reset receiver   
+					;----------------------------------------
+ 0000007A  66| 8B 45 08			mov 	ax, IO_BASE
+ 0000007E  66| 8B D0			mov	dx, ax
+ 00000081  66| 83 C2 0E			add	dx, 0eh
+ 00000085  66| B8 2800			mov	ax, Command_RXReset	;command Rx reset
+ 00000089  66| EF			out 	dx, ax
+ 0000008B  E8 00000000 E		call	Wait_Command_Finish
+
+ 00000090  B8 00000000			mov eax, 0
+ 00000095  66| ED		        in ax, dx 
+ 00000097  BB 00000168		        mov ebx, 360		;print InStatus we should be in window 5
+ 0000009C  CD FD		        int 0fdh 
+
+					;----------------------------------------
+					; set RX filter   
+					;----------------------------------------
+ 0000009E  66| 8B 55 08			mov dx, IO_BASE		
+ 000000A2  66| 83 C2 0E			add dx, 0eh    
+					; bit0 = receive individual
+					; bit1 = receive multicast
+					; bit2 = receive broadcast
+					; bit3 = receive all frames
+					; bit4 = receive multicast hash
+					;mov ax, Command_SetRXFilter +01h  ;receieve only individual packets addressed to NIC p112 
+ 000000A6  66| B8 8005			mov ax, Command_SetRXFilter +05h  ;receieve  individual and broadcast packets p112 
+
+ 000000AA  66| EF			out dx, ax
+ 000000AC  E8 00000000 E		call Wait_Command_Finish
+
+ 000000B1  B8 00000000			mov eax, 0
+ 000000B6  66| 8B 55 08			mov dx, IO_BASE		
+ 000000BA  66| 83 C2 08			add dx, 08h    
+ 000000BE  EC				in al, dx
+ 000000BF  BB 0000017C			mov	ebx, 380	;display RxFilter 
+ 000000C4  CD FD			int	0fdh
+					
+					;----------------------------------------------
+					;  Reset Transmitter
+					;----------------------------------------------
+ 000000C6  66| 8B 45 08			mov 	ax, IO_BASE
+ 000000CA  66| 8B D0			mov	dx, ax 
+ 000000CD  66| 83 C2 0E			add	dx, 0eh
+ 000000D1  66| B8 5800			mov	ax, Command_TXReset	;command tx reset
+ 000000D5  66| EF			out 	dx, ax
+ 000000D7  E8 00000000 E		call	Wait_Command_Finish
+
+					;----------------------------------------------
+					;  Set transmit threshold value p.139 
+					;----------------------------------------------
+ 000000DC  B8 00000000		  	mov eax, 0  ; will change the window to 0
+ 000000E1  66| 8B 45 08		        mov ax, IO_BASE
+ 000000E5  66| 8B D0		 	mov dx, ax            
+ 000000E8  66| 83 C2 0E			add dx, 0eh    
+ 000000EC  66| B8 0800			mov ax, Command_SelectWindow + 0  
+ 000000F0  66| EF			out dx, ax 
+ 000000F2  E8 00000000 E		CALL Wait_Command_Finish 
+
+ 000000F7  B8 00000000			mov eax, 0
+ 000000FC  66| 8B 55 08			mov dx, IO_BASE 
+ 00000100  66| 83 C2 0E			add dx, 0eh
+					;mov ax, Command_TxStartThresh ; 1001 1... .... .... 
+					;out dx, ax
+					;CALL Wait_Command_Finish
+					
+ 00000104  B8 00000000		  	mov eax, 0  ; will change the window to 5
+ 00000109  66| 8B 45 08		        mov ax, IO_BASE
+ 0000010D  66| 8B D0		 	mov dx, ax            
+ 00000110  66| 83 C2 0E			add dx, 0eh    
+ 00000114  66| B8 0805			mov ax, Command_SelectWindow + 5
+ 00000118  66| EF			out dx, ax 
+ 0000011A  E8 00000000 E		CALL Wait_Command_Finish 
+					
+					;mov eax, 0
+					;mov dx, IO_BASE 
+					;add dx, 0h   ; read TxStatThresh
+					;in  ax, dx
+					;mov ebx, 800 
+					;int 0fdh
+
+ 0000011F  66| B8 A800			mov	ax,Command_StatsEnable
+ 00000123  66| EF			out	dx,ax
+ 00000125  E8 00000000 E		call	Wait_Command_Finish
+
+ 0000012A  B8 00000000			mov eax, 0
+ 0000012F  66| 8B 55 08			mov dx, IO_BASE		
+ 00000133  66| 83 C2 0E			add dx, 0eh
+ 00000137  66| ED			in  ax, dx
+ 00000139  BB 00000190			mov	ebx, 400	; display instatus  
+ 0000013E  CD FD			int	0fdh
+
+ 00000140  B8 00000000		        mov eax, 0  ; will change the window to 3
+ 00000145  66| 8B 45 08		        mov ax, IO_BASE
+ 00000149  66| 8B D0		 	mov dx, ax            
+ 0000014C  66| 83 C2 0E			add dx, 0eh    
+ 00000150  66| B8 0803			mov ax, Command_SelectWindow + 3  
+ 00000154  66| EF			out dx, ax 
+ 00000156  E8 00000000 E		CALL Wait_Command_Finish 
+
+				       ;--------------------------------------------
+				       ; set the polling rate for transmitter 
+				       ; the NIC card will poll the DPD at this rate p.100 
+				       ; 320ns * 40H = 20480ns
+				       ; may need to change if required 
+				       ;--------------------------------------------
+ 0000015B  66| 8B 55 08			mov	dx,IO_BASE	;DnPoll
+ 0000015F  66| 83 C2 2D			add	dx,2dh
+ 00000163  B0 7F			mov	al,7fh
+ 00000165  EE				out	dx,al
+
+ 00000166  66| 8B 55 08			mov 	dx, IO_BASE		
+ 0000016A  66| 83 C2 0C			add     dx, 0ch         ; read TxFree
+ 0000016E  B8 00000000			mov     eax, 0
+ 00000173  66| ED			in	ax,dx
+ 00000175  BB 000001A4			mov	ebx,420
+ 0000017A  CD FD			int	0fdh
+
+
+					;-----------------------------------------
+					; set InterruptEnable p.144 p.122 
+					; 4 will enable txComplete  
+					; currently all interrupts are disabled 
+					;-----------------------------------------
+ 0000017C  66| 8B 55 08			mov	dx,IO_BASE
+ 00000180  66| 83 C2 0E			add	dx,0eh
+ 00000184  66| B8 7004			mov	ax,Command_SetIntMask+ 4h ; + 4 ;p.144 p.122 enable txcomplete int
+ 00000188  66| EF			out	dx,ax
+ 0000018A  E8 00000000 E		call	Wait_Command_Finish
+
+					;----------------------------------------------
+					;read MAC address and store it in EO 
+					; This code is same as 3c509 card except the IO_BASE 
+					;we used the same code by using the new IO_BASE 
+					; all comments are for the old driver code....
+					;----------------------------------------------
+ 0000018F  B8 00000000		        mov eax, 0  ; will change the window to 0
+ 00000194  66| 8B 45 08		        mov ax, IO_BASE
+ 00000198  66| 8B D0		 	mov dx, ax            
+ 0000019B  66| 83 C2 0E			add dx, 0eh    
+ 0000019F  66| B8 0800			mov ax, Command_SelectWindow + 0  
+ 000001A3  66| EF			out dx, ax 
+ 000001A5  E8 00000000 E		CALL Wait_Command_Finish 
+
+ 000001AA  8B 45 0C			mov	eax, MAC			
+ 000001AD  8B F8			mov	edi, eax
+					
+ 000001AF  66| 8B 55 08			mov	dx,IO_BASE
+ 000001B3  E8 00000000 E		call    Wait_EEPROM_Unbusy              ;1=EEPROM busy
+ 000001B8  66| 8B 55 08			mov     dx, IO_BASE			;Mov IO_Base into da
+ 000001BC  66| 83 C2 0A			add     dx, 0ah                         ; See 7-21, window 0, offset 0ah. from IO_Base 
+										; for the EPROM Command Register
+ 000001C0  B0 80			mov     al, 10b shl 6                   ;See 7-22, write the Read Register command.
+ 000001C2  04 00			add     al, 00h                         ;See 7-, add the offset of 3Com Node Address.
+ 000001C4  EE				out     dx, al
+ 000001C5  66| 8B 55 08			mov	dx,IO_BASE
+ 000001C9  E8 00000000 E		call    Wait_EEPROM_Unbusy              ;Read data can be read, after the EEPROM not busy
+					
+ 000001CE  66| 8B 55 08			mov     dx, IO_BASE 
+ 000001D2  66| 83 C2 0C			add     dx, 0ch				; This is the EPROM Data (5-1)
+ 000001D6  66| ED			in      ax, dx		
+ 000001D8  36: 88 27			mov	ss:[edi], ah                    ;byte 0
+ 000001DB  36: 88 47 01			mov	ss:[edi+1], al                  ; byte 1
+
+										;Need to identify the addresses start read
+										;from offset 0ah or 00h, you can first get this
+										;ethernet card value from windows operating system
+										;tools, or through 3c5x9cfg.exe, then compare.
+										
+ 000001DF  66| 8B 55 08			mov     dx, IO_BASE 
+ 000001E3  66| 83 C2 0A			add     dx, 0ah                         ;See 7-21.
+ 000001E7  B0 80			mov     al, 10b shl 6                   ;See 7-22.
+ 000001E9  04 01			add     al, 01h                         ;See 7-25.
+ 000001EB  EE				out     dx, al
+ 000001EC  66| 8B 55 08			mov	dx, IO_BASE
+ 000001F0  E8 00000000 E		call    Wait_EEPROM_Unbusy
+					
+ 000001F5  66| 8B 55 08			mov     dx, IO_BASE 
+ 000001F9  66| 83 C2 0C			add     dx, 0ch
+ 000001FD  66| ED			in      ax, dx
+ 000001FF  36: 88 67 02			mov	ss:[edi+2], ah                  ; byte 2 
+ 00000203  36: 88 47 03			mov	ss:[edi+3], al                  ; byte 3
+
+ 00000207  66| 8B 55 08			mov     dx, IO_BASE 
+ 0000020B  66| 83 C2 0A			add     dx, 0ah                         ;See 7-21.
+ 0000020F  B0 80			mov     al, 10b shl 6                   ;See 7-22.
+ 00000211  04 02			add     al, 02h                         ;See 7-25.
+ 00000213  EE				out     dx, al
+ 00000214  66| 8B 55 08			mov	dx, IO_BASE 
+ 00000218  E8 00000000 E		call    Wait_EEPROM_Unbusy
+					
+ 0000021D  66| 8B 55 08			mov     dx, IO_BASE
+ 00000221  66| 83 C2 0C			add     dx, 0ch
+ 00000225  66| ED			in      ax, dx                          ;Save the third address into ax.
+ 00000227  36: 88 67 04			mov	ss:[edi+4], ah                  ; byte 4 
+ 0000022B  36: 88 47 05			mov	ss:[edi+5], al		        ; byte 5	
+					; 6 bytes are arranged as Byte 0 1 2 3 4 5 
+					; example 00 0A 5E 56 61 D5 
+					; but when you print 4 bytes and 2 bytes then it is 565E0A00    0000D561
+					; after return the six bytes 0 1 2 3 4 5 are stored in array mac[6] in EO 
+					; when you read mac read byte 0 1 2 3 4 5 in that order which is same as 
+					; the way you see it in Ethereal tool 
+
+
+					; ---------------------------------------
+					; internal config register
+					; setting xcvr bit
+					; ---------------------------------------
+				;	mov 	ax, IO_BASE
+				;	mov 	dx, ax            
+				;	add 	dx, 0eh    
+				;	mov 	ax, Command_SelectWindow + 3  
+				;	out 	dx, ax 
+				;	CALL 	Wait_Command_Finish 
+					
+				;	mov 	ax, IO_BASE
+				;	mov	dx, ax 
+				;	add 	dx, 0h
+				;	mov	eax, 01400000h
+				;	out  	dx, eax
+				;	CALL Wait_Command_Finish
+
+					;----------------------------------------
+					; reset receiver   
+					;----------------------------------------
+				;	mov 	ax, IO_BASE
+				;	mov	dx, ax
+				;	add	dx, 0eh
+				;	mov	ax, Command_RXReset	;command Rx reset
+				;	out 	dx, ax
+				;	call	Wait_Command_Finish
+
+					;----------------------------------------------
+					;  Reset Transmitter
+					;----------------------------------------------
+				;	mov 	ax, IO_BASE
+				;	mov	dx, ax 
+				;	add	dx, 0eh
+				;	mov	ax, Command_TXReset	;command tx reset
+				;	out 	dx, ax
+				;	call	Wait_Command_Finish	
+					
+				;------------------------------------------------------------------
+ 0000022F  50				push 	eax				;print MAC 4 bytes  
+ 00000230  36: 8B 07			mov 	eax, ss:[edi]			; get 4 bytes of MAC
+ 00000233  53				push    ebx                             ;print the IO_BASE 
+ 00000234  BB 00000F3E			mov     ebx, 3902			; AE976000   0000DF21  
+ 00000239  CD FD			int     0fdh                            ; MAC is 00|60|97|AE|DF|21
+ 0000023B  5B				pop     ebx                             ; 4 bytes from here and 2 bytes in the next print
+ 0000023C  58				pop     eax 
+				;------------------------------------------------------------------
+ 0000023D  50				push 	eax				;print MAC 2 bytes  
+ 0000023E  B8 00000000			mov	eax,0
+ 00000243  36: 8A 67 05			mov 	ah, ss:[edi+5]			; get 4 bytes of MAC
+ 00000247  36: 8A 47 04			mov 	al, ss:[edi+4]			; get 4 bytes of MAC
+ 0000024B  53				push    ebx                             ;print the IO_BASE 
+ 0000024C  BB 00000F52			mov     ebx, 3922 
+ 00000251  CD FD			int     0fdh
+ 00000253  5B				pop     ebx
+ 00000254  58				pop     eax 
+
+ 00000255  B8 00000000			mov eax, 0
+ 0000025A  66| 8B 55 08			mov dx, IO_BASE 
+ 0000025E  66| 83 C2 24			add dx, 24h  ; DnLstPtr  
+ 00000262  ED				in eax, dx 
+ 00000263  BB 000001B8			mov ebx, 440 
+ 00000268  CD FD			int 0fdh
+					
+				;------------------------------------------------------------------
+ 0000026A  61				popad
+
+				        ret  
+ 00000272			initasm endp
+
+				;***********************************************************************
+				; this is a routine which creates send and receive datastructure  
+				; The parameters passed are self explanatory 
+				;***********************************************************************
+
+ 00000272			createDSasm proc c public uses ebx ecx edx esi edi, NoRcvBuf:DWORD, RcvStat:DWORD, UpLstPtr:DWORD, 
+				        RcvFragAddr:DWORD, RcvFragLen:DWORD, NoSndBuf:DWORD, SndStat:DWORD, DnLstPtr:DWORD,
+					SndFragAddr:DWORD, SndFragLen:DWORD, IO_BASE:WORD
+
+				;**************************** sdp 08/05/05 *************************
+
+ 0000027A  53				push	ebx
+ 0000027B  51				push	ecx
+ 0000027C  52				push	edx
+ 0000027D  56				push	esi
+ 0000027E  57				push	edi
+ 0000027F  06				push	es
+
+ 00000280  66| B8 00C0			mov	ax, MEMDataSel; This is a zero base selector to access shared memory between aoa and application
+ 00000284  66| 8E C0			mov	es, ax
+
+ 00000287  BE 00000000			mov	esi, 0 ; esi = dpd counter
+ 0000028C  BF 00000000			mov	edi, 0 ; edi = dpd fragment counter
+
+ 00000291  8B 4D 1C			mov	ecx, NoSndBuf
+ 00000294			sndLoop:
+					;------ DnLstPtr -----
+					; this computes current dpd addresss and stores result in ebx
+ 00000294  8B C6			mov	eax, esi
+ 00000296  BA 00000020			mov	edx, SizeOfDpd
+ 0000029B  F7 E2			mul 	edx
+ 0000029D  03 45 24			add	eax, DnLstPtr
+ 000002A0  8B D8			mov	ebx, eax ; ebx contains current dpd address
+					
+ 000002A2  46				inc	esi ; dpd counter	
+
+					; this checks for last dpd
+ 000002A3  B8 00000001			mov 	eax, 1
+ 000002A8  3B C1			cmp 	eax, ecx
+ 000002AA  74 11			je	lastDpd
+
+					;------ DnNextPtr ------
+					; this computes next dpd addresss and stores result in eax
+ 000002AC  8B C6			mov	eax, esi
+ 000002AE  BA 00000020			mov	edx, SizeOfDpd 
+ 000002B3  F7 E2			mul 	edx
+ 000002B5  03 45 24			add	eax, DnLstPtr ; eax contains next dpd addresss
+ 000002B8  26: 89 03			mov	DWORD PTR es:[ebx], eax 
+ 000002BB  EB 06			jmp	notLastDpd
+
+					; last dpd, so make nextptr = first dpd address, which is DnLstPtr
+ 000002BD			lastDpd:
+ 000002BD  8B 45 24			mov	eax, DnLstPtr
+ 000002C0  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+ 000002C3			notLastDpd:
+
+
+					;------ SndStat ------
+ 000002C3  83 C3 04			add	ebx, 4
+ 000002C6  8B 45 20			mov	eax, SndStat
+ 000002C9  C1 F8 02			sar	eax, 2
+ 000002CC  53				push	ebx
+ 000002CD  8B DE			mov	ebx, esi 
+ 000002CF  4B				dec 	ebx
+ 000002D0  0A C3			or	al, bl
+ 000002D2  C1 E0 02			sal	eax, 2	
+ 000002D5  5B				pop 	ebx
+ 000002D6  26: 89 03			mov	DWORD PTR es:[ebx], eax  
+					
+					;------ SndFragAddress ----
+ 000002D9  83 C3 04			add	ebx, 4
+ 000002DC  8B C7			mov	eax, edi
+ 000002DE  8B 55 2C			mov	edx, SndFragLen
+ 000002E1  81 E2 00001FFF		and	edx, 1fffh ; bits 0-12 are length of fragment
+ 000002E7  F7 E2			mul 	edx
+ 000002E9  03 45 28			add	eax, SndFragAddr
+ 000002EC  26: 89 03			mov	DWORD PTR es:[ebx], eax 
+
+ 000002EF  47				inc	edi ; dpd fragment counter
+					
+					;------ SndFragLen -----
+ 000002F0  83 C3 04			add	ebx, 4
+ 000002F3  8B 45 2C			mov	eax, SndFragLen 
+ 000002F6  26: 89 03			mov	DWORD PTR es:[ebx], eax
+					
+					;------ PktId -------
+ 000002F9  83 C3 04			add	ebx, 4
+ 000002FC  8B C6			mov	eax, esi ; esi = dpd counter, but, pktid starts from 0, so we copy esi to eax and dec eax
+ 000002FE  48				dec	eax
+ 000002FF  26: 89 03			mov	DWORD PTR es:[ebx], eax
+					
+					;************** place for adding code for prev ptr *******************
+					; this checks for first dpd
+ 00000302  83 C3 04			add	ebx, 4
+ 00000305  8B 45 1C			mov 	eax, NoSndBuf
+ 00000308  3B C1			cmp 	eax, ecx
+ 0000030A  74 14			je	firstDpd
+
+					; not first dpd, 
+ 0000030C  8B C6			mov	eax, esi
+ 0000030E  83 E8 02			sub	eax, 2 ; from second dpd, normal address starts, but dpdCnt=2, so we subtract 2
+						       ; address = DnLstPtr + (dpdCnt-2) * dpdInc
+ 00000311  BA 00000020			mov	edx, SizeOfDpd 
+ 00000316  F7 E2			mul	edx
+ 00000318  03 45 24			add	eax, DnLstPtr
+ 0000031B  26: 89 03			mov	DWORD PTR es:[ebx], eax
+ 0000031E  EB 11			jmp	notFirstDpd
+
+					; first dpd, so make nextptr = last dpd address, which is DnLstPtr + (NoSndBuf-1) * dpdInc 
+ 00000320			firstDpd:
+ 00000320  8B 45 1C			mov	eax, NoSndBuf
+ 00000323  48				dec	eax
+ 00000324  BA 00000020			mov	edx, SizeOfDpd 
+ 00000329  F7 E2			mul 	edx
+ 0000032B  03 45 24			add	eax, DnLstPtr
+ 0000032E  26: 89 03			mov	DWORD PTR es:[ebx], eax
+					
+ 00000331			notFirstDpd:
+					
+					;************** place for adding code for prev ptr *******************
+
+					;------ TxStatus is inserted by prcycle.asm OtherBegin73 procedure-------
+ 00000331  83 C3 04			add	ebx, 4
+ 00000334  B8 00000000			mov	eax, 0          
+ 00000339  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+					;------ SendFlag in DPD -------
+ 0000033C  83 C3 04			add	ebx, 4
+ 0000033F  B8 00000000			mov	eax, 0         
+ 00000344  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+ 00000347  49				dec 	ecx
+
+ 00000348  8B C1			mov	eax, ecx 
+ 0000034A  83 F8 00			cmp	eax, 0 
+ 0000034D  0F 85 FFFFFF41		jne	sndLoop
+
+				;-----------------------------------------------------------------------
+ 00000353  BE 00000000			mov	esi, 0 ; esi = upd counter
+ 00000358  BF 00000000			mov	edi, 0 ; edi = upd fragment counter
+
+ 0000035D  8B 4D 08			mov	ecx, NoRcvBuf
+ 00000360			rcvLoop:
+					;------ UpLstPtr ------
+					; this computes current upd addresss and stores result in ebx
+ 00000360  8B C6			mov	eax, esi
+ 00000362  BA 00000020			mov	edx, SizeOfUpd
+ 00000367  F7 E2			mul 	edx
+ 00000369  03 45 10			add	eax, UpLstPtr
+ 0000036C  8B D8			mov	ebx, eax ; ebx contains current upd address
+
+ 0000036E  46				inc	esi ; upd counter
+
+					; this checks for last upd
+ 0000036F  B8 00000001			mov 	eax, 1
+ 00000374  3B C1			cmp 	eax, ecx
+ 00000376  74 11			je	lastUpd
+					
+					;------ UpNextPtr -----
+					; this computes next upd addresss and stores result in eax
+ 00000378  8B C6			mov	eax, esi
+ 0000037A  BA 00000020			mov	edx, SizeOfUpd
+ 0000037F  F7 E2			mul 	edx
+ 00000381  03 45 10			add	eax, UpLstPtr ; eax contains next upd addresss
+ 00000384  26: 89 03			mov	DWORD PTR es:[ebx], eax
+ 00000387  EB 06			jmp	notLastUpd
+					
+					; last upd, so make nextptr = first upd address, which is UpLstPtr
+ 00000389			lastUpd:
+ 00000389  8B 45 10			mov	eax, UpLstPtr
+ 0000038C  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+ 0000038F			notLastUpd:
+					
+					;------ RcvStat ----
+ 0000038F  83 C3 04			add	ebx, 4
+ 00000392  8B 45 0C			mov	eax, RcvStat
+ 00000395  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+					;------ RcvFragAddress ----
+ 00000398  83 C3 04			add	ebx,4
+ 0000039B  8B C7			mov	eax, edi 
+ 0000039D  8B 55 18			mov	edx, RcvFragLen
+ 000003A0  81 E2 00001FFF		and	edx, 1fffh ; bits 0-12 are length of fragment
+ 000003A6  F7 E2			mul 	edx
+ 000003A8  03 45 14			add	eax, RcvFragAddr
+ 000003AB  26: 89 03			mov	DWORD PTR es:[ebx], eax
+					
+ 000003AE  47				inc	edi ; upd fragment counter
+					
+					;------ RcvFragLen -------
+ 000003AF  83 C3 04			add	ebx, 4
+ 000003B2  8B 45 18			mov	eax, RcvFragLen          
+ 000003B5  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+					;------ PktId -------
+ 000003B8  83 C3 04			add	ebx, 4
+ 000003BB  8B C6			mov	eax, esi ; esi = upd counter, but, pktid starts from 0, so we copy esi to eax and dec eax
+ 000003BD  48				dec	eax
+ 000003BE  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+					;------ LastButTwoEntry in UPD (Not used)-------
+ 000003C1  83 C3 04			add	ebx, 4
+ 000003C4  B8 00000000			mov	eax, 0         
+ 000003C9  26: 89 03			mov	DWORD PTR es:[ebx], eax
+					
+					;------ LastButOneEntry in UPD (Not used)-------
+ 000003CC  83 C3 04			add	ebx, 4
+ 000003CF  B8 00000000			mov	eax, 0         
+ 000003D4  26: 89 03			mov	DWORD PTR es:[ebx], eax
+					
+					;------ LastEntry in UPD (Not used)-------
+ 000003D7  83 C3 04			add	ebx, 4
+ 000003DA  B8 00000000			mov	eax, 0         
+ 000003DF  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+ 000003E2  49				dec 	ecx
+ 000003E3  8B C1			mov	eax, ecx 
+ 000003E5  83 F8 00			cmp	eax, 0 
+ 000003E8  0F 85 FFFFFF72		jne	rcvLoop
+					;----------------------------------------
+					; set the UpLstPtr here after creating the data structure  
+					;  however, receiver is not yet enabled 
+					; it will be enabled through C++ applications 
+					;----------------------------------------
+ 000003EE  66| 8B 55 30			mov	dx,IO_BASE ; initialize UpLstPtr 
+ 000003F2  66| 83 C2 38			add	dx,38h
+ 000003F6  8B 45 10			mov	eax, UpLstPtr  
+ 000003F9  EF				out	dx,eax     ; store Up List ptr in the card 
+
+					;----- DnNextPtr0 = 0 ----------
+					; code for making first dpd's DnNextPtr=0
+ 000003FA  B8 00000000			mov	eax, 0
+ 000003FF  8B 5D 24			mov	ebx, DnLstPtr 
+ 00000402  26: 89 03			mov	DWORD PTR es:[ebx], eax 
+
+					; --- for making first DPD length = 512 bytes ---
+					; --- because it is a dummy packet ---
+ 00000405  B8 80000200			mov 	eax, 80000200h
+ 0000040A  8B 5D 24			mov 	ebx, DnLstPtr
+ 0000040D  83 C3 0C			add	ebx, 12
+ 00000410  26: 89 03			mov	DWORD PTR es:[ebx], eax
+
+ 00000413  07				pop 	es
+ 00000414  5F				pop	edi
+ 00000415  5E				pop	esi
+ 00000416  5A				pop	edx
+ 00000417  59				pop	ecx
+ 00000418  5B				pop	ebx
+					ret
+
+ 00000420			createDSasm endp
+				end
+Microsoft (R) Macro Assembler Version 6.11		    04/14/06 10:26:29
+init.asm						     Symbols 2 - 1
+
+
+
+
+Types:
+
+                N a m e                  Size     Attr
+
+@proto_0 . . . . . . . . . . . .	 00000004     CODE 
+@proto_1 . . . . . . . . . . . .	 00000004     CODE 
+@proto_2 . . . . . . . . . . . .	 00000004     CODE 
+@proto_3 . . . . . . . . . . . .	 00000004     CODE 
+@proto_4 . . . . . . . . . . . .	 00000004     CODE 
+@proto_5 . . . . . . . . . . . .	 00000004     CODE 
+@proto_6 . . . . . . . . . . . .	 00000004     CODE 
+@proto_7 . . . . . . . . . . . .	 00000004     CODE 
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000420 DWord	  Public  'CODE'	
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+Check_Window3_FreeTX . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+Check_Window6_Transmit_Success .	P Near	 00000000 FLAT	Length= 00000000 External C
+Wait_Command_Finish  . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+Wait_EEPROM_Unbusy . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+closeasm . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+createDSasm  . . . . . . . . . .	P Near	 00000272 _TEXT	Length= 000001AE Public C
+  NoRcvBuf . . . . . . . . . . .	DWord	 bp + 00000008
+  RcvStat  . . . . . . . . . . .	DWord	 bp + 0000000C
+  UpLstPtr . . . . . . . . . . .	DWord	 bp + 00000010
+  RcvFragAddr  . . . . . . . . .	DWord	 bp + 00000014
+  RcvFragLen . . . . . . . . . .	DWord	 bp + 00000018
+  NoSndBuf . . . . . . . . . . .	DWord	 bp + 0000001C
+  SndStat  . . . . . . . . . . .	DWord	 bp + 00000020
+  DnLstPtr . . . . . . . . . . .	DWord	 bp + 00000024
+  SndFragAddr  . . . . . . . . .	DWord	 bp + 00000028
+  SndFragLen . . . . . . . . . .	DWord	 bp + 0000002C
+  IO_BASE  . . . . . . . . . . .	Word	 bp + 00000030
+  sndLoop  . . . . . . . . . . .	L Near	 00000294 _TEXT	
+  lastDpd  . . . . . . . . . . .	L Near	 000002BD _TEXT	
+  notLastDpd . . . . . . . . . .	L Near	 000002C3 _TEXT	
+  firstDpd . . . . . . . . . . .	L Near	 00000320 _TEXT	
+  notFirstDpd  . . . . . . . . .	L Near	 00000331 _TEXT	
+  rcvLoop  . . . . . . . . . . .	L Near	 00000360 _TEXT	
+  lastUpd  . . . . . . . . . . .	L Near	 00000389 _TEXT	
+  notLastUpd . . . . . . . . . .	L Near	 0000038F _TEXT	
+initasm  . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000272 Public C
+  IO_BASE  . . . . . . . . . . .	Word	 bp + 00000008
+  MAC  . . . . . . . . . . . . .	DWord	 bp + 0000000C
+receasm  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+transasm . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000001h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+Command_AckInt . . . . . . . . .	Number	 00006800h   
+Command_DnStall  . . . . . . . .	Number	 00003002h   
+Command_DnUnStall  . . . . . . .	Number	 00003003h   
+Command_GlobalReset  . . . . . .	Number	 00000000h   
+Command_RXDisable  . . . . . . .	Number	 00001800h   
+Command_RXDiscard  . . . . . . .	Number	 00004000h   
+Command_RXEnable . . . . . . . .	Number	 00002000h   
+Command_RXReset  . . . . . . . .	Number	 00002800h   
+Command_ReadEpromCommand . . . .	Number	 00000080h   
+Command_RequestInt . . . . . . .	Number	 00006000h   
+Command_SelectWindow . . . . . .	Number	 00000800h   
+Command_SetIndicationEnable  . .	Number	 00007800h   
+Command_SetIntMask . . . . . . .	Number	 00007000h   
+Command_SetRXEarly . . . . . . .	Number	 00008800h   
+Command_SetRXFilter  . . . . . .	Number	 00008000h   
+Command_SetTXAvailable . . . . .	Number	 00009000h   
+Command_SetTXStart . . . . . . .	Number	 00009800h   
+Command_StartIntXCVR . . . . . .	Number	 00001000h   
+Command_StatsDisable . . . . . .	Number	 0000B000h   
+Command_StatsEnable  . . . . . .	Number	 0000A800h   
+Command_StopCoaxTrans  . . . . .	Number	 0000B800h   
+Command_TXDisable  . . . . . . .	Number	 00005000h   
+Command_TXEnable . . . . . . . .	Number	 00004800h   
+Command_TXReset  . . . . . . . .	Number	 00005800h   
+Command_TxStartThresh  . . . . .	Number	 0000983Ch   
+Command_UpStall  . . . . . . . .	Number	 00003000h   
+Command_UpUnStall  . . . . . . .	Number	 00003001h   
+GKHead . . . . . . . . . . . . .	Number	 00000407h   
+GKKQ . . . . . . . . . . . . . .	Number	 00000308h   
+GKTail . . . . . . . . . . . . .	Number	 00000408h   
+GlobalDataSel  . . . . . . . . .	Number	 000000B8h   
+ID_PORT  . . . . . . . . . . . .	Number	 00000110h   
+MEMDataSel . . . . . . . . . . .	Number	 000000C0h   
+NoOfCycles_Delay . . . . . . . .	Number	 00000005h   
+PreambleData . . . . . . . . . .	Number	 0000820Ch   
+Processor_Speed  . . . . . . . .	Number	 00000163h   
+Puthex32DataSel  . . . . . . . .	Number	 00000090h   
+RDataSel . . . . . . . . . . . .	Number	 00000018h   
+SizeOfDpd  . . . . . . . . . . .	Number	 00000020h   
+SizeOfUpd  . . . . . . . . . . .	Number	 00000020h   
+StackSel . . . . . . . . . . . .	Number	 0000000Ch   
+
+	   0 Warnings
+	   0 Errors
